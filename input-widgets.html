@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>输入组件详解 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .tutorial-page {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .tutorial-nav {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .tutorial-nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tutorial-nav a:hover {
+            text-decoration: underline;
+        }
+
+        .tutorial-content h1 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .tutorial-content h2 {
+            color: var(--secondary-color);
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+        }
+
+        .tutorial-content h3 {
+            color: var(--text-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .tutorial-content h4 {
+            color: #666;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .tutorial-content p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .tutorial-content ul, .tutorial-content ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            line-height: 1.8;
+        }
+
+        .tutorial-content li {
+            margin-bottom: 0.6rem;
+        }
+
+        .note-box {
+            background: #e3f2fd;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .tip-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .code-block {
+            background: var(--dark-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: #00ff00;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .code-block code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .copy-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-1px);
+        }
+
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .topic-nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .topic-nav a:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #8be9fd; }
+        .comment { color: #6272a4; font-style: italic; }
+        .number { color: #bd93f9; }
+        .type { color: #50fa7b; }
+        .property { color: #ffb86c; }
+
+        .component-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border: 1px solid #e0e0e0;
+        }
+
+        .component-card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .parameter-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .parameter-table th,
+        .parameter-table td {
+            border: 1px solid #ddd;
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        .parameter-table th {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .parameter-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            padding-left: 2rem;
+            position: relative;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                    <li><a href="index.html#examples">示例</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="tutorial-page">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="tutorial-content">
+                <h1>输入组件详解</h1>
+                <p>输入组件是与用户交互的核心，包括按钮、文本输入、选择器等。本教程将详细介绍 Flutter 中最常用的输入组件。</p>
+
+                <div class="note-box">
+                    <strong>重要提示：</strong>Flutter 3.27+ 增强了 Material 3 组件的功能，提供了更多自定义选项和更好的用户体验。
+                </div>
+
+                <div class="component-card">
+                    <h2>1. TextField 文本输入框</h2>
+                    <p>TextField 是最常用的文本输入组件，支持单行和多行输入、自动验证、格式化等功能。</p>
+
+                    <h3>核心属性</h3>
+                    <table class="parameter-table">
+                        <tr>
+                            <th>属性</th>
+                            <th>类型</th>
+                            <th>说明</th>
+                        </tr>
+                        <tr>
+                            <td>controller</td>
+                            <td>TextEditingController</td>
+                            <td>控制器，用于访问和修改文本</td>
+                        </tr>
+                        <tr>
+                            <td>decoration</td>
+                            <td>InputDecoration</td>
+                            <td>装饰，设置外观和标签</td>
+                        </tr>
+                        <tr>
+                            <td>keyboardType</td>
+                            <td>TextInputType</td>
+                            <td>键盘类型</td>
+                        </tr>
+                        <tr>
+                            <td>textInputAction</td>
+                            <td>TextInputAction</td>
+                            <td>键盘动作按钮</td>
+                        </tr>
+                        <tr>
+                            <td>obscureText</td>
+                            <td>bool</td>
+                            <td>是否隐藏文本（密码输入）</td>
+                        </tr>
+                        <tr>
+                            <td>maxLength</td>
+                            <td>int</td>
+                            <td>最大长度</td>
+                        </tr>
+                        <tr>
+                            <td>maxLines</td>
+                            <td>int</td>
+                            <td>最大行数</td>
+                        </tr>
+                        <tr>
+                            <td>enabled</td>
+                            <td>bool</td>
+                            <td>是否启用</td>
+                        </tr>
+                        <tr>
+                            <td>readOnly</td>
+                            <td>bool</td>
+                            <td>是否只读</td>
+                        </tr>
+                    </table>
+
+                    <h3>使用示例</h3>
+                    <div class="code-block">
+                        <pre><code>// 基本 TextField
+TextField(
+  decoration: const InputDecoration(
+    labelText: '用户名',
+    hintText: '请输入用户名',
+    border: OutlineInputBorder(),
+  ),
+)
+
+// 带控制器的 TextField
+final TextEditingController _controller = TextEditingController();
+
+TextField(
+  controller: _controller,
+  decoration: const InputDecoration(
+    labelText: '用户名',
+    prefixIcon: Icon(Icons.person),
+    suffixIcon: Icon(Icons.check),
+  ),
+  onChanged: (value) {
+    print('输入: $value');
+  },
+  onSubmitted: (value) {
+    print('提交: $value');
+  },
+)
+
+// 密码输入框
+TextField(
+  obscureText: true,
+  decoration: const InputDecoration(
+    labelText: '密码',
+    hintText: '请输入密码',
+    border: OutlineInputBorder(),
+    prefixIcon: Icon(Icons.lock),
+  ),
+)
+
+// 多行文本输入
+TextField(
+  maxLines: 5,
+  decoration: const InputDecoration(
+    labelText: '简介',
+    hintText: '请输入简介',
+    border: OutlineInputBorder(),
+  ),
+)
+
+// 数字输入
+TextField(
+  keyboardType: TextInputType.number,
+  decoration: const InputDecoration(
+    labelText: '年龄',
+    border: OutlineInputBorder(),
+  ),
+)
+
+// 带验证的 TextField
+TextField(
+  controller: _emailController,
+  keyboardType: TextInputType.emailAddress,
+  decoration: InputDecoration(
+    labelText: '邮箱',
+    hintText: '请输入邮箱',
+    border: const OutlineInputBorder(),
+    errorText: _emailError.isEmpty ? null : _emailError,
+  ),
+  onChanged: (value) {
+    setState(() {
+      _emailError = _validateEmail(value) ? '' : '邮箱格式不正确';
+    });
+  },
+)
+
+// 带前缀和后缀的 TextField
+TextField(
+  decoration: InputDecoration(
+    labelText: '金额',
+    prefixText: '¥ ',
+    suffixText: '元',
+    border: const OutlineInputBorder(),
+  ),
+)</code></pre>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>技巧：</strong>使用 TextEditingController 可以更灵活地控制文本，包括设置初始值、获取文本、选择文本等。
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h2>2. TextFormField 表单输入框</h2>
+                    <p>TextFormField 是 TextField 的封装，提供了表单验证功能，适合用于表单场景。</p>
+
+                    <h3>使用示例</h3>
+                    <div class="code-block">
+                        <pre><code>// 基本 TextFormField
+TextFormField(
+  decoration: const InputDecoration(
+    labelText: '邮箱',
+    border: OutlineInputBorder(),
+  ),
+  validator: (value) {
+    if (value == null || value.isEmpty) {
+      return '请输入邮箱';
+    }
+    if (!value.contains('@')) {
+      return '邮箱格式不正确';
+    }
+    return null;
+  },
+)
+
+// 完整的登录表单
+Form(
+  key: _formKey,
+  child: Column(
+    children: [
+      TextFormField(
+        controller: _usernameController,
+        decoration: const InputDecoration(
+          labelText: '用户名',
+          prefixIcon: Icon(Icons.person),
+          border: OutlineInputBorder(),
+        ),
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return '请输入用户名';
+          }
+          if (value.length < 3) {
+            return '用户名至少3个字符';
+          }
+          return null;
+        },
+      ),
+      const SizedBox(height: 16),
+      TextFormField(
+        controller: _passwordController,
+        obscureText: _obscurePassword,
+        decoration: InputDecoration(
+          labelText: '密码',
+          prefixIcon: const Icon(Icons.lock),
+          suffixIcon: IconButton(
+            icon: Icon(
+              _obscurePassword ? Icons.visibility : Icons.visibility_off,
+            ),
+            onPressed: () {
+              setState(() {
+                _obscurePassword = !_obscurePassword;
+              });
+            },
+          ),
+          border: const OutlineInputBorder(),
+        ),
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return '请输入密码';
+          }
+          if (value.length < 6) {
+            return '密码至少6个字符';
+          }
+          return null;
+        },
+      ),
+      const SizedBox(height: 24),
+      ElevatedButton(
+        onPressed: () {
+          if (_formKey.currentState!.validate()) {
+            // 表单验证通过
+            _login();
+          }
+        },
+        child: const Text('登录'),
+      ),
+    ],
+  ),
+)</code></pre>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h2>3. ElevatedButton 凸起按钮</h2>
+                    <p>ElevatedButton 是 Material Design 风格的凸起按钮，适合用于主要操作。</p>
+
+                    <h3>使用示例</h3>
+                    <div class="code-block">
+                        <pre><code>// 基本 ElevatedButton
+ElevatedButton(
+  onPressed: () {
+    print('按钮被点击');
+  },
+  child: const Text('点击我'),
+)
+
+// 带图标的按钮
+ElevatedButton.icon(
+  onPressed: () {},
+  icon: const Icon(Icons.send),
+  label: const Text('发送'),
+)
+
+// 自定义样式
+ElevatedButton(
+  onPressed: () {},
+  style: ElevatedButton.styleFrom(
+    backgroundColor: Colors.blue,
+    foregroundColor: Colors.white,
+    padding: const EdgeInsets.symmetric(
+      horizontal: 24,
+      vertical: 12,
+    ),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8),
+    ),
+  ),
+  child: const Text('自定义按钮'),
+)
+
+// 禁用状态
+ElevatedButton(
+  onPressed: null,
+  child: const Text('禁用按钮'),
+)
+
+// 全宽按钮
+SizedBox(
+  width: double.infinity,
+  child: ElevatedButton(
+    onPressed: () {},
+    style: ElevatedButton.styleFrom(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+    ),
+    child: const Text('全宽按钮'),
+  ),
+)</code></pre>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h2>4. TextButton 文本按钮</h2>
+                    <p>TextButton 是扁平的文本按钮，适合用于次要操作或导航。</p>
+
+                    <h3>使用示例</h3>
+                    <div class="code-block">
+                        <pre><code>// 基本 TextButton
+TextButton(
+  onPressed: () {
+    print('文本按钮被点击');
+  },
+  child: const Text('取消'),
+)
+
+// 带图标的文本按钮
+TextButton.icon(
+  onPressed: () {},
+  icon: const Icon(Icons.cancel),
+  label: const Text('取消'),
+)
+
+// 自定义样式
+TextButton(
+  onPressed: () {},
+  style: TextButton.styleFrom(
+    foregroundColor: Colors.red,
+    textStyle: const TextStyle(fontSize: 16),
+  ),
+  child: const Text('删除'),
+)</code></pre>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h2>5. OutlinedButton 轮廓按钮</h2>
+                    <p>OutlinedButton 是带边框的按钮，介于 ElevatedButton 和 TextButton 之间。</p>
+
+                    <h3>使用示例</h3>
+                    <div class="code-block">
+                        <pre><code>// 基本 OutlinedButton
+OutlinedButton(
+  onPressed: () {},
+  child: const Text('轮廓按钮'),
+)
+
+// 带图标的轮廓按钮
+OutlinedButton.icon(
+  onPressed: () {},
+  icon: const Icon(Icons.share),
+  label: const Text('分享'),
+)
+
+// 自定义样式
+OutlinedButton(
+  onPressed: () {},
+  style: OutlinedButton.styleFrom(
+    foregroundColor: Colors.blue,
+    side: const BorderSide(
+      color: Colors.blue,
+      width: 2,
+    ),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8),
+    ),
+  ),
+  child: const Text('自定义轮廓按钮'),
+)</code></pre>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h2>6. IconButton 图标按钮</h2>
+                    <p>IconButton 是只包含图标的按钮，适合用于工具栏或图标操作。</p>
+
+                    <h3>使用示例</h3>
+                    <div class="code-block">
+                        <pre><code>// 基本 IconButton
+IconButton(
+  onPressed: () {
+    print('图标按钮被点击');
+  },
+  icon: const Icon(Icons.favorite),
+  iconSize: 32,
+  color: Colors.red,
+)
+
+// 带工具提示的图标按钮
+IconButton(
+  onPressed: () {},
+  icon: const Icon(Icons.delete),
+  tooltip: '删除',
+  color: Colors.red,
+)
+
+// 不同大小的图标按钮
+Row(
+  children: [
+    IconButton(
+      onPressed: () {},
+      icon: const Icon(Icons.star),
+      iconSize: 24,
+    ),
+    IconButton(
+      onPressed: () {},
+      icon: const Icon(Icons.star),
+      iconSize: 32,
+    ),
+    IconButton(
+      onPressed: () {},
+      icon: const Icon(Icons.star),
+      iconSize: 48,
+    ),
+  ],
+)
+
+// 浮动操作按钮（FAB）
+FloatingActionButton(
+  onPressed: () {},
+  child: const Icon(Icons.add),
+)
+
+// 大号 FAB
+FloatingActionButton.extended(
+  onPressed: () {},
+  icon: const Icon(Icons.camera_alt),
+  label: const Text('拍照'),
+)</code></pre>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h2>7. Checkbox 复选框</h2>
+                    <p>Checkbox 用于选择多个选项的状态。</p>
+
+                    <h3>使用示例</h3>
+                    <div class="code-block">
+                        <pre><code>// 基本 Checkbox
+bool _isChecked = false;
+
+Checkbox(
+  value: _isChecked,
+  onChanged: (bool? value) {
+    setState(() {
+      _isChecked = value ?? false;
+    });
+  },
+)
+
+// 带标签的复选框
+CheckboxListTile(
+  title: const Text('我同意服务条款'),
+  subtitle: const Text('请仔细阅读条款内容'),
+  value: _agreeToTerms,
+  onChanged: (bool? value) {
+    setState(() {
+      _agreeToTerms = value ?? false;
+    });
+  },
+  controlAffinity: ListTileControlAffinity.leading,
+)
+
+// 三态复选框
+TriStateCheckbox(
+  value: _tristateValue,
+  onChanged: (bool? value) {
+    setState(() {
+      _tristateValue = value;
+    });
+  },
+)</code></pre>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h2>8. Radio 单选按钮</h2>
+                    <p>Radio 用于从多个选项中选择一个。</p>
+
+                    <h3>使用示例</h3>
+                    <div class="code-block">
+                        <pre><code>// 基本 Radio
+enum Gender { male, female }
+
+Gender? _gender = Gender.male;
+
+Radio<Gender>(
+  value: Gender.male,
+  groupValue: _gender,
+  onChanged: (Gender? value) {
+    setState(() {
+      _gender = value;
+    });
+  },
+)
+
+// 带标签的单选按钮
+RadioListTile<Gender>(
+  title: const Text('男'),
+  subtitle: const Text('选择男性'),
+  value: Gender.male,
+  groupValue: _gender,
+  onChanged: (Gender? value) {
+    setState(() {
+      _gender = value;
+    });
+  },
+)</code></pre>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h2>9. Switch 开关</h2>
+                    <p>Switch 用于切换开/关状态。</p>
+
+                    <h3>使用示例</h3>
+                    <div class="code-block">
+                        <pre><code>// 基本 Switch
+bool _isSwitched = false;
+
+Switch(
+  value: _isSwitched,
+  onChanged: (bool value) {
+    setState(() {
+      _isSwitched = value;
+    });
+  },
+)
+
+// 带标签的开关
+SwitchListTile(
+  title: const Text('通知'),
+  subtitle: const Text('接收推送通知'),
+  value: _notificationsEnabled,
+  onChanged: (bool value) {
+    setState(() {
+      _notificationsEnabled = value;
+    });
+  },
+)
+
+// 自定义颜色
+Switch(
+  value: _isSwitched,
+  onChanged: (bool value) {
+    setState(() {
+      _isSwitched = value;
+    });
+  },
+  activeColor: Colors.green,
+  activeTrackColor: Colors.green.withOpacity(0.5),
+)</code></pre>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h2>10. Slider 滑块</h2>
+                    <p>Slider 用于选择一个范围内的数值。</p>
+
+                    <h3>使用示例</h3>
+                    <div class="code-block">
+                        <pre><code>// 基本 Slider
+double _sliderValue = 50.0;
+
+Slider(
+  value: _sliderValue,
+  min: 0,
+  max: 100,
+  divisions: 10,
+  label: _sliderValue.round().toString(),
+  onChanged: (double value) {
+    setState(() {
+      _sliderValue = value;
+    });
+  },
+)
+
+// 带图标的滑块
+SliderTheme(
+  data: SliderTheme.of(context).copyWith(
+    activeTrackColor: Colors.red,
+    inactiveTrackColor: Colors.red.withOpacity(0.3),
+    thumbColor: Colors.red,
+    overlayColor: Colors.red.withOpacity(0.2),
+  ),
+  child: Slider(
+    value: _sliderValue,
+    min: 0,
+    max: 100,
+    onChanged: (double value) {
+      setState(() {
+        _sliderValue = value;
+      });
+    },
+  ),
+)</code></pre>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h2>11. Dropdown 下拉选择</h2>
+                    <p>DropdownButton 用于从下拉列表中选择一个选项。</p>
+
+                    <h3>使用示例</h3>
+                    <div class="code-block">
+                        <pre><code>// 基本 DropdownButton
+String? _selectedItem;
+
+DropdownButton<String>(
+  hint: const Text('请选择'),
+  value: _selectedItem,
+  items: const [
+    DropdownMenuItem(
+      value: 'Option 1',
+      child: Text('选项 1'),
+    ),
+    DropdownMenuItem(
+      value: 'Option 2',
+      child: Text('选项 2'),
+    ),
+    DropdownMenuItem(
+      value: 'Option 3',
+      child: Text('选项 3'),
+    ),
+  ],
+  onChanged: (String? value) {
+    setState(() {
+      _selectedItem = value;
+    });
+  },
+)
+
+// 带图标的下拉选择
+DropdownButtonFormField<String>(
+  decoration: const InputDecoration(
+    labelText: '城市',
+    border: OutlineInputBorder(),
+    prefixIcon: Icon(Icons.location_city),
+  ),
+  value: _selectedCity,
+  items: ['北京', '上海', '广州', '深圳'].map((String city) {
+    return DropdownMenuItem<String>(
+      value: city,
+      child: Text(city),
+    );
+  }).toList(),
+  onChanged: (String? value) {
+    setState(() {
+      _selectedCity = value;
+    });
+  },
+)</code></pre>
+                    </div>
+                </div>
+
+                <h2>输入组件最佳实践</h2>
+                <ul class="feature-list">
+                    <li>为所有输入组件添加清晰的标签和提示文本</li>
+                    <li>使用 TextEditingController 管理文本状态</li>
+                    <li>为密码字段添加显示/隐藏切换功能</li>
+                    <li>使用 Form 和 TextFormField 进行表单验证</li>
+                    <li>根据操作重要性选择合适的按钮类型</li>
+                    <li>为按钮添加合适的尺寸和间距</li>
+                    <li>使用 Material Design 3 的新特性提升用户体验</li>
+                    <li>为所有交互组件提供视觉反馈</li>
+                </ul>
+
+                <div class="tip-box">
+                    <strong>提示：</strong>使用 Flutter 3.27+ 的 FormField 可以更灵活地实现自定义表单验证。
+                </div>
+
+                <div class="note-box">
+                    <strong>下一步：</strong>掌握输入组件后，继续学习列表组件和数据展示。
+                </div>
+
+                <div class="topic-nav">
+                    <a href="layout-widgets.html">← 布局组件</a>
+                    <a href="list-widgets.html">列表组件 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Flutter 学习教程. 基于 Flutter 3.27+ & Dart 3.5+</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

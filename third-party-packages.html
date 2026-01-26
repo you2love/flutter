@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常用第三方组件 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .tutorial-page {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .tutorial-nav {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .tutorial-nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tutorial-nav a:hover {
+            text-decoration: underline;
+        }
+
+        .tutorial-content h1 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .tutorial-content h2 {
+            color: var(--secondary-color);
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+        }
+
+        .tutorial-content h3 {
+            color: var(--text-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .tutorial-content h4 {
+            color: #666;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .tutorial-content p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .tutorial-content ul, .tutorial-content ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            line-height: 1.8;
+        }
+
+        .tutorial-content li {
+            margin-bottom: 0.6rem;
+        }
+
+        .note-box {
+            background: #e3f2fd;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .tip-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .code-block {
+            background: var(--dark-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: #00ff00;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .code-block code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .copy-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-1px);
+        }
+
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .topic-nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .topic-nav a:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #8be9fd; }
+        .comment { color: #6272a4; font-style: italic; }
+        .number { color: #bd93f9; }
+        .type { color: #50fa7b; }
+        .property { color: #ffb86c; }
+
+        .package-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border: 1px solid #e0e0e0;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .package-card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .package-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 1rem;
+        }
+
+        .package-badge.popular {
+            background: #ff9800;
+            color: white;
+        }
+
+        .package-badge.recommended {
+            background: #4caf50;
+            color: white;
+        }
+
+        .package-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .package-info-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .package-info-item strong {
+            display: block;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            padding-left: 2rem;
+            position: relative;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        .yaml-block {
+            background: #2d2d2d;
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            border-left: 3px solid #4caf50;
+        }
+
+        .yaml-block pre {
+            margin: 0;
+            color: #00ff00;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .install-command {
+            background: #f5f5f5;
+            padding: 1rem;
+            border-radius: 4px;
+            border-left: 3px solid #2196f3;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                    <li><a href="index.html#examples">示例</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="tutorial-page">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="tutorial-content">
+                <h1>常用第三方组件</h1>
+                <p>Flutter 生态拥有丰富的第三方组件，可以大大提高开发效率。本教程将介绍最常用的第三方组件及其使用方法。</p>
+
+                <div class="note-box">
+                    <strong>重要提示：</strong>所有第三方组件都可以在 <a href="https://pub.dev" target="_blank" style="color: var(--primary-color);">pub.dev</a> 上找到，使用前请查看最新版本和文档。
+                </div>
+
+                <div class="package-card">
+                    <h3>
+                        1. Provider
+                        <span class="package-badge popular">热门</span>
+                        <span class="package-badge recommended">推荐</span>
+                    </h3>
+                    <p>Provider 是官方推荐的状态管理解决方案，简单易用，性能优秀。</p>
+
+                    <div class="package-info">
+                        <div class="package-info-item">
+                            <strong>包名</strong>
+                            provider
+                        </div>
+                        <div class="package-info-item">
+                            <strong>类型</strong>
+                            状态管理
+                        </div>
+                        <div class="package-info-item">
+                            <strong>热度</strong>
+                            ⭐⭐⭐⭐⭐
+                        </div>
+                        <div class="package-info-item">
+                            <strong>链接</strong>
+                            <a href="https://pub.dev/packages/provider" target="_blank" style="color: var(--primary-color);">pub.dev</a>
+                        </div>
+                    </div>
+
+                    <h4>安装依赖</h4>
+                    <div class="yaml-block">
+                        <pre>dependencies:
+  provider: ^6.1.2</pre>
+                    </div>
+
+                    <h4>基本使用</h4>
+                    <div class="code-block">
+                        <pre><code>// 1. 创建数据模型
+class Counter extends ChangeNotifier {
+  int _count = 0;
+  int get count => _count;
+
+  void increment() {
+    _count++;
+    notifyListeners();
+  }
+}
+
+// 2. 在应用根部提供 Provider
+void main() {
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => Counter(),
+      child: const MyApp(),
+    ),
+  );
+}
+
+// 3. 在 Widget 中使用
+class CounterWidget extends StatelessWidget {
+  const CounterWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final counter = context.watch<Counter>();
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text('计数: ${counter.count}'),
+        ElevatedButton(
+          onPressed: () => context.read<Counter>().increment(),
+          child: const Text('增加'),
+        ),
+      ],
+    );
+  }
+}
+
+// 4. 使用 Consumer 监听状态变化
+Consumer<Counter>(
+  builder: (context, counter, child) {
+    return Text('计数: ${counter.count}');
+  },
+)</code></pre>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>优势：</strong>官方推荐、学习曲线平缓、性能优秀、支持依赖注入。
+                    </div>
+                </div>
+
+                <div class="package-card">
+                    <h3>
+                        2. GetX
+                        <span class="package-badge popular">热门</span>
+                    </h3>
+                    <p>GetX 是一个全功能框架，提供状态管理、路由管理、依赖注入等功能。</p>
+
+                    <div class="package-info">
+                        <div class="package-info-item">
+                            <strong>包名</strong>
+                            get
+                        </div>
+                        <div class="package-info-item">
+                            <strong>类型</strong>
+                            全功能框架
+                        </div>
+                        <div class="package-info-item">
+                            <strong>热度</strong>
+                            ⭐⭐⭐⭐⭐
+                        </div>
+                        <div class="package-info-item">
+                            <strong>链接</strong>
+                            <a href="https://pub.dev/packages/get" target="_blank" style="color: var(--primary-color);">pub.dev</a>
+                        </div>
+                    </div>
+
+                    <h4>安装依赖</h4>
+                    <div class="yaml-block">
+                        <pre>dependencies:
+  get: ^4.6.6</pre>
+                    </div>
+
+                    <h4>基本使用</h4>
+                    <div class="code-block">
+                        <pre><code>// 1. 创建控制器
+class CounterController extends GetxController {
+  final count = 0.obs;
+
+  void increment() {
+    count.value++;
+  }
+}
+
+// 2. 使用 GetX 状态管理
+class CounterWidget extends StatelessWidget {
+  final controller = Get.put(CounterController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Obx(() => Text('计数: ${controller.count.value}')),
+        ElevatedButton(
+          onPressed: () => controller.increment(),
+          child: const Text('增加'),
+        ),
+      ],
+    );
+  }
+}
+
+// 3. 路由导航
+Get.to(const SecondPage());
+Get.back();
+Get.off(const HomePage());
+
+// 4. 带参数导航
+Get.toNamed('/details', arguments: {'id': 123});
+
+// 5. 响应式变量
+var name = ''.obs;
+Text('姓名: ${name.value}');</code></pre>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>优势：</strong>功能全面、代码简洁、性能优秀、学习资源丰富。
+                    </div>
+                </div>
+
+                <div class="package-card">
+                    <h3>
+                        3. Dio
+                        <span class="package-badge popular">热门</span>
+                        <span class="package-badge recommended">推荐</span>
+                    </h3>
+                    <p>Dio 是一个强大的 HTTP 客户端，支持拦截器、请求取消、文件下载等功能。</p>
+
+                    <div class="package-info">
+                        <div class="package-info-item">
+                            <strong>包名</strong>
+                            dio
+                        </div>
+                        <div class="package-info-item">
+                            <strong>类型</strong>
+                            网络请求
+                        </div>
+                        <div class="package-info-item">
+                            <strong>热度</strong>
+                            ⭐⭐⭐⭐⭐
+                        </div>
+                        <div class="package-info-item">
+                            <strong>链接</strong>
+                            <a href="https://pub.dev/packages/dio" target="_blank" style="color: var(--primary-color);">pub.dev</a>
+                        </div>
+                    </div>
+
+                    <h4>安装依赖</h4>
+                    <div class="yaml-block">
+                        <pre>dependencies:
+  dio: ^5.4.3</pre>
+                    </div>
+
+                    <h4>基本使用</h4>
+                    <div class="code-block">
+                        <pre><code>// 1. 创建 Dio 实例
+final dio = Dio();
+
+// 2. GET 请求
+Future<void> fetchData() async {
+  try {
+    final response = await dio.get('https://api.example.com/data');
+    print(response.data);
+  } catch (e) {
+    print('Error: $e');
+  }
+}
+
+// 3. POST 请求
+Future<void> postData() async {
+  try {
+    final response = await dio.post(
+      'https://api.example.com/users',
+      data: {
+        'name': 'Alice',
+        'email': 'alice@example.com',
+      },
+    );
+    print(response.data);
+  } catch (e) {
+    print('Error: $e');
+  }
+}
+
+// 4. 添加拦截器
+void setupInterceptors() {
+  dio.interceptors.add(InterceptorsWrapper(
+    onRequest: (options, handler) {
+      print('请求: ${options.uri}');
+      return handler.next(options);
+    },
+    onResponse: (response, handler) {
+      print('响应: ${response.data}');
+      return handler.next(response);
+    },
+    onError: (error, handler) {
+      print('错误: ${error.message}');
+      return handler.next(error);
+    },
+  ));
+}
+
+// 5. 文件下载
+Future<void> downloadFile() async {
+  await dio.download(
+    'https://example.com/file.pdf',
+    '/path/to/save/file.pdf',
+    onReceiveProgress: (received, total) {
+      print('${(received / total * 100).toStringAsFixed(0)}%');
+    },
+  );
+}</code></pre>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>优势：</strong>功能强大、API 友好、支持拦截器、支持请求取消。
+                    </div>
+                </div>
+
+                <div class="package-card">
+                    <h3>
+                        4. shared_preferences
+                        <span class="package-badge popular">热门</span>
+                        <span class="package-badge recommended">推荐</span>
+                    </h3>
+                    <p>shared_preferences 用于存储简单的键值对数据，如用户设置、token 等。</p>
+
+                    <div class="package-info">
+                        <div class="package-info-item">
+                            <strong>包名</strong>
+                            shared_preferences
+                        </div>
+                        <div class="package-info-item">
+                            <strong>类型</strong>
+                            本地存储
+                        </div>
+                        <div class="package-info-item">
+                            <strong>热度</strong>
+                            ⭐⭐⭐⭐⭐
+                        </div>
+                        <div class="package-info-item">
+                            <strong>链接</strong>
+                            <a href="https://pub.dev/packages/shared_preferences" target="_blank" style="color: var(--primary-color);">pub.dev</a>
+                        </div>
+                    </div>
+
+                    <h4>安装依赖</h4>
+                    <div class="yaml-block">
+                        <pre>dependencies:
+  shared_preferences: ^2.2.3</pre>
+                    </div>
+
+                    <h4>基本使用</h4>
+                    <div class="code-block">
+                        <pre><code>import 'package:shared_preferences/shared_preferences.dart';
+
+// 1. 保存数据
+Future<void> saveData() async {
+  final prefs = await SharedPreferences.getInstance();
+
+  // 保存字符串
+  await prefs.setString('username', 'Alice');
+
+  // 保存整数
+  await prefs.setInt('age', 25);
+
+  // 保存布尔值
+  await prefs.setBool('isLoggedIn', true);
+
+  // 保存浮点数
+  await prefs.setDouble('height', 1.75);
+
+  // 保存字符串列表
+  await prefs.setStringList('favorites', ['item1', 'item2', 'item3']);
+}
+
+// 2. 读取数据
+Future<void> readData() async {
+  final prefs = await SharedPreferences.getInstance();
+
+  // 读取字符串
+  String? username = prefs.getString('username');
+  print('用户名: $username');
+
+  // 读取整数
+  int? age = prefs.getInt('age');
+  print('年龄: $age');
+
+  // 读取布尔值
+  bool? isLoggedIn = prefs.getBool('isLoggedIn');
+  print('已登录: $isLoggedIn');
+
+  // 读取浮点数
+  double? height = prefs.getDouble('height');
+  print('身高: $height');
+
+  // 读取字符串列表
+  List<String>? favorites = prefs.getStringList('favorites');
+  print('收藏: $favorites');
+}
+
+// 3. 删除数据
+Future<void> deleteData() async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.remove('username');
+}
+
+// 4. 清空所有数据
+Future<void> clearAll() async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.clear();
+}
+
+// 5. 检查键是否存在
+Future<void> checkKey() async {
+  final prefs = await SharedPreferences.getInstance();
+  bool exists = prefs.containsKey('username');
+  print('键存在: $exists');
+}</code></pre>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>优势：</strong>API 简单、跨平台支持、性能优秀、使用广泛。
+                    </div>
+                </div>
+
+                <div class="package-card">
+                    <h3>
+                        5. sqflite
+                        <span class="package-badge popular">热门</span>
+                    </h3>
+                    <p>sqflite 是 SQLite 数据库的 Flutter 插件，适合存储结构化数据。</p>
+
+                    <div class="package-info">
+                        <div class="package-info-item">
+                            <strong>包名</strong>
+                            sqflite
+                        </div>
+                        <div class="package-info-item">
+                            <strong>类型</strong>
+                            数据库
+                        </div>
+                        <div class="package-info-item">
+                            <strong>热度</strong>
+                            ⭐⭐⭐⭐
+                        </div>
+                        <div class="package-info-item">
+                            <strong>链接</strong>
+                            <a href="https://pub.dev/packages/sqflite" target="_blank" style="color: var(--primary-color);">pub.dev</a>
+                        </div>
+                    </div>
+
+                    <h4>安装依赖</h4>
+                    <div class="yaml-block">
+                        <pre>dependencies:
+  sqflite: ^2.3.3
+  path: ^1.8.3</pre>
+                    </div>
+
+                    <h4>基本使用</h4>
+                    <div class="code-block">
+                        <pre><code>import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
+
+class DatabaseHelper {
+  static final DatabaseHelper instance = DatabaseHelper._init();
+  static Database? _database;
+
+  DatabaseHelper._init();
+
+  Future<Database> get database async {
+    if (_database != null) return _database!;
+    _database = await _initDB('notes.db');
+    return _database!;
+  }
+
+  Future<Database> _initDB(String filePath) async {
+    final dbPath = await getDatabasesPath();
+    final path = join(dbPath, filePath);
+
+    return await openDatabase(
+      path,
+      version: 1,
+      onCreate: _createDB,
+    );
+  }
+
+  Future<void> _createDB(Database db, int version) async {
+    await db.execute('''
+    CREATE TABLE notes (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title TEXT NOT NULL,
+      content TEXT,
+      createdAt TEXT
+    )
+    ''');
+  }
+
+  // 插入数据
+  Future<int> insertNote(Note note) async {
+    final db = await instance.database;
+    return await db.insert('notes', note.toMap());
+  }
+
+  // 查询所有数据
+  Future<List<Note>> getAllNotes() async {
+    final db = await instance.database;
+    final result = await db.query('notes');
+    return result.map((json) => Note.fromMap(json)).toList();
+  }
+
+  // 更新数据
+  Future<int> updateNote(Note note) async {
+    final db = await instance.database;
+    return await db.update(
+      'notes',
+      note.toMap(),
+      where: 'id = ?',
+      whereArgs: [note.id],
+    );
+  }
+
+  // 删除数据
+  Future<int> deleteNote(int id) async {
+    final db = await instance.database;
+    return await db.delete(
+      'notes',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
+}</code></pre>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>优势：</strong>关系型数据库、支持复杂查询、事务支持、离线可用。
+                    </div>
+                </div>
+
+                <div class="package-card">
+                    <h3>
+                        6. cached_network_image
+                        <span class="package-badge popular">热门</span>
+                    </h3>
+                    <p>cached_network_image 用于显示和缓存网络图片，支持占位符和错误处理。</p>
+
+                    <div class="package-info">
+                        <div class="package-info-item">
+                            <strong>包名</strong>
+                            cached_network_image
+                        </div>
+                        <div class="package-info-item">
+                            <strong>类型</strong>
+                            图片加载
+                        </div>
+                        <div class="package-info-item">
+                            <strong>热度</strong>
+                            ⭐⭐⭐⭐⭐
+                        </div>
+                        <div class="package-info-item">
+                            <strong>链接</strong>
+                            <a href="https://pub.dev/packages/cached_network_image" target="_blank" style="color: var(--primary-color);">pub.dev</a>
+                        </div>
+                    </div>
+
+                    <h4>安装依赖</h4>
+                    <div class="yaml-block">
+                        <pre>dependencies:
+  cached_network_image: ^3.3.1</pre>
+                    </div>
+
+                    <h4>基本使用</h4>
+                    <div class="code-block">
+                        <pre><code>import 'package:cached_network_image/cached_network_image.dart';
+
+// 1. 基本 usage
+CachedNetworkImage(
+  imageUrl: 'https://via.placeholder.com/300',
+  placeholder: (context, url) => const CircularProgressIndicator(),
+  errorWidget: (context, url, error) => const Icon(Icons.error),
+)
+
+// 2. 自定义占位符
+CachedNetworkImage(
+  imageUrl: 'https://example.com/image.jpg',
+  placeholder: (context, url) => Container(
+    width: 200,
+    height: 200,
+    color: Colors.grey[200],
+    child: const Center(
+      child: CircularProgressIndicator(),
+    ),
+  ),
+  errorWidget: (context, url, error) => Container(
+    width: 200,
+    height: 200,
+    color: Colors.red[100],
+    child: const Center(
+      child: Icon(Icons.error),
+    ),
+  ),
+)
+
+// 3. 带进度的加载
+CachedNetworkImage(
+  imageUrl: 'https://example.com/image.jpg',
+  progressIndicatorBuilder: (context, url, progress) {
+    return Center(
+      child: CircularProgressIndicator(
+        value: progress.progress,
+      ),
+    );
+  },
+  errorWidget: (context, url, error) => const Icon(Icons.error),
+)
+
+// 4. 内存缓存配置
+CachedNetworkImage(
+  imageUrl: 'https://example.com/image.jpg',
+  memCacheWidth: 300,
+  memCacheHeight: 300,
+  maxWidthDiskCache: 600,
+  maxHeightDiskCache: 600,
+)</code></pre>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>优势：</strong>自动缓存、支持占位符、错误处理、性能优秀。
+                    </div>
+                </div>
+
+                <div class="package-card">
+                    <h3>
+                        7. image_picker
+                        <span class="package-badge popular">热门</span>
+                    </h3>
+                    <p>image_picker 用于从相机或图库选择图片和视频。</p>
+
+                    <div class="package-info">
+                        <div class="package-info-item">
+                            <strong>包名</strong>
+                            image_picker
+                        </div>
+                        <div class="package-info-item">
+                            <strong>类型</strong>
+                            媒体选择
+                        </div>
+                        <div class="package-info-item">
+                            <strong>热度</strong>
+                            ⭐⭐⭐⭐⭐
+                        </div>
+                        <div class="package-info-item">
+                            <strong>链接</strong>
+                            <a href="https://pub.dev/packages/image_picker" target="_blank" style="color: var(--primary-color);">pub.dev</a>
+                        </div>
+                    </div>
+
+                    <h4>安装依赖</h4>
+                    <div class="yaml-block">
+                        <pre>dependencies:
+  image_picker: ^1.0.7</pre>
+                    </div>
+
+                    <h4>基本使用</h4>
+                    <div class="code-block">
+                        <pre><code>import 'package:image_picker/image_picker.dart';
+
+final ImagePicker _picker = ImagePicker();
+
+// 1. 从相机拍照
+Future<void> pickImageFromCamera() async {
+  final XFile? photo = await _picker.pickImage(
+    source: ImageSource.camera,
+    imageQuality: 80,
+  );
+  if (photo != null) {
+    print('图片路径: ${photo.path}');
+  }
+}
+
+// 2. 从图库选择
+Future<void> pickImageFromGallery() async {
+  final XFile? image = await _picker.pickImage(
+    source: ImageSource.gallery,
+    maxWidth: 1920,
+    maxHeight: 1080,
+  );
+  if (image != null) {
+    print('图片路径: ${image.path}');
+  }
+}
+
+// 3. 选择多张图片
+Future<void> pickMultipleImages() async {
+  final List<XFile> images = await _picker.pickMultiImage(
+    imageQuality: 80,
+  );
+  for (var image in images) {
+    print('图片路径: ${image.path}');
+  }
+}
+
+// 4. 从相机录制视频
+Future<void> pickVideoFromCamera() async {
+  final XFile? video = await _picker.pickVideo(
+    source: ImageSource.camera,
+    maxDuration: const Duration(minutes: 5),
+  );
+  if (video != null) {
+    print('视频路径: ${video.path}');
+  }
+}
+
+// 5. 从图库选择视频
+Future<void> pickVideoFromGallery() async {
+  final XFile? video = await _picker.pickVideo(
+    source: ImageSource.gallery,
+  );
+  if (video != null) {
+    print('视频路径: ${video.path}');
+  }
+}</code></pre>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>优势：</strong>跨平台支持、API 简单、支持多种媒体、官方维护。
+                    </div>
+                </div>
+
+                <div class="package-card">
+                    <h3>
+                        8. url_launcher
+                        <span class="package-badge popular">热门</span>
+                        <span class="package-badge recommended">推荐</span>
+                    </h3>
+                    <p>url_launcher 用于在移动应用中启动 URL、拨打电话、发送邮件等。</p>
+
+                    <div class="package-info">
+                        <div class="package-info-item">
+                            <strong>包名</strong>
+                            url_launcher
+                        </div>
+                        <div class="package-info-item">
+                            <strong>类型</strong>
+                            系统功能
+                        </div>
+                        <div class="package-info-item">
+                            <strong>热度</strong>
+                            ⭐⭐⭐⭐⭐
+                        </div>
+                        <div class="package-info-item">
+                            <strong>链接</strong>
+                            <a href="https://pub.dev/packages/url_launcher" target="_blank" style="color: var(--primary-color);">pub.dev</a>
+                        </div>
+                    </div>
+
+                    <h4>安装依赖</h4>
+                    <div class="yaml-block">
+                        <pre>dependencies:
+  url_launcher: ^6.2.6</pre>
+                    </div>
+
+                    <h4>基本使用</h4>
+                    <div class="code-block">
+                        <pre><code>import 'package:url_launcher/url_launcher.dart';
+
+// 1. 打开网页
+Future<void> launchWebsite() async {
+  final Uri url = Uri.parse('https://flutter.dev');
+  if (!await launchUrl(url)) {
+    throw Exception('无法启动 $url');
+  }
+}
+
+// 2. 拨打电话
+Future<void> makePhoneCall() async {
+  final Uri launchUri = Uri(
+    scheme: 'tel',
+    path: '1234567890',
+  );
+  if (!await launchUrl(launchUri)) {
+    throw Exception('无法拨打电话');
+  }
+}
+
+// 3. 发送短信
+Future<void> sendSMS() async {
+  final Uri launchUri = Uri(
+    scheme: 'sms',
+    path: '1234567890',
+  );
+  if (!await launchUrl(launchUri)) {
+    throw Exception('无法发送短信');
+  }
+}
+
+// 4. 发送邮件
+Future<void> sendEmail() async {
+  final Uri launchUri = Uri(
+    scheme: 'mailto',
+    path: 'example@example.com',
+    queryParameters: {
+      'subject': '邮件主题',
+      'body': '邮件内容',
+    },
+  );
+  if (!await launchUrl(launchUri)) {
+    throw Exception('无法发送邮件');
+  }
+}
+
+// 5. 打开应用商店评价页面
+Future<void> openStoreReview() async {
+  // iOS
+  final iosUrl = Uri.parse(
+    'https://apps.apple.com/app/id1234567890?action=write-review'
+  );
+  // Android
+  final androidUrl = Uri.parse(
+    'market://details?id=com.example.app'
+  );
+
+  final url = Theme.of(context).platform == TargetPlatform.iOS
+      ? iosUrl
+      : androidUrl;
+
+  if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+    throw Exception('无法打开应用商店');
+  }
+}</code></pre>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>优势：</strong>跨平台支持、功能全面、API 简单、官方维护。
+                    </div>
+                </div>
+
+                <h2>使用建议</h2>
+                <ul class="feature-list">
+                    <li>根据项目需求选择合适的第三方组件</li>
+                    <li>使用前查看组件的文档和示例</li>
+                    <li>关注组件的维护状态和更新频率</li>
+                    <li>优先选择官方推荐或社区认可度高的组件</li>
+                    <li>注意组件的兼容性和依赖关系</li>
+                    <li>在生产环境中进行充分测试</li>
+                    <li>定期更新依赖包以获取新功能和修复</li>
+                </ul>
+
+                <div class="note-box">
+                    <strong>资源：</strong>访问 <a href="https://pub.dev" target="_blank" style="color: var(--primary-color);">pub.dev</a> 查找更多第三方组件和插件。
+                </div>
+
+                <div class="topic-nav">
+                    <a href="list-widgets.html">← 列表组件</a>
+                    <a href="index.html">返回首页 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Flutter 学习教程. 基于 Flutter 3.27+ & Dart 3.5+</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dart 语言基础 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .tutorial-page {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .tutorial-nav {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .tutorial-nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tutorial-nav a:hover {
+            text-decoration: underline;
+        }
+
+        .tutorial-content h1 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .tutorial-content h2 {
+            color: var(--secondary-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .tutorial-content h3 {
+            color: var(--text-color);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tutorial-content p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .tutorial-content ul, .tutorial-content ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        .tutorial-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .note-box {
+            background: #e3f2fd;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .code-example {
+            margin: 1.5rem 0;
+        }
+
+        .code-block {
+            background: var(--dark-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: #00ff00;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .code-block code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .topic-nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .topic-nav a:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #8be9fd; }
+        .comment { color: #6272a4; font-style: italic; }
+        .number { color: #bd93f9; }
+        .type { color: #50fa7b; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                    <li><a href="index.html#examples">示例</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="tutorial-page">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="tutorial-content">
+                <h1>Dart 3.5+ 语言基础</h1>
+                <p>Dart 3.5 是 Flutter 3.27 的基础语言，带来了许多现代化特性。掌握 Dart 语言是学习 Flutter 的第一步。本教程将介绍 Dart 3.5+ 的核心概念和语法。</p>
+
+                <div class="note-box">
+                    <strong>提示：</strong>Dart 3.5+ 引入了 Records、Patterns、Switch 表达式等现代化特性，代码更加简洁和类型安全。
+                </div>
+
+                <h2>1. 变量声明</h2>
+                <p>Dart 提供了多种声明变量的方式：</p>
+
+                <div class="code-example">
+                    <h3>使用 var 声明</h3>
+                    <div class="code-block">
+                        <pre><code>// 使用 var 自动推断类型
+var name = 'Flutter';
+var age = 5;
+
+// name 的类型是 String
+// age 的类型是 int</code></pre>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <h3>显式指定类型</h3>
+                    <div class="code-block">
+                        <pre><code>String language = 'Dart';
+int version = 3;
+bool isActive = true;
+double pi = 3.14159;</code></pre>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <h3>使用 dynamic 和 late</h3>
+                    <div class="code-block">
+                        <pre><code>// dynamic 可以是任何类型
+dynamic value = 100;
+value = 'Hello';  // 可以重新赋值为不同类型
+
+// late 延迟初始化
+late String description;
+
+void init() {
+  description = '这是一个延迟初始化的变量';
+}</code></pre>
+                    </div>
+                </div>
+
+                <h2>2. 数据类型</h2>
+                <p>Dart 的基本数据类型包括：</p>
+
+                <ul>
+                    <li><strong>数值类型：</strong>int（整数）、double（浮点数）</li>
+                    <li><strong>字符串：</strong>String</li>
+                    <li><strong>布尔值：</strong>bool</li>
+                    <li><strong>列表：</strong>List</li>
+                    <li><strong>映射：</strong>Map</li>
+                    <li><strong>Runes：</strong>字符串中的 Unicode 字符</li>
+                    <li><strong>Symbols：</strong>程序中声明的操作符或标识符</li>
+                </ul>
+
+                <div class="code-example">
+                    <h3>数据类型示例</h3>
+                    <div class="code-block">
+                        <pre><code>// 数值类型
+int count = 10;
+double price = 19.99;
+
+// 字符串
+String greeting = 'Hello, World!';
+String multiline = '''
+这是一个
+多行字符串
+''';
+
+// 布尔值
+bool isFlutter = true;
+bool isNative = false;
+
+// 列表
+List<String> fruits = ['Apple', 'Banana', 'Orange'];
+List<int> numbers = [1, 2, 3, 4, 5];
+
+// 映射
+Map<String, int> scores = {
+  'Alice': 95,
+  'Bob': 87,
+  'Charlie': 92
+};</code></pre>
+                    </div>
+                </div>
+
+                <h2>3. 函数</h2>
+                <p>Dart 中的函数是一等公民，可以作为参数传递，也可以作为返回值。</p>
+
+                <div class="code-example">
+                    <h3>基本函数定义</h3>
+                    <div class="code-block">
+                        <pre><code>// 基本函数
+void sayHello() {
+  print('Hello, Dart!');
+}
+
+// 带参数的函数
+String greet(String name) {
+  return 'Hello, $name!';
+}
+
+// 可选参数
+void printInfo(String name, [int? age]) {
+  print('Name: $name');
+  if (age != null) {
+    print('Age: $age');
+  }
+}
+
+// 命名参数
+void createUser({
+  required String name,
+  int age = 0,
+  String email = ''
+}) {
+  print('Creating user: $name');
+}
+
+// 箭头函数（单行函数）
+int add(int a, int b) => a + b;
+
+// 使用函数
+sayHello();
+print(greet('Flutter'));
+printInfo('Alice');
+printInfo('Bob', 30);
+createUser(name: 'Alice', age: 25);
+print(add(5, 3));  // 输出: 8</code></pre>
+                    </div>
+                </div>
+
+                <h2>4. 类和对象</h2>
+                <p>Dart 是面向对象的语言，一切皆对象。</p>
+
+                <div class="code-example">
+                    <h3>类定义</h3>
+                    <div class="code-block">
+                        <pre><code>class Person {
+  // 属性
+  String name;
+  int age;
+
+  // 构造函数
+  Person(this.name, this.age);
+
+  // 命名构造函数
+  Person.fromMap(Map<String, dynamic> map)
+      : name = map['name'],
+        age = map['age'];
+
+  // 方法
+  void introduce() {
+    print('Hello, I am $name, $age years old.');
+  }
+
+  // getter
+  bool get isAdult => age >= 18;
+
+  // setter
+  set age(int value) {
+    if (value > 0) {
+      age = value;
+    }
+  }
+}
+
+// 使用类
+void main() {
+  var person = Person('Alice', 25);
+  person.introduce();
+
+  var person2 = Person.fromMap({'name': 'Bob', 'age': 30});
+  person2.introduce();
+
+  print(person.isAdult);  // true
+}</code></pre>
+                    </div>
+                </div>
+
+                <h2>5. 异步编程</h2>
+                <p>Dart 提供了强大的异步编程支持。</p>
+
+                <div class="code-example">
+                    <h3>Future 和 async/await</h3>
+                    <div class="code-block">
+                        <pre><code>// 定义异步函数
+Future<String> fetchUserData() async {
+  await Future.delayed(Duration(seconds: 2));
+  return 'User Data Loaded';
+}
+
+// 使用 async/await
+void loadData() async {
+  print('Loading...');
+  String data = await fetchUserData();
+  print(data);
+}
+
+// Future.then 方式
+void loadDataAlternative() {
+  fetchUserData().then((data) {
+    print(data);
+  }).catchError((error) {
+    print('Error: $error');
+  });
+}
+
+// 并发执行多个 Future
+Future<void> loadMultipleData() async {
+  var results = await Future.wait([
+    fetchUserData(),
+    fetchUserData(),
+    fetchUserData()
+  ]);
+  print('Loaded ${results.length} items');
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <h3>Stream</h3>
+                    <div class="code-block">
+                        <pre><code>// 创建 Stream
+Stream<int> numberStream() async* {
+  for (int i = 1; i <= 5; i++) {
+    await Future.delayed(Duration(seconds: 1));
+    yield i;
+  }
+}
+
+// 监听 Stream
+void listenToStream() {
+  numberStream().listen(
+    (number) => print('Received: $number'),
+    onError: (error) => print('Error: $error'),
+    onDone: () => print('Stream completed')
+  );
+}</code></pre>
+                    </div>
+                </div>
+
+                <h2>6. 集合操作</h2>
+                <p>Dart 提供了丰富的集合操作方法。</p>
+
+                <div class="code-example">
+                    <h3>常用集合操作</h3>
+                    <div class="code-block">
+                        <pre><code>void main() {
+  List<int> numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  // 映射
+  var doubled = numbers.map((n) => n * 2).toList();
+  print(doubled);  // [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+
+  // 过滤
+  var evenNumbers = numbers.where((n) => n % 2 == 0).toList();
+  print(evenNumbers);  // [2, 4, 6, 8, 10]
+
+  // 归约
+  var sum = numbers.reduce((a, b) => a + b);
+  print(sum);  // 55
+
+  // 排序
+  var sorted = numbers.reversed.toList();
+  print(sorted);  // [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+
+  // 查找
+  var firstEven = numbers.firstWhere((n) => n % 2 == 0);
+  print(firstEven);  // 2
+
+  // 检查
+  var hasLarge = numbers.any((n) => n > 8);
+  print(hasLarge);  // true
+
+  var allPositive = numbers.every((n) => n > 0);
+  print(allPositive);  // true
+}</code></pre>
+                    </div>
+                </div>
+
+                <h2>7. 异常处理</h2>
+                <p>Dart 使用 try-catch 来处理异常。</p>
+
+                <div class="code-example">
+                    <h3>异常处理示例</h3>
+                    <div class="code-block">
+                        <pre><code>void main() {
+  try {
+    int result = divide(10, 0);
+    print(result);
+  } on IntegerDivisionByZeroException {
+    print('Cannot divide by zero!');
+  } catch (e, stackTrace) {
+    print('Error: $e');
+    print('Stack trace: $stackTrace');
+  } finally {
+    print('This always executes');
+  }
+}
+
+int divide(int a, int b) {
+  if (b == 0) {
+    throw IntegerDivisionByZeroException();
+  }
+  return a ~/ b;
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <strong>注意：</strong>在 Flutter 开发中，异步错误通常通过 Future 的 catchError 方法处理，而不是使用传统的 try-catch。
+                </div>
+
+                <h2>8. 扩展方法</h2>
+                <p>Dart 2.7+ 支持扩展方法，可以为现有类型添加功能。</p>
+
+                <div class="code-example">
+                    <h3>扩展示例</h3>
+                    <div class="code-block">
+                        <pre><code>// 为 String 扩展方法
+extension StringExtensions on String {
+  bool get isEmail {
+    return this.contains('@');
+  }
+
+  String capitalize() {
+    return this[0].toUpperCase() + this.substring(1);
+  }
+}
+
+void main() {
+  String email = 'user@example.com';
+  print(email.isEmail);  // true
+
+  String name = 'dart';
+  print(name.capitalize());  // Dart
+}</code></pre>
+                    </div>
+                </div>
+
+                <h2>9. 最佳实践</h2>
+                <ul>
+                    <li>使用 <code>const</code> 创建编译时常量</li>
+                    <li>优先使用类型推断（<code>var</code>）而非显式类型</li>
+                    <li>使用 <code>final</code> 声明不会改变的变量</li>
+                    <li>为函数添加返回类型注解</li>
+                    <li>使用命名参数提高代码可读性</li>
+                    <li>在异步操作中使用 <code>try-catch</code> 处理错误</li>
+                </ul>
+
+                <div class="note-box">
+                    <strong>下一步：</strong>掌握 Dart 基础后，继续学习 Flutter 项目结构和 Widget 基础。
+                </div>
+
+                <div class="topic-nav">
+                    <a href="index.html">← 返回教程列表</a>
+                    <a href="project-structure.html">Flutter 项目结构 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Flutter 学习教程. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
