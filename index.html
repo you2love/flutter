@@ -32,37 +32,42 @@
                     <div class="feature-card">
                         <div class="feature-icon">🚀</div>
                         <h3>高性能</h3>
-                        <p>使用原生渲染，提供60fps的流畅体验</p>
+                        <p>使用原生渲染，提供60fps的流畅体验，Impeller 引擎默认启用</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">📱</div>
                         <h3>跨平台</h3>
-                        <p>支持 iOS、Android、Web 和桌面平台</p>
+                        <p>支持 iOS、Android、Web、Windows、macOS 和 Linux 六大平台</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">🎨</div>
                         <h3>Material 3</h3>
-                        <p>全新的 Material Design 3 主题，开箱即用的现代化 UI</p>
+                        <p>完全支持 Material Design 3，提供丰富的主题和组件库</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">⚡</div>
                         <h3>Impeller 引擎</h3>
-                        <p>新一代渲染引擎，120fps 的极致流畅体验</p>
+                        <p>新一代渲染引擎，120fps 的极致流畅体验，现已默认启用</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">🔥</div>
-                        <h3>Dart 3.5+</h3>
-                        <p>Records、Patterns、Switch 表达式等现代语言特性</p>
+                        <h3>Dart 3.6+</h3>
+                        <p>Records、Patterns、Switch 表达式、类型推断增强等现代语言特性</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">🎮</div>
                         <h3>Flutter GPU</h3>
-                        <p>底层图形 API，高性能游戏和图形应用支持</p>
+                        <p>底层图形 API，高性能游戏和图形应用支持，现已稳定</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">🌐</div>
                         <h3>Web 生产就绪</h3>
-                        <p>Web 平台性能和兼容性大幅提升，支持更多场景</p>
+                        <p>Web 平台性能大幅提升，支持 CanvasKit、WasmGC 和 WebAssembly</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>AI 集成</h3>
+                        <p>原生支持 Google AI、Gemini 等大模型集成</p>
                     </div>
                 </div>
             </div>
@@ -78,9 +83,9 @@
                         <p>下载 Flutter SDK 并配置环境变量</p>
                         <div class="code-block">
                             <pre><code># 使用 FVM 管理 Flutter 版本
-fvm install 3.27.0
-fvm use 3.27.0
-fvm global 3.27.0
+fvm install 3.28.0
+fvm use 3.28.0
+fvm global 3.28.0
 
 # 或直接下载
 # https://docs.flutter.dev/release/archive
@@ -94,9 +99,9 @@ export PATH="$PATH:`pwd`/flutter/bin"</code></pre>
                         <p>安装 VS Code 或 Android Studio 并安装 Flutter 插件</p>
                         <div class="code-block">
                             <pre><code>flutter doctor -v
-# 确保显示 Dart 3.5+ 版本
-# 检查 Impeller 状态
-flutter run -d macos --enable-impeller</code></pre>
+# 确保显示 Dart 3.6+ 版本
+# Impeller 现已默认启用
+flutter run -d macos</code></pre>
                         </div>
                     </div>
                     <div class="step-card">
@@ -159,6 +164,26 @@ flutter run</code></pre>
                                 <h3>列表组件</h3>
                                 <p>使用 ListView 和 GridView 展示数据</p>
                                 <a href="list-widgets.html" class="tutorial-link">开始学习 →</a>
+                            </div>
+                            <div class="tutorial-item">
+                                <h3>导航组件</h3>
+                                <p>使用 Navigator、Router 实现页面导航</p>
+                                <a href="navigation-widgets.html" class="tutorial-link">开始学习 →</a>
+                            </div>
+                            <div class="tutorial-item">
+                                <h3>动画组件</h3>
+                                <p>使用 AnimationController、Tween 创建动画</p>
+                                <a href="animation-widgets.html" class="tutorial-link">开始学习 →</a>
+                            </div>
+                            <div class="tutorial-item">
+                                <h3>手势组件</h3>
+                                <p>使用 GestureDetector 处理用户手势</p>
+                                <a href="gesture-widgets.html" class="tutorial-link">开始学习 →</a>
+                            </div>
+                            <div class="tutorial-item">
+                                <h3>对话框组件</h3>
+                                <p>使用 AlertDialog、BottomSheet 等对话框</p>
+                                <a href="dialog-widgets.html" class="tutorial-link">开始学习 →</a>
                             </div>
                             <div class="tutorial-item">
                                 <h3>第三方组件</h3>
@@ -295,7 +320,7 @@ class _CounterPageState extends State<CounterPage> {
             ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
         ),

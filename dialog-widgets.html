@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对话框组件详解 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .tutorial-page {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .tutorial-nav {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .tutorial-nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tutorial-nav a:hover {
+            text-decoration: underline;
+        }
+
+        .tutorial-content h1 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .tutorial-content h2 {
+            color: var(--secondary-color);
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+        }
+
+        .tutorial-content h3 {
+            color: var(--text-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .tutorial-content h4 {
+            color: #666;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .tutorial-content p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .tutorial-content ul, .tutorial-content ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            line-height: 1.8;
+        }
+
+        .tutorial-content li {
+            margin-bottom: 0.6rem;
+        }
+
+        .note-box {
+            background: #e3f2fd;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .tip-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .code-block {
+            background: var(--dark-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: #00ff00;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .code-block code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .copy-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-1px);
+        }
+
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .topic-nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .topic-nav a:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #8be9fd; }
+        .comment { color: #6272a4; font-style: italic; }
+        .number { color: #bd93f9; }
+        .type { color: #50fa7b; }
+        .property { color: #ffb86c; }
+
+        .component-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border: 1px solid #e0e0e0;
+        }
+
+        .component-card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            padding-left: 2rem;
+            position: relative;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#getting-started">入门指南</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                    <li><a href="index.html#examples">示例</a></li>
+                    <li><a href="index.html#resources">资源</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="tutorial-page">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="tutorial-content">
+                <h1>对话框组件详解</h1>
+                <p>对话框是与用户交互的重要方式，用于显示重要信息、确认操作或收集输入。Flutter 提供了多种对话框组件。本教程将详细介绍各种对话框。</p>
+
+                <div class="note-box">
+                    <strong>重要提示：</strong>Flutter 3.28+ 增强了对话框的样式和动画效果，提供更好的用户体验。
+                </div>
+
+                <div class="component-card">
+                    <h2>1. AlertDialog 警告对话框</h2>
+                    <p>AlertDialog 是最常用的对话框，用于显示警告、确认信息。</p>
+
+                    <div class="code-block">
+                        <pre><code>// 基本对话框
+showDialog(
+  context: context,
+  builder: (context) => AlertDialog(
+    title: const Text('确认删除'),
+    content: const Text('确定要删除这个项目吗？'),
+    actions: [
+      TextButton(
+        onPressed: () => Navigator.pop(context),
+        child: const Text('取消'),
+      ),
+      TextButton(
+        onPressed: () {
+          Navigator.pop(context);
+          // 执行删除操作
+        },
+        child: const Text('删除'),
+      ),
+    ],
+  ),
+);
+
+// 带图标的对话框
+showDialog(
+  context: context,
+  builder: (context) => AlertDialog(
+    icon: const Icon(Icons.warning, color: Colors.orange),
+    title: const Text('警告'),
+    content: const Text('此操作不可撤销！'),
+    actions: [
+      TextButton(
+        onPressed: () => Navigator.pop(context),
+        child: const Text('知道了'),
+      ),
+    ],
+  ),
+);</code></pre>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h2>2. SimpleDialog 简单对话框</h2>
+                    <p>SimpleDialog 用于提供选项列表供用户选择。</p>
+
+                    <div class="code-block">
+                        <pre><code>showDialog(
+  context: context,
+  builder: (context) => SimpleDialog(
+    title: const Text('选择操作'),
+    children: [
+      SimpleDialogOption(
+        onPressed: () {
+          Navigator.pop(context, '查看');
+        },
+        child: const Text('查看详情'),
+      ),
+      SimpleDialogOption(
+        onPressed: () {
+          Navigator.pop(context, '编辑');
+        },
+        child: const Text('编辑'),
+      ),
+      SimpleDialogOption(
+        onPressed: () {
+          Navigator.pop(context, '删除');
+        },
+        child: const Text('删除'),
+      ),
+    ],
+  ),
+).then((value) {
+  if (value != null) {
+    print('选择了: $value');
+  }
+});</code></pre>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h2>3. BottomSheet 底部表单</h2>
+                    <p>BottomSheet 从屏幕底部滑出，适合显示更多内容。</p>
+
+                    <div class="code-block">
+                        <pre><code>// 模态底部表单
+showModalBottomSheet(
+  context: context,
+  isScrollControlled: true,
+  builder: (context) => Container(
+    padding: const EdgeInsets.all(20),
+    height: 300,
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const Text(
+          '选择日期',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 20),
+        const TextField(
+          decoration: InputDecoration(
+            labelText: '日期',
+            hintText: '请选择日期',
+            border: OutlineInputBorder(),
+          ),
+        ),
+        const SizedBox(height: 20),
+        ElevatedButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('确定'),
+        ),
+      ],
+    ),
+  ),
+);
+
+// 持久底部表单
+Scaffold(
+  body: const Center(child: Text('内容')),
+  bottomSheet: Container(
+    height: 100,
+    color: Colors.blue,
+    child: const Center(
+      child: Text('底部表单', style: TextStyle(color: Colors.white)),
+    ),
+  ),
+);</code></pre>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h2>4. SnackBar 轻量提示</h2>
+                    <p>SnackBar 用于显示简短的消息提示。</p>
+
+                    <div class="code-block">
+                        <pre><code>// 基本提示
+ScaffoldMessenger.of(context).showSnackBar(
+  const SnackBar(content: Text('操作成功')),
+);
+
+// 带动作的提示
+ScaffoldMessenger.of(context).showSnackBar(
+  SnackBar(
+    content: const Text('已删除'),
+    action: SnackBarAction(
+      label: '撤销',
+      onPressed: () {
+        // 撤销操作
+      },
+    ),
+  ),
+);
+
+// 带图标的提示
+final snackBar = SnackBar(
+  content: const Row(
+    children: [
+      Icon(Icons.check_circle, color: Colors.white),
+      SizedBox(width: 8),
+      Text('保存成功'),
+    ],
+  ),
+  backgroundColor: Colors.green,
+  duration: const Duration(seconds: 2),
+);
+
+ScaffoldMessenger.of(context).showSnackBar(snackBar);</code></pre>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h2>5. showDialog 显示对话框</h2>
+                    <p>showDialog 是显示对话框的核心方法。</p>
+
+                    <div class="code-block">
+                        <pre><code>// 带返回值的对话框
+Future<bool?> showConfirmDialog(BuildContext context) {
+  return showDialog<bool>(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: const Text('确认'),
+      content: const Text('确定要继续吗？'),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context, false),
+          child: const Text('取消'),
+        ),
+        TextButton(
+          onPressed: () => Navigator.pop(context, true),
+          child: const Text('确定'),
+        ),
+      ],
+    ),
+  );
+}
+
+// 使用
+final confirmed = await showConfirmDialog(context);
+if (confirmed == true) {
+  print('用户确认了');
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h2>6. showDialog 全局对话框</h2>
+                    <p>使用 navigatorKey 显示全局对话框。</p>
+
+                    <div class="code-block">
+                        <pre><code>// 在 MaterialApp 中设置 navigatorKey
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+MaterialApp(
+  navigatorKey: navigatorKey,
+  home: const HomePage(),
+);
+
+// 在任何地方显示对话框
+void showGlobalDialog() {
+  showDialog(
+    context: navigatorKey.currentContext!,
+    builder: (context) => AlertDialog(
+      title: const Text('全局对话框'),
+      content: const Text('这是一个全局对话框'),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('关闭'),
+        ),
+      ],
+    ),
+  );
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h2>7. DatePickerDialog 日期选择器</h2>
+                    <p>日期选择器用于选择日期。</p>
+
+                    <div class="code-block">
+                        <pre><code>// 显示日期选择器
+Future<void> _selectDate() async {
+  final DateTime? picked = await showDatePicker(
+    context: context,
+    initialDate: DateTime.now(),
+    firstDate: DateTime(2020),
+    lastDate: DateTime(2030),
+    helpText: '选择日期',
+    cancelText: '取消',
+    confirmText: '确定',
+    locale: const Locale('zh', 'CN'),
+  );
+
+  if (picked != null) {
+    setState(() {
+      _selectedDate = picked;
+    });
+  }
+}
+
+// 显示日期范围选择器
+Future<void> _selectDateRange() async {
+  final DateTimeRange? picked = await showDateRangePicker(
+    context: context,
+    firstDate: DateTime(2020),
+    lastDate: DateTime(2030),
+    helpText: '选择日期范围',
+    cancelText: '取消',
+    confirmText: '确定',
+    saveText: '保存',
+  );
+
+  if (picked != null) {
+    setState(() {
+      _dateRange = picked;
+    });
+  }
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h2>8. TimePickerDialog 时间选择器</h2>
+                    <p>时间选择器用于选择时间。</p>
+
+                    <div class="code-block">
+                        <pre><code>// 显示时间选择器
+Future<void> _selectTime() async {
+  final TimeOfDay? picked = await showTimePicker(
+    context: context,
+    initialTime: TimeOfDay.now(),
+    helpText: '选择时间',
+    cancelText: '取消',
+    confirmText: '确定',
+  );
+
+  if (picked != null) {
+    setState(() {
+      _selectedTime = picked;
+    });
+  }
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h2>9. showDialog 自定义对话框</h2>
+                    <p>创建自定义样式的对话框。</p>
+
+                    <div class="code-block">
+                        <pre><code>showDialog(
+  context: context,
+  builder: (context) => Dialog(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(16),
+    ),
+    elevation: 0,
+    backgroundColor: Colors.transparent,
+    child: Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 10,
+            spreadRadius: 5,
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Icon(
+            Icons.check_circle,
+            color: Colors.green,
+            size: 60,
+          ),
+          const SizedBox(height: 20),
+          const Text(
+            '操作成功',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 10),
+          const Text(
+            '您的操作已成功完成',
+            style: TextStyle(color: Colors.grey),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () => Navigator.pop(context),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.green,
+              minimumSize: const Size(double.infinity, 48),
+            ),
+            child: const Text('确定'),
+          ),
+        ],
+      ),
+    ),
+  ),
+);</code></pre>
+                    </div>
+                </div>
+
+                <h2>对话框最佳实践</h2>
+                <ul class="feature-list">
+                    <li>对话框应该简洁明了，不要包含过多信息</li>
+                    <li>为对话框提供清晰的标题和操作按钮</li>
+                    <li>使用 SnackBar 显示轻量级提示</li>
+                    <li>BottomSheet 适合显示大量内容或复杂表单</li>
+                    <li>为对话框提供合适的动画效果</li>
+                    <li>确保对话框在不同设备上都能正常显示</li>
+                    <li>使用 Material Design 3 的对话框样式</li>
+                    <li>为危险操作提供明确的警告</li>
+                </ul>
+
+                <div class="tip-box">
+                    <strong>提示：</strong>使用 showAboutDialog 可以显示应用信息。
+                </div>
+
+                <div class="note-box">
+                    <strong>下一步：</strong>掌握对话框组件后，继续学习第三方组件的使用。
+                </div>
+
+                <div class="topic-nav">
+                    <a href="gesture-widgets.html">← 手势组件</a>
+                    <a href="third-party-packages.html">第三方组件 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

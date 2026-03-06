@@ -157,11 +157,11 @@
             </div>
 
             <div class="tutorial-content">
-                <h1>Dart 3.5+ 语言基础</h1>
-                <p>Dart 3.5 是 Flutter 3.27 的基础语言，带来了许多现代化特性。掌握 Dart 语言是学习 Flutter 的第一步。本教程将介绍 Dart 3.5+ 的核心概念和语法。</p>
+                <h1>Dart 3.6+ 语言基础</h1>
+                <p>Dart 3.6 是 Flutter 3.28 的基础语言，带来了许多现代化特性。掌握 Dart 语言是学习 Flutter 的第一步。本教程将介绍 Dart 3.6+ 的核心概念和语法。</p>
 
                 <div class="note-box">
-                    <strong>提示：</strong>Dart 3.5+ 引入了 Records、Patterns、Switch 表达式等现代化特性，代码更加简洁和类型安全。
+                    <strong>提示：</strong>Dart 3.6+ 引入了 Records、Patterns、Switch 表达式、增强的类型推断等现代化特性，代码更加简洁和类型安全。
                 </div>
 
                 <h2>1. 变量声明</h2>
@@ -202,6 +202,26 @@ late String description;
 void init() {
   description = '这是一个延迟初始化的变量';
 }</code></pre>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <h3>Records（Dart 3.0+ 新特性）</h3>
+                    <div class="code-block">
+                        <pre><code>// 定义 Record
+(String, int) userInfo = ('Alice', 25);
+print(userInfo.$1); // Alice
+print(userInfo.$2); // 25
+
+// 命名 Record
+({String name, int age}) namedUser = (name: 'Bob', age: 30);
+print(namedUser.name); // Bob
+print(namedUser.age); // 30
+
+// 混合 Record
+(String, int, {bool isActive}) mixedRecord = ('Charlie', 35, isActive: true);
+print(mixedRecord.$1); // Charlie
+print(mixedRecord.isActive); // true</code></pre>
                     </div>
                 </div>
 
@@ -292,6 +312,41 @@ printInfo('Alice');
 printInfo('Bob', 30);
 createUser(name: 'Alice', age: 25);
 print(add(5, 3));  // 输出: 8</code></pre>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <h3>Patterns 和 Switch 表达式（Dart 3.0+ 新特性）</h3>
+                    <div class="code-block">
+                        <pre><code>// Switch 表达式
+String describe(int value) {
+  return switch (value) {
+    0 => '零',
+    1 => '一',
+    2 => '二',
+    _ => '其他',
+  };
+}
+
+// Pattern 匹配
+String describeRecord((String, int) record) {
+  return switch (record) {
+    ('Alice', _) => '这是 Alice',
+    (_, age) when age >= 18 => '成年人，年龄 $age',
+    (_, age) => '未成年人，年龄 $age',
+  };
+}
+
+// 模式匹配
+String describeObject(Object obj) {
+  return switch (obj) {
+    String s when s.isEmpty => '空字符串',
+    String s => '字符串: $s',
+    int i when i > 0 => '正整数: $i',
+    int i => '非正整数: $i',
+    _ => '其他类型',
+  };
+}</code></pre>
                     </div>
                 </div>
 
@@ -512,6 +567,8 @@ void main() {
                     <li>为函数添加返回类型注解</li>
                     <li>使用命名参数提高代码可读性</li>
                     <li>在异步操作中使用 <code>try-catch</code> 处理错误</li>
+                    <li>使用 Records 简化数据传递</li>
+                    <li>使用 Patterns 和 Switch 表达式简化条件逻辑</li>
                 </ul>
 
                 <div class="note-box">

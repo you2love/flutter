@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手势组件详解 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .tutorial-page {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .tutorial-nav {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .tutorial-nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tutorial-nav a:hover {
+            text-decoration: underline;
+        }
+
+        .tutorial-content h1 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .tutorial-content h2 {
+            color: var(--secondary-color);
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+        }
+
+        .tutorial-content h3 {
+            color: var(--text-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .tutorial-content h4 {
+            color: #666;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .tutorial-content p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .tutorial-content ul, .tutorial-content ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            line-height: 1.8;
+        }
+
+        .tutorial-content li {
+            margin-bottom: 0.6rem;
+        }
+
+        .note-box {
+            background: #e3f2fd;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .tip-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .code-block {
+            background: var(--dark-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: #00ff00;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .code-block code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .copy-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-1px);
+        }
+
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .topic-nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .topic-nav a:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #8be9fd; }
+        .comment { color: #6272a4; font-style: italic; }
+        .number { color: #bd93f9; }
+        .type { color: #50fa7b; }
+        .property { color: #ffb86c; }
+
+        .component-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border: 1px solid #e0e0e0;
+        }
+
+        .component-card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            padding-left: 2rem;
+            position: relative;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#getting-started">入门指南</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                    <li><a href="index.html#examples">示例</a></li>
+                    <li><a href="index.html#resources">资源</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="tutorial-page">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="tutorial-content">
+                <h1>手势组件详解</h1>
+                <p>手势交互是移动应用的核心功能。Flutter 提供了丰富的手势识别组件，可以轻松处理用户的触摸交互。本教程将详细介绍各种手势组件。</p>
+
+                <div class="note-box">
+                    <strong>重要提示：</strong>Flutter 3.28+ 进一步优化了手势识别的性能和响应速度。
+                </div>
+
+                <div class="component-card">
+                    <h2>1. GestureDetector 基础手势</h2>
+                    <p>GestureDetector 是最常用的手势识别组件，可以识别多种手势。</p>
+
+                    <div class="code-block">
+                        <pre><code>class GestureDetectorExample extends StatefulWidget {
+  const GestureDetectorExample({super.key});
+
+  @override
+  State<GestureDetectorExample> createState() =>
+      _GestureDetectorExampleState();
+}
+
+class _GestureDetectorExampleState extends State<GestureDetectorExample> {
+  String _gesture = '等待手势';
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: GestureDetector(
+        // 点击手势
+        onTap: () {
+          setState(() {
+            _gesture = '点击';
+          });
+        },
+        onDoubleTap: () {
+          setState(() {
+            _gesture = '双击';
+          });
+        },
+        onLongPress: () {
+          setState(() {
+            _gesture = '长按';
+          });
+        },
+        // 滑动手势
+        onHorizontalDragStart: (details) {
+          setState(() {
+            _gesture = '水平滑动开始';
+          });
+        },
+        onHorizontalDragUpdate: (details) {
+          setState(() {
+            _gesture = '水平滑动: ${details.globalPosition.dx}';
+          });
+        },
+        onHorizontalDragEnd: (details) {
+          setState(() {
+            _gesture = '水平滑动结束';
+          });
+        },
+        // 缩放手势
+        onScaleStart: (details) {
+          setState(() {
+            _gesture = '缩放开始';
+          });
+        },
+        onScaleUpdate: (details) {
+          setState(() {
+            _gesture = '缩放: ${details.scale}';
+          });
+        },
+        onScaleEnd: (details) {
+          setState(() {
+            _gesture = '缩放结束';
+          });
+        },
+        child: Container(
+          width: 200,
+          height: 200,
+          color: Colors.blue,
+          child: Center(
+            child: Text(
+              _gesture,
+              style: const TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h2>2. InkWell 涟漪效果</h2>
+                    <p>InkWell 提供了 Material Design 的涟漪效果。</p>
+
+                    <div class="code-block">
+                        <pre><code>InkWell(
+  onTap: () {
+    print('点击了卡片');
+  },
+  onLongPress: () {
+    print('长按了卡片');
+  },
+  splashColor: Colors.blue.withOpacity(0.3),
+  highlightColor: Colors.blue.withOpacity(0.1),
+  borderRadius: BorderRadius.circular(12),
+  child: Container(
+    width: 200,
+    height: 100,
+    decoration: BoxDecoration(
+      color: Colors.blue,
+      borderRadius: BorderRadius.circular(12),
+    ),
+    child: const Center(
+      child: Text(
+        '点击我',
+        style: TextStyle(color: Colors.white),
+      ),
+    ),
+  ),
+)</code></pre>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h2>3. Dismissible 滑动删除</h2>
+                    <p>Dismissible 用于实现滑动删除功能。</p>
+
+                    <div class="code-block">
+                        <pre><code>class DismissibleExample extends StatelessWidget {
+  const DismissibleExample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: 10,
+      itemBuilder: (context, index) {
+        return Dismissible(
+          key: Key('item_$index'),
+          onDismissed: (direction) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('删除了项目 $index')),
+            );
+          },
+          direction: DismissDirection.endToStart,
+          background: Container(
+            color: Colors.red,
+            alignment: Alignment.centerRight,
+            padding: const EdgeInsets.only(right: 20),
+            child: const Icon(Icons.delete, color: Colors.white),
+          ),
+          secondaryBackground: Container(
+            color: Colors.green,
+            alignment: Alignment.centerLeft,
+            padding: const EdgeInsets.only(left: 20),
+            child: const Icon(Icons.archive, color: Colors.white),
+          ),
+          child: ListTile(
+            title: Text('项目 $index'),
+            subtitle: Text('这是项目 $index 的描述'),
+          ),
+        );
+      },
+    );
+  }
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h2>4. Draggable 拖拽</h2>
+                    <p>Draggable 用于实现可拖拽的组件。</p>
+
+                    <div class="code-block">
+                        <pre><code>class DraggableExample extends StatefulWidget {
+  const DraggableExample({super.key});
+
+  @override
+  State<DraggableExample> createState() => _DraggableExampleState();
+}
+
+class _DraggableExampleState extends State<DraggableExample> {
+  List<String> _items = ['A', 'B', 'C', 'D', 'E'];
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const Text('拖拽下面的字母'),
+        const SizedBox(height: 20),
+        Wrap(
+          spacing: 10,
+          children: _items.map((item) {
+            return Draggable<String>(
+              data: item,
+              child: DraggableItem(text: item),
+              feedback: DraggableItem(
+                text: item,
+                isDragging: true,
+              ),
+              childWhenDragging: DraggableItem(
+                text: item,
+                isDragging: false,
+                opacity: 0.3,
+              ),
+            );
+          }).toList(),
+        ),
+      ],
+    );
+  }
+}
+
+class DraggableItem extends StatelessWidget {
+  final String text;
+  final bool isDragging;
+  final double? opacity;
+
+  const DraggableItem({
+    super.key,
+    required this.text,
+    this.isDragging = false,
+    this.opacity,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 60,
+      height: 60,
+      decoration: BoxDecoration(
+        color: isDragging ? Colors.blue : Colors.grey[300],
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Center(
+        child: Text(
+          text,
+          style: TextStyle(
+            color: isDragging ? Colors.white : Colors.black,
+            fontSize: 24,
+          ),
+        ),
+      ),
+    );
+  }
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h2>5. DragTarget 拖放目标</h2>
+                    <p>DragTarget 用于接收拖拽的组件。</p>
+
+                    <div class="code-block">
+                        <pre><code>class DragTargetExample extends StatefulWidget {
+  const DragTargetExample({super.key});
+
+  @override
+  State<DragTargetExample> createState() => _DragTargetExampleState();
+}
+
+class _DragTargetExampleState extends State<DragTargetExample> {
+  List<String> _acceptedItems = [];
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Draggable<String>(
+          data: '可拖拽项',
+          child: const DraggableItem(text: '拖拽我'),
+          feedback: const DraggableItem(text: '拖拽我', isDragging: true),
+        ),
+        const SizedBox(height: 40),
+        DragTarget<String>(
+          onAcceptWithDetails: (details) {
+            setState(() {
+              _acceptedItems.add(details.data);
+            });
+          },
+          builder: (context, candidateData, rejectedData) {
+            return Container(
+              width: 200,
+              height: 200,
+              decoration: BoxDecoration(
+                color: candidateData.isNotEmpty
+                    ? Colors.green.withOpacity(0.5)
+                    : Colors.grey[300],
+                border: Border.all(
+                  color: candidateData.isNotEmpty ? Colors.green : Colors.grey,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Center(
+                child: Text(
+                  '拖放目标\n已接收: ${_acceptedItems.length} 项',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            );
+          },
+        ),
+      ],
+    );
+  }
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h2>6. PageView 页面滑动</h2>
+                    <p>PageView 用于实现可滑动的页面视图。</p>
+
+                    <div class="code-block">
+                        <pre><code>class PageViewExample extends StatefulWidget {
+  const PageViewExample({super.key});
+
+  @override
+  State<PageViewExample> createState() => _PageViewExampleState();
+}
+
+class _PageViewExampleState extends State<PageViewExample> {
+  final PageController _pageController = PageController();
+  int _currentPage = 0;
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+          height: 300,
+          child: PageView.builder(
+            controller: _pageController,
+            onPageChanged: (index) {
+              setState(() {
+                _currentPage = index;
+              });
+            },
+            itemCount: 5,
+            itemBuilder: (context, index) {
+              return Container(
+                color: Colors.primaries[index % Colors.primaries.length],
+                child: Center(
+                  child: Text(
+                    '页面 ${index + 1}',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 32,
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+        const SizedBox(height: 20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: List.generate(
+            5,
+            (index) => Container(
+              margin: const EdgeInsets.symmetric(horizontal: 4),
+              width: 8,
+              height: 8,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: _currentPage == index ? Colors.blue : Colors.grey,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h2>7. RefreshIndicator 下拉刷新</h2>
+                    <p>RefreshIndicator 用于实现下拉刷新功能。</p>
+
+                    <div class="code-block">
+                        <pre><code>class RefreshIndicatorExample extends StatefulWidget {
+  const RefreshIndicatorExample({super.key});
+
+  @override
+  State<RefreshIndicatorExample> createState() =>
+      _RefreshIndicatorExampleState();
+}
+
+class _RefreshIndicatorExampleState extends State<RefreshIndicatorExample> {
+  List<String> _items = List.generate(10, (index) => '项目 $index');
+
+  Future<void> _refresh() async {
+    await Future.delayed(const Duration(seconds: 2));
+    setState(() {
+      _items = List.generate(10, (index) => '刷新项目 $index');
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return RefreshIndicator(
+      onRefresh: _refresh,
+      child: ListView.builder(
+        itemCount: _items.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(_items[index]),
+          );
+        },
+      ),
+    );
+  }
+}</code></pre>
+                    </div>
+                </div>
+
+                <h2>手势最佳实践</h2>
+                <ul class="feature-list">
+                    <li>优先使用 InkWell 而不是 GestureDetector 来实现点击效果</li>
+                    <li>为手势操作提供视觉反馈（涟漪效果、高亮等）</li>
+                    <li>合理设置手势的识别区域，避免误触</li>
+                    <li>使用 Dismissible 时提供明确的删除提示</li>
+                    <li>拖拽操作应该有清晰的视觉指示</li>
+                    <li>为长按操作提供上下文菜单</li>
+                    <li>测试手势在不同设备上的表现</li>
+                </ul>
+
+                <div class="tip-box">
+                    <strong>提示：</strong>使用 RawGestureDetector 可以实现更复杂的手势识别。
+                </div>
+
+                <div class="note-box">
+                    <strong>下一步：</strong>掌握手势组件后，继续学习对话框组件。
+                </div>
+
+                <div class="topic-nav">
+                    <a href="animation-widgets.html">← 动画组件</a>
+                    <a href="dialog-widgets.html">对话框组件 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
