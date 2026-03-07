@@ -500,6 +500,175 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- 应用打包 -->
+                <div class="app-packaging">
+                    <h3>📦 应用打包发布</h3>
+                    <div class="packaging-content">
+                        <div class="packaging-overview">
+                            <p>Flutter 支持将应用打包发布到多个平台，包括移动端、Web、桌面端等。每个平台都有特定的打包流程和发布要求。</p>
+                        </div>
+
+                        <div class="platforms-grid">
+                            <div class="platform-card platform-android">
+                                <div class="platform-icon">🤖</div>
+                                <h4>Android</h4>
+                                <div class="platform-details">
+                                    <div class="detail-item">
+                                        <span class="detail-label">输出格式</span>
+                                        <span class="detail-value">APK / AAB</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">打包命令</span>
+                                        <code class="detail-code">flutter build apk</code>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">发布渠道</span>
+                                        <span class="detail-value">Google Play</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">签名要求</span>
+                                        <span class="detail-value">需要签名</span>
+                                    </div>
+                                </div>
+                                <div class="platform-features">
+                                    <span class="feature-tag">AAB 格式推荐</span>
+                                    <span class="feature-tag">支持 32/64 位</span>
+                                    <span class="feature-tag">可配置权限</span>
+                                </div>
+                            </div>
+
+                            <div class="platform-card platform-ios">
+                                <div class="platform-icon">🍎</div>
+                                <h4>iOS</h4>
+                                <div class="platform-details">
+                                    <div class="detail-item">
+                                        <span class="detail-label">输出格式</span>
+                                        <span class="detail-value">IPA</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">打包命令</span>
+                                        <code class="detail-code">flutter build ios</code>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">发布渠道</span>
+                                        <span class="detail-value">App Store</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">签名要求</span>
+                                        <span class="detail-value">需要证书</span>
+                                    </div>
+                                </div>
+                                <div class="platform-features">
+                                    <span class="feature-tag">需要 macOS</span>
+                                    <span class="feature-tag">TestFlight 测试</span>
+                                    <span class="feature-tag">严格审核</span>
+                                </div>
+                            </div>
+
+                            <div class="platform-card platform-web">
+                                <div class="platform-icon">🌐</div>
+                                <h4>Web</h4>
+                                <div class="platform-details">
+                                    <div class="detail-item">
+                                        <span class="detail-label">输出格式</span>
+                                        <span class="detail-value">HTML/CSS/JS</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">打包命令</span>
+                                        <code class="detail-code">flutter build web</code>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">发布渠道</span>
+                                        <span class="detail-value">任意 Web 服务器</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">签名要求</span>
+                                        <span class="detail-value">无需签名</span>
+                                    </div>
+                                </div>
+                                <div class="platform-features">
+                                    <span class="feature-tag">PWA 支持</span>
+                                    <span class="feature-tag">快速部署</span>
+                                    <span class="feature-tag">跨浏览器</span>
+                                </div>
+                            </div>
+
+                            <div class="platform-card platform-desktop">
+                                <div class="platform-icon">💻</div>
+                                <h4>Desktop</h4>
+                                <div class="platform-details">
+                                    <div class="detail-item">
+                                        <span class="detail-label">支持平台</span>
+                                        <span class="detail-value">Windows/macOS/Linux</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">打包命令</span>
+                                        <code class="detail-code">flutter build [platform]</code>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">发布渠道</span>
+                                        <span class="detail-value">应用商店 / 直接下载</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">签名要求</span>
+                                        <span class="detail-value">平台相关</span>
+                                    </div>
+                                </div>
+                                <div class="platform-features">
+                                    <span class="feature-tag">原生特性</span>
+                                    <span class="feature-tag">独立安装</span>
+                                    <span class="feature-tag">企业分发</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="packaging-process">
+                            <h4>🚀 打包流程</h4>
+                            <div class="process-steps">
+                                <div class="process-step">
+                                    <div class="step-icon">1️⃣</div>
+                                    <div class="step-content">
+                                        <h5>配置应用</h5>
+                                        <p>设置应用名称、版本号、图标等</p>
+                                    </div>
+                                </div>
+                                <div class="process-arrow">→</div>
+                                <div class="process-step">
+                                    <div class="step-icon">2️⃣</div>
+                                    <div class="step-content">
+                                        <h5>选择平台</h5>
+                                        <p>确定目标平台和发布渠道</p>
+                                    </div>
+                                </div>
+                                <div class="process-arrow">→</div>
+                                <div class="process-step">
+                                    <div class="step-icon">3️⃣</div>
+                                    <div class="step-content">
+                                        <h5>构建应用</h5>
+                                        <p>执行打包命令生成安装包</p>
+                                    </div>
+                                </div>
+                                <div class="process-arrow">→</div>
+                                <div class="process-step">
+                                    <div class="step-icon">4️⃣</div>
+                                    <div class="step-content">
+                                        <h5>测试验证</h5>
+                                        <p>在真实设备上测试应用</p>
+                                    </div>
+                                </div>
+                                <div class="process-arrow">→</div>
+                                <div class="process-step">
+                                    <div class="step-icon">5️⃣</div>
+                                    <div class="step-content">
+                                        <h5>发布上线</h5>
+                                        <p>上传到应用商店或服务器</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 

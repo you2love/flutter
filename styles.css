@@ -1476,9 +1476,747 @@ padding: 2rem;    background: var(--white);
         
         .ecosystem-categories {
         
+        
+        
         grid-template-columns: 1fr;
         
+        
+        
         }
+        
+        
+        
+        
+        
+        
+        
+        .app-packaging {
+        
+        
+        
+        max-width: 1200px;
+        
+        
+        
+        margin: 3rem auto;
+        
+        
+        
+        padding: 2rem;
+        
+        
+        
+        background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+        
+        
+        
+        border-radius: var(--border-radius);
+        
+        
+        
+        box-shadow: var(--box-shadow);
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .app-packaging h3 {
+        
+        
+        
+        text-align: center;
+        
+        
+        
+        color: var(--primary-color);
+        
+        
+        
+        font-size: 1.8rem;
+        
+        
+        
+        margin-bottom: 2rem;
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .packaging-overview {
+        
+        
+        
+        background: rgba(255, 255, 255, 0.6);
+        
+        
+        
+        padding: 1rem 1.5rem;
+        
+        
+        
+        border-radius: 8px;
+        
+        
+        
+        margin-bottom: 2rem;
+        
+        
+        
+        border-left: 4px solid var(--accent-color);
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .packaging-overview p {
+        
+        
+        
+        margin: 0;
+        
+        
+        
+        color: #666;
+        
+        
+        
+        line-height: 1.6;
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .platforms-grid {
+        
+        
+        
+        display: grid;
+        
+        
+        
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        
+        
+        
+        gap: 1.5rem;
+        
+        
+        
+        margin-bottom: 2rem;
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .platform-card {
+        
+        
+        
+        background: var(--white);
+        
+        
+        
+        border-radius: var(--border-radius);
+        
+        
+        
+        padding: 1.5rem;
+        
+        
+        
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        
+        
+        
+        transition: all 0.3s ease;
+        
+        
+        
+        border: 2px solid transparent;
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .platform-card:hover {
+        
+        
+        
+        transform: translateY(-4px);
+        
+        
+        
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .platform-android:hover { border-color: #3DDC84; }
+        
+        
+        
+        .platform-ios:hover { border-color: #000000; }
+        
+        
+        
+        .platform-web:hover { border-color: #2196F3; }
+        
+        
+        
+        .platform-desktop:hover { border-color: #607D8B; }
+        
+        
+        
+        
+        
+        
+        
+        .platform-icon {
+        
+        
+        
+        font-size: 3rem;
+        
+        
+        
+        margin-bottom: 1rem;
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .platform-card h4 {
+        
+        
+        
+        color: var(--primary-color);
+        
+        
+        
+        font-size: 1.3rem;
+        
+        
+        
+        margin-bottom: 1rem;
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .platform-details {
+        
+        
+        
+        display: flex;
+        
+        
+        
+        flex-direction: column;
+        
+        
+        
+        gap: 0.75rem;
+        
+        
+        
+        margin-bottom: 1rem;
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .detail-item {
+        
+        
+        
+        display: flex;
+        
+        
+        
+        justify-content: space-between;
+        
+        
+        
+        align-items: center;
+        
+        
+        
+        padding: 0.5rem 0;
+        
+        
+        
+        border-bottom: 1px solid #f0f0f0;
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .detail-item:last-child {
+        
+        
+        
+        border-bottom: none;
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .detail-label {
+        
+        
+        
+        font-weight: 500;
+        
+        
+        
+        color: #666;
+        
+        
+        
+        font-size: 0.9rem;
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .detail-value {
+        
+        
+        
+        color: #333;
+        
+        
+        
+        font-size: 0.9rem;
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .detail-code {
+        
+        
+        
+        background: #f8f9fa;
+        
+        
+        
+        padding: 0.3rem 0.6rem;
+        
+        
+        
+        border-radius: 4px;
+        
+        
+        
+        font-family: 'Courier New', monospace;
+        
+        
+        
+        font-size: 0.85rem;
+        
+        
+        
+        color: var(--primary-color);
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .platform-features {
+        
+        
+        
+        display: flex;
+        
+        
+        
+        flex-wrap: wrap;
+        
+        
+        
+        gap: 0.5rem;
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .feature-tag {
+        
+        
+        
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        
+        
+        
+        color: white;
+        
+        
+        
+        padding: 0.3rem 0.8rem;
+        
+        
+        
+        border-radius: 12px;
+        
+        
+        
+        font-size: 0.8rem;
+        
+        
+        
+        font-weight: 500;
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .packaging-process {
+        
+        
+        
+        background: rgba(255, 255, 255, 0.6);
+        
+        
+        
+        border-radius: var(--border-radius);
+        
+        
+        
+        padding: 2rem;
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .packaging-process h4 {
+        
+        
+        
+        text-align: center;
+        
+        
+        
+        color: var(--primary-color);
+        
+        
+        
+        font-size: 1.4rem;
+        
+        
+        
+        margin-bottom: 2rem;
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .process-steps {
+        
+        
+        
+        display: flex;
+        
+        
+        
+        align-items: center;
+        
+        
+        
+        justify-content: space-between;
+        
+        
+        
+        gap: 1rem;
+        
+        
+        
+        flex-wrap: wrap;
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .process-step {
+        
+        
+        
+        flex: 1;
+        
+        
+        
+        min-width: 120px;
+        
+        
+        
+        background: var(--white);
+        
+        
+        
+        border-radius: var(--border-radius);
+        
+        
+        
+        padding: 1.5rem;
+        
+        
+        
+        text-align: center;
+        
+        
+        
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        
+        
+        
+        transition: all 0.3s ease;
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .process-step:hover {
+        
+        
+        
+        transform: translateY(-4px);
+        
+        
+        
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .step-icon {
+        
+        
+        
+        font-size: 2.5rem;
+        
+        
+        
+        margin-bottom: 0.75rem;
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .step-content h5 {
+        
+        
+        
+        color: var(--primary-color);
+        
+        
+        
+        font-size: 1.1rem;
+        
+        
+        
+        margin-bottom: 0.5rem;
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .step-content p {
+        
+        
+        
+        color: #666;
+        
+        
+        
+        font-size: 0.85rem;
+        
+        
+        
+        margin: 0;
+        
+        
+        
+        line-height: 1.4;
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        .process-arrow {
+        
+        
+        
+        font-size: 2rem;
+        
+        
+        
+        color: var(--accent-color);
+        
+        
+        
+        flex-shrink: 0;
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
         
         .dataflow-diagram {        flex-direction: column;
         align-items: flex-start;
@@ -1528,6 +2266,46 @@ padding: 2rem;    background: var(--white);
     }
     
     .path-text span {
-        font-size: 0.85rem;
+    font-size: 0.85rem;
     }
-}
+    
+    .platforms-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    }
+    
+    .platform-card {
+    padding: 1rem;
+    }
+    
+    .platform-icon {
+    font-size: 2rem;
+    }
+    
+    .platform-card h4 {
+    font-size: 1.1rem;
+    }
+    
+    .detail-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    }
+    
+    .detail-code {
+    font-size: 0.8rem;
+    }
+    
+    .process-steps {
+    flex-direction: column;
+    gap: 1rem;
+    }
+    
+    .process-step {
+    padding: 1rem;
+    }
+    
+    .process-arrow {
+    transform: rotate(90deg);
+    }
+    }
