@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flutter 学习教程 - 从入门到精通</title>
+    <title>Flutter 教程 - 架构与组件全解</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,106 +14,381 @@
             </div>
             <nav class="nav">
                 <ul>
-                    <li><a href="#tutorials" class="active">教程</a></li>
+                    <li><a href="#architecture" class="active">架构</a></li>
+                    <li><a href="#tutorials">教程</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main>
-        <section id="tutorials" class="section">
+        <!-- Flutter 架构图部分 -->
+        <section id="architecture" class="section">
             <div class="container">
-                <h2>教程系列</h2>
-                <div class="tutorial-tabs">
-                    <button class="tab-btn active" data-tab="basics">基础教程</button>
-                    <button class="tab-btn" data-tab="widgets">组件教程</button>
-                    <button class="tab-btn" data-tab="advanced">进阶教程</button>
+                <h2>Flutter 架构概览</h2>
+                <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">Flutter 采用分层架构设计，从上到下依次为 Framework（框架层）、Engine（引擎层）和 Embedder（嵌入层）。理解这三层架构有助于你掌握 Flutter 的跨平台原理和性能优化技巧。</p>
+                
+                <!-- Flutter 架构图 -->
+                <div class="architecture-diagram">
+                    <div class="arch-layer layer-framework">
+                        <h3>Framework 层 (Dart)</h3>
+                        <div class="arch-content">
+                            <div class="arch-sublayer">
+                                <span>Material</span>
+                                <span>Cupertino</span>
+                                <span>Widgets</span>
+                            </div>
+                            <div class="arch-sublayer">
+                                <span>Rendering</span>
+                                <span>Painting</span>
+                                <span>Gestures</span>
+                            </div>
+                            <div class="arch-sublayer">
+                                <span>Animation</span>
+                                <span>Foundation</span>
+                            </div>
+                        </div>
+                        <p class="arch-desc">提供丰富的 UI 组件和动画系统，开发者主要使用 Dart 语言在这一层工作</p>
+                    </div>
+                    
+                    <div class="arch-arrow">↓</div>
+                    
+                    <div class="arch-layer layer-engine">
+                        <h3>Engine 层 (C++)</h3>
+                        <div class="arch-content">
+                            <div class="arch-sublayer">
+                                <span>Skia</span>
+                                <span>Impeller</span>
+                                <span>Text</span>
+                            </div>
+                            <div class="arch-sublayer">
+                                <span>Dart Runtime</span>
+                                <span>Garbage Collection</span>
+                            </div>
+                        </div>
+                        <p class="arch-desc">核心渲染引擎，负责图形渲染、文本布局、动画和 Dart 运行时</p>
+                    </div>
+                    
+                    <div class="arch-arrow">↓</div>
+                    
+                    <div class="arch-layer layer-embedder">
+                        <h3>Embedder 层 (平台特定)</h3>
+                        <div class="arch-content">
+                            <div class="arch-sublayer">
+                                <span>Android</span>
+                                <span>iOS</span>
+                                <span>Web</span>
+                                <span>Windows</span>
+                                <span>macOS</span>
+                                <span>Linux</span>
+                            </div>
+                        </div>
+                        <p class="arch-desc">平台特定的代码，负责与操作系统交互，提供事件循环和平台集成</p>
+                    </div>
                 </div>
-
-                <div class="tutorial-content">
-                    <div class="tab-panel active" id="basics">
-                        <div class="tutorial-list">
-                            <div class="tutorial-item">
-                                <h3>Dart 语言基础</h3>
-                                <p>学习 Dart 语言的基本语法和特性，包括变量、函数、类、异步编程等</p>
-                                <a href="dart-basics.html" class="tutorial-link">开始学习 →</a>
+                
+                <!-- 架构说明 -->
+                <div class="architecture-info">
+                    <div class="info-card">
+                        <h4>🎨 Framework 层（Dart）</h4>
+                        <p>这是开发者直接接触的层，完全用 Dart 语言编写。提供了 Material Design 和 Cupertino 风格的完整组件库，包括动画系统、手势识别、渲染引擎等核心功能。所有的 Widget 都在这一层定义。</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>⚡ Engine 层（C++）</h4>
+                        <p>Flutter 的核心渲染引擎，负责图形渲染、文本布局、动画和垃圾回收。使用 Skia 或 Impeller 进行 GPU 加速渲染，确保在所有平台上都能达到 60fps 的流畅体验。这是 Flutter 高性能的关键。</p>
+                    </div>
+</div>
+                
+                <!-- Flutter 数据流程图 -->
+                <div class="architecture-dataflow">
+                    <h3>🔄 Flutter 渲染流程</h3>
+                    <div class="dataflow-diagram">
+                        <div class="flow-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Dart 代码</h4>
+                                <p>开发者编写 Widget 代码</p>
                             </div>
-                            <div class="tutorial-item">
-                                <h3>Widget 基础</h3>
-                                <p>掌握 Widget 的概念和基本用法，了解 StatelessWidget 和 StatefulWidget</p>
-                                <a href="widget-basics.html" class="tutorial-link">开始学习 →</a>
+                        </div>
+                        <div class="flow-connector">→</div>
+                        <div class="flow-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Widget 树</h4>
+                                <p>描述 UI 结构</p>
+                            </div>
+                        </div>
+                        <div class="flow-connector">→</div>
+                        <div class="flow-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Element 树</h4>
+                                <p>Widget 的实例化</p>
+                            </div>
+                        </div>
+                        <div class="flow-connector">→</div>
+                        <div class="flow-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>RenderObject 树</h4>
+                                <p>布局和绘制</p>
+                            </div>
+                        </div>
+                        <div class="flow-connector">→</div>
+                        <div class="flow-step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <h4>Layer 树</h4>
+                                <p>合成和优化</p>
+                            </div>
+                        </div>
+                        <div class="flow-connector">→</div>
+                        <div class="flow-step">
+                            <div class="step-number">6</div>
+                            <div class="step-content">
+                                <h4>GPU 渲染</h4>
+                                <p>Skia/Impeller 渲染</p>
+                            </div>
+                        </div>
+                        <div class="flow-connector">→</div>
+                        <div class="flow-step">
+                            <div class="step-number">7</div>
+                            <div class="step-content">
+                                <h4>屏幕显示</h4>
+                                <p>用户看到最终画面</p>
                             </div>
                         </div>
                     </div>
-
-                    <div class="tab-panel" id="widgets">
-                        <div class="tutorial-list">
-                            <div class="tutorial-item">
-                                <h3>布局组件</h3>
-                                <p>学习 Container、Row、Column、Stack 等布局组件，构建页面结构</p>
-                                <a href="layout-widgets.html" class="tutorial-link">开始学习 →</a>
-                            </div>
-                            <div class="tutorial-item">
-                                <h3>输入组件</h3>
-                                <p>掌握 TextField、Button、Checkbox 等输入组件，实现用户交互</p>
-                                <a href="input-widgets.html" class="tutorial-link">开始学习 →</a>
-                            </div>
-                            <div class="tutorial-item">
-                                <h3>列表组件</h3>
-                                <p>使用 ListView 和 GridView 展示数据列表</p>
-                                <a href="list-widgets.html" class="tutorial-link">开始学习 →</a>
-                            </div>
-                            <div class="tutorial-item">
-                                <h3>手势组件</h3>
-                                <p>使用 GestureDetector 处理点击、滑动、缩放等用户手势</p>
-                                <a href="gesture-widgets.html" class="tutorial-link">开始学习 →</a>
-                            </div>
-                            <div class="tutorial-item">
-                                <h3>导航组件</h3>
-                                <p>使用 Navigator、Router 实现页面跳转和导航</p>
-                                <a href="navigation-widgets.html" class="tutorial-link">开始学习 →</a>
-                            </div>
-                            <div class="tutorial-item">
-                                <h3>对话框组件</h3>
-                                <p>使用 AlertDialog、BottomSheet、SnackBar 等对话框组件</p>
-                                <a href="dialog-widgets.html" class="tutorial-link">开始学习 →</a>
-                            </div>
-                            <div class="tutorial-item">
-                                <h3>动画组件</h3>
-                                <p>使用 AnimationController、Tween 创建流畅的动画效果</p>
-                                <a href="animation-widgets.html" class="tutorial-link">开始学习 →</a>
-                            </div>
-                            <div class="tutorial-item">
-                                <h3>第三方组件</h3>
-                                <p>掌握 Provider、Dio、GetX 等常用第三方包的使用</p>
-                                <a href="third-party-packages.html" class="tutorial-link">开始学习 →</a>
-                            </div>
+                </div>
+                
+                <!-- 架构优势 -->
+                <div class="architecture-features">
+                    <h3>🌟 Flutter 架构优势</h3>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">🚀</div>
+                            <h4>高性能渲染</h4>
+                            <p>直接调用 GPU 渲染，绕过原生 UI 框架，实现 60fps 流畅体验</p>
                         </div>
-                    </div>
-
-                    <div class="tab-panel" id="advanced">
-                        <div class="tutorial-list">
-                            <div class="tutorial-item">
-                                <h3>状态管理</h3>
-                                <p>学习 Provider、Bloc 等状态管理方案</p>
-                                <a href="state-management.html" class="tutorial-link">开始学习 →</a>
-                            </div>
-                            <div class="tutorial-item">
-                                <h3>网络请求</h3>
-                                <p>使用 http 包进行网络请求</p>
-                                <a href="networking.html" class="tutorial-link">开始学习 →</a>
-                            </div>
-                            <div class="tutorial-item">
-                                <h3>本地存储</h3>
-                                <p>使用 shared_preferences 和 sqflite</p>
-                                <a href="local-storage.html" class="tutorial-link">开始学习 →</a>
-                            </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">📱</div>
+                            <h4>跨平台一致性</h4>
+                            <p>所有平台共享同一套渲染引擎，确保 UI 效果完全一致</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🎨</div>
+                            <h4>丰富的组件库</h4>
+                            <p>Framework 层提供 Material 和 Cupertino 完整组件，开箱即用</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">⚡</div>
+                            <h4>热重载开发</h4>
+                            <p>Dart 的 AOT 和 JIT 双模式，开发时支持热重载，发布时编译为原生代码</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <section id="tutorials" class="section">
+            <div class="container">
+                <h2>Flutter 教程系列</h2>
+                <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">从零开始学习 Flutter，掌握跨平台移动应用开发</p>
+                
+                <div class="tutorial-list">
+                    <!-- 学习路径引导 -->
+                    <div class="learning-path">
+                        <h3>📚 推荐学习路径</h3>
+                        <p>基于 Flutter 架构设计，建议按照以下顺序学习：</p>
+                        <div class="path-steps">
+                            <div class="path-step">
+                                <span class="path-number">1</span>
+                                <div class="path-text">
+                                    <strong>Dart 语言基础</strong>
+                                    <span>掌握 Dart 语法和特性</span>
+                                </div>
+                            </div>
+                            <div class="path-step">
+                                <span class="path-number">2</span>
+                                <div class="path-text">
+                                    <strong>Widget 基础</strong>
+                                    <span>理解 Framework 层核心概念</span>
+                                </div>
+                            </div>
+                            <div class="path-step">
+                                <span class="path-number">3</span>
+                                <div class="path-text">
+                                    <strong>布局组件</strong>
+                                    <span>学习页面结构构建</span>
+                                </div>
+                            </div>
+                            <div class="path-step">
+                                <span class="path-number">4</span>
+                                <div class="path-text">
+                                    <strong>交互组件</strong>
+                                    <span>掌握用户输入和响应</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 基础教程 -->
+                    <div class="tutorial-item">
+                        <h3>Dart 语言基础</h3>
+                        <p>学习 Dart 语言的基本语法和特性，包括变量声明、数据类型、函数、类、异步编程等核心概念。Dart 是 Flutter 的基础语言，掌握 Dart 是学习 Flutter 的第一步。</p>
+                        <div class="tutorial-tags">
+                            <span class="tag">变量</span>
+                            <span class="tag">函数</span>
+                            <span class="tag">类</span>
+                            <span class="tag">异步</span>
+                        </div>
+                        <a href="dart-basics.html" class="tutorial-link">开始学习 →</a>
+                    </div>
+
+                    <div class="tutorial-item">
+                        <h3>Widget 基础</h3>
+                        <p>掌握 Widget 的概念和基本用法，了解 StatelessWidget 和 StatefulWidget 的区别，学习 Widget 的生命周期。Widget 是 Flutter 应用的构建块，理解 Widget 是掌握 Flutter 的关键。</p>
+                        <div class="tutorial-tags">
+                            <span class="tag">StatelessWidget</span>
+                            <span class="tag">StatefulWidget</span>
+                            <span class="tag">生命周期</span>
+                            <span class="tag">Widget树</span>
+                        </div>
+                        <a href="widget-basics.html" class="tutorial-link">开始学习 →</a>
+                    </div>
+
+                    <!-- 组件教程 -->
+                    <div class="tutorial-item">
+                        <h3>布局组件</h3>
+                        <p>学习 Container、Row、Column、Stack、Expanded、Flexible 等布局组件，掌握如何使用这些组件构建复杂的页面结构。布局组件是 Flutter UI 的基础，理解布局原理至关重要。</p>
+                        <div class="tutorial-tags">
+                            <span class="tag">Container</span>
+                            <span class="tag">Row</span>
+                            <span class="tag">Column</span>
+                            <span class="tag">Stack</span>
+                            <span class="tag">Expanded</span>
+                        </div>
+                        <a href="layout-widgets.html" class="tutorial-link">开始学习 →</a>
+                    </div>
+
+                    <div class="tutorial-item">
+                        <h3>输入组件</h3>
+                        <p>掌握 TextField、TextFormField、ElevatedButton、TextButton、OutlinedButton、Checkbox、Radio、Switch、Slider 等输入组件，实现丰富的用户交互功能。学习表单验证和用户输入处理。</p>
+                        <div class="tutorial-tags">
+                            <span class="tag">TextField</span>
+                            <span class="tag">Button</span>
+                            <span class="tag">Checkbox</span>
+                            <span class="tag">表单验证</span>
+                        </div>
+                        <a href="input-widgets.html" class="tutorial-link">开始学习 →</a>
+                    </div>
+
+                    <div class="tutorial-item">
+                        <h3>列表组件</h3>
+                        <p>使用 ListView、ListView.builder、ListView.separated、GridView、GridView.builder 等列表组件展示数据。学习列表的性能优化、分隔线、下拉刷新和上拉加载更多功能。</p>
+                        <div class="tutorial-tags">
+                            <span class="tag">ListView</span>
+                            <span class="tag">GridView</span>
+                            <span class="tag">builder</span>
+                            <span class="tag">性能优化</span>
+                        </div>
+                        <a href="list-widgets.html" class="tutorial-link">开始学习 →</a>
+                    </div>
+
+                    <div class="tutorial-item">
+                        <h3>手势组件</h3>
+                        <p>使用 GestureDetector、InkWell、Dismissible 等手势组件处理用户的各种手势操作，包括点击、双击、长按、拖拽、缩放等。学习手势识别和响应机制。</p>
+                        <div class="tutorial-tags">
+                            <span class="tag">GestureDetector</span>
+                            <span class="tag">InkWell</span>
+                            <span class="tag">Dismissible</span>
+                            <span class="tag">手势识别</span>
+                        </div>
+                        <a href="gesture-widgets.html" class="tutorial-link">开始学习 →</a>
+                    </div>
+
+                    <div class="tutorial-item">
+                        <h3>导航组件</h3>
+                        <p>使用 Navigator、Navigator 2.0、Router、NamedRoute 等导航组件实现页面跳转和导航。学习页面栈管理、参数传递、路由守卫和 Hero 动画过渡。</p>
+                        <div class="tutorial-tags">
+                            <span class="tag">Navigator</span>
+                            <span class="tag">Router</span>
+                            <span class="tag">NamedRoute</span>
+                            <span class="tag">Hero动画</span>
+                        </div>
+                        <a href="navigation-widgets.html" class="tutorial-link">开始学习 →</a>
+                    </div>
+
+                    <div class="tutorial-item">
+                        <h3>对话框组件</h3>
+                        <p>使用 AlertDialog、BottomSheet、SnackBar、SimpleDialog、ModalBarrier 等对话框组件与用户进行交互。学习如何创建模态对话框、底部菜单和提示消息。</p>
+                        <div class="tutorial-tags">
+                            <span class="tag">AlertDialog</span>
+                            <span class="tag">BottomSheet</span>
+                            <span class="tag">SnackBar</span>
+                            <span class="tag">模态对话框</span>
+                        </div>
+                        <a href="dialog-widgets.html" class="tutorial-link">开始学习 →</a>
+                    </div>
+
+                    <div class="tutorial-item">
+                        <h3>动画组件</h3>
+                        <p>使用 AnimationController、AnimatedContainer、AnimatedOpacity、Transition、Tween 等动画组件创建流畅的动画效果。学习隐式动画、显式动画和过渡动画的实现方法。</p>
+                        <div class="tutorial-tags">
+                            <span class="tag">AnimationController</span>
+                            <span class="tag">Animated*</span>
+                            <span class="tag">Transition</span>
+                            <span class="tag">Tween</span>
+                        </div>
+                        <a href="animation-widgets.html" class="tutorial-link">开始学习 →</a>
+                    </div>
+
+                    <div class="tutorial-item">
+                        <h3>第三方组件</h3>
+                        <p>掌握 Provider、Dio、GetX、shared_preferences、sqflite、image_picker 等常用第三方包的使用。学习如何在 pub.dev 上查找和集成第三方库。</p>
+                        <div class="tutorial-tags">
+                            <span class="tag">Provider</span>
+                            <span class="tag">Dio</span>
+                            <span class="tag">GetX</span>
+                            <span class="tag">pub.dev</span>
+                        </div>
+                        <a href="third-party-packages.html" class="tutorial-link">开始学习 →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+    
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>学习资源</h4>
+                    <ul>
+                        <li><a href="https://flutter.dev/docs" target="_blank">Flutter 官方文档</a></li>
+                        <li><a href="https://flutter.cn" target="_blank">Flutter 中文网</a></li>
+                        <li><a href="https://pub.dev" target="_blank">Pub.dev 包仓库</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>官方频道</h4>
+                    <ul>
+                        <li><a href="https://github.com/flutter/flutter" target="_blank">GitHub</a></li>
+                        <li><a href="https://www.youtube.com/flutterdev" target="_blank">YouTube</a></li>
+                        <li><a href="https://medium.com/flutter" target="_blank">Medium</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>关于</h4>
+                    <p>本教程帮助你从零开始学习 Flutter，掌握跨平台移动应用开发。通过理解 Flutter 架构和组件，你将能够构建高性能、美观的应用。</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Flutter 教程. 基于 Flutter 官方文档整理.</p>
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>

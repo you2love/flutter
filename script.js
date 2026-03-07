@@ -2,8 +2,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // 导航链接点击处理
     initNavigation();
-    // 教程标签切换
-    initTutorialTabs();
     // 代码复制功能
     initCopyButtons();
     // 平滑滚动
@@ -54,29 +52,6 @@ function initNavigation() {
                         link.classList.add('active');
                     }
                 });
-            }
-        });
-    });
-}
-
-// 教程标签切换功能
-function initTutorialTabs() {
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const tabPanels = document.querySelectorAll('.tab-panel');
-
-    tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const targetTab = this.getAttribute('data-tab');
-
-            // 移除所有active类
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabPanels.forEach(panel => panel.classList.remove('active'));
-
-            // 添加active类到当前按钮和面板
-            this.classList.add('active');
-            const targetPanel = document.getElementById(targetTab);
-            if (targetPanel) {
-                targetPanel.classList.add('active');
             }
         });
     });
@@ -139,27 +114,6 @@ function initSmoothScroll() {
 // 页面加载时的淡入效果
 window.addEventListener('load', function() {
     document.body.style.opacity = '1';
-});
-
-// 添加键盘导航支持
-document.addEventListener('keydown', function(e) {
-    // Tab键快捷切换教程标签
-    if (e.altKey && e.key === 'Tab') {
-        e.preventDefault();
-        const activeTab = document.querySelector('.tab-btn.active');
-        const tabs = Array.from(document.querySelectorAll('.tab-btn'));
-        const currentIndex = tabs.indexOf(activeTab);
-
-        if (e.shiftKey) {
-            // 上一个标签
-            const prevIndex = currentIndex > 0 ? currentIndex - 1 : tabs.length - 1;
-            tabs[prevIndex].click();
-        } else {
-            // 下一个标签
-            const nextIndex = currentIndex < tabs.length - 1 ? currentIndex + 1 : 0;
-            tabs[nextIndex].click();
-        }
-    }
 });
 
 // 添加滚动动画
@@ -363,4 +317,3 @@ function bookmarkPage() {
 }
 
 console.log('Flutter 教程网站已加载完成！');
-console.log('提示: 使用 Alt+Tab 快捷键切换教程标签');
