@@ -249,6 +249,257 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- 组件关系图 -->
+                <div class="component-relationships">
+                    <h3>🔗 组件关系图谱</h3>
+                    <div class="relationship-diagram">
+                        <div class="relationship-container">
+                            <div class="relationship-node node-root">
+                                <div class="node-icon">🎯</div>
+                                <h4>Widget 树</h4>
+                                <p>所有组件的根</p>
+                            </div>
+                            
+                            <div class="relationship-branch">
+                                <div class="branch-line"></div>
+                                <div class="branch-nodes">
+                                    <div class="relationship-node node-layout">
+                                        <div class="node-icon">📐</div>
+                                        <h4>布局组件</h4>
+                                        <p>Row/Column/Stack</p>
+                                    </div>
+                                    <div class="relationship-node node-basic">
+                                        <div class="node-icon">📦</div>
+                                        <h4>基础组件</h4>
+                                        <p>Text/Image/Icon</p>
+                                    </div>
+                                    <div class="relationship-node node-input">
+                                        <div class="node-icon">⌨️</div>
+                                        <h4>输入组件</h4>
+                                        <p>TextField/Button</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="relationship-branch">
+                                <div class="branch-line"></div>
+                                <div class="branch-nodes">
+                                    <div class="relationship-node node-list">
+                                        <div class="node-icon">📋</div>
+                                        <h4>列表组件</h4>
+                                        <p>ListView/GridView</p>
+                                    </div>
+                                    <div class="relationship-node node-gesture">
+                                        <div class="node-icon">👆</div>
+                                        <h4>手势组件</h4>
+                                        <p>GestureDetector</p>
+                                    </div>
+                                    <div class="relationship-node node-animation">
+                                        <div class="node-icon">🎬</div>
+                                        <h4>动画组件</h4>
+                                        <p>Animated/Transition</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="relationship-branch">
+                                <div class="branch-line"></div>
+                                <div class="branch-nodes">
+                                    <div class="relationship-node node-nav">
+                                        <div class="node-icon">🧭</div>
+                                        <h4>导航组件</h4>
+                                        <p>Navigator/Router</p>
+                                    </div>
+                                    <div class="relationship-node node-dialog">
+                                        <div class="node-icon">💬</div>
+                                        <h4>对话框组件</h4>
+                                        <p>AlertDialog/SnackBar</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relationship-connections">
+                                <div class="connection-item">
+                                    <span class="conn-from">布局组件</span>
+                                    <span class="conn-arrow">→</span>
+                                    <span class="conn-to">包含基础/输入/列表组件</span>
+                                </div>
+                                <div class="connection-item">
+                                    <span class="conn-from">列表组件</span>
+                                    <span class="conn-arrow">→</span>
+                                    <span class="conn-to">使用布局组件组织内容</span>
+                                </div>
+                                <div class="connection-item">
+                                    <span class="conn-from">手势组件</span>
+                                    <span class="conn-arrow">→</span>
+                                    <span class="conn-to">包装任何 Widget</span>
+                                </div>
+                                <div class="connection-item">
+                                    <span class="conn-from">动画组件</span>
+                                    <span class="conn-arrow">→</span>
+                                    <span class="conn-to">包装任何 Widget</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第三方组件生态 -->
+                <div class="third-party-ecosystem">
+                    <h3>🌍 第三方组件生态</h3>
+                    <div class="ecosystem-categories">
+                        <div class="ecosystem-category">
+                            <div class="ecosystem-header">
+                                <div class="eco-icon">🔄</div>
+                                <h4>状态管理</h4>
+                            </div>
+                            <div class="ecosystem-packages">
+                                <div class="package-item">
+                                    <div class="package-name">Provider</div>
+                                    <div class="package-desc">官方推荐，简单易用</div>
+                                </div>
+                                <div class="package-item">
+                                    <div class="package-name">Riverpod</div>
+                                    <div class="package-desc">Provider 改进版</div>
+                                </div>
+                                <div class="package-item">
+                                    <div class="package-name">Bloc</div>
+                                    <div class="package-desc">响应式状态管理</div>
+                                </div>
+                                <div class="package-item">
+                                    <div class="package-name">GetX</div>
+                                    <div class="package-desc">轻量级全能框架</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ecosystem-category">
+                            <div class="ecosystem-header">
+                                <div class="eco-icon">🌐</div>
+                                <h4>网络请求</h4>
+                            </div>
+                            <div class="ecosystem-packages">
+                                <div class="package-item">
+                                    <div class="package-name">Dio</div>
+                                    <div class="package-desc">强大的 HTTP 客户端</div>
+                                </div>
+                                <div class="package-item">
+                                    <div class="package-name">http</div>
+                                    <div class="package-desc">官方基础库</div>
+                                </div>
+                                <div class="package-item">
+                                    <div class="package-name">graphql_flutter</div>
+                                    <div class="package-desc">GraphQL 客户端</div>
+                                </div>
+                                <div class="package-item">
+                                    <div class="package-name">retrofit</div>
+                                    <div class="package-desc">类型安全的 API</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ecosystem-category">
+                            <div class="ecosystem-header">
+                                <div class="eco-icon">💾</div>
+                                <h4>本地存储</h4>
+                            </div>
+                            <div class="ecosystem-packages">
+                                <div class="package-item">
+                                    <div class="package-name">shared_preferences</div>
+                                    <div class="package-desc">简单键值存储</div>
+                                </div>
+                                <div class="package-item">
+                                    <div class="package-name">sqflite</div>
+                                    <div class="package-desc">SQLite 数据库</div>
+                                </div>
+                                <div class="package-item">
+                                    <div class="package-name">hive</div>
+                                    <div class="package-desc">轻量级 NoSQL</div>
+                                </div>
+                                <div class="package-item">
+                                    <div class="package-name">isar</div>
+                                    <div class="package-desc">高性能数据库</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ecosystem-category">
+                            <div class="ecosystem-header">
+                                <div class="eco-icon">🎨</div>
+                                <h4>UI 组件</h4>
+                            </div>
+                            <div class="ecosystem-packages">
+                                <div class="package-item">
+                                    <div class="package-name">flutter_svg</div>
+                                    <div class="package-desc">SVG 图片支持</div>
+                                </div>
+                                <div class="package-item">
+                                    <div class="package-name">cached_network_image</div>
+                                    <div class="package-desc">网络图片缓存</div>
+                                </div>
+                                <div class="package-item">
+                                    <div class="package-name">shimmer</div>
+                                    <div class="package-desc">骨架屏效果</div>
+                                </div>
+                                <div class="package-item">
+                                    <div class="package-name">lottie</div>
+                                    <div class="package-desc">Lottie 动画</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ecosystem-category">
+                            <div class="ecosystem-header">
+                                <div class="eco-icon">📱</div>
+                                <h4>设备功能</h4>
+                            </div>
+                            <div class="ecosystem-packages">
+                                <div class="package-item">
+                                    <div class="package-name">image_picker</div>
+                                    <div class="package-desc">图片选择器</div>
+                                </div>
+                                <div class="package-item">
+                                    <div class="package-name">camera</div>
+                                    <div class="package-desc">相机功能</div>
+                                </div>
+                                <div class="package-item">
+                                    <div class="package-name">geolocator</div>
+                                    <div class="package-desc">位置服务</div>
+                                </div>
+                                <div class="package-item">
+                                    <div class="package-name">permission_handler</div>
+                                    <div class="package-desc">权限管理</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ecosystem-category">
+                            <div class="ecosystem-header">
+                                <div class="eco-icon">🔧</div>
+                                <h4>工具类</h4>
+                            </div>
+                            <div class="ecosystem-packages">
+                                <div class="package-item">
+                                    <div class="package-name">intl</div>
+                                    <div class="package-desc">国际化支持</div>
+                                </div>
+                                <div class="package-item">
+                                    <div class="package-name">url_launcher</div>
+                                    <div class="package-desc">URL 启动器</div>
+                                </div>
+                                <div class="package-item">
+                                    <div class="package-name">path_provider</div>
+                                    <div class="package-desc">文件路径</div>
+                                </div>
+                                <div class="package-item">
+                                    <div class="package-name">package_info</div>
+                                    <div class="package-desc">应用信息</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
