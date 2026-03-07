@@ -881,6 +881,117 @@ a:focus {
     margin: 0;
 }
 
+/* 组件系统样式 */
+.component-system {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.component-system h3 {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+}
+
+.component-diagram {
+    width: 100%;
+}
+
+.component-layer {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.component-layer h4 {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.component-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.component-category {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border: 1px solid #e0e0e0;
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.component-category::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--accent-color);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+}
+
+.component-category:hover::before {
+    transform: scaleY(1);
+}
+
+.component-category:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    border-color: var(--accent-color);
+}
+
+.category-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.component-category h5 {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.component-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.component-items span {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.component-items span:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
 /* Flutter 数据流程图样式 */
 .architecture-dataflow {
     max-width: 1200px;
@@ -1045,9 +1156,27 @@ a:focus {
         .architecture-dataflow {
         padding: 1rem;
         margin: 2rem auto;
-        }    
-    .dataflow-diagram {
-        flex-direction: column;
+        }
+        
+        .component-system {
+        padding: 1.5rem;
+        margin: 2rem auto;
+        }
+        
+        .component-categories {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        }
+        
+        .component-category {
+        padding: 1rem;
+        }
+        
+        .component-items span {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+        }
+        .dataflow-diagram {        flex-direction: column;
         align-items: flex-start;
     }
     
