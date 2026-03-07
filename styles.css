@@ -881,58 +881,6 @@ a:focus {
     margin: 0;
 }
 
-/* 架构优势样式 */
-.architecture-features {
-    max-width: 1200px;
-    margin: 3rem auto;
-    padding: 0 2rem;
-}
-
-.architecture-features h3 {
-    text-align: center;
-    color: var(--primary-color);
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
-}
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-}
-
-.feature-item {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.feature-item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-.feature-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.feature-item h4 {
-    color: var(--primary-color);
-    margin: 0 0 0.75rem 0;
-    font-size: 1.2rem;
-}
-
-.feature-item p {
-    color: var(--text-color);
-    line-height: 1.6;
-    margin: 0;
-    font-size: 0.95rem;
-}
-
 /* Flutter 数据流程图样式 */
 .architecture-dataflow {
     max-width: 1200px;
@@ -1092,17 +1040,12 @@ a:focus {
     .architecture-info {
         grid-template-columns: 1fr;
         padding: 0 1rem;
-    }
-    
-    .feature-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .architecture-dataflow {
+        }
+        
+        .architecture-dataflow {
         padding: 1rem;
         margin: 2rem auto;
-    }
-    
+        }    
     .dataflow-diagram {
         flex-direction: column;
         align-items: flex-start;
@@ -1153,80 +1096,5 @@ a:focus {
     
     .path-text span {
         font-size: 0.85rem;
-    }
-}
-
-/* 页脚样式 */
-.footer {
-    background: #1a1a1a;
-    color: var(--white);
-    padding: 3rem 0 1rem;
-    margin-top: 4rem;
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
-}
-
-.footer-section h4 {
-    color: var(--accent-color);
-    margin: 0 0 1rem 0;
-    font-size: 1.1rem;
-}
-
-.footer-section ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.footer-section ul li {
-    margin-bottom: 0.5rem;
-}
-
-.footer-section ul li a {
-    color: #bbb;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer-section ul li a:hover {
-    color: var(--white);
-    color: var(--accent-color);
-}
-
-.footer-section p {
-    color: #bbb;
-    line-height: 1.6;
-    margin: 0;
-}
-
-.footer-bottom {
-    border-top: 1px solid #333;
-    padding-top: 1.5rem;
-    text-align: center;
-    color: #666;
-    font-size: 0.9rem;
-}
-
-@media (max-width: 768px) {
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .footer-section h4 {
-        font-size: 1rem;
-    }
-    
-    .footer-section p {
-        font-size: 0.9rem;
-    }
-    
-    .footer-bottom {
-        padding: 1rem 0;
     }
 }
