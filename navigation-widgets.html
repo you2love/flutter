@@ -567,6 +567,83 @@ Navigator.push(
                     </div>
                 </div>
 
+                <!-- 导航流程图 -->
+                <div class="flowchart-container">
+                    <h3>🔀 页面导航流程图</h3>
+                    <div style="text-align: center; padding: 1rem;">
+                        <div class="flow-node start-end">当前页面</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-node decision">导航方式？</div>
+                        <div style="display: flex; justify-content: center; gap: 1rem; margin: 1rem 0;">
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="flow-node">Navigator.push</div>
+                                <div class="flow-arrow">↓</div>
+                                <div class="flow-node">新页面入栈</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="flow-node">Navigator.pop</div>
+                                <div class="flow-arrow">↓</div>
+                                <div class="flow-node">当前页面出栈</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="flow-node">Navigator.pushReplacement</div>
+                                <div class="flow-arrow">↓</div>
+                                <div class="flow-node">替换当前页面</div>
+                            </div>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-node start-end">完成导航</div>
+                    </div>
+                </div>
+
+                <!-- 路由对比表格 -->
+                <div class="flowchart-container">
+                    <h3>📊 导航方式对比</h3>
+                    <table class="data-table">
+                        <caption>Flutter 导航方式对比表</caption>
+                        <thead>
+                            <tr>
+                                <th>方法</th>
+                                <th>栈操作</th>
+                                <th>返回值</th>
+                                <th>使用场景</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>push</td>
+                                <td>入栈</td>
+                                <td>有</td>
+                                <td>打开新页面</td>
+                            </tr>
+                            <tr>
+                                <td>pop</td>
+                                <td>出栈</td>
+                                <td>有</td>
+                                <td>返回上一页</td>
+                            </tr>
+                            <tr>
+                                <td>pushReplacement</td>
+                                <td>替换</td>
+                                <td>无</td>
+                                <td>替换当前页</td>
+                            </tr>
+                            <tr>
+                                <td>pushAndRemoveUntil</td>
+                                <td>清空</td>
+                                <td>无</td>
+                                <td>登录后清空栈</td>
+                            </tr>
+                            <tr>
+                                <td>pushNamed</td>
+                                <td>入栈</td>
+                                <td>有</td>
+                                <td>命名路由</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <h2>导航最佳实践</h2>
                 <ul class="feature-list">
                     <li>使用命名路由提高代码可维护性</li>

@@ -595,6 +595,80 @@ class _LifecycleWidgetState extends State<LifecycleWidget> {
 }</code></pre>
                 </div>
 
+                <!-- Widget 生命周期时序图 -->
+                <div class="sequence-diagram">
+                    <h3>⏱️ StatefulWidget 生命周期时序图</h3>
+                    <div style="padding: 1rem;">
+                        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                            <div class="sequence-participant">Widget</div>
+                            <div style="flex: 1; height: 2px; background: var(--gray); margin: 0 1rem;"></div>
+                            <div class="sequence-participant">State</div>
+                        </div>
+                        
+                        <div class="sequence-message">
+                            <strong>1. 创建阶段</strong><br>
+                            Widget 创建 → createState() → State 创建 → initState()
+                        </div>
+                        
+                        <div class="sequence-message">
+                            <strong>2. 构建阶段</strong><br>
+                            didChangeDependencies() → build()
+                        </div>
+                        
+                        <div class="sequence-message">
+                            <strong>3. 更新阶段</strong><br>
+                            父 Widget 更新 → didUpdateWidget() → setState() → build()
+                        </div>
+                        
+                        <div class="sequence-message">
+                            <strong>4. 销毁阶段</strong><br>
+                            Widget 移除 → deactivate() → dispose()
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Widget 类型对比表格 -->
+                <div class="flowchart-container">
+                    <h3>📊 Widget 类型对比</h3>
+                    <table class="data-table">
+                        <caption>StatelessWidget vs StatefulWidget 对比表</caption>
+                        <thead>
+                            <tr>
+                                <th>特性</th>
+                                <th>StatelessWidget</th>
+                                <th>StatefulWidget</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>状态</td>
+                                <td>不可变</td>
+                                <td>可变</td>
+                            </tr>
+                            <tr>
+                                <td>生命周期</td>
+                                <td>简单（仅 build）</td>
+                                <td>复杂（多个阶段）</td>
+                            </tr>
+                            <tr>
+                                <td>性能</td>
+                                <td>更好</td>
+                                <td>较重</td>
+                            </tr>
+                            <tr>
+                                <td>使用场景</td>
+                                <td>静态内容</td>
+                                <td>动态交互</td>
+                            </tr>
+                            <tr>
+                                <td>状态管理</td>
+                                <td>依赖父组件</td>
+                                <td>自身管理</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <h2>8. 最佳实践</h2>
                 <ul>
                     <li><strong>合理拆分 Widget：</strong>将大 Widget 拆分成小的、可重用的组件</li>

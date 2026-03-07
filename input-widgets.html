@@ -902,6 +902,88 @@ DropdownButtonFormField<String>(
                     </div>
                 </div>
 
+                <!-- 输入验证流程图 -->
+                <div class="flowchart-container">
+                    <h3>🔀 表单验证流程图</h3>
+                    <div style="text-align: center; padding: 1rem;">
+                        <div class="flow-node start-end">用户输入</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-node">获取输入值</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-node decision">验证规则</div>
+                        <div style="display: flex; justify-content: center; gap: 1rem; margin: 1rem 0;">
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="flow-node">通过</div>
+                                <div class="flow-arrow">↓</div>
+                                <div class="flow-node">提交数据</div>
+                                <div class="flow-arrow">↓</div>
+                                <div class="flow-node start-end" style="background: var(--success);">成功</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="flow-node" style="background: #f44336; border-color: #f44336;">失败</div>
+                                <div class="flow-arrow">↓</div>
+                                <div class="flow-node">显示错误</div>
+                                <div class="flow-arrow">↓</div>
+                                <div class="flow-node">用户重新输入</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 输入组件对比表格 -->
+                <div class="flowchart-container">
+                    <h3>📊 输入组件对比</h3>
+                    <table class="data-table">
+                        <caption>Flutter 输入组件对比表</caption>
+                        <thead>
+                            <tr>
+                                <th>组件</th>
+                                <th>类型</th>
+                                <th>用途</th>
+                                <th>特性</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>TextField</td>
+                                <td>文本输入</td>
+                                <td>单行/多行文本</td>
+                                <td>灵活控制</td>
+                            </tr>
+                            <tr>
+                                <td>TextFormField</td>
+                                <td>表单输入</td>
+                                <td>带验证的输入</td>
+                                <td>自动验证</td>
+                            </tr>
+                            <tr>
+                                <td>ElevatedButton</td>
+                                <td>按钮</td>
+                                <td>主要操作</td>
+                                <td>凸起效果</td>
+                            </tr>
+                            <tr>
+                                <td>TextButton</td>
+                                <td>按钮</td>
+                                <td>次要操作</td>
+                                <td>扁平样式</td>
+                            </tr>
+                            <tr>
+                                <td>Checkbox</td>
+                                <td>选择</td>
+                                <td>多选</td>
+                                <td>布尔值</td>
+                            </tr>
+                            <tr>
+                                <td>Radio</td>
+                                <td>选择</td>
+                                <td>单选</td>
+                                <td>组内互斥</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <h2>输入组件最佳实践</h2>
                 <ul class="feature-list">
                     <li>为所有输入组件添加清晰的标签和提示文本</li>

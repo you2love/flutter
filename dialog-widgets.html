@@ -603,6 +603,83 @@ Future<void> _selectTime() async {
                     </div>
                 </div>
 
+                <!-- 对话框选择流程图 -->
+                <div class="flowchart-container">
+                    <h3>🔀 对话框选择流程图</h3>
+                    <div style="text-align: center; padding: 1rem;">
+                        <div class="flow-node start-end">需要提示用户</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-node decision">信息类型？</div>
+                        <div style="display: flex; justify-content: center; gap: 1rem; margin: 1rem 0;">
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="flow-node">轻量提示</div>
+                                <div class="flow-arrow">↓</div>
+                                <div class="flow-node">SnackBar</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="flow-node">简单确认</div>
+                                <div class="flow-arrow">↓</div>
+                                <div class="flow-node">AlertDialog</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="flow-node">底部操作</div>
+                                <div class="flow-arrow">↓</div>
+                                <div class="flow-node">BottomSheet</div>
+                            </div>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-node start-end">完成选择</div>
+                    </div>
+                </div>
+
+                <!-- 对话框组件对比表格 -->
+                <div class="flowchart-container">
+                    <h3>📊 对话框组件对比</h3>
+                    <table class="data-table">
+                        <caption>Flutter 对话框组件对比表</caption>
+                        <thead>
+                            <tr>
+                                <th>组件</th>
+                                <th>位置</th>
+                                <th>内容</th>
+                                <th>使用场景</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>AlertDialog</td>
+                                <td>屏幕中央</td>
+                                <td>简单</td>
+                                <td>确认对话框</td>
+                            </tr>
+                            <tr>
+                                <td>BottomSheet</td>
+                                <td>底部</td>
+                                <td>丰富</td>
+                                <td>底部菜单/表单</td>
+                            </tr>
+                            <tr>
+                                <td>SnackBar</td>
+                                <td>底部</td>
+                                <td>轻量</td>
+                                <td>提示消息</td>
+                            </tr>
+                            <tr>
+                                <td>SimpleDialog</td>
+                                <td>屏幕中央</td>
+                                <td>选项</td>
+                                <td>选项选择</td>
+                            </tr>
+                            <tr>
+                                <td>ModalBarrier</td>
+                                <td>全屏</td>
+                                <td>遮罩</td>
+                                <td>背景遮罩</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <h2>对话框最佳实践</h2>
                 <ul class="feature-list">
                     <li>对话框应该简洁明了，不要包含过多信息</li>

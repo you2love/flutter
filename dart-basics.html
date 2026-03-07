@@ -160,6 +160,28 @@
                 <h1>Dart 3.6+ 语言基础</h1>
                 <p>Dart 3.6 是 Flutter 3.28 的基础语言，带来了许多现代化特性。掌握 Dart 语言是学习 Flutter 的第一步。本教程将介绍 Dart 3.6+ 的核心概念和语法。</p>
 
+                <!-- 学习路径流程图 -->
+                <div class="flowchart-container">
+                    <h3>📚 Dart 学习路径</h3>
+                    <div style="text-align: center; padding: 1rem;">
+                        <div class="flow-node start-end">开始学习</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-node">变量声明</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-node">数据类型</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-node">函数</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-node">类和对象</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-node">异步编程</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-node">集合操作</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-node start-end">完成基础</div>
+                    </div>
+                </div>
+
                 <div class="note-box">
                     <strong>提示：</strong>Dart 3.6+ 引入了 Records、Patterns、Switch 表达式、增强的类型推断等现代化特性，代码更加简洁和类型安全。
                 </div>
@@ -225,6 +247,60 @@ print(mixedRecord.isActive); // true</code></pre>
                     </div>
                 </div>
 
+                <!-- 变量声明方式对比表格 -->
+                <div class="flowchart-container">
+                    <h3>📊 变量声明方式对比</h3>
+                    <table class="data-table">
+                        <caption>变量声明方式对比表</caption>
+                        <thead>
+                            <tr>
+                                <th>声明方式</th>
+                                <th>特点</th>
+                                <th>使用场景</th>
+                                <th>示例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>var</code></td>
+                                <td>自动推断类型</td>
+                                <td>类型明确且初始化</td>
+                                <td><code>var name = 'Flutter';</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>final</code></td>
+                                <td>只能赋值一次</td>
+                                <td>不可变变量</td>
+                                <td><code>final name = 'Flutter';</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>const</code></td>
+                                <td>编译时常量</td>
+                                <td>编译时常量</td>
+                                <td><code>const PI = 3.14;</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>dynamic</code></td>
+                                <td>任意类型</td>
+                                <td>动态类型</td>
+                                <td><code>dynamic value = 100;</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>late</code></td>
+                                <td>延迟初始化</td>
+                                <td>延迟赋值</td>
+                                <td><code>late String name;</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>Record</code></td>
+                                <td>组合多个值</td>
+                                <td>数据传递</td>
+                                <td><code>(String, int) info = ('A', 25);</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <h2>2. 数据类型</h2>
                 <p>Dart 的基本数据类型包括：</p>
 
@@ -237,6 +313,60 @@ print(mixedRecord.isActive); // true</code></pre>
                     <li><strong>Runes：</strong>字符串中的 Unicode 字符</li>
                     <li><strong>Symbols：</strong>程序中声明的操作符或标识符</li>
                 </ul>
+
+                <!-- 数据类型总结表格 -->
+                <div class="flowchart-container">
+                    <h3>📊 Dart 数据类型总结</h3>
+                    <table class="data-table">
+                        <caption>Dart 数据类型对比表</caption>
+                        <thead>
+                            <tr>
+                                <th>类型</th>
+                                <th>子类型</th>
+                                <th>说明</th>
+                                <th>示例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>数值</td>
+                                <td>int</td>
+                                <td>64位整数</td>
+                                <td><code>int count = 10;</code></td>
+                            </tr>
+                            <tr>
+                                <td>数值</td>
+                                <td>double</td>
+                                <td>64位浮点数</td>
+                                <td><code>double price = 19.99;</code></td>
+                            </tr>
+                            <tr>
+                                <td>文本</td>
+                                <td>String</td>
+                                <td>字符串</td>
+                                <td><code>String name = 'Flutter';</code></td>
+                            </tr>
+                            <tr>
+                                <td>布尔</td>
+                                <td>bool</td>
+                                <td>真/假值</td>
+                                <td><code>bool isActive = true;</code></td>
+                            </tr>
+                            <tr>
+                                <td>集合</td>
+                                <td>List</td>
+                                <td>有序列表</td>
+                                <td><code>List<int> nums = [1, 2, 3];</code></td>
+                            </tr>
+                            <tr>
+                                <td>集合</td>
+                                <td>Map</td>
+                                <td>键值对</td>
+                                <td><code>Map<String, int> map = {'a': 1};</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
                 <div class="code-example">
                     <h3>数据类型示例</h3>
@@ -348,6 +478,54 @@ String describeObject(Object obj) {
   };
 }</code></pre>
                     </div>
+                </div>
+
+                <!-- 函数类型对比表格 -->
+                <div class="flowchart-container">
+                    <h3>📊 Dart 函数类型对比</h3>
+                    <table class="data-table">
+                        <caption>函数定义方式对比表</caption>
+                        <thead>
+                            <tr>
+                                <th>函数类型</th>
+                                <th>语法</th>
+                                <th>特点</th>
+                                <th>使用场景</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>基本函数</td>
+                                <td><code>returnType name(params) { }</code></td>
+                                <td>标准函数定义</td>
+                                <td>通用函数</td>
+                            </tr>
+                            <tr>
+                                <td>可选参数</td>
+                                <td><code>[Type? name]</code></td>
+                                <td>可选位置参数</td>
+                                <td>可选输入</td>
+                            </tr>
+                            <tr>
+                                <td>命名参数</td>
+                                <td><code>{required Type name}</code></td>
+                                <td>命名参数</td>
+                                <td>清晰参数名</td>
+                            </tr>
+                            <tr>
+                                <td>箭头函数</td>
+                                <td><code>returnType name(params) => expr</code></td>
+                                <td>单行表达式</td>
+                                <td>简单函数</td>
+                            </tr>
+                            <tr>
+                                <td>匿名函数</td>
+                                <td><code>(params) { }</code></td>
+                                <td>无名函数</td>
+                                <td>回调函数</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
                 <h2>4. 类和对象</h2>

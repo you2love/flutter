@@ -1011,6 +1011,89 @@ Card(
                     </div>
                 </div>
 
+                <!-- 布局决策流程图 -->
+                <div class="flowchart-container">
+                    <h3>🔀 布局组件选择流程图</h3>
+                    <div style="text-align: center; padding: 1rem;">
+                        <div class="flow-node start-end">开始布局</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-node decision">需要什么布局？</div>
+                        <div style="display: flex; justify-content: center; gap: 1rem; margin: 1rem 0;">
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="flow-node">水平排列</div>
+                                <div class="flow-arrow">↓</div>
+                                <div class="flow-node">Row</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="flow-node">垂直排列</div>
+                                <div class="flow-arrow">↓</div>
+                                <div class="flow-node">Column</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="flow-node">重叠布局</div>
+                                <div class="flow-arrow">↓</div>
+                                <div class="flow-node">Stack</div>
+                            </div>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-node start-end">完成布局</div>
+                    </div>
+                </div>
+
+                <!-- 布局组件对比表格 -->
+                <div class="flowchart-container">
+                    <h3>📊 布局组件对比</h3>
+                    <table class="data-table">
+                        <caption>Flutter 布局组件对比表</caption>
+                        <thead>
+                            <tr>
+                                <th>组件</th>
+                                <th>方向</th>
+                                <th>子组件数量</th>
+                                <th>使用场景</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Container</td>
+                                <td>单组件</td>
+                                <td>1</td>
+                                <td>装饰、约束、变换</td>
+                            </tr>
+                            <tr>
+                                <td>Row</td>
+                                <td>水平</td>
+                                <td>多个</td>
+                                <td>水平排列组件</td>
+                            </tr>
+                            <tr>
+                                <td>Column</td>
+                                <td>垂直</td>
+                                <td>多个</td>
+                                <td>垂直排列组件</td>
+                            </tr>
+                            <tr>
+                                <td>Stack</td>
+                                <td>重叠</td>
+                                <td>多个</td>
+                                <td>层叠组件</td>
+                            </tr>
+                            <tr>
+                                <td>Expanded</td>
+                                <td>扩展</td>
+                                <td>1</td>
+                                <td>占满可用空间</td>
+                            </tr>
+                            <tr>
+                                <td>Flexible</td>
+                                <td>灵活</td>
+                                <td>1</td>
+                                <td>灵活占用空间</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <h2>布局最佳实践</h2>
                 <ul class="feature-list">
                     <li>使用 Flutter 3.27+ 的 spacing 属性简化布局代码</li>

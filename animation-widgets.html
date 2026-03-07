@@ -676,6 +676,83 @@ class _StaggeredAnimationExampleState extends State<StaggeredAnimationExample>
                     </div>
                 </div>
 
+                <!-- 动画实现流程图 -->
+                <div class="flowchart-container">
+                    <h3>🔀 动画实现流程图</h3>
+                    <div style="text-align: center; padding: 1rem;">
+                        <div class="flow-node start-end">开始动画</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-node decision">动画类型？</div>
+                        <div style="display: flex; justify-content: center; gap: 1rem; margin: 1rem 0;">
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="flow-node">简单属性</div>
+                                <div class="flow-arrow">↓</div>
+                                <div class="flow-node">Animated*</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="flow-node">复杂控制</div>
+                                <div class="flow-arrow">↓</div>
+                                <div class="flow-node">AnimationController</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="flow-node">过渡动画</div>
+                                <div class="flow-arrow">↓</div>
+                                <div class="flow-node">Hero</div>
+                            </div>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-node start-end">完成动画</div>
+                    </div>
+                </div>
+
+                <!-- 动画类型对比表格 -->
+                <div class="flowchart-container">
+                    <h3>📊 动画类型对比</h3>
+                    <table class="data-table">
+                        <caption>Flutter 动画类型对比表</caption>
+                        <thead>
+                            <tr>
+                                <th>类型</th>
+                                <th>控制</th>
+                                <th>复杂度</th>
+                                <th>使用场景</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Animated*</td>
+                                <td>隐式</td>
+                                <td>简单</td>
+                                <td>属性动画</td>
+                            </tr>
+                            <tr>
+                                <td>AnimationController</td>
+                                <td>显式</td>
+                                <td>复杂</td>
+                                <td>自定义动画</td>
+                            </tr>
+                            <tr>
+                                <td>Hero</td>
+                                <td>隐式</td>
+                                <td>中等</td>
+                                <td>页面过渡</td>
+                            </tr>
+                            <tr>
+                                <td>Transition*</td>
+                                <td>显式</td>
+                                <td>中等</td>
+                                <td>过渡动画</td>
+                            </tr>
+                            <tr>
+                                <td>Staggered</td>
+                                <td>显式</td>
+                                <td>复杂</td>
+                                <td>序列动画</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <h2>动画最佳实践</h2>
                 <ul class="feature-list">
                     <li>优先使用隐式动画（Animated*）简单场景</li>

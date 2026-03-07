@@ -650,6 +650,83 @@ class _RefreshIndicatorExampleState extends State<RefreshIndicatorExample> {
                     </div>
                 </div>
 
+                <!-- 手势识别时序图 -->
+                <div class="sequence-diagram">
+                    <h3>⏱️ 手势识别时序图</h3>
+                    <div style="padding: 1rem;">
+                        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                            <div class="sequence-participant">用户</div>
+                            <div style="flex: 1; height: 2px; background: var(--gray); margin: 0 1rem;"></div>
+                            <div class="sequence-participant">GestureDetector</div>
+                            <div style="flex: 1; height: 2px; background: var(--gray); margin: 0 1rem;"></div>
+                            <div class="sequence-participant">Widget</div>
+                        </div>
+                        
+                        <div class="sequence-message">
+                            <strong>1. 触摸开始</strong><br>
+                            用户手指按下 → GestureDetector.onTapDown → 开始识别
+                        </div>
+                        
+                        <div class="sequence-message">
+                            <strong>2. 手势处理</strong><br>
+                            手指移动/抬起 → GestureDetector.onTap/onDoubleTap/onLongPress → 触发回调
+                        </div>
+                        
+                        <div class="sequence-message">
+                            <strong>3. 手势结束</strong><br>
+                            手指离开 → GestureDetector.onTapUp → 完成识别
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 手势类型对比表格 -->
+                <div class="flowchart-container">
+                    <h3>📊 手势类型对比</h3>
+                    <table class="data-table">
+                        <caption>Flutter 手势类型对比表</caption>
+                        <thead>
+                            <tr>
+                                <th>手势</th>
+                                <th>回调方法</th>
+                                <th>触发条件</th>
+                                <th>使用场景</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>点击</td>
+                                <td>onTap</td>
+                                <td>快速点击</td>
+                                <td>按钮、卡片</td>
+                            </tr>
+                            <tr>
+                                <td>双击</td>
+                                <td>onDoubleTap</td>
+                                <td>快速双击</td>
+                                <td>点赞、放大</td>
+                            </tr>
+                            <tr>
+                                <td>长按</td>
+                                <td>onLongPress</td>
+                                <td>长按500ms</td>
+                                <td>菜单、选择</td>
+                            </tr>
+                            <tr>
+                                <td>拖拽</td>
+                                <td>onPanUpdate</td>
+                                <td>手指移动</td>
+                                <td>滑动、移动</td>
+                            </tr>
+                            <tr>
+                                <td>缩放</td>
+                                <td>onScaleUpdate</td>
+                                <td>双指缩放</td>
+                                <td>图片缩放</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <h2>手势最佳实践</h2>
                 <ul class="feature-list">
                     <li>优先使用 InkWell 而不是 GestureDetector 来实现点击效果</li>

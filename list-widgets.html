@@ -770,6 +770,97 @@ class _MyListViewState extends State<MyListView> {
                     </div>
                 </div>
 
+                <!-- 列表类型选择流程图 -->
+                <div class="flowchart-container">
+                    <h3>🔀 列表组件选择流程图</h3>
+                    <div style="text-align: center; padding: 1rem;">
+                        <div class="flow-node start-end">开始选择列表</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-node decision">数据量大小？</div>
+                        <div style="display: flex; justify-content: center; gap: 1rem; margin: 1rem 0;">
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="flow-node">少量（&lt;20）</div>
+                                <div class="flow-arrow">↓</div>
+                                <div class="flow-node">ListView / GridView</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="flow-node">大量（≥20）</div>
+                                <div class="flow-arrow">↓</div>
+                                <div class="flow-node decision">需要分割线？</div>
+                                <div class="flow-arrow">↓</div>
+                                <div style="display: flex; justify-content: center; gap: 1rem; margin: 1rem 0;">
+                                    <div style="display: flex; flex-direction: column; align-items: center;">
+                                        <div class="flow-node">是</div>
+                                        <div class="flow-arrow">↓</div>
+                                        <div class="flow-node">ListView.separated</div>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; align-items: center;">
+                                        <div class="flow-node">否</div>
+                                        <div class="flow-arrow">↓</div>
+                                        <div class="flow-node">ListView.builder</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-node start-end">完成选择</div>
+                    </div>
+                </div>
+
+                <!-- 列表组件性能对比表格 -->
+                <div class="flowchart-container">
+                    <h3>📊 列表组件性能对比</h3>
+                    <table class="data-table">
+                        <caption>Flutter 列表组件性能对比表</caption>
+                        <thead>
+                            <tr>
+                                <th>组件</th>
+                                <th>数据量</th>
+                                <th>性能</th>
+                                <th>内存</th>
+                                <th>使用场景</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ListView</td>
+                                <td>少量</td>
+                                <td>低</td>
+                                <td>高</td>
+                                <td>固定小列表</td>
+                            </tr>
+                            <tr>
+                                <td>ListView.builder</td>
+                                <td>大量</td>
+                                <td>高</td>
+                                <td>低</td>
+                                <td>动态大列表</td>
+                            </tr>
+                            <tr>
+                                <td>ListView.separated</td>
+                                <td>大量</td>
+                                <td>高</td>
+                                <td>低</td>
+                                <td>带分割线的列表</td>
+                            </tr>
+                            <tr>
+                                <td>GridView</td>
+                                <td>少量</td>
+                                <td>低</td>
+                                <td>高</td>
+                                <td>固定网格</td>
+                            </tr>
+                            <tr>
+                                <td>GridView.builder</td>
+                                <td>大量</td>
+                                <td>高</td>
+                                <td>低</td>
+                                <td>动态网格</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <h2>列表组件最佳实践</h2>
                 <ul class="feature-list">
                     <li>对于大量数据，使用 ListView.builder 或 GridView.builder</li>
