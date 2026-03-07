@@ -1,57 +1,35 @@
 // 等待DOM加载完成
 document.addEventListener('DOMContentLoaded', function() {
-    // 导航链接点击处理
-    initNavigation();
+    // Tab 切换功能
+    initTabNavigation();
     // 代码复制功能
     initCopyButtons();
-    // 平滑滚动
-    initSmoothScroll();
 });
 
-// 导航功能
-function initNavigation() {
-    const navLinks = document.querySelectorAll('.nav a');
+// Tab 切换功能
+function initTabNavigation() {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
 
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const targetTab = this.getAttribute('data-tab');
 
-            // 移除所有active类
-            navLinks.forEach(l => l.classList.remove('active'));
-            // 添加active类到当前链接
+            // 移除所有 active 类
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabPanels.forEach(p => p.classList.remove('active'));
+
+            // 添加 active 类到当前按钮和面板
             this.classList.add('active');
-
-            // 平滑滚动到目标区域
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-
-            if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 80;
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
+            const targetPanel = document.getElementById(targetTab);
+            if (targetPanel) {
+                targetPanel.classList.add('active');
             }
-        });
-    });
 
-    // 滚动时更新导航状态
-    window.addEventListener('scroll', function() {
-        const sections = document.querySelectorAll('section');
-        const scrollPos = window.scrollY + 100;
-
-        sections.forEach(section => {
-            const top = section.offsetTop;
-            const height = section.offsetHeight;
-            const id = section.getAttribute('id');
-
-            if (scrollPos >= top && scrollPos < top + height) {
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + id) {
-                        link.classList.add('active');
-                    }
-                });
+            // 平滑滚动到内容顶部
+            const tabContentContainer = document.querySelector('.tab-content-container');
+            if (tabContentContainer) {
+                tabContentContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
     });
@@ -80,33 +58,6 @@ function initCopyButtons() {
                 console.error('复制失败:', err);
                 alert('复制失败，请手动选择文本复制');
             });
-        });
-    });
-}
-
-// 平滑滚动
-function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-
-            // 跳过空链接
-            if (href === '#') {
-                return;
-            }
-
-            e.preventDefault();
-            const targetElement = document.querySelector(href);
-
-            if (targetElement) {
-                const headerHeight = document.querySelector('.header').offsetHeight;
-                const targetPosition = targetElement.offsetTop - headerHeight;
-
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
         });
     });
 }

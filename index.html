@@ -12,342 +12,377 @@
             <div class="logo">
                 <h1>Flutter 教程</h1>
             </div>
-            <nav class="nav">
-                <ul>
-                    <li><a href="#architecture" class="active">架构</a></li>
-                    <li><a href="#tutorials">教程</a></li>
-                </ul>
-            </nav>
         </div>
     </header>
 
     <main>
-        <!-- Flutter 架构图部分 -->
-        <section id="architecture" class="section">
+        <!-- Tab 导航 -->
+        <div class="tab-navigation">
             <div class="container">
-                <h2>Flutter 架构概览</h2>
-                <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">Flutter 采用分层架构设计，从上到下依次为 Framework（框架层）、Engine（引擎层）和 Embedder（嵌入层）。理解这三层架构有助于你掌握 Flutter 的跨平台原理和性能优化技巧。</p>
-                
-                <!-- Flutter 架构图 -->
-                <div class="architecture-diagram">
-                    <div class="arch-layer layer-framework">
-                        <h3>Framework 层 (Dart)</h3>
-                        <div class="arch-content">
-                            <div class="arch-sublayer">
-                                <span>Material</span>
-                                <span>Cupertino</span>
-                                <span>Widgets</span>
-                            </div>
-                            <div class="arch-sublayer">
-                                <span>Rendering</span>
-                                <span>Painting</span>
-                                <span>Gestures</span>
-                            </div>
-                            <div class="arch-sublayer">
-                                <span>Animation</span>
-                                <span>Foundation</span>
-                            </div>
-                        </div>
-                        <p class="arch-desc">提供丰富的 UI 组件和动画系统，开发者主要使用 Dart 语言在这一层工作</p>
-                    </div>
-                    
-                    <div class="arch-arrow">↓</div>
-                    
-                    <div class="arch-layer layer-engine">
-                        <h3>Engine 层 (C++)</h3>
-                        <div class="arch-content">
-                            <div class="arch-sublayer">
-                                <span>Skia</span>
-                                <span>Impeller</span>
-                                <span>Text</span>
-                            </div>
-                            <div class="arch-sublayer">
-                                <span>Dart Runtime</span>
-                                <span>Garbage Collection</span>
-                            </div>
-                        </div>
-                        <p class="arch-desc">核心渲染引擎，负责图形渲染、文本布局、动画和 Dart 运行时</p>
-                    </div>
-                    
-                    <div class="arch-arrow">↓</div>
-                    
-                    <div class="arch-layer layer-embedder">
-                        <h3>Embedder 层 (平台特定)</h3>
-                        <div class="arch-content">
-                            <div class="arch-sublayer">
-                                <span>Android</span>
-                                <span>iOS</span>
-                                <span>Web</span>
-                                <span>Windows</span>
-                                <span>macOS</span>
-                                <span>Linux</span>
-                            </div>
-                        </div>
-                        <p class="arch-desc">平台特定的代码，负责与操作系统交互，提供事件循环和平台集成</p>
-                    </div>
+                <div class="tabs-container">
+                    <button class="tab-btn active" data-tab="architecture">
+                        <span class="tab-icon">🏗️</span>
+                        <span class="tab-text">架构概览</span>
+                    </button>
+                    <button class="tab-btn" data-tab="components">
+                        <span class="tab-icon">🧩</span>
+                        <span class="tab-text">组件系统</span>
+                    </button>
+                    <button class="tab-btn" data-tab="ecosystem">
+                        <span class="tab-icon">🌍</span>
+                        <span class="tab-text">第三方生态</span>
+                    </button>
+                    <button class="tab-btn" data-tab="packaging">
+                        <span class="tab-icon">📦</span>
+                        <span class="tab-text">应用打包</span>
+                    </button>
+                    <button class="tab-btn" data-tab="tutorials">
+                        <span class="tab-icon">📚</span>
+                        <span class="tab-text">教程系列</span>
+                    </button>
                 </div>
-                
-                <!-- 架构说明 -->
-                <div class="architecture-info">
-                    <div class="info-card">
-                        <h4>🎨 Framework 层（Dart）</h4>
-                        <p>这是开发者直接接触的层，完全用 Dart 语言编写。提供了 Material Design 和 Cupertino 风格的完整组件库，包括动画系统、手势识别、渲染引擎等核心功能。所有的 Widget 都在这一层定义。</p>
-                    </div>
-                    <div class="info-card">
-                        <h4>⚡ Engine 层（C++）</h4>
-                        <p>Flutter 的核心渲染引擎，负责图形渲染、文本布局、动画和垃圾回收。使用 Skia 或 Impeller 进行 GPU 加速渲染，确保在所有平台上都能达到 60fps 的流畅体验。这是 Flutter 高性能的关键。</p>
-                    </div>
-</div>
-                
-                <!-- Flutter 数据流程图 -->
-                <div class="architecture-dataflow">
-                    <h3>🔄 Flutter 渲染流程</h3>
-                    <div class="dataflow-diagram">
-                        <div class="flow-step">
-                            <div class="step-number">1</div>
-                            <div class="step-content">
-                                <h4>Dart 代码</h4>
-                                <p>开发者编写 Widget 代码</p>
-                            </div>
-                        </div>
-                        <div class="flow-connector">→</div>
-                        <div class="flow-step">
-                            <div class="step-number">2</div>
-                            <div class="step-content">
-                                <h4>Widget 树</h4>
-                                <p>描述 UI 结构</p>
-                            </div>
-                        </div>
-                        <div class="flow-connector">→</div>
-                        <div class="flow-step">
-                            <div class="step-number">3</div>
-                            <div class="step-content">
-                                <h4>Element 树</h4>
-                                <p>Widget 的实例化</p>
-                            </div>
-                        </div>
-                        <div class="flow-connector">→</div>
-                        <div class="flow-step">
-                            <div class="step-number">4</div>
-                            <div class="step-content">
-                                <h4>RenderObject 树</h4>
-                                <p>布局和绘制</p>
-                            </div>
-                        </div>
-                        <div class="flow-connector">→</div>
-                        <div class="flow-step">
-                            <div class="step-number">5</div>
-                            <div class="step-content">
-                                <h4>Layer 树</h4>
-                                <p>合成和优化</p>
-                            </div>
-                        </div>
-                        <div class="flow-connector">→</div>
-                        <div class="flow-step">
-                            <div class="step-number">6</div>
-                            <div class="step-content">
-                                <h4>GPU 渲染</h4>
-                                <p>Skia/Impeller 渲染</p>
-                            </div>
-                        </div>
-                        <div class="flow-connector">→</div>
-                        <div class="flow-step">
-                            <div class="step-number">7</div>
-                            <div class="step-content">
-                                <h4>屏幕显示</h4>
-                                <p>用户看到最终画面</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            </div>
+        </div>
 
-                <!-- 组件系统图 -->
-                <div class="component-system">
-                    <h3>🧩 Flutter 组件系统</h3>
-                    <div class="component-diagram">
-                        <div class="component-layer layer-widgets">
-                            <h4>Framework 层组件</h4>
-                            <div class="component-categories">
-                                <div class="component-category">
-                                    <div class="category-icon">📦</div>
-                                    <h5>基础 Widget</h5>
-                                    <div class="component-items">
-                                        <span>Container</span>
-                                        <span>Text</span>
-                                        <span>Image</span>
-                                        <span>Icon</span>
-                                    </div>
+        <!-- Tab 内容区域 -->
+        <div class="tab-content-container">
+            <!-- 架构概览 Tab -->
+            <div class="tab-panel active" id="architecture">
+                <div class="container">
+                    <h2>Flutter 架构概览</h2>
+                    <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">Flutter 采用分层架构设计，从上到下依次为 Framework（框架层）、Engine（引擎层）和 Embedder（嵌入层）。理解这三层架构有助于你掌握 Flutter 的跨平台原理和性能优化技巧。</p>
+                    
+                    <!-- Flutter 架构图 -->
+                    <div class="architecture-diagram">
+                        <div class="arch-layer layer-framework">
+                            <h3>Framework 层 (Dart)</h3>
+                            <div class="arch-content">
+                                <div class="arch-sublayer">
+                                    <span>Material</span>
+                                    <span>Cupertino</span>
+                                    <span>Widgets</span>
                                 </div>
-                                <div class="component-category">
-                                    <div class="category-icon">📐</div>
-                                    <h5>布局组件</h5>
-                                    <div class="component-items">
-                                        <span>Row</span>
-                                        <span>Column</span>
-                                        <span>Stack</span>
-                                        <span>Expanded</span>
-                                    </div>
+                                <div class="arch-sublayer">
+                                    <span>Rendering</span>
+                                    <span>Painting</span>
+                                    <span>Gestures</span>
                                 </div>
-                                <div class="component-category">
-                                    <div class="category-icon">⌨️</div>
-                                    <h5>输入组件</h5>
-                                    <div class="component-items">
-                                        <span>TextField</span>
-                                        <span>Button</span>
-                                        <span>Checkbox</span>
-                                        <span>Switch</span>
-                                    </div>
+                                <div class="arch-sublayer">
+                                    <span>Animation</span>
+                                    <span>Foundation</span>
                                 </div>
-                                <div class="component-category">
-                                    <div class="category-icon">📋</div>
-                                    <h5>列表组件</h5>
-                                    <div class="component-items">
-                                        <span>ListView</span>
-                                        <span>GridView</span>
-                                        <span>Scroll</span>
-                                        <span>Sliver</span>
-                                    </div>
+                            </div>
+                            <p class="arch-desc">提供丰富的 UI 组件和动画系统，开发者主要使用 Dart 语言在这一层工作</p>
+                        </div>
+                        
+                        <div class="arch-arrow">↓</div>
+                        
+                        <div class="arch-layer layer-engine">
+                            <h3>Engine 层 (C++)</h3>
+                            <div class="arch-content">
+                                <div class="arch-sublayer">
+                                    <span>Skia</span>
+                                    <span>Impeller</span>
+                                    <span>Text</span>
                                 </div>
-                                <div class="component-category">
-                                    <div class="category-icon">👆</div>
-                                    <h5>手势组件</h5>
-                                    <div class="component-items">
-                                        <span>GestureDetector</span>
-                                        <span>InkWell</span>
-                                        <span>Dismissible</span>
-                                    </div>
+                                <div class="arch-sublayer">
+                                    <span>Dart Runtime</span>
+                                    <span>Garbage Collection</span>
                                 </div>
-                                <div class="component-category">
-                                    <div class="category-icon">🧭</div>
-                                    <h5>导航组件</h5>
-                                    <div class="component-items">
-                                        <span>Navigator</span>
-                                        <span>Router</span>
-                                        <span>Route</span>
-                                        <span>Hero</span>
-                                    </div>
+                            </div>
+                            <p class="arch-desc">核心渲染引擎，负责图形渲染、文本布局、动画和 Dart 运行时</p>
+                        </div>
+                        
+                        <div class="arch-arrow">↓</div>
+                        
+                        <div class="arch-layer layer-embedder">
+                            <h3>Embedder 层 (平台特定)</h3>
+                            <div class="arch-content">
+                                <div class="arch-sublayer">
+                                    <span>Android</span>
+                                    <span>iOS</span>
+                                    <span>Web</span>
+                                    <span>Windows</span>
+                                    <span>macOS</span>
+                                    <span>Linux</span>
                                 </div>
-                                <div class="component-category">
-                                    <div class="category-icon">💬</div>
-                                    <h5>对话框组件</h5>
-                                    <div class="component-items">
-                                        <span>AlertDialog</span>
-                                        <span>BottomSheet</span>
-                                        <span>SnackBar</span>
-                                    </div>
+                            </div>
+                            <p class="arch-desc">平台特定的代码，负责与操作系统交互，提供事件循环和平台集成</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 架构说明 -->
+                    <div class="architecture-info">
+                        <div class="info-card">
+                            <h4>🎨 Framework 层（Dart）</h4>
+                            <p>这是开发者直接接触的层，完全用 Dart 语言编写。提供了 Material Design 和 Cupertino 风格的完整组件库，包括动画系统、手势识别、渲染引擎等核心功能。所有的 Widget 都在这一层定义。</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>⚡ Engine 层（C++）</h4>
+                            <p>Flutter 的核心渲染引擎，负责图形渲染、文本布局、动画和垃圾回收。使用 Skia 或 Impeller 进行 GPU 加速渲染，确保在所有平台上都能达到 60fps 的流畅体验。这是 Flutter 高性能的关键。</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Flutter 数据流程图 -->
+                    <div class="architecture-dataflow">
+                        <h3>🔄 Flutter 渲染流程</h3>
+                        <div class="dataflow-diagram">
+                            <div class="flow-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Dart 代码</h4>
+                                    <p>开发者编写 Widget 代码</p>
                                 </div>
-                                <div class="component-category">
-                                    <div class="category-icon">🎬</div>
-                                    <h5>动画组件</h5>
-                                    <div class="component-items">
-                                        <span>AnimatedContainer</span>
-                                        <span>Transition</span>
-                                        <span>Tween</span>
-                                    </div>
+                            </div>
+                            <div class="flow-connector">→</div>
+                            <div class="flow-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Widget 树</h4>
+                                    <p>描述 UI 结构</p>
+                                </div>
+                            </div>
+                            <div class="flow-connector">→</div>
+                            <div class="flow-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Element 树</h4>
+                                    <p>Widget 的实例化</p>
+                                </div>
+                            </div>
+                            <div class="flow-connector">→</div>
+                            <div class="flow-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>RenderObject 树</h4>
+                                    <p>布局和绘制</p>
+                                </div>
+                            </div>
+                            <div class="flow-connector">→</div>
+                            <div class="flow-step">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <h4>Layer 树</h4>
+                                    <p>合成和优化</p>
+                                </div>
+                            </div>
+                            <div class="flow-connector">→</div>
+                            <div class="flow-step">
+                                <div class="step-number">6</div>
+                                <div class="step-content">
+                                    <h4>GPU 渲染</h4>
+                                    <p>Skia/Impeller 渲染</p>
+                                </div>
+                            </div>
+                            <div class="flow-connector">→</div>
+                            <div class="flow-step">
+                                <div class="step-number">7</div>
+                                <div class="step-content">
+                                    <h4>屏幕显示</h4>
+                                    <p>用户看到最终画面</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- 组件关系图 -->
-                <div class="component-relationships">
-                    <h3>🔗 组件关系图谱</h3>
-                    <div class="relationship-diagram">
-                        <div class="relationship-container">
-                            <div class="relationship-node node-root">
-                                <div class="node-icon">🎯</div>
-                                <h4>Widget 树</h4>
-                                <p>所有组件的根</p>
-                            </div>
-                            
-                            <div class="relationship-branch">
-                                <div class="branch-line"></div>
-                                <div class="branch-nodes">
-                                    <div class="relationship-node node-layout">
-                                        <div class="node-icon">📐</div>
-                                        <h4>布局组件</h4>
-                                        <p>Row/Column/Stack</p>
+            <!-- 组件系统 Tab -->
+            <div class="tab-panel" id="components">
+                <div class="container">
+                    <h2>Flutter 组件系统</h2>
+                    
+                    <!-- 组件系统图 -->
+                    <div class="component-system">
+                        <h3>🧩 组件分类</h3>
+                        <div class="component-diagram">
+                            <div class="component-layer layer-widgets">
+                                <div class="component-categories">
+                                    <div class="component-category">
+                                        <div class="category-icon">📦</div>
+                                        <h5>基础 Widget</h5>
+                                        <div class="component-items">
+                                            <a href="layout-widgets.html#container" class="component-link">Container</a>
+                                            <a href="widget-basics.html#text" class="component-link">Text</a>
+                                            <a href="widget-basics.html#image" class="component-link">Image</a>
+                                            <a href="widget-basics.html#icon" class="component-link">Icon</a>
+                                        </div>
                                     </div>
-                                    <div class="relationship-node node-basic">
-                                        <div class="node-icon">📦</div>
-                                        <h4>基础组件</h4>
-                                        <p>Text/Image/Icon</p>
+                                    <div class="component-category">
+                                        <div class="category-icon">📐</div>
+                                        <h5>布局组件</h5>
+                                        <div class="component-items">
+                                            <a href="layout-widgets.html#row" class="component-link">Row</a>
+                                            <a href="layout-widgets.html#column" class="component-link">Column</a>
+                                            <a href="layout-widgets.html#stack" class="component-link">Stack</a>
+                                            <a href="layout-widgets.html#expanded" class="component-link">Expanded</a>
+                                        </div>
                                     </div>
-                                    <div class="relationship-node node-input">
-                                        <div class="node-icon">⌨️</div>
-                                        <h4>输入组件</h4>
-                                        <p>TextField/Button</p>
+                                    <div class="component-category">
+                                        <div class="category-icon">⌨️</div>
+                                        <h5>输入组件</h5>
+                                        <div class="component-items">
+                                            <a href="input-widgets.html#textfield" class="component-link">TextField</a>
+                                            <a href="input-widgets.html#button" class="component-link">Button</a>
+                                            <a href="input-widgets.html#checkbox" class="component-link">Checkbox</a>
+                                            <a href="input-widgets.html#switch" class="component-link">Switch</a>
+                                        </div>
+                                    </div>
+                                    <div class="component-category">
+                                        <div class="category-icon">📋</div>
+                                        <h5>列表组件</h5>
+                                        <div class="component-items">
+                                            <a href="list-widgets.html#listview" class="component-link">ListView</a>
+                                            <a href="list-widgets.html#gridview" class="component-link">GridView</a>
+                                            <a href="list-widgets.html#scroll" class="component-link">Scroll</a>
+                                            <a href="list-widgets.html#sliver" class="component-link">Sliver</a>
+                                        </div>
+                                    </div>
+                                    <div class="component-category">
+                                        <div class="category-icon">👆</div>
+                                        <h5>手势组件</h5>
+                                        <div class="component-items">
+                                            <a href="gesture-widgets.html#gesturedetector" class="component-link">GestureDetector</a>
+                                            <a href="gesture-widgets.html#inkwell" class="component-link">InkWell</a>
+                                            <a href="gesture-widgets.html#dismissible" class="component-link">Dismissible</a>
+                                        </div>
+                                    </div>
+                                    <div class="component-category">
+                                        <div class="category-icon">🧭</div>
+                                        <h5>导航组件</h5>
+                                        <div class="component-items">
+                                            <a href="navigation-widgets.html#navigator" class="component-link">Navigator</a>
+                                            <a href="navigation-widgets.html#router" class="component-link">Router</a>
+                                            <a href="navigation-widgets.html#route" class="component-link">Route</a>
+                                            <a href="navigation-widgets.html#hero" class="component-link">Hero</a>
+                                        </div>
+                                    </div>
+                                    <div class="component-category">
+                                        <div class="category-icon">💬</div>
+                                        <h5>对话框组件</h5>
+                                        <div class="component-items">
+                                            <a href="dialog-widgets.html#alertdialog" class="component-link">AlertDialog</a>
+                                            <a href="dialog-widgets.html#bottomsheet" class="component-link">BottomSheet</a>
+                                            <a href="dialog-widgets.html#snackbar" class="component-link">SnackBar</a>
+                                        </div>
+                                    </div>
+                                    <div class="component-category">
+                                        <div class="category-icon">🎬</div>
+                                        <h5>动画组件</h5>
+                                        <div class="component-items">
+                                            <a href="animation-widgets.html#animatedcontainer" class="component-link">AnimatedContainer</a>
+                                            <a href="animation-widgets.html#transition" class="component-link">Transition</a>
+                                            <a href="animation-widgets.html#tween" class="component-link">Tween</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="relationship-branch">
-                                <div class="branch-line"></div>
-                                <div class="branch-nodes">
-                                    <div class="relationship-node node-list">
-                                        <div class="node-icon">📋</div>
-                                        <h4>列表组件</h4>
-                                        <p>ListView/GridView</p>
-                                    </div>
-                                    <div class="relationship-node node-gesture">
-                                        <div class="node-icon">👆</div>
-                                        <h4>手势组件</h4>
-                                        <p>GestureDetector</p>
-                                    </div>
-                                    <div class="relationship-node node-animation">
-                                        <div class="node-icon">🎬</div>
-                                        <h4>动画组件</h4>
-                                        <p>Animated/Transition</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="relationship-branch">
-                                <div class="branch-line"></div>
-                                <div class="branch-nodes">
-                                    <div class="relationship-node node-nav">
-                                        <div class="node-icon">🧭</div>
-                                        <h4>导航组件</h4>
-                                        <p>Navigator/Router</p>
-                                    </div>
-                                    <div class="relationship-node node-dialog">
-                                        <div class="node-icon">💬</div>
-                                        <h4>对话框组件</h4>
-                                        <p>AlertDialog/SnackBar</p>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
+                    </div>
 
-                            <div class="relationship-connections">
-                                <div class="connection-item">
-                                    <span class="conn-from">布局组件</span>
-                                    <span class="conn-arrow">→</span>
-                                    <span class="conn-to">包含基础/输入/列表组件</span>
+                    <!-- 组件关系图 -->
+                    <div class="component-relationships">
+                        <h3>🔗 组件关系图谱</h3>
+                        <div class="relationship-diagram">
+                            <div class="relationship-container">
+                                <div class="relationship-node node-root">
+                                    <div class="node-icon">🎯</div>
+                                    <h4>Widget 树</h4>
+                                    <p>所有组件的根</p>
                                 </div>
-                                <div class="connection-item">
-                                    <span class="conn-from">列表组件</span>
-                                    <span class="conn-arrow">→</span>
-                                    <span class="conn-to">使用布局组件组织内容</span>
+                                
+                                <div class="relationship-branch">
+                                    <div class="branch-line"></div>
+                                    <div class="branch-nodes">
+                                        <a href="layout-widgets.html" class="relationship-node node-layout">
+                                            <div class="node-icon">📐</div>
+                                            <h4>布局组件</h4>
+                                            <p>Row/Column/Stack</p>
+                                        </a>
+                                        <a href="widget-basics.html" class="relationship-node node-basic">
+                                            <div class="node-icon">📦</div>
+                                            <h4>基础组件</h4>
+                                            <p>Text/Image/Icon</p>
+                                        </a>
+                                        <a href="input-widgets.html" class="relationship-node node-input">
+                                            <div class="node-icon">⌨️</div>
+                                            <h4>输入组件</h4>
+                                            <p>TextField/Button</p>
+                                        </a>
+                                    </div>
                                 </div>
-                                <div class="connection-item">
-                                    <span class="conn-from">手势组件</span>
-                                    <span class="conn-arrow">→</span>
-                                    <span class="conn-to">包装任何 Widget</span>
+                                
+                                <div class="relationship-branch">
+                                    <div class="branch-line"></div>
+                                    <div class="branch-nodes">
+                                        <a href="list-widgets.html" class="relationship-node node-list">
+                                            <div class="node-icon">📋</div>
+                                            <h4>列表组件</h4>
+                                            <p>ListView/GridView</p>
+                                        </a>
+                                        <a href="gesture-widgets.html" class="relationship-node node-gesture">
+                                            <div class="node-icon">👆</div>
+                                            <h4>手势组件</h4>
+                                            <p>GestureDetector</p>
+                                        </a>
+                                        <a href="animation-widgets.html" class="relationship-node node-animation">
+                                            <div class="node-icon">🎬</div>
+                                            <h4>动画组件</h4>
+                                            <p>Animated/Transition</p>
+                                        </a>
+                                    </div>
                                 </div>
-                                <div class="connection-item">
-                                    <span class="conn-from">动画组件</span>
-                                    <span class="conn-arrow">→</span>
-                                    <span class="conn-to">包装任何 Widget</span>
+                                
+                                <div class="relationship-branch">
+                                    <div class="branch-line"></div>
+                                    <div class="branch-nodes">
+                                        <a href="navigation-widgets.html" class="relationship-node node-nav">
+                                            <div class="node-icon">🧭</div>
+                                            <h4>导航组件</h4>
+                                            <p>Navigator/Router</p>
+                                        </a>
+                                        <a href="dialog-widgets.html" class="relationship-node node-dialog">
+                                            <div class="node-icon">💬</div>
+                                            <h4>对话框组件</h4>
+                                            <p>AlertDialog/SnackBar</p>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="relationship-connections">
+                                    <div class="connection-item">
+                                        <span class="conn-from">布局组件</span>
+                                        <span class="conn-arrow">→</span>
+                                        <span class="conn-to">包含基础/输入/列表组件</span>
+                                    </div>
+                                    <div class="connection-item">
+                                        <span class="conn-from">列表组件</span>
+                                        <span class="conn-arrow">→</span>
+                                        <span class="conn-to">使用布局组件组织内容</span>
+                                    </div>
+                                    <div class="connection-item">
+                                        <span class="conn-from">手势组件</span>
+                                        <span class="conn-arrow">→</span>
+                                        <span class="conn-to">包装任何 Widget</span>
+                                    </div>
+                                    <div class="connection-item">
+                                        <span class="conn-from">动画组件</span>
+                                        <span class="conn-arrow">→</span>
+                                        <span class="conn-to">包装任何 Widget</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- 第三方组件生态 -->
-                <div class="third-party-ecosystem">
-                    <h3>🌍 第三方组件生态</h3>
+            <!-- 第三方生态 Tab -->
+            <div class="tab-panel" id="ecosystem">
+                <div class="container">
+                    <h2>第三方组件生态</h2>
+                    <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">Flutter 拥有丰富的第三方组件生态，涵盖状态管理、网络请求、本地存储、UI 组件等各个方面。</p>
+                    
                     <div class="ecosystem-categories">
                         <div class="ecosystem-category">
                             <div class="ecosystem-header">
@@ -500,169 +535,321 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- 应用打包 -->
-                <div class="app-packaging">
-                    <h3>📦 应用打包发布</h3>
-                    <div class="packaging-content">
-                        <div class="packaging-overview">
-                            <p>Flutter 支持将应用打包发布到多个平台，包括移动端、Web、桌面端等。每个平台都有特定的打包流程和发布要求。</p>
+            <!-- 应用打包 Tab -->
+            <div class="tab-panel" id="packaging">
+                <div class="container">
+                    <h2>应用打包发布</h2>
+                    <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">Flutter 支持将应用打包发布到多个平台，包括移动端、Web、桌面端等。每个平台都有特定的打包流程和发布要求。</p>
+                    
+                    <div class="packaging-intro">
+                        <div class="intro-card">
+                            <div class="intro-icon">✨</div>
+                            <div class="intro-content">
+                                <h4>跨平台发布</h4>
+                                <p>Flutter 支持将应用打包发布到多个平台，包括移动端、Web、桌面端等。每个平台都有特定的打包流程和发布要求。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="platforms-section">
+                        <div class="section-title">
+                            <span class="title-number">01</span>
+                            <h4>支持平台</h4>
+                            <div class="title-underline"></div>
                         </div>
 
                         <div class="platforms-grid">
                             <div class="platform-card platform-android">
-                                <div class="platform-icon">🤖</div>
+                                <div class="platform-badge">Android</div>
+                                <div class="platform-icon-wrapper">
+                                    <div class="platform-icon">🤖</div>
+                                    <div class="platform-glow"></div>
+                                </div>
                                 <h4>Android</h4>
-                                <div class="platform-details">
-                                    <div class="detail-item">
-                                        <span class="detail-label">输出格式</span>
-                                        <span class="detail-value">APK / AAB</span>
+                                <p class="platform-desc">覆盖全球 70%+ 设备</p>
+                                
+                                <div class="platform-info-grid">
+                                    <div class="info-box">
+                                        <div class="info-icon">📦</div>
+                                        <div>
+                                            <span class="info-label">输出格式</span>
+                                            <span class="info-value">APK / AAB</span>
+                                        </div>
                                     </div>
-                                    <div class="detail-item">
-                                        <span class="detail-label">打包命令</span>
-                                        <code class="detail-code">flutter build apk</code>
-                                    </div>
-                                    <div class="detail-item">
-                                        <span class="detail-label">发布渠道</span>
-                                        <span class="detail-value">Google Play</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <span class="detail-label">签名要求</span>
-                                        <span class="detail-value">需要签名</span>
+                                    <div class="info-box">
+                                        <div class="info-icon">🏪</div>
+                                        <div>
+                                            <span class="info-label">发布渠道</span>
+                                            <span class="info-value">Google Play</span>
+                                        </div>
                                     </div>
                                 </div>
+
+                                <div class="platform-commands">
+                                    <code class="cmd-block">
+                                        <span class="cmd-prompt">$</span> flutter build apk
+                                    </code>
+                                </div>
+
                                 <div class="platform-features">
-                                    <span class="feature-tag">AAB 格式推荐</span>
-                                    <span class="feature-tag">支持 32/64 位</span>
-                                    <span class="feature-tag">可配置权限</span>
+                                    <div class="feature-badge">
+                                        <span class="feature-dot"></span>
+                                        <span>AAB 格式推荐</span>
+                                    </div>
+                                    <div class="feature-badge">
+                                        <span class="feature-dot"></span>
+                                        <span>支持 32/64 位</span>
+                                    </div>
+                                    <div class="feature-badge">
+                                        <span class="feature-dot"></span>
+                                        <span>可配置权限</span>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="platform-card platform-ios">
-                                <div class="platform-icon">🍎</div>
+                                <div class="platform-badge">iOS</div>
+                                <div class="platform-icon-wrapper">
+                                    <div class="platform-icon">🍎</div>
+                                    <div class="platform-glow"></div>
+                                </div>
                                 <h4>iOS</h4>
-                                <div class="platform-details">
-                                    <div class="detail-item">
-                                        <span class="detail-label">输出格式</span>
-                                        <span class="detail-value">IPA</span>
+                                <p class="platform-desc">高端用户首选平台</p>
+                                
+                                <div class="platform-info-grid">
+                                    <div class="info-box">
+                                        <div class="info-icon">📦</div>
+                                        <div>
+                                            <span class="info-label">输出格式</span>
+                                            <span class="info-value">IPA</span>
+                                        </div>
                                     </div>
-                                    <div class="detail-item">
-                                        <span class="detail-label">打包命令</span>
-                                        <code class="detail-code">flutter build ios</code>
-                                    </div>
-                                    <div class="detail-item">
-                                        <span class="detail-label">发布渠道</span>
-                                        <span class="detail-value">App Store</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <span class="detail-label">签名要求</span>
-                                        <span class="detail-value">需要证书</span>
+                                    <div class="info-box">
+                                        <div class="info-icon">🏪</div>
+                                        <div>
+                                            <span class="info-label">发布渠道</span>
+                                            <span class="info-value">App Store</span>
+                                        </div>
                                     </div>
                                 </div>
+
+                                <div class="platform-commands">
+                                    <code class="cmd-block">
+                                        <span class="cmd-prompt">$</span> flutter build ios
+                                    </code>
+                                </div>
+
                                 <div class="platform-features">
-                                    <span class="feature-tag">需要 macOS</span>
-                                    <span class="feature-tag">TestFlight 测试</span>
-                                    <span class="feature-tag">严格审核</span>
+                                    <div class="feature-badge">
+                                        <span class="feature-dot"></span>
+                                        <span>需要 macOS</span>
+                                    </div>
+                                    <div class="feature-badge">
+                                        <span class="feature-dot"></span>
+                                        <span>TestFlight 测试</span>
+                                    </div>
+                                    <div class="feature-badge">
+                                        <span class="feature-dot"></span>
+                                        <span>严格审核</span>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="platform-card platform-web">
-                                <div class="platform-icon">🌐</div>
+                                <div class="platform-badge">Web</div>
+                                <div class="platform-icon-wrapper">
+                                    <div class="platform-icon">🌐</div>
+                                    <div class="platform-glow"></div>
+                                </div>
                                 <h4>Web</h4>
-                                <div class="platform-details">
-                                    <div class="detail-item">
-                                        <span class="detail-label">输出格式</span>
-                                        <span class="detail-value">HTML/CSS/JS</span>
+                                <p class="platform-desc">浏览器内即时访问</p>
+                                
+                                <div class="platform-info-grid">
+                                    <div class="info-box">
+                                        <div class="info-icon">📦</div>
+                                        <div>
+                                            <span class="info-label">输出格式</span>
+                                            <span class="info-value">HTML/CSS/JS</span>
+                                        </div>
                                     </div>
-                                    <div class="detail-item">
-                                        <span class="detail-label">打包命令</span>
-                                        <code class="detail-code">flutter build web</code>
-                                    </div>
-                                    <div class="detail-item">
-                                        <span class="detail-label">发布渠道</span>
-                                        <span class="detail-value">任意 Web 服务器</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <span class="detail-label">签名要求</span>
-                                        <span class="detail-value">无需签名</span>
+                                    <div class="info-box">
+                                        <div class="info-icon">🌍</div>
+                                        <div>
+                                            <span class="info-label">发布渠道</span>
+                                            <span class="info-value">任意服务器</span>
+                                        </div>
                                     </div>
                                 </div>
+
+                                <div class="platform-commands">
+                                    <code class="cmd-block">
+                                        <span class="cmd-prompt">$</span> flutter build web
+                                    </code>
+                                </div>
+
                                 <div class="platform-features">
-                                    <span class="feature-tag">PWA 支持</span>
-                                    <span class="feature-tag">快速部署</span>
-                                    <span class="feature-tag">跨浏览器</span>
+                                    <div class="feature-badge">
+                                        <span class="feature-dot"></span>
+                                        <span>PWA 支持</span>
+                                    </div>
+                                    <div class="feature-badge">
+                                        <span class="feature-dot"></span>
+                                        <span>快速部署</span>
+                                    </div>
+                                    <div class="feature-badge">
+                                        <span class="feature-dot"></span>
+                                        <span>跨浏览器</span>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="platform-card platform-desktop">
-                                <div class="platform-icon">💻</div>
+                                <div class="platform-badge">Desktop</div>
+                                <div class="platform-icon-wrapper">
+                                    <div class="platform-icon">💻</div>
+                                    <div class="platform-glow"></div>
+                                </div>
                                 <h4>Desktop</h4>
-                                <div class="platform-details">
-                                    <div class="detail-item">
-                                        <span class="detail-label">支持平台</span>
-                                        <span class="detail-value">Windows/macOS/Linux</span>
+                                <p class="platform-desc">生产力应用首选</p>
+                                
+                                <div class="platform-info-grid">
+                                    <div class="info-box">
+                                        <div class="info-icon">💻</div>
+                                        <div>
+                                            <span class="info-label">支持平台</span>
+                                            <span class="info-value">Win/Mac/Linux</span>
+                                        </div>
                                     </div>
-                                    <div class="detail-item">
-                                        <span class="detail-label">打包命令</span>
-                                        <code class="detail-code">flutter build [platform]</code>
-                                    </div>
-                                    <div class="detail-item">
-                                        <span class="detail-label">发布渠道</span>
-                                        <span class="detail-value">应用商店 / 直接下载</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <span class="detail-label">签名要求</span>
-                                        <span class="detail-value">平台相关</span>
+                                    <div class="info-box">
+                                        <div class="info-icon">📥</div>
+                                        <div>
+                                            <span class="info-label">发布渠道</span>
+                                            <span class="info-value">商店/下载</span>
+                                        </div>
                                     </div>
                                 </div>
+
+                                <div class="platform-commands">
+                                    <code class="cmd-block">
+                                        <span class="cmd-prompt">$</span> flutter build [platform]
+                                    </code>
+                                </div>
+
                                 <div class="platform-features">
-                                    <span class="feature-tag">原生特性</span>
-                                    <span class="feature-tag">独立安装</span>
-                                    <span class="feature-tag">企业分发</span>
+                                    <div class="feature-badge">
+                                        <span class="feature-dot"></span>
+                                        <span>原生特性</span>
+                                    </div>
+                                    <div class="feature-badge">
+                                        <span class="feature-dot"></span>
+                                        <span>独立安装</span>
+                                    </div>
+                                    <div class="feature-badge">
+                                        <span class="feature-dot"></span>
+                                        <span>企业分发</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="packaging-process">
-                            <h4>🚀 打包流程</h4>
-                            <div class="process-steps">
+                    <div class="packaging-process-section">
+                        <div class="section-title">
+                            <span class="title-number">02</span>
+                            <h4>打包流程</h4>
+                            <div class="title-underline"></div>
+                        </div>
+
+                        <div class="process-wrapper">
+                            <div class="process-timeline">
+                                <div class="timeline-line"></div>
+                                
                                 <div class="process-step">
-                                    <div class="step-icon">1️⃣</div>
-                                    <div class="step-content">
-                                        <h5>配置应用</h5>
-                                        <p>设置应用名称、版本号、图标等</p>
+                                    <div class="step-marker">
+                                        <div class="step-number">01</div>
+                                        <div class="step-pulse"></div>
+                                    </div>
+                                    <div class="step-card">
+                                        <div class="step-icon-wrapper">
+                                            <span class="step-emoji">⚙️</span>
+                                        </div>
+                                        <div class="step-content">
+                                            <h5>配置应用</h5>
+                                            <p>设置应用名称、版本号、图标等基本信息</p>
+                                        </div>
+                                        <div class="step-arrow">→</div>
                                     </div>
                                 </div>
-                                <div class="process-arrow">→</div>
+
                                 <div class="process-step">
-                                    <div class="step-icon">2️⃣</div>
-                                    <div class="step-content">
-                                        <h5>选择平台</h5>
-                                        <p>确定目标平台和发布渠道</p>
+                                    <div class="step-marker">
+                                        <div class="step-number">02</div>
+                                        <div class="step-pulse"></div>
+                                    </div>
+                                    <div class="step-card">
+                                        <div class="step-icon-wrapper">
+                                            <span class="step-emoji">🎯</span>
+                                        </div>
+                                        <div class="step-content">
+                                            <h5>选择平台</h5>
+                                            <p>确定目标平台和发布渠道</p>
+                                        </div>
+                                        <div class="step-arrow">→</div>
                                     </div>
                                 </div>
-                                <div class="process-arrow">→</div>
+
                                 <div class="process-step">
-                                    <div class="step-icon">3️⃣</div>
-                                    <div class="step-content">
-                                        <h5>构建应用</h5>
-                                        <p>执行打包命令生成安装包</p>
+                                    <div class="step-marker">
+                                        <div class="step-number">03</div>
+                                        <div class="step-pulse"></div>
+                                    </div>
+                                    <div class="step-card">
+                                        <div class="step-icon-wrapper">
+                                            <span class="step-emoji">🔨</span>
+                                        </div>
+                                        <div class="step-content">
+                                            <h5>构建应用</h5>
+                                            <p>执行打包命令生成安装包</p>
+                                        </div>
+                                        <div class="step-arrow">→</div>
                                     </div>
                                 </div>
-                                <div class="process-arrow">→</div>
+
                                 <div class="process-step">
-                                    <div class="step-icon">4️⃣</div>
-                                    <div class="step-content">
-                                        <h5>测试验证</h5>
-                                        <p>在真实设备上测试应用</p>
+                                    <div class="step-marker">
+                                        <div class="step-number">04</div>
+                                        <div class="step-pulse"></div>
+                                    </div>
+                                    <div class="step-card">
+                                        <div class="step-icon-wrapper">
+                                            <span class="step-emoji">🧪</span>
+                                        </div>
+                                        <div class="step-content">
+                                            <h5>测试验证</h5>
+                                            <p>在真实设备上测试应用功能</p>
+                                        </div>
+                                        <div class="step-arrow">→</div>
                                     </div>
                                 </div>
-                                <div class="process-arrow">→</div>
+
                                 <div class="process-step">
-                                    <div class="step-icon">5️⃣</div>
-                                    <div class="step-content">
-                                        <h5>发布上线</h5>
-                                        <p>上传到应用商店或服务器</p>
+                                    <div class="step-marker">
+                                        <div class="step-number">05</div>
+                                        <div class="step-pulse"></div>
+                                    </div>
+                                    <div class="step-card last-step">
+                                        <div class="step-icon-wrapper">
+                                            <span class="step-emoji">🚀</span>
+                                        </div>
+                                        <div class="step-content">
+                                            <h5>发布上线</h5>
+                                            <p>上传到应用商店或服务器</p>
+                                        </div>
+                                        <div class="step-badge">
+                                            <span>✓ 完成</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -670,175 +857,176 @@
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section id="tutorials" class="section">
-            <div class="container">
-                <h2>Flutter 教程系列</h2>
-                <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">从零开始学习 Flutter，掌握跨平台移动应用开发</p>
-                
-                <div class="tutorial-list">
-                    <!-- 学习路径引导 -->
-                    <div class="learning-path">
-                        <h3>📚 推荐学习路径</h3>
-                        <p>基于 Flutter 架构设计，建议按照以下顺序学习：</p>
-                        <div class="path-steps">
-                            <div class="path-step">
-                                <span class="path-number">1</span>
-                                <div class="path-text">
-                                    <strong>Dart 语言基础</strong>
-                                    <span>掌握 Dart 语法和特性</span>
-                                </div>
-                            </div>
-                            <div class="path-step">
-                                <span class="path-number">2</span>
-                                <div class="path-text">
-                                    <strong>Widget 基础</strong>
-                                    <span>理解 Framework 层核心概念</span>
-                                </div>
-                            </div>
-                            <div class="path-step">
-                                <span class="path-number">3</span>
-                                <div class="path-text">
-                                    <strong>布局组件</strong>
-                                    <span>学习页面结构构建</span>
-                                </div>
-                            </div>
-                            <div class="path-step">
-                                <span class="path-number">4</span>
-                                <div class="path-text">
-                                    <strong>交互组件</strong>
-                                    <span>掌握用户输入和响应</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <!-- 教程系列 Tab -->
+            <div class="tab-panel" id="tutorials">
+                <div class="container">
+                    <h2>Flutter 教程系列</h2>
+                    <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">从零开始学习 Flutter，掌握跨平台移动应用开发</p>
                     
-                    <!-- 基础教程 -->
-                    <div class="tutorial-item">
-                        <h3>Dart 语言基础</h3>
-                        <p>学习 Dart 语言的基本语法和特性，包括变量声明、数据类型、函数、类、异步编程等核心概念。Dart 是 Flutter 的基础语言，掌握 Dart 是学习 Flutter 的第一步。</p>
-                        <div class="tutorial-tags">
-                            <span class="tag">变量</span>
-                            <span class="tag">函数</span>
-                            <span class="tag">类</span>
-                            <span class="tag">异步</span>
+                    <div class="tutorial-list">
+                        <!-- 学习路径引导 -->
+                        <div class="learning-path">
+                            <h3>📚 推荐学习路径</h3>
+                            <p>基于 Flutter 架构设计，建议按照以下顺序学习：</p>
+                            <div class="path-steps">
+                                <div class="path-step">
+                                    <span class="path-number">1</span>
+                                    <div class="path-text">
+                                        <strong>Dart 语言基础</strong>
+                                        <span>掌握 Dart 语法和特性</span>
+                                    </div>
+                                </div>
+                                <div class="path-step">
+                                    <span class="path-number">2</span>
+                                    <div class="path-text">
+                                        <strong>Widget 基础</strong>
+                                        <span>理解 Framework 层核心概念</span>
+                                    </div>
+                                </div>
+                                <div class="path-step">
+                                    <span class="path-number">3</span>
+                                    <div class="path-text">
+                                        <strong>布局组件</strong>
+                                        <span>学习页面结构构建</span>
+                                    </div>
+                                </div>
+                                <div class="path-step">
+                                    <span class="path-number">4</span>
+                                    <div class="path-text">
+                                        <strong>交互组件</strong>
+                                        <span>掌握用户输入和响应</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <a href="dart-basics.html" class="tutorial-link">开始学习 →</a>
-                    </div>
+                        
+                        <!-- 基础教程 -->
+                        <div class="tutorial-item">
+                            <h3>Dart 语言基础</h3>
+                            <p>学习 Dart 语言的基本语法和特性，包括变量声明、数据类型、函数、类、异步编程等核心概念。Dart 是 Flutter 的基础语言，掌握 Dart 是学习 Flutter 的第一步。</p>
+                            <div class="tutorial-tags">
+                                <span class="tag">变量</span>
+                                <span class="tag">函数</span>
+                                <span class="tag">类</span>
+                                <span class="tag">异步</span>
+                            </div>
+                            <a href="dart-basics.html" class="tutorial-link">开始学习 →</a>
+                        </div>
 
-                    <div class="tutorial-item">
-                        <h3>Widget 基础</h3>
-                        <p>掌握 Widget 的概念和基本用法，了解 StatelessWidget 和 StatefulWidget 的区别，学习 Widget 的生命周期。Widget 是 Flutter 应用的构建块，理解 Widget 是掌握 Flutter 的关键。</p>
-                        <div class="tutorial-tags">
-                            <span class="tag">StatelessWidget</span>
-                            <span class="tag">StatefulWidget</span>
-                            <span class="tag">生命周期</span>
-                            <span class="tag">Widget树</span>
+                        <div class="tutorial-item">
+                            <h3>Widget 基础</h3>
+                            <p>掌握 Widget 的概念和基本用法，了解 StatelessWidget 和 StatefulWidget 的区别，学习 Widget 的生命周期。Widget 是 Flutter 应用的构建块，理解 Widget 是掌握 Flutter 的关键。</p>
+                            <div class="tutorial-tags">
+                                <span class="tag">StatelessWidget</span>
+                                <span class="tag">StatefulWidget</span>
+                                <span class="tag">生命周期</span>
+                                <span class="tag">Widget树</span>
+                            </div>
+                            <a href="widget-basics.html" class="tutorial-link">开始学习 →</a>
                         </div>
-                        <a href="widget-basics.html" class="tutorial-link">开始学习 →</a>
-                    </div>
 
-                    <!-- 组件教程 -->
-                    <div class="tutorial-item">
-                        <h3>布局组件</h3>
-                        <p>学习 Container、Row、Column、Stack、Expanded、Flexible 等布局组件，掌握如何使用这些组件构建复杂的页面结构。布局组件是 Flutter UI 的基础，理解布局原理至关重要。</p>
-                        <div class="tutorial-tags">
-                            <span class="tag">Container</span>
-                            <span class="tag">Row</span>
-                            <span class="tag">Column</span>
-                            <span class="tag">Stack</span>
-                            <span class="tag">Expanded</span>
+                        <!-- 组件教程 -->
+                        <div class="tutorial-item">
+                            <h3>布局组件</h3>
+                            <p>学习 Container、Row、Column、Stack、Expanded、Flexible 等布局组件，掌握如何使用这些组件构建复杂的页面结构。布局组件是 Flutter UI 的基础，理解布局原理至关重要。</p>
+                            <div class="tutorial-tags">
+                                <span class="tag">Container</span>
+                                <span class="tag">Row</span>
+                                <span class="tag">Column</span>
+                                <span class="tag">Stack</span>
+                                <span class="tag">Expanded</span>
+                            </div>
+                            <a href="layout-widgets.html" class="tutorial-link">开始学习 →</a>
                         </div>
-                        <a href="layout-widgets.html" class="tutorial-link">开始学习 →</a>
-                    </div>
 
-                    <div class="tutorial-item">
-                        <h3>输入组件</h3>
-                        <p>掌握 TextField、TextFormField、ElevatedButton、TextButton、OutlinedButton、Checkbox、Radio、Switch、Slider 等输入组件，实现丰富的用户交互功能。学习表单验证和用户输入处理。</p>
-                        <div class="tutorial-tags">
-                            <span class="tag">TextField</span>
-                            <span class="tag">Button</span>
-                            <span class="tag">Checkbox</span>
-                            <span class="tag">表单验证</span>
+                        <div class="tutorial-item">
+                            <h3>输入组件</h3>
+                            <p>掌握 TextField、TextFormField、ElevatedButton、TextButton、OutlinedButton、Checkbox、Radio、Switch、Slider 等输入组件，实现丰富的用户交互功能。学习表单验证和用户输入处理。</p>
+                            <div class="tutorial-tags">
+                                <span class="tag">TextField</span>
+                                <span class="tag">Button</span>
+                                <span class="tag">Checkbox</span>
+                                <span class="tag">表单验证</span>
+                            </div>
+                            <a href="input-widgets.html" class="tutorial-link">开始学习 →</a>
                         </div>
-                        <a href="input-widgets.html" class="tutorial-link">开始学习 →</a>
-                    </div>
 
-                    <div class="tutorial-item">
-                        <h3>列表组件</h3>
-                        <p>使用 ListView、ListView.builder、ListView.separated、GridView、GridView.builder 等列表组件展示数据。学习列表的性能优化、分隔线、下拉刷新和上拉加载更多功能。</p>
-                        <div class="tutorial-tags">
-                            <span class="tag">ListView</span>
-                            <span class="tag">GridView</span>
-                            <span class="tag">builder</span>
-                            <span class="tag">性能优化</span>
+                        <div class="tutorial-item">
+                            <h3>列表组件</h3>
+                            <p>使用 ListView、ListView.builder、ListView.separated、GridView、GridView.builder 等列表组件展示数据。学习列表的性能优化、分隔线、下拉刷新和上拉加载更多功能。</p>
+                            <div class="tutorial-tags">
+                                <span class="tag">ListView</span>
+                                <span class="tag">GridView</span>
+                                <span class="tag">builder</span>
+                                <span class="tag">性能优化</span>
+                            </div>
+                            <a href="list-widgets.html" class="tutorial-link">开始学习 →</a>
                         </div>
-                        <a href="list-widgets.html" class="tutorial-link">开始学习 →</a>
-                    </div>
 
-                    <div class="tutorial-item">
-                        <h3>手势组件</h3>
-                        <p>使用 GestureDetector、InkWell、Dismissible 等手势组件处理用户的各种手势操作，包括点击、双击、长按、拖拽、缩放等。学习手势识别和响应机制。</p>
-                        <div class="tutorial-tags">
-                            <span class="tag">GestureDetector</span>
-                            <span class="tag">InkWell</span>
-                            <span class="tag">Dismissible</span>
-                            <span class="tag">手势识别</span>
+                        <div class="tutorial-item">
+                            <h3>手势组件</h3>
+                            <p>使用 GestureDetector、InkWell、Dismissible 等手势组件处理用户的各种手势操作，包括点击、双击、长按、拖拽、缩放等。学习手势识别和响应机制。</p>
+                            <div class="tutorial-tags">
+                                <span class="tag">GestureDetector</span>
+                                <span class="tag">InkWell</span>
+                                <span class="tag">Dismissible</span>
+                                <span class="tag">手势识别</span>
+                            </div>
+                            <a href="gesture-widgets.html" class="tutorial-link">开始学习 →</a>
                         </div>
-                        <a href="gesture-widgets.html" class="tutorial-link">开始学习 →</a>
-                    </div>
 
-                    <div class="tutorial-item">
-                        <h3>导航组件</h3>
-                        <p>使用 Navigator、Navigator 2.0、Router、NamedRoute 等导航组件实现页面跳转和导航。学习页面栈管理、参数传递、路由守卫和 Hero 动画过渡。</p>
-                        <div class="tutorial-tags">
-                            <span class="tag">Navigator</span>
-                            <span class="tag">Router</span>
-                            <span class="tag">NamedRoute</span>
-                            <span class="tag">Hero动画</span>
+                        <div class="tutorial-item">
+                            <h3>导航组件</h3>
+                            <p>使用 Navigator、Navigator 2.0、Router、NamedRoute 等导航组件实现页面跳转和导航。学习页面栈管理、参数传递、路由守卫和 Hero 动画过渡。</p>
+                            <div class="tutorial-tags">
+                                <span class="tag">Navigator</span>
+                                <span class="tag">Router</span>
+                                <span class="tag">NamedRoute</span>
+                                <span class="tag">Hero动画</span>
+                            </div>
+                            <a href="navigation-widgets.html" class="tutorial-link">开始学习 →</a>
                         </div>
-                        <a href="navigation-widgets.html" class="tutorial-link">开始学习 →</a>
-                    </div>
 
-                    <div class="tutorial-item">
-                        <h3>对话框组件</h3>
-                        <p>使用 AlertDialog、BottomSheet、SnackBar、SimpleDialog、ModalBarrier 等对话框组件与用户进行交互。学习如何创建模态对话框、底部菜单和提示消息。</p>
-                        <div class="tutorial-tags">
-                            <span class="tag">AlertDialog</span>
-                            <span class="tag">BottomSheet</span>
-                            <span class="tag">SnackBar</span>
-                            <span class="tag">模态对话框</span>
+                        <div class="tutorial-item">
+                            <h3>对话框组件</h3>
+                            <p>使用 AlertDialog、BottomSheet、SnackBar、SimpleDialog、ModalBarrier 等对话框组件与用户进行交互。学习如何创建模态对话框、底部菜单和提示消息。</p>
+                            <div class="tutorial-tags">
+                                <span class="tag">AlertDialog</span>
+                                <span class="tag">BottomSheet</span>
+                                <span class="tag">SnackBar</span>
+                                <span class="tag">模态对话框</span>
+                            </div>
+                            <a href="dialog-widgets.html" class="tutorial-link">开始学习 →</a>
                         </div>
-                        <a href="dialog-widgets.html" class="tutorial-link">开始学习 →</a>
-                    </div>
 
-                    <div class="tutorial-item">
-                        <h3>动画组件</h3>
-                        <p>使用 AnimationController、AnimatedContainer、AnimatedOpacity、Transition、Tween 等动画组件创建流畅的动画效果。学习隐式动画、显式动画和过渡动画的实现方法。</p>
-                        <div class="tutorial-tags">
-                            <span class="tag">AnimationController</span>
-                            <span class="tag">Animated*</span>
-                            <span class="tag">Transition</span>
-                            <span class="tag">Tween</span>
+                        <div class="tutorial-item">
+                            <h3>动画组件</h3>
+                            <p>使用 AnimationController、AnimatedContainer、AnimatedOpacity、Transition、Tween 等动画组件创建流畅的动画效果。学习隐式动画、显式动画和过渡动画的实现方法。</p>
+                            <div class="tutorial-tags">
+                                <span class="tag">AnimationController</span>
+                                <span class="tag">Animated*</span>
+                                <span class="tag">Transition</span>
+                                <span class="tag">Tween</span>
+                            </div>
+                            <a href="animation-widgets.html" class="tutorial-link">开始学习 →</a>
                         </div>
-                        <a href="animation-widgets.html" class="tutorial-link">开始学习 →</a>
-                    </div>
 
-                    <div class="tutorial-item">
-                        <h3>第三方组件</h3>
-                        <p>掌握 Provider、Dio、GetX、shared_preferences、sqflite、image_picker 等常用第三方包的使用。学习如何在 pub.dev 上查找和集成第三方库。</p>
-                        <div class="tutorial-tags">
-                            <span class="tag">Provider</span>
-                            <span class="tag">Dio</span>
-                            <span class="tag">GetX</span>
-                            <span class="tag">pub.dev</span>
+                        <div class="tutorial-item">
+                            <h3>第三方组件</h3>
+                            <p>掌握 Provider、Dio、GetX、shared_preferences、sqflite、image_picker 等常用第三方包的使用。学习如何在 pub.dev 上查找和集成第三方库。</p>
+                            <div class="tutorial-tags">
+                                <span class="tag">Provider</span>
+                                <span class="tag">Dio</span>
+                                <span class="tag">GetX</span>
+                                <span class="tag">pub.dev</span>
+                            </div>
+                            <a href="third-party-packages.html" class="tutorial-link">开始学习 →</a>
                         </div>
-                        <a href="third-party-packages.html" class="tutorial-link">开始学习 →</a>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     </main>
 
     <script src="script.js"></script>
