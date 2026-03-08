@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修复 AI Tab</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        .tab-btn {
+            padding: 12px 24px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .tab-btn:hover {
+            background: #e0e0e0;
+        }
+        .tab-btn.active {
+            background: #007bff;
+            color: white;
+        }
+        .tab-content {
+            min-height: 400px;
+        }
+        .tab-panel {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        .tab-panel.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        h2 {
+            color: #333;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .ai-benefits {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .ai-benefits h3 {
+            color: #1976D2;
+            margin-top: 0;
+        }
+        .info-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Flutter 教程 - AI Tab 测试</h1>
+        
+        <div class="tab-buttons">
+            <button class="tab-btn active" data-tab="architecture">架构概览</button>
+            <button class="tab-btn" data-tab="components">组件系统</button>
+            <button class="tab-btn" data-tab="ai-coding">AI 代码生成</button>
+        </div>
+        
+        <div class="tab-content">
+            <div class="tab-panel active" id="architecture">
+                <h2>Flutter 架构概览</h2>
+                <p>Flutter 采用分层架构设计，从上到下依次为 Framework（框架层）、Engine（引擎层）和 Embedder（嵌入层）。</p>
+                <div class="info-box">
+                    <strong>说明：</strong>这是架构概览页面的内容。
+                </div>
+            </div>
+            
+            <div class="tab-panel" id="components">
+                <h2>Flutter 组件系统</h2>
+                <p>Flutter 提供了丰富的组件库，包括基础 Widget、布局组件、输入组件等。</p>
+                <div class="info-box">
+                    <strong>说明：</strong>这是组件系统页面的内容。
+                </div>
+            </div>
+            
+            <div class="tab-panel" id="ai-coding">
+                <h2>🤖 Flutter AI 代码生成</h2>
+                <p>利用 AI 工具大幅提升 Flutter 开发效率，从需求描述到完整代码的智能转换</p>
+                
+                <div class="ai-benefits">
+                    <h3>💡 AI 代码生成优势</h3>
+                    <p><strong>⚡ 快速开发：</strong>从需求描述自动生成代码，节省 60-80% 的编码时间</p>
+                    <p><strong>🎯 精准实现：</strong>理解复杂需求，生成符合 Flutter 最佳实践的代码</p>
+                    <p><strong>🔄 迭代优化：</strong>持续优化代码，根据反馈自动调整和改进</p>
+                    <p><strong>📚 学习辅助：</strong>通过 AI 生成的代码学习 Flutter 的最佳实践和设计模式</p>
+                </div>
+                
+                <div class="info-box">
+                    <strong>测试说明：</strong>如果你能看到这个内容，说明 AI 代码生成 Tab 可以正常显示！
+                </div>
+                
+                <h3>🛠️ 主流 AI 工具</h3>
+                <ul>
+                    <li><strong>Cursor</strong> - IDE 集成，深度上下文理解</li>
+                    <li><strong>GitHub Copilot</strong> - 代码补全能力强</li>
+                    <li><strong>ChatGPT</strong> - 对话式 AI，理解能力强</li>
+                    <li><strong>Claude</strong> - 代码质量高，安全性好</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        console.log('=== AI Tab 测试页面已加载 ===');
+        
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+        
+        console.log('找到的 Tab 按钮数量:', tabBtns.length);
+        console.log('找到的 Tab 面板数量:', tabPanels.length);
+        
+        tabBtns.forEach((btn, index) => {
+            const tabId = btn.getAttribute('data-tab');
+            console.log(`按钮 ${index + 1}: ${tabId}`);
+            
+            btn.addEventListener('click', function() {
+                console.log(`\n=== 点击了按钮: ${tabId} ===`);
+                
+                // 移除所有 active 类
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabPanels.forEach(p => p.classList.remove('active'));
+                
+                // 添加 active 类到当前按钮和面板
+                this.classList.add('active');
+                const targetPanel = document.getElementById(tabId);
+                
+                if (targetPanel) {
+                    targetPanel.classList.add('active');
+                    console.log(`✅ 已激活面板: ${tabId}`);
+                    console.log(`面板显示状态:`, window.getComputedStyle(targetPanel).display);
+                    console.log(`面板内容长度:`, targetPanel.innerHTML.length);
+                    
+                    // 自动滚动到面板顶部
+                    targetPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    console.error(`❌ 未找到面板: ${tabId}`);
+                }
+            });
+        });
+        
+        console.log('=== Tab 切换功能已初始化 ===\n');
+        console.log('请点击不同的 Tab 按钮来测试切换功能');
+    </script>
+</body>
+</html>

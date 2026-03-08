@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tab 内容检查</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .check-result {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+        }
+        pre {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI Tab 内容检查</h1>
+    <div id="results"></div>
+    
+    <script>
+        fetch('index.html')
+            .then(response => response.text())
+            .then(html => {
+                const results = document.getElementById('results');
+                let output = '';
+                
+                // 查找 AI Tab 面板
+                const aiPanelMatch = html.match(/<div class="tab-panel"[^>]*id="ai-coding"[^>]*>([\s\S]*?)<\/div>\s*<\/div>\s*<\/div>\s*<\/div>/);
+                
+                if (aiPanelMatch) {
+                    output += '<div class="check-result success">';
+                    output += '<h2>✅ 找到 AI Tab 面板</h2>';
+                    output += '<p>内容长度: ' + aiPanelMatch[1].length + ' 字符</p>';
+                    
+                    // 检查内容
+                    const content = aiPanelMatch[1];
+                    
+                    // 检查标题
+                    const h2Match = content.match(/<h2[^>]*>/);
+                    if (h2Match) {
+                        output += '<p>✅ 包含 h2 标题</p>';
+                    } else {
+                        output += '<p>❌ 缺少 h2 标题</p>';
+                    }
+                    
+                    // 检查章节
+                    const sectionMatches = content.match(/<!-- (.*?) -->/g);
+                    if (sectionMatches) {
+                        output += '<p>✅ 包含 ' + sectionMatches.length + ' 个章节</p>';
+                        output += '<ul>';
+                        sectionMatches.forEach(section => {
+                            const sectionName = section.replace(/<!-- | -->/g, '');
+                            output += '<li>' + sectionName + '</li>';
+                        });
+                        output += '</ul>';
+                    } else {
+                        output += '<p>❌ 缺少章节</p>';
+                    }
+                    
+                    // 检查 div 标签
+                    const openDivs = content.match(/<div/g);
+                    const closeDivs = content.match(/<\/div>/g);
+                    if (openDivs && closeDivs && openDivs.length === closeDivs.length) {
+                        output += '<p>✅ div 标签匹配 (' + openDivs.length + ' 个)</p>';
+                    } else {
+                        output += '<p>❌ div 标签不匹配 (开始: ' + (openDivs ? openDivs.length : 0) + ', 结束: ' + (closeDivs ? closeDivs.length : 0) + ')</p>';
+                    }
+                    
+                    output += '</div>';
+                    
+                    // 显示部分内容
+                    output += '<div class="check-result warning">';
+                    output += '<h2>📄 内容预览 (前 500 字符)</h2>';
+                    output += '<pre>' + content.substring(0, 500).replace(/</g, '&lt;') + '...</pre>';
+                    output += '</div>';
+                    
+                } else {
+                    output += '<div class="check-result error">';
+                    output += '<h2>❌ 未找到 AI Tab 面板</h2>';
+                    output += '</div>';
+                }
+                
+                // 检查 Tab 按钮
+                const tabButtons = html.match(/<button class="tab-btn"[^>]*data-tab="ai-coding"[^>]*>/);
+                if (tabButtons) {
+                    output += '<div class="check-result success">';
+                    output += '<h2>✅ 找到 AI Tab 按钮</h2>';
+                    output += '</div>';
+                } else {
+                    output += '<div class="check-result error">';
+                    output += '<h2>❌ 未找到 AI Tab 按钮</h2>';
+                    output += '</div>';
+                }
+                
+                results.innerHTML = output;
+            })
+            .catch(error => {
+                document.getElementById('results').innerHTML = '<div class="check-result error"><h2>❌ 加载失败</h2><p>' + error.message + '</p></div>';
+            });
+    </script>
+</body>
+</html>

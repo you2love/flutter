@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tab 切换测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .tab-btn {
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            cursor: pointer;
+        }
+        .tab-btn.active {
+            background: #007bff;
+            color: white;
+        }
+        .tab-content {
+            border: 2px solid #ddd;
+            padding: 20px;
+            min-height: 200px;
+        }
+        .tab-panel {
+            display: none;
+        }
+        .tab-panel.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tab 切换测试</h1>
+    
+    <div class="tab-buttons">
+        <button class="tab-btn active" data-tab="tab1">Tab 1</button>
+        <button class="tab-btn" data-tab="tab2">Tab 2</button>
+        <button class="tab-btn" data-tab="tab3">Tab 3</button>
+    </div>
+    
+    <div class="tab-content">
+        <div class="tab-panel active" id="tab1">
+            <h2>这是 Tab 1 的内容</h2>
+            <p>Tab 1 是默认激活的。</p>
+        </div>
+        <div class="tab-panel" id="tab2">
+            <h2>这是 Tab 2 的内容</h2>
+            <p>点击 Tab 2 按钮可以看到这个内容。</p>
+        </div>
+        <div class="tab-panel" id="tab3">
+            <h2>这是 Tab 3 的内容</h2>
+            <p>点击 Tab 3 按钮可以看到这个内容。</p>
+        </div>
+    </div>
+    
+    <script>
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const targetTab = this.getAttribute('data-tab');
+                
+                // 移除所有 active 类
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabPanels.forEach(p => p.classList.remove('active'));
+                
+                // 添加 active 类到当前按钮和面板
+                this.classList.add('active');
+                const targetPanel = document.getElementById(targetTab);
+                if (targetPanel) {
+                    targetPanel.classList.add('active');
+                    console.log('已激活 Tab:', targetTab);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
