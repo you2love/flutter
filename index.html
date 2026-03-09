@@ -756,6 +756,162 @@
                         </div>
                     </div>
 
+                    <!-- Key 的原理及内部实现 -->
+                    <div class="component-card" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left: 4px solid #4CAF50;">
+                        <h3 style="color: #2E7D32; margin-top: 0;">🔬 Key 的原理及内部实现</h3>
+                        <p style="color: #424242;">理解 Key 的内部工作原理，需要深入了解 Flutter 的 Widget-Element-RenderObject 三层树模型。</p>
+
+                        <h4 style="color: #1976D2; margin-top: 1.5rem;">Widget-Element-RenderObject 关系</h4>
+                        <div style="background: white; border-radius: 12px; padding: 1.5rem; margin: 1rem 0;">
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
+                                <div style="text-align: center; padding: 1rem; background: #e3f2fd; border-radius: 8px;">
+                                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📋</div>
+                                    <h5 style="color: #1565C0; margin: 0;">Widget</h5>
+                                    <p style="margin: 0.5rem 0 0 0; color: #666; font-size: 0.85rem;">配置信息<br>不可变对象</p>
+                                </div>
+                                <div style="text-align: center; padding: 1rem; background: #c8e6c9; border-radius: 8px;">
+                                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔗</div>
+                                    <h5 style="color: #2E7D32; margin: 0;">Element</h5>
+                                    <p style="margin: 0.5rem 0 0 0; color: #666; font-size: 0.85rem;">管理状态<br>可复用对象</p>
+                                </div>
+                                <div style="text-align: center; padding: 1rem; background: #fff3e0; border-radius: 8px;">
+                                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎨</div>
+                                    <h5 style="color: #E65100; margin: 0;">RenderObject</h5>
+                                    <p style="margin: 0.5rem 0 0 0; color: #666; font-size: 0.85rem;">负责渲染<br>屏幕绘制</p>
+                                </div>
+                            </div>
+                            <div style="text-align: center; padding: 1rem; background: #f5f5f5; border-radius: 8px;">
+                                <p style="margin: 0; color: #424242; font-size: 0.95rem;"><strong>流程：</strong>Widget 创建 → Element 实例化 → RenderObject 渲染</p>
+                            </div>
+                        </div>
+
+                        <h4 style="color: #1976D2; margin-top: 1.5rem;">Element 复用机制</h4>
+                        <div style="background: #263238; border-radius: 12px; padding: 1.5rem; margin: 1rem 0; overflow-x: auto;">
+<pre style="margin: 0; color: #80cbc4; font-family: monospace; font-size: 0.85rem; line-height: 1.8;"><code><span style="color: #bb80b3;">// Flutter 框架内部简化逻辑</span>
+<span style="color: #82aaff;">class</span> <span style="color: #ffcb6b;">Element</span> {
+  Widget _widget;
+  <span style="color: #82aaff;">final</span> Key? key;
+  
+  <span style="color: #bb80b3;">// 判断是否可以复用</span>
+  <span style="color: #82aaff;">bool</span> canUpdate(<span style="color: #ffcb6b;">Widget</span> newWidget) {
+    <span style="color: #bb80b3;">// 关键：类型相同 且 key 相同才能复用</span>
+    <span style="color: #82aaff;">return</span> newWidget.runtimeType == _widget.runtimeType
+        && newWidget.key == key;
+  }
+  
+  <span style="color: #bb80b3;">// 更新 Widget</span>
+  <span style="color: #82aaff;">void</span> update(<span style="color: #ffcb6b;">Widget</span> newWidget) {
+    <span style="color: #82aaff;">if</span> (canUpdate(newWidget)) {
+      <span style="color: #bb80b3;">// Key 匹配，更新现有 Element</span>
+      _widget = newWidget;
+    } <span style="color: #82aaff;">else</span> {
+      <span style="color: #bb80b3;">// Key 不匹配，创建新 Element</span>
+      <span style="color: #bb80b3;">// 旧 Element 被销毁</span>
+    }
+  }
+}</code></pre>
+                        </div>
+
+                        <h4 style="color: #1976D2; margin-top: 1.5rem;">Key 的查找过程</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1rem 0;">
+                            <div style="background: white; padding: 1.25rem; border-radius: 10px; border: 2px solid #2196F3;">
+                                <h5 style="color: #1565C0; margin: 0 0 0.75rem 0; font-size: 1rem;">1️⃣ 无 Key 情况</h5>
+                                <p style="margin: 0 0 0.75rem 0; color: #666; font-size: 0.9rem;">按索引位置匹配 Element</p>
+                                <div style="background: #e3f2fd; padding: 0.75rem; border-radius: 6px; font-size: 0.85rem; color: #1565C0;">
+                                    <pre style="margin: 0;">children[index] → Element</pre>
+                                </div>
+                                <p style="margin: 0.75rem 0 0 0; color: #F44336; font-size: 0.85rem;">⚠️ 列表变化时状态错乱</p>
+                            </div>
+                            <div style="background: white; padding: 1.25rem; border-radius: 10px; border: 2px solid #4CAF50;">
+                                <h5 style="color: #2E7D32; margin: 0 0 0.75rem 0; font-size: 1rem;">2️⃣ 有 Key 情况</h5>
+                                <p style="margin: 0 0 0.75rem 0; color: #666; font-size: 0.9rem;">通过 Key 哈希表查找 Element</p>
+                                <div style="background: #e8f5e9; padding: 0.75rem; border-radius: 6px; font-size: 0.85rem; color: #2E7D32;">
+                                    <pre style="margin: 0;">_children[key] → Element</pre>
+                                </div>
+                                <p style="margin: 0.75rem 0 0 0; color: #4CAF50; font-size: 0.85rem;">✅ 列表变化时状态保持</p>
+                            </div>
+                        </div>
+
+                        <h4 style="color: #1976D2; margin-top: 1.5rem;">GlobalKey 的特殊实现</h4>
+                        <div style="background: white; border-radius: 12px; padding: 1.5rem; margin: 1rem 0;">
+                            <p style="color: #424242; margin: 0 0 1rem 0;">GlobalKey 通过全局注册表实现跨组件访问：</p>
+                            <div style="background: #263238; border-radius: 10px; padding: 1.25rem; overflow-x: auto;">
+<pre style="margin: 0; color: #80cbc4; font-family: monospace; font-size: 0.85rem; line-height: 1.8;"><code><span style="color: #bb80b3;">// GlobalKey 内部实现简化</span>
+<span style="color: #82aaff;">class</span> <span style="color: #ffcb6b;">GlobalKey</span>&lt;T <span style="color: #82aaff;">extends</span> <span style="color: #ffcb6b;">Element</span>&gt; <span style="color: #82aaff;">extends</span> <span style="color: #ffcb6b;">Key</span> {
+  <span style="color: #bb80b3;">// 全局静态注册表</span>
+  <span style="color: #82aaff;">static</span> <span style="color: #82aaff;">final</span> _registry = &lt;<span style="color: #ffcb6b;">GlobalKey</span>, <span style="color: #ffcb6b;">Element</span>&gt;{};
+  
+  T? <span style="color: #ffcb6b;">get</span> currentState {
+    <span style="color: #bb80b3;">// 从全局注册表中查找</span>
+    <span style="color: #82aaff;">return</span> _registry[<span style="color: #82aaff;">this</span>] <span style="color: #82aaff;">as</span> T?;
+  }
+  
+  <span style="color: #bb80b3;">// 注册 Element</span>
+  <span style="color: #82aaff;">void</span> _register(<span style="color: #ffcb6b;">Element</span> element) {
+    <span style="color: #82aaff;">if</span> (_registry.containsKey(<span style="color: #82aaff;">this</span>)) {
+      <span style="color: #bb80b3;">// 抛出异常：GlobalKey 已被使用</span>
+      <span style="color: #82aaff;">throw</span> <span style="color: #ffcb6b;">FlutterError</span>(<span style="color: #c3e88d;">'GlobalKey 已在使用中'</span>);
+    }
+    _registry[<span style="color: #82aaff;">this</span>] = element;
+  }
+  
+  <span style="color: #bb80b3;">// 注销 Element</span>
+  <span style="color: #82aaff;">void</span> _unregister() {
+    _registry.remove(<span style="color: #82aaff;">this</span>);
+  }
+}</code></pre>
+                            </div>
+                            <div style="margin-top: 1rem; padding: 1rem; background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 4px solid #FF9800; border-radius: 8px;">
+                                <h5 style="color: #E65100; margin: 0 0 0.5rem 0; font-size: 0.95rem;">⚠️ 性能瓶颈</h5>
+                                <p style="margin: 0; color: #424242; font-size: 0.9rem;">GlobalKey 需要在每次重建时维护全局注册表，查找复杂度 O(1) 但注册/注销有额外开销</p>
+                            </div>
+                        </div>
+
+                        <h4 style="color: #1976D2; margin-top: 1.5rem;">性能对比</h4>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Key 类型</th>
+                                    <th>查找复杂度</th>
+                                    <th>内存开销</th>
+                                    <th>适用场景</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>无 Key</strong></td>
+                                    <td style="color: #4CAF50;">O(1) 索引</td>
+                                    <td style="color: #4CAF50;">无</td>
+                                    <td>静态列表</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ValueKey</strong></td>
+                                    <td style="color: #4CAF50;">O(1) 哈希</td>
+                                    <td style="color: #4CAF50;">低</td>
+                                    <td>动态列表（推荐）</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ObjectKey</strong></td>
+                                    <td style="color: #4CAF50;">O(1) 哈希</td>
+                                    <td style="color: #FF9800;">中</td>
+                                    <td>复杂对象</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>UniqueKey</strong></td>
+                                    <td style="color: #FF9800;">O(1) 哈希</td>
+                                    <td style="color: #F44336;">高</td>
+                                    <td>特殊场景</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>GlobalKey</strong></td>
+                                    <td style="color: #4CAF50;">O(1) 哈希</td>
+                                    <td style="color: #F44336;">很高</td>
+                                    <td>表单验证等</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
                     <!-- Key 的类型 -->
                     <div class="component-card">
                         <h3>📚 Key 的类型</h3>
