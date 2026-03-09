@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flutter Key 详解 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary-color: #2196F3;
+            --secondary-color: #1976D2;
+            --accent-color: #03DAC6;
+            --success-color: #4CAF50;
+            --warning-color: #FF9800;
+            --danger-color: #F44336;
+            --text-color: #333;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --dark-bg: #1e1e1e;
+            --border-radius: 12px;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-hover: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .tutorial-page {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 2.5rem;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .tutorial-nav {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tutorial-nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .tutorial-nav a:hover {
+            background: rgba(33, 150, 243, 0.1);
+            text-decoration: none;
+            transform: translateX(-4px);
+        }
+
+        .tutorial-content h1 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tutorial-content > p {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .tutorial-content h2 {
+            color: var(--secondary-color);
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .tutorial-content h2:before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 28px;
+            background: linear-gradient(180deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 2px;
+        }
+
+        .tutorial-content h3 {
+            color: var(--text-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.35rem;
+            font-weight: 600;
+        }
+
+        .tutorial-content h4 {
+            color: var(--secondary-color);
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        .tutorial-content p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        .tutorial-content ul, .tutorial-content ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        .tutorial-content li {
+            margin-bottom: 0.6rem;
+        }
+
+        .note-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(33, 150, 243, 0.15);
+        }
+
+        .note-box strong {
+            color: var(--secondary-color);
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-left: 4px solid var(--warning-color);
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(255, 152, 0, 0.15);
+        }
+
+        .warning-box strong {
+            color: #E65100;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 4px solid var(--success-color);
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.15);
+        }
+
+        .tip-box strong {
+            color: #2E7D32;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid #e0e0e0;
+        }
+
+        .info-box h4 {
+            color: var(--primary-color);
+            margin-top: 1.5rem;
+        }
+
+        .info-box h4:first-child {
+            margin-top: 0;
+        }
+
+        .code-block {
+            background: var(--dark-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .code-block pre {
+            margin: 0;
+        }
+
+        .code-block code {
+            font-family: 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #d4d4d4;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            transform: translateY(-1px);
+        }
+
+        .component-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            margin: 2.5rem 0;
+            border: 1px solid #e0e0e0;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .component-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        }
+
+        .component-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-4px);
+        }
+
+        .component-card h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .component-card h3 {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            padding-left: 2rem;
+            position: relative;
+            margin-bottom: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .feature-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .data-table caption {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .data-table th {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+            color: var(--text-light);
+        }
+
+        .data-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .data-table tr:hover {
+            background: #e3f2fd;
+        }
+
+        .diagram-container {
+            margin: 2rem 0;
+        }
+
+        .diagram-container h3 {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .flowchart-container {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+            border: 1px solid #e0e0e0;
+        }
+
+        .flowchart-container h3 {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .flow-node {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-radius: 10px;
+            font-weight: 600;
+            margin: 0.5rem;
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+            min-width: 150px;
+            text-align: center;
+        }
+
+        .flow-node.decision {
+            background: linear-gradient(135deg, var(--warning-color) 0%, #F57C00 100%);
+            box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+        }
+
+        .flow-node.start-end {
+            background: linear-gradient(135deg, var(--success-color) 0%, #43A047 100%);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+
+        .flow-arrow {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin: 0.5rem 0;
+        }
+
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e0e0e0;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .topic-nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .topic-nav a:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+        }
+
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #8be9fd; }
+        .comment { color: #6272a4; font-style: italic; }
+        .number { color: #bd93f9; }
+        .type { color: #50fa7b; }
+        .property { color: #ffb86c; }
+        .operator { color: #ff79c6; }
+
+        @media (max-width: 768px) {
+            .tutorial-page {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            .tutorial-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .tutorial-content h2 {
+                font-size: 1.4rem;
+            }
+
+            .topic-nav {
+                flex-direction: column;
+            }
+
+            .topic-nav a {
+                text-align: center;
+                justify-content: center;
+            }
+
+            .data-table {
+                font-size: 0.85rem;
+            }
+
+            .data-table th, .data-table td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tutorial-content {
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#getting-started">入门指南</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                    <li><a href="index.html#examples">示例</a></li>
+                    <li><a href="index.html#resources">资源</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="tutorial-page">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="tutorial-content">
+                <h1>🔑 Flutter Key 详解</h1>
+                <p>Key 是 Flutter 中用于标识 Widget 的重要机制，理解 Key 的作用对于优化性能和保持状态至关重要。</p>
+
+                <div class="note-box">
+                    <strong>💡 重要提示：</strong>Key 的正确使用可以避免很多状态错乱的问题，是 Flutter 开发中的核心概念之一。
+                </div>
+
+                <!-- 为什么需要 Key -->
+                <div class="component-card" style="background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-left: 4px solid #9C27B0;">
+                    <h2>📌 为什么需要 Key</h2>
+                    <p style="color: #6A1B9A;">当同类型的 Widget 在列表中交换位置时，Flutter 默认会复用 Element，导致状态错乱。Key 用于解决这类问题。</p>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0;">
+                        <div style="background: #ffebee; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #F44336;">
+                            <h4 style="color: #C62828; margin: 0 0 1rem 0;">❌ 没有 Key</h4>
+                            <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.95rem;">Widget 交换位置时，Element 保持原位，状态跟随位置而非数据</p>
+                            <div style="background: #263238; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #80cbc4;">
+                                <pre style="margin: 0;"><span style="color: #bb80b3;">// 问题示例：使用索引作为标识</span>
+<span style="color: #ffcb6b;">ListView</span>.<span style="color: #ffcb6b;">builder</span>(
+  itemCount: items.length,
+  itemBuilder: (context, index) {
+    <span style="color: #82aaff;">return</span> <span style="color: #ffcb6b;">ListTile</span>(
+      title: <span style="color: #ffcb6b;">Text</span>(items[index]),
+    );
+  },
+);</pre>
+                            </div>
+                            <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(244, 67, 54, 0.1); border-radius: 8px;">
+                                <p style="margin: 0; color: #C62828; font-size: 0.9rem;"><strong>问题：</strong>当 items 列表重新排序后，Checkbox 的状态会跟随位置而非数据</p>
+                            </div>
+                        </div>
+
+                        <div style="background: #e8f5e9; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4CAF50;">
+                            <h4 style="color: #2E7D32; margin: 0 0 1rem 0;">✅ 使用 Key</h4>
+                            <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.95rem;">Widget 交换位置时，Element 跟随 Key 移动，状态保持正确</p>
+                            <div style="background: #263238; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #80cbc4;">
+                                <pre style="margin: 0;"><span style="color: #bb80b3;">// 正确示例：使用 ValueKey</span>
+<span style="color: #ffcb6b;">ListView</span>.<span style="color: #ffcb6b;">builder</span>(
+  itemCount: items.length,
+  itemBuilder: (context, index) {
+    <span style="color: #82aaff;">return</span> <span style="color: #ffcb6b;">ListTile</span>(
+      <span style="color: #82aaff;">key:</span> <span style="color: #ffcb6b;">ValueKey</span>(items[index].id),
+      title: <span style="color: #ffcb6b;">Text</span>(items[index].name),
+    );
+  },
+);</pre>
+                            </div>
+                            <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(76, 175, 80, 0.1); border-radius: 8px;">
+                                <p style="margin: 0; color: #2E7D32; font-size: 0.9rem;"><strong>优势：</strong>无论列表如何排序，每个项的状态都会正确跟随数据</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key 的类型 -->
+                <div class="component-card">
+                    <h2>📚 Key 的类型</h2>
+                    
+                    <h3 style="color: #1976D2; margin-top: 1.5rem;">1. LocalKey（本地 Key）</h3>
+                    <p style="color: #666;">用于同层级 Widget 之间的区分</p>
+                    
+                    <div style="display: grid; gap: 1rem; margin: 1.5rem 0;">
+                        <div style="background: #e3f2fd; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #1565C0;">
+                            <h4 style="color: #1565C0; margin: 0 0 0.75rem 0; font-size: 1.1rem;">ValueKey</h4>
+                            <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.95rem;">使用值作为标识，适用于简单数据类型（String、int 等）</p>
+                            <div style="background: #263238; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #80cbc4;">
+                                <pre style="margin: 0;"><span style="color: #bb80b3;">// 使用字符串</span>
+<span style="color: #ffcb6b;">Text</span>(<span style="color: #c3e88d;">'Item $i'</span>, <span style="color: #82aaff;">key:</span> <span style="color: #ffcb6b;">ValueKey</span>(i))
+
+<span style="color: #bb80b3;">// 使用 ID</span>
+<span style="color: #ffcb6b;">ListTile</span>(
+  <span style="color: #82aaff;">key:</span> <span style="color: #ffcb6b;">ValueKey</span>(user.id),
+  title: <span style="color: #ffcb6b;">Text</span>(user.name),
+)</pre>
+                            </div>
+                        </div>
+
+                        <div style="background: #e3f2fd; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #1565C0;">
+                            <h4 style="color: #1565C0; margin: 0 0 0.75rem 0; font-size: 1.1rem;">ObjectKey</h4>
+                            <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.95rem;">使用对象作为标识，适用于复杂数据类型</p>
+                            <div style="background: #263238; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #80cbc4;">
+                                <pre style="margin: 0;"><span style="color: #bb80b3;">// 使用整个对象</span>
+<span style="color: #ffcb6b;">Text</span>(item.name, <span style="color: #82aaff;">key:</span> <span style="color: #ffcb6b;">ObjectKey</span>(item))
+
+<span style="color: #bb80b3;">// 适用于对象内容可能变化的场景</span>
+<span style="color: #ffcb6b;">ListTile</span>(
+  <span style="color: #82aaff;">key:</span> <span style="color: #ffcb6b;">ObjectKey</span>(product),
+  title: <span style="color: #ffcb6b;">Text</span>(product.name),
+)</pre>
+                            </div>
+                        </div>
+
+                        <div style="background: #e3f2fd; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #FF9800;">
+                            <h4 style="color: #E65100; margin: 0 0 0.75rem 0; font-size: 1.1rem;">UniqueKey</h4>
+                            <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.95rem;">生成唯一标识，每次创建都不同</p>
+                            <div style="background: #263238; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #80cbc4;">
+                                <pre style="margin: 0;"><span style="color: #bb80b3;">// 每次都会创建新的 Key</span>
+<span style="color: #ffcb6b;">Text</span>(<span style="color: #c3e88d;">'Item'</span>, <span style="color: #82aaff;">key:</span> <span style="color: #ffcb6b;">UniqueKey</span>())
+
+<span style="color: #bb80b3;">// ⚠️ 会导致 Widget 每次都重建，慎用！</span></pre>
+                            </div>
+                            <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(255, 152, 0, 0.1); border-radius: 8px;">
+                                <p style="margin: 0; color: #E65100; font-size: 0.9rem;"><strong>⚠️ 注意：</strong>滥用 UniqueKey 会导致性能问题，因为它会阻止 Widget 复用</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 style="color: #1976D2; margin-top: 2rem;">2. GlobalKey（全局 Key）</h3>
+                    <p style="color: #666;">在整个应用范围内唯一标识一个 Widget，可以跨父组件访问状态</p>
+                    
+                    <div style="background: #e8f5e9; padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0;">
+                        <h4 style="color: #2E7D32; margin: 0 0 1rem 0; font-size: 1.1rem;">使用示例</h4>
+                        <div style="background: #263238; padding: 1.25rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #80cbc4;">
+                            <pre style="margin: 0;"><span style="color: #bb80b3;">// 1. 定义 GlobalKey</span>
+<span style="color: #82aaff;">final</span> _formKey = <span style="color: #ffcb6b;">GlobalKey</span>&lt;<span style="color: #ffcb6b;">FormState</span>&gt;();
+
+<span style="color: #bb80b3;">// 2. 应用到 Widget</span>
+<span style="color: #ffcb6b;">Form</span>(
+  key: _formKey,
+  child: <span style="color: #ffcb6b;">Column</span>(
+    children: [
+      <span style="color: #ffcb6b;">TextFormField</span>(
+        validator: (value) {
+          <span style="color: #82aaff;">if</span> (value?.isEmpty ?? <span style="color: #82aaff;">true</span>) {
+            <span style="color: #82aaff;">return</span> <span style="color: #c3e88d;">'请输入内容'</span>;
+          }
+          <span style="color: #82aaff;">return</span> <span style="color: #82aaff;">null</span>;
+        },
+      ),
+    ],
+  ),
+)
+
+<span style="color: #bb80b3;">// 3. 访问 Widget 状态</span>
+_formKey.currentState?.<span style="color: #ffcb6b;">save</span>();
+_formKey.currentState?.<span style="color: #ffcb6b;">validate</span>();</pre>
+                        </div>
+                        
+                        <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(255, 152, 0, 0.1); border-radius: 8px;">
+                            <h5 style="color: #E65100; margin: 0 0 0.5rem 0; font-size: 0.95rem;">⚠️ 注意事项</h5>
+                            <ul style="margin: 0; padding-left: 1.25rem; color: #424242; font-size: 0.9rem; line-height: 1.7;">
+                                <li style="margin-bottom: 0.4rem;"><strong>性能开销大：</strong>GlobalKey 需要在整个 Widget 树中查找，影响性能</li>
+                                <li style="margin-bottom: 0.4rem;"><strong>仅在必要时使用：</strong>如表单验证、跨组件通信等场景</li>
+                                <li><strong>避免滥用：</strong>能使用状态管理解决的问题，优先使用状态管理</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 使用场景 -->
+                <div class="component-card">
+                    <h2>🎯 使用场景</h2>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin: 1.5rem 0;">
+                        <div style="background: white; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4CAF50; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <h4 style="color: #2E7D32; margin: 0 0 0.75rem 0;">✅ 列表项交换</h4>
+                            <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.95rem;">ListView/GridView 中可拖拽排序的项</p>
+                            <div style="background: #263238; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.8rem; color: #80cbc4;">
+                                <pre style="margin: 0;"><span style="color: #ffcb6b;">ListView</span>.<span style="color: #ffcb6b;">builder</span>(
+  itemBuilder: (context, i) {
+    <span style="color: #82aaff;">return</span> <span style="color: #ffcb6b;">ListTile</span>(
+      <span style="color: #82aaff;">key:</span> <span style="color: #ffcb6b;">ValueKey</span>(items[i].id),
+      ...
+    );
+  },
+);</pre>
+                            </div>
+                        </div>
+
+                        <div style="background: white; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4CAF50; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <h4 style="color: #2E7D32; margin: 0 0 0.75rem 0;">✅ 表单验证</h4>
+                            <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.95rem;">需要访问 FormState 进行验证</p>
+                            <div style="background: #263238; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.8rem; color: #80cbc4;">
+                                <pre style="margin: 0;"><span style="color: #82aaff;">final</span> _formKey = 
+    <span style="color: #ffcb6b;">GlobalKey</span>&lt;<span style="color: #ffcb6b;">FormState</span>&gt;();
+
+<span style style="color: #82aaff;">if</span> (_formKey.currentState!
+    .<span style="color: #ffcb6b;">validate</span>()) {
+  <span style="color: #bb80b3;">// 提交表单</span>
+}</pre>
+                            </div>
+                        </div>
+
+                        <div style="background: white; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #FF9800; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <h4 style="color: #E65100; margin: 0 0 0.75rem 0;">⚠️ 页面切换</h4>
+                            <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.95rem;">跨页面保持状态时谨慎使用</p>
+                            <div style="background: #263238; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.8rem; color: #80cbc4;">
+                                <pre style="margin: 0;"><span style="color: #bb80b3;">// 可能需要 GlobalKey</span>
+<span style="color: #bb80b3;">// 但优先考虑状态管理</span>
+<span style="color: #bb80b3;">// 如 Provider、Riverpod</span></pre>
+                            </div>
+                        </div>
+
+                        <div style="background: white; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #F44336; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <h4 style="color: #C62828; margin: 0 0 0.75rem 0;">❌ 静态列表</h4>
+                            <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.95rem;">内容固定不变的列表不需要 Key</p>
+                            <div style="background: #263238; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.8rem; color: #80cbc4;">
+                                <pre style="margin: 0;"><span style="color: #bb80b3;">// 不需要 Key</span>
+<span style="color: #ffcb6b;">ListView</span>(
+  children: [
+    <span style="color: #ffcb6b;">ListTile</span>(title: <span style="color: #ffcb6b;">Text</span>(<span style="color: #c3e88d;">'固定项 1'</span>)),
+    <span style="color: #ffcb6b;">ListTile</span>(title: <span style="color: #ffcb6b;">Text</span>(<span style="color: #c3e88d;">'固定项 2'</span>)),
+  ],
+)</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 最佳实践 -->
+                <div class="component-card" style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 4px solid #FF9800;">
+                    <h2>💡 最佳实践</h2>
+                    
+                    <div style="background: white; border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0;">
+                        <h3 style="color: #2E7D32; margin: 0 0 1rem 0; font-size: 1.2rem;">✅ 推荐做法</h3>
+                        <ul class="feature-list">
+                            <li><strong>优先使用 ValueKey/ObjectKey</strong>：使用业务数据（如 ID）作为 Key，避免使用索引</li>
+                            <li><strong>Key 应该稳定</strong>：同一 Widget 的 Key 在重建时应保持不变</li>
+                            <li><strong>在动态列表中使用 Key</strong>：当列表项可以添加、删除、排序时</li>
+                            <li><strong>使用有唯一标识的数据</strong>：如数据库 ID、UUID 等</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: white; border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0;">
+                        <h3 style="color: #C62828; margin: 0 0 1rem 0; font-size: 1.2rem;">❌ 避免做法</h3>
+                        <ul class="feature-list" style="color: #C62828;">
+                            <li style="color: #C62828;"><strong>避免使用索引作为 Key</strong>：当列表会变化时，索引不稳定</li>
+                            <li style="color: #C62828;"><strong>避免滥用 UniqueKey</strong>：会导致 Widget 每次都重建，失去性能优化</li>
+                            <li style="color: #C62828;"><strong>避免在静态内容中使用 Key</strong>：增加不必要的开销</li>
+                            <li style="color: #C62828;"><strong>谨慎使用 GlobalKey</strong>：性能开销大，仅用于必要场景</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0;">
+                        <h3 style="color: #1565C0; margin: 0 0 1rem 0; font-size: 1.2rem;">📊 性能对比</h3>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Key 类型</th>
+                                    <th>性能</th>
+                                    <th>适用场景</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>ValueKey</strong></td>
+                                    <td style="color: #4CAF50;">⭐⭐⭐⭐⭐</td>
+                                    <td>简单数据类型</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ObjectKey</strong></td>
+                                    <td style="color: #4CAF50;">⭐⭐⭐⭐</td>
+                                    <td>复杂对象</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>UniqueKey</strong></td>
+                                    <td style="color: #FF9800;">⭐⭐</td>
+                                    <td>特殊场景</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>GlobalKey</strong></td>
+                                    <td style="color: #F44336;">⭐</td>
+                                    <td>表单验证等</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 总结 -->
+                <div class="tip-box">
+                    <strong>📝 总结：</strong>
+                    <ul style="margin: 1rem 0 0 0; padding-left: 1.25rem; color: #424242; line-height: 1.8;">
+                        <li>Key 是 Flutter 中用于标识 Widget 的机制，解决状态复用问题</li>
+                        <li>优先使用 ValueKey/ObjectKey，避免使用索引</li>
+                        <li>GlobalKey 性能开销大，仅在必要时使用</li>
+                        <li>正确的 Key 使用可以提升应用性能和用户体验</li>
+                    </ul>
+                </div>
+
+                <div class="topic-nav">
+                    <a href="navigation-widgets.html">← 返回导航组件</a>
+                    <a href="index.html#routing">路由导航 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

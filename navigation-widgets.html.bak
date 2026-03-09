@@ -109,11 +109,6 @@
         }
 
         /* info-box 内的 h2 不显示左侧装饰条 */
-        .info-box h2 {
-            display: block;
-            margin-top: 0;
-        }
-        
         .info-box h2:before,
         .info-box h3:before {
             display: none !important;
@@ -191,107 +186,6 @@
 
         .tip-box strong {
             color: #2E7D32;
-        }
-
-        .info-box {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%) !important;
-            border-radius: var(--border-radius);
-            padding: 2.5rem !important;
-            margin: 2.5rem 0;
-            border: 1px solid #e0e0e0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            border-left: none !important;
-        }
-
-        .tutorial-page .info-box h2 {
-            color: var(--primary-color) !important;
-            margin-top: 0 !important;
-            margin-bottom: 1.5rem !important;
-            font-size: 1.5rem !important;
-            font-weight: 600 !important;
-        }
-
-        .tutorial-page .info-box h2:before {
-            display: none !important;
-            content: none !important;
-        }
-
-        .tutorial-page .info-box h3 {
-            color: var(--secondary-color) !important;
-            margin-top: 2rem !important;
-            margin-bottom: 1rem !important;
-            font-size: 1.25rem !important;
-            font-weight: 600 !important;
-        }
-
-        .tutorial-page .info-box h3:before {
-            display: none !important;
-            content: none !important;
-        }
-
-        .tutorial-page .info-box h3:first-of-type {
-            margin-top: 0 !important;
-        }
-
-        .tutorial-page .info-box h4 {
-            color: var(--primary-color) !important;
-            margin-top: 1.5rem !important;
-        }
-
-        .tutorial-page .info-box h4:first-child {
-            margin-top: 0 !important;
-        }
-
-        .tutorial-page .info-box p {
-            color: var(--text-light) !important;
-        }
-
-        .tutorial-page .info-box .code-block {
-            background: #263238 !important;
-            margin: 1rem 0 !important;
-        }
-
-        .tutorial-page .info-box .feature-list {
-            margin-top: 1rem !important;
-        }
-
-        .tutorial-page .info-box .data-table {
-            margin-top: 1rem !important;
-            font-size: 0.95rem !important;
-        }
-
-        .tutorial-page .info-box .warning-box,
-        .tutorial-page .info-box .tip-box {
-            margin: 1.5rem 0 !important;
-        }
-
-        /* info-box 内自定义标题样式 */
-        .info-box-title {
-            color: var(--primary-color) !important;
-            font-size: 1.5rem !important;
-            font-weight: 600 !important;
-            margin-top: 0 !important;
-            margin-bottom: 1rem !important;
-        }
-
-        .info-box-section-title {
-            color: var(--secondary-color) !important;
-            font-size: 1.25rem !important;
-            font-weight: 600 !important;
-            margin-top: 2rem !important;
-            margin-bottom: 1rem !important;
-        }
-
-        .info-box-section-title:first-of-type {
-            margin-top: 0 !important;
-        }
-
-        .info-box-subtitle {
-            color: var(--primary-color) !important;
-            font-size: 1.1rem !important;
-            font-weight: 600 !important;
-            margin-top: 1.5rem !important;
-            margin-bottom: 0.75rem !important;
         }
 
         /* Code blocks */
@@ -621,308 +515,199 @@
                     <strong>💡 重要提示：</strong>Flutter 3.28+ 引入了 Navigator 2.0，提供了更强大的路由管理和状态管理能力。
                 </div>
 
-                <!-- Flutter 路由基础 -->
-                <div class="info-box">
-                    <div class="info-box-title">🧭 Flutter 路由系统详解</div>
-                    <p>路由是应用中页面跳转和导航的核心机制。Flutter 提供了两套路由系统：<strong>Navigator 1.0（命令式）</strong>和<strong>Navigator 2.0（声明式）</strong>。</p>
+                <!-- 导航原理 -->
+                <div class="component-card" style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 4px solid #2196F3;">
+                    <h2>🔬 导航原理</h2>
+                    <p style="color: #1565C0;">Flutter 的导航系统基于<strong>路由栈（Route Stack）</strong>模型，理解其工作原理对于掌握页面跳转至关重要。</p>
 
-                    <div class="info-box-section-title">📚 路由核心概念</div>
-                    <ul class="feature-list">
-                        <li><strong>Route（路由）</strong>：代表应用中的一个页面或屏幕，是屏幕的抽象</li>
-                        <li><strong>Navigator（导航器）</strong>：管理路由栈的组件，负责页面的入栈和出栈</li>
-                        <li><strong>路由栈</strong>：由 Navigator 维护的页面堆栈，遵循后进先出（LIFO）原则</li>
-                        <li><strong>页面切换</strong>：通过推送（push）和弹出（pop）操作实现页面跳转</li>
-                        <li><strong>路由参数</strong>：在页面跳转时传递的数据，包括导航参数和返回参数</li>
+                    <h3 style="color: #1976D2; margin-top: 1.5rem;">📚 路由栈机制</h3>
+                    <p style="color: #424242;">Navigator 内部维护一个路由栈，遵循<strong>后进先出（LIFO）</strong>原则：</p>
+                    <ul class="feature-list" style="margin: 1rem 0;">
+                        <li><strong>push</strong>：将新路由压入栈顶，当前页面被覆盖</li>
+                        <li><strong>pop</strong>：将栈顶路由弹出，返回上一页</li>
+                        <li><strong>pushReplacement</strong>：弹出栈顶路由，再压入新路由</li>
+                        <li><strong>pushAndRemoveUntil</strong>：清空栈中所有路由，再压入新路由</li>
                     </ul>
 
-                    <div class="diagram-container">
-                        <h3>📊 路由栈示意图</h3>
-                        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem; padding: 2.5rem; background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%); border-radius: 16px; border: 2px solid #e0e0e0; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
-                            <div style="padding: 0.875rem 2.5rem; background: linear-gradient(135deg, #4CAF50 0%, #43A047 100%); color: white; border-radius: 10px; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3); transition: all 0.3s ease;">
-                                ← 返回上一页（pop）
+                    <div style="background: white; border-radius: 12px; padding: 2rem; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <h4 style="text-align: center; color: #1976D2; margin: 0 0 1.5rem 0;">📊 路由栈工作流程</h4>
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem;">
+                            <div style="padding: 0.75rem 2rem; background: linear-gradient(135deg, #4CAF50 0%, #43A047 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);">
+                                ← pop() 弹出栈顶
                             </div>
-                            <div style="font-size: 1.75rem; color: #666; font-weight: 300;">↓</div>
-                            <div style="padding: 0.875rem 2.5rem; background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%); color: white; border-radius: 10px; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3); transition: all 0.3s ease;">
-                                当前页面（页面 C）
+                            <div style="font-size: 1.5rem; color: #666;">↑</div>
+                            <div style="padding: 0.75rem 2rem; background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);">
+                                页面 C（栈顶）
                             </div>
-                            <div style="padding: 0.875rem 2.5rem; background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%); color: white; border-radius: 10px; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3); transition: all 0.3s ease;">
-                                上一页（页面 B）
+                            <div style="padding: 0.75rem 2rem; background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);">
+                                页面 B
                             </div>
-                            <div style="padding: 0.875rem 2.5rem; background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%); color: white; border-radius: 10px; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3); transition: all 0.3s ease;">
-                                首页（页面 A）
+                            <div style="padding: 0.75rem 2rem; background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3);">
+                                页面 A（栈底/首页）
                             </div>
-                            <div style="font-size: 1.75rem; color: #666; font-weight: 300;">↓</div>
-                            <div style="padding: 0.875rem 2.5rem; background: linear-gradient(135deg, #607D8B 0%, #455A64 100%); color: white; border-radius: 10px; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 12px rgba(96, 125, 139, 0.3); transition: all 0.3s ease;">
-                                → 跳转到新页（push）
+                            <div style="font-size: 1.5rem; color: #666;">↓</div>
+                            <div style="padding: 0.75rem 2rem; background: linear-gradient(135deg, #607D8B 0%, #455A64 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(96, 125, 139, 0.3);">
+                                → push() 压入新页面
                             </div>
                         </div>
                     </div>
 
-                    <div class="info-box-section-title">🔄 Navigator 1.0 vs Navigator 2.0</div>
-                    <table class="data-table">
-                        <caption>两套路由系统对比</caption>
-                        <thead>
-                            <tr>
-                                <th>特性</th>
-                                <th>Navigator 1.0</th>
-                                <th>Navigator 2.0</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>编程范式</strong></td>
-                                <td>命令式（Imperative）</td>
-                                <td>声明式（Declarative）</td>
-                            </tr>
-                            <tr>
-                                <td><strong>状态管理</strong></td>
-                                <td>由 Navigator 内部管理</td>
-                                <td>由开发者完全控制</td>
-                            </tr>
-                            <tr>
-                                <td><strong>适用场景</strong></td>
-                                <td>简单应用、快速开发</td>
-                                <td>复杂应用、深度链接、Web</td>
-                            </tr>
-                            <tr>
-                                <td><strong>学习曲线</strong></td>
-                                <td>简单</td>
-                                <td>较复杂</td>
-                            </tr>
-                            <tr>
-                                <td><strong>API</strong></td>
-                                <td>Navigator.push/pop</td>
-                                <td>Router、RouteInformationParser</td>
-                            </tr>
-                            <tr>
-                                <td><strong>URL 同步</strong></td>
-                                <td>需要手动处理</td>
-                                <td>自动同步</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="warning-box">
-                        <strong>⚠️ 选择建议：</strong>
-                        <ul class="feature-list">
-                            <li><strong>初学者或简单应用：</strong>推荐使用 Navigator 1.0，学习曲线低，开发效率高</li>
-                            <li><strong>复杂应用或需要深度链接：</strong>推荐使用 Navigator 2.0，提供更强大的控制能力</li>
-                            <li><strong>Web 应用：</strong>必须使用 Navigator 2.0 以支持 URL 和浏览器导航</li>
-                        </ul>
+                    <h3 style="color: #1976D2; margin-top: 1.5rem;">🔄 页面切换原理</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                        <div style="background: white; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #4CAF50;">
+                            <h5 style="color: #2E7D32; margin: 0 0 0.5rem 0;">push 操作</h5>
+                            <p style="margin: 0; color: #666; font-size: 0.9rem;">新页面入栈 → 触发 build → 执行动画 → 显示新页面</p>
+                        </div>
+                        <div style="background: white; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #F44336;">
+                            <h5 style="color: #C62828; margin: 0 0 0.5rem 0;">pop 操作</h5>
+                            <p style="margin: 0; color: #666; font-size: 0.9rem;">当前页面出栈 → 触发 dispose → 执行动画 → 显示上一页</p>
+                        </div>
+                        <div style="background: white; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #FF9800;">
+                            <h5 style="color: #E65100; margin: 0 0 0.5rem 0;">replace 操作</h5>
+                            <p style="margin: 0; color: #666; font-size: 0.9rem;">先 pop 再 push → 原子操作 → 无返回动画</p>
+                        </div>
                     </div>
 
-                    <div class="info-box-section-title">🎯 路由类型</div>
-                    <div class="info-box">
-                        <h4>1. MaterialPageRoute</h4>
-                        <p>Material Design 风格的页面切换，包含平台特定的转场动画。</p>
-                        <div class="code-block">
-                            <pre><code>MaterialPageRoute(
-  builder: (context) => const SecondPage(),
-  fullscreenDialog: false,  // 是否为全屏对话框
-  maintainState: true,      // 是否保持页面状态
-)</code></pre>
+                    <h3 style="color: #1976D2; margin-top: 1.5rem;">📞 参数传递原理</h3>
+                    <div style="background: white; border-radius: 10px; padding: 1.5rem; margin: 1rem 0;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; padding: 1rem; background: #e3f2fd; border-radius: 8px; border-left: 4px solid #1565C0;">
+                            <div style="background: #1565C0; color: white; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; white-space: nowrap;">正向传递</div>
+                            <p style="margin: 0; color: #424242;">通过构造函数或 settings.arguments 传递数据给新页面</p>
                         </div>
-
-                        <h4>2. CupertinoPageRoute</h4>
-                        <p>iOS 风格的页面切换，使用 iOS 原生转场动画。</p>
-                        <div class="code-block">
-                            <pre><code>CupertinoPageRoute(
-  builder: (context) => const SecondPage(),
-)</code></pre>
+                        <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: #e8f5e9; border-radius: 8px; border-left: 4px solid #2E7D32;">
+                            <div style="background: #2E7D32; color: white; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; white-space: nowrap;">反向返回</div>
+                            <p style="margin: 0; color: #424242;">通过 pop(result) 返回数据，await push 接收结果</p>
                         </div>
+                    </div>
 
-                        <h4>3. PageRouteBuilder</h4>
-                        <p>自定义页面转场动画的通用路由。</p>
-                        <div class="code-block">
-                            <pre><code>PageRouteBuilder(
-  pageBuilder: (context, animation, secondaryAnimation) => const SecondPage(),
+                    <h3 style="color: #1976D2; margin-top: 1.5rem;">🎭 动画原理</h3>
+                    <p style="color: #424242;">页面切换动画由<strong>PageRouteBuilder</strong>的 transitionsBuilder 控制：</p>
+                    <div style="background: #263238; border-radius: 10px; padding: 1.25rem; margin: 1rem 0; overflow-x: auto;">
+<pre style="margin: 0; color: #80cbc4; font-family: monospace; font-size: 0.85rem; line-height: 1.6;"><code>PageRouteBuilder(
+  pageBuilder: (context, animation, secondaryAnimation) =&gt; SecondPage(),
   transitionsBuilder: (context, animation, secondaryAnimation, child) {
-    const begin = Offset(0.0, 1.0);
-    const end = Offset.zero;
-    const curve = Curves.ease;
-
-    var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-    var offsetAnimation = animation.drive(tween);
-
-    return SlideTransition(
-      position: offsetAnimation,
+    <span style="color: #bb80b3;">// animation: 当前页面的动画控制器（0.0 - 1.0）</span>
+    <span style="color: #bb80b3;">// secondaryAnimation: 下一页进入时的动画控制器</span>
+    <span style="color: #bb80b3;">// child: 要显示的页面 Widget</span>
+    
+    <span style="color: #82aaff;">var</span> tween = <span style="color: #ffcb6b;">Tween</span>(begin: <span style="color: #82aaff;">Offset</span>(<span style="color: #f78c6c;">1.0</span>, <span style="color: #f78c6c;">0.0</span>), end: <span style="color: #82aaff;">Offset</span>.zero);
+    <span style="color: #82aaff;">return</span> <span style="color: #ffcb6b;">SlideTransition</span>(
+      position: animation.<span style="color: #ffcb6b;">drive</span>(tween),
       child: child,
     );
   },
 )</code></pre>
-                        </div>
                     </div>
 
-                    <div class="info-box-section-title">📤 路由参数传递</div>
-                    <div class="info-box">
-                        <div class="info-box-subtitle">通过构造函数传递参数</div>
-                        <div class="code-block">
-                            <pre><code>// 定义带参数的页面
-class DetailsPage extends StatelessWidget {
-  final String title;
-  final int id;
-
-  const DetailsPage({
-    super.key,
-    required this.title,
-    required this.id,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(title)),
-      body: Center(child: Text('ID: $id')),
-    );
-  }
-}
-
-// 传递参数
-Navigator.push(
-  context,
-  MaterialPageRoute(
-    builder: (context) => DetailsPage(
-      title: '产品详情',
-      id: 123,
-    ),
-  ),
-);</code></pre>
-                        </div>
-
-                        <div class="info-box-subtitle">通过 arguments 传递参数（命名路由）</div>
-                        <div class="code-block">
-                            <pre><code>// 在 MaterialApp 中定义路由
-MaterialApp(
-  routes: {
-    '/': (context) => const HomePage(),
-    '/details': (context) {
-      final args = ModalRoute.of(context)!.settings.arguments as Map;
-      return DetailsPage(
-        title: args['title'] as String,
-        id: args['id'] as int,
-      );
-    },
-  },
-);
-
-// 传递参数
-Navigator.pushNamed(
-  context,
-  '/details',
-  arguments: {'title': '产品详情', 'id': 123},
-);</code></pre>
-                        </div>
-
-                        <div class="info-box-subtitle">页面返回数据</div>
-                        <div class="code-block">
-                            <pre><code>// 推送页面并等待返回结果
-final result = await Navigator.push(
-  context,
-  MaterialPageRoute(builder: (context) => const SelectionPage()),
-);
-
-if (result != null) {
-  print('用户选择了: $result');
-}
-
-// 在 SelectionPage 中返回数据
-Navigator.pop(context, '选择的结果');</code></pre>
-                        </div>
-                    </div>
-
-                    <div class="info-box-section-title">🛡️ 路由守卫和中间件</div>
-                    <div class="info-box">
-                        <p>路由守卫用于在页面跳转前进行权限验证、登录检查等操作。</p>
-                        <div class="code-block">
-                            <pre><code>class AuthGuard {
-  static Future<bool> canAccess(BuildContext context, String route) async {
-    // 检查用户是否已登录
-    final isLoggedIn = await AuthService.isLoggedIn();
-    
-    if (!isLoggedIn && route != '/login') {
-      // 未登录，跳转到登录页
-      Navigator.pushReplacementNamed(context, '/login');
-      return false;
-    }
-    
-    return true;
-  }
-}
-
-// 使用路由守卫
-class SafeNavigator {
-  static Future<T?> pushNamed<T>(
-    BuildContext context,
-    String routeName, {
-    Object? arguments,
-  }) async {
-    final canAccess = await AuthGuard.canAccess(context, routeName);
-    if (!canAccess) return null;
-    
-    return Navigator.pushNamed<T>(context, routeName, arguments: arguments);
-  }
-}
-
-// 使用方式
-SafeNavigator.pushNamed(context, '/profile');</code></pre>
-                        </div>
-                    </div>
-
-                    <div class="info-box-section-title">🔗 深度链接</div>
-                    <div class="info-box">
-                        <p>深度链接允许用户通过 URL 直接打开应用中的特定页面。</p>
-                        <div class="code-block">
-                            <pre><code>MaterialApp(
-  // 支持深度链接
-  onGenerateRoute: (settings) {
-    // 解析 URL
-    final uri = Uri.parse(settings.name!);
-    
-    // 处理不同路径
-    switch (uri.path) {
-      case '/':
-        return MaterialPageRoute(builder: (_) => const HomePage());
-      case '/product':
-        final id = int.tryParse(uri.queryParameters['id'] ?? '0');
-        return MaterialPageRoute(
-          builder: (_) => ProductPage(id: id ?? 0),
-        );
-      case '/user':
-        final userId = uri.queryParameters['userId'];
-        return MaterialPageRoute(
-          builder: (_) => UserProfilePage(userId: userId),
-        );
-      default:
-        return MaterialPageRoute(builder: (_) => const NotFoundPage());
-    }
-  },
-  
-  // 处理外部链接
-  initialRoute: '/',
-);
-
-// 示例 URL：
-// https://example.com/product?id=123
-// https://example.com/user?userId=john</code></pre>
-                        </div>
-                    </div>
-
-                    <h3>💡 路由最佳实践</h3>
-                    <div class="tip-box">
-                        <ul class="feature-list">
-                            <li><strong>使用命名路由</strong>：集中管理路由，避免硬编码页面路径</li>
-                            <li><strong>路由常量化</strong>：将路由路径定义为常量，避免字符串拼写错误</li>
-                            <li><strong>参数类型安全</strong>：使用数据模型类传递复杂参数，而不是 Map</li>
-                            <li><strong>错误处理</strong>：为未知路由定义 404 页面</li>
-                            <li><strong>页面缓存</strong>：使用 AutomaticKeepAliveClientMixin 保持页面状态</li>
-                            <li><strong>转场动画</strong>：根据平台选择合适的PageRoute类型</li>
-                            <li><strong>路由测试</strong>：编写单元测试验证路由跳转逻辑</li>
-                            <li><strong>性能优化</strong>：使用 const 构造函数减少重建</li>
+                    <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 4px solid #FF9800; padding: 1.25rem; margin: 1.5rem 0; border-radius: 8px;">
+                        <h5 style="color: #E65100; margin: 0 0 0.5rem 0;">💡 关键点</h5>
+                        <ul style="margin: 0; padding-left: 1.25rem; color: #424242; font-size: 0.9rem; line-height: 1.7;">
+                            <li style="margin-bottom: 0.4rem;"><strong>animation 值从 0.0 到 1.0</strong>：表示当前页面从开始到结束的动画进度</li>
+                            <li style="margin-bottom: 0.4rem;"><strong>secondaryAnimation</strong>：当新页面推入时，当前页面的退出动画</li>
+                            <li><strong>child 参数</strong>：已经构建好的页面 Widget，直接包装动画即可</li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="component-card">
+                <!-- Flutter Key 详解 -->
+                <div id="key" class="component-card" style="background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-left: 4px solid #9C27B0;">
+                    <h2>🔑 Flutter Key 详解</h2>
+                    <p style="color: #6A1B9A;">Key 是 Flutter 中用于标识 Widget 的重要机制，理解 Key 的作用对于优化性能和保持状态至关重要。</p>
+
+                    <h3 style="color: #7B1FA2; margin-top: 1.5rem;">📌 为什么需要 Key</h3>
+                    <div style="background: white; border-radius: 10px; padding: 1.5rem; margin: 1rem 0;">
+                        <p style="color: #424242; margin: 0 0 1rem 0;">当同类型的 Widget 在列表中交换位置时，Flutter 默认会复用 Element，导致状态错乱。Key 用于解决这类问题：</p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+                            <div style="background: #ffebee; padding: 1rem; border-radius: 8px; border-left: 4px solid #F44336;">
+                                <h5 style="color: #C62828; margin: 0 0 0.5rem 0;">❌ 没有 Key</h5>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem;">Widget 交换位置时，Element 保持原位，状态跟随位置而非数据</p>
+                            </div>
+                            <div style="background: #e8f5e9; padding: 1rem; border-radius: 8px; border-left: 4px solid #4CAF50;">
+                                <h5 style="color: #2E7D32; margin: 0 0 0.5rem 0;">✅ 使用 Key</h5>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem;">Widget 交换位置时，Element 跟随 Key 移动，状态保持正确</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 style="color: #7B1FA2; margin-top: 1.5rem;">📚 Key 的类型</h3>
+                    <div style="background: white; border-radius: 10px; padding: 1.5rem; margin: 1rem 0;">
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4 style="color: #1976D2; margin: 0 0 0.75rem 0; font-size: 1.1rem;">1. LocalKey（本地 Key）</h4>
+                            <p style="color: #666; font-size: 0.9rem; margin: 0 0 0.75rem 0;">用于同层级 Widget 之间的区分</p>
+                            <div style="display: grid; gap: 0.75rem;">
+                                <div style="background: #e3f2fd; padding: 1rem; border-radius: 8px;">
+                                    <h5 style="color: #1565C0; margin: 0 0 0.5rem 0; font-size: 0.95rem;">ValueKey</h5>
+                                    <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.85rem;">使用值作为标识，适用于简单数据</p>
+                                    <div style="background: #263238; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.8rem; color: #80cbc4;">
+                                        <pre style="margin: 0;">Text('Item $i', key: ValueKey(i))</pre>
+                                    </div>
+                                </div>
+                                <div style="background: #e3f2fd; padding: 1rem; border-radius: 8px;">
+                                    <h5 style="color: #1565C0; margin: 0 0 0.5rem 0; font-size: 0.95rem;">ObjectKey</h5>
+                                    <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.85rem;">使用对象作为标识，适用于复杂数据</p>
+                                    <div style="background: #263238; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.8rem; color: #80cbc4;">
+                                        <pre style="margin: 0;">Text(item.name, key: ObjectKey(item))</pre>
+                                    </div>
+                                </div>
+                                <div style="background: #e3f2fd; padding: 1rem; border-radius: 8px;">
+                                    <h5 style="color: #1565C0; margin: 0 0 0.5rem 0; font-size: 0.95rem;">UniqueKey</h5>
+                                    <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.85rem;">生成唯一标识，每次创建都不同</p>
+                                    <div style="background: #263238; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.8rem; color: #80cbc4;">
+                                        <pre style="margin: 0;">Text('Item', key: UniqueKey())</pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 style="color: #1976D2; margin: 0 0 0.75rem 0; font-size: 1.1rem;">2. GlobalKey（全局 Key）</h4>
+                            <p style="color: #666; font-size: 0.9rem; margin: 0 0 0.75rem 0;">在整个应用范围内唯一标识一个 Widget</p>
+                            <div style="background: #e8f5e9; padding: 1rem; border-radius: 8px;">
+                                <div style="background: #263238; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.8rem; color: #80cbc4; margin-bottom: 0.75rem;">
+                                    <pre style="margin: 0;"><span style="color: #bb80b3;">// 定义 GlobalKey</span>
+<span style="color: #82aaff;">final</span> _formKey = <span style="color: #ffcb6b;">GlobalKey</span>&lt;<span style="color: #ffcb6b;">FormState</span>&gt;();
+
+<span style="color: #bb80b3;">// 使用 Key 访问 Widget 状态</span>
+_formKey.currentState?.save();
+_formKey.currentState?.validate();</pre>
+                                </div>
+                                <p style="margin: 0; color: #666; font-size: 0.85rem;">⚠️ 注意：GlobalKey 性能开销较大，仅在必要时使用</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 style="color: #7B1FA2; margin-top: 1.5rem;">🎯 使用场景</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1rem 0;">
+                        <div style="background: white; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #4CAF50;">
+                            <h5 style="color: #2E7D32; margin: 0 0 0.5rem 0;">✅ 列表项交换</h5>
+                            <p style="margin: 0; color: #666; font-size: 0.9rem;">ListView/GridView 中可拖拽排序的项</p>
+                        </div>
+                        <div style="background: white; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #4CAF50;">
+                            <h5 style="color: #2E7D32; margin: 0 0 0.5rem 0;">✅ 表单验证</h5>
+                            <p style="margin: 0; color: #666; font-size: 0.9rem;">需要访问 FormState 进行验证</p>
+                        </div>
+                        <div style="background: white; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #FF9800;">
+                            <h5 style="color: #E65100; margin: 0 0 0.5rem 0;">⚠️ 页面切换</h5>
+                            <p style="margin: 0; color: #666; font-size: 0.9rem;">跨页面保持状态时谨慎使用</p>
+                        </div>
+                        <div style="background: white; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #F44336;">
+                            <h5 style="color: #C62828; margin: 0 0 0.5rem 0;">❌ 静态列表</h5>
+                            <p style="margin: 0; color: #666; font-size: 0.9rem;">内容固定不变的列表不需要 Key</p>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 4px solid #FF9800; padding: 1.25rem; margin: 1.5rem 0; border-radius: 8px;">
+                        <h5 style="color: #E65100; margin: 0 0 0.5rem 0;">💡 最佳实践</h5>
+                        <ul style="margin: 0; padding-left: 1.25rem; color: #424242; font-size: 0.9rem; line-height: 1.7;">
+                            <li style="margin-bottom: 0.4rem;"><strong>优先使用 ValueKey/ObjectKey</strong>：使用业务数据作为 Key，避免使用索引</li>
+                            <li style="margin-bottom: 0.4rem;"><strong>避免滥用 UniqueKey</strong>：会导致 Widget 每次都重建，失去性能优化</li>
+                            <li style="margin-bottom: 0.4rem;"><strong>谨慎使用 GlobalKey</strong>：性能开销大，仅用于表单等必要场景</li>
+                            <li><strong>Key 应该稳定</strong>：同一 Widget 的 Key 在重建时应保持不变</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="navigator" class="component-card">
                     <h2>📍 1. Navigator 基础导航</h2>
                     <p>Navigator 是 Flutter 的核心导航组件，管理页面栈。</p>
 
@@ -1012,7 +797,7 @@ final args = ModalRoute.of(context)!.settings.arguments as Map;</code></pre>
                     </div>
                 </div>
 
-                <div class="component-card">
+                <div id="tabbar" class="component-card">
                     <h2>📑 3. TabBar 和 BottomNavigationBar</h2>
                     <p>实现应用内的标签导航。</p>
 
