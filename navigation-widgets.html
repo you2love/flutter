@@ -570,13 +570,13 @@
 
                     <h3 style="color: #1976D2; margin-top: 1.5rem;">📞 参数传递原理</h3>
                     <div style="background: white; border-radius: 10px; padding: 1.5rem; margin: 1rem 0;">
-                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e0e0e0;">
-                            <div style="background: #e3f2fd; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; color: #1565C0;">正向传递</h4>
-                            <p style="margin: 0; color: #666;">通过构造函数或 settings.arguments 传递数据给新页面</p>
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; padding: 1rem; background: #e3f2fd; border-radius: 8px; border-left: 4px solid #1565C0;">
+                            <div style="background: #1565C0; color: white; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; white-space: nowrap;">正向传递</div>
+                            <p style="margin: 0; color: #424242;">通过构造函数或 settings.arguments 传递数据给新页面</p>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 1rem;">
-                            <div style="background: #e8f5e9; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; color: #2E7D32;">反向返回</h4>
-                            <p style="margin: 0; color: #666;">通过 pop(result) 返回数据，await push 接收结果</p>
+                        <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: #e8f5e9; border-radius: 8px; border-left: 4px solid #2E7D32;">
+                            <div style="background: #2E7D32; color: white; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; white-space: nowrap;">反向返回</div>
+                            <p style="margin: 0; color: #424242;">通过 pop(result) 返回数据，await push 接收结果</p>
                         </div>
                     </div>
 
@@ -609,7 +609,105 @@
                     </div>
                 </div>
 
-                <div class="component-card">
+                <!-- Flutter Key 详解 -->
+                <div id="key" class="component-card" style="background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-left: 4px solid #9C27B0;">
+                    <h2>🔑 Flutter Key 详解</h2>
+                    <p style="color: #6A1B9A;">Key 是 Flutter 中用于标识 Widget 的重要机制，理解 Key 的作用对于优化性能和保持状态至关重要。</p>
+
+                    <h3 style="color: #7B1FA2; margin-top: 1.5rem;">📌 为什么需要 Key</h3>
+                    <div style="background: white; border-radius: 10px; padding: 1.5rem; margin: 1rem 0;">
+                        <p style="color: #424242; margin: 0 0 1rem 0;">当同类型的 Widget 在列表中交换位置时，Flutter 默认会复用 Element，导致状态错乱。Key 用于解决这类问题：</p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+                            <div style="background: #ffebee; padding: 1rem; border-radius: 8px; border-left: 4px solid #F44336;">
+                                <h5 style="color: #C62828; margin: 0 0 0.5rem 0;">❌ 没有 Key</h5>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem;">Widget 交换位置时，Element 保持原位，状态跟随位置而非数据</p>
+                            </div>
+                            <div style="background: #e8f5e9; padding: 1rem; border-radius: 8px; border-left: 4px solid #4CAF50;">
+                                <h5 style="color: #2E7D32; margin: 0 0 0.5rem 0;">✅ 使用 Key</h5>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem;">Widget 交换位置时，Element 跟随 Key 移动，状态保持正确</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 style="color: #7B1FA2; margin-top: 1.5rem;">📚 Key 的类型</h3>
+                    <div style="background: white; border-radius: 10px; padding: 1.5rem; margin: 1rem 0;">
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4 style="color: #1976D2; margin: 0 0 0.75rem 0; font-size: 1.1rem;">1. LocalKey（本地 Key）</h4>
+                            <p style="color: #666; font-size: 0.9rem; margin: 0 0 0.75rem 0;">用于同层级 Widget 之间的区分</p>
+                            <div style="display: grid; gap: 0.75rem;">
+                                <div style="background: #e3f2fd; padding: 1rem; border-radius: 8px;">
+                                    <h5 style="color: #1565C0; margin: 0 0 0.5rem 0; font-size: 0.95rem;">ValueKey</h5>
+                                    <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.85rem;">使用值作为标识，适用于简单数据</p>
+                                    <div style="background: #263238; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.8rem; color: #80cbc4;">
+                                        <pre style="margin: 0;">Text('Item $i', key: ValueKey(i))</pre>
+                                    </div>
+                                </div>
+                                <div style="background: #e3f2fd; padding: 1rem; border-radius: 8px;">
+                                    <h5 style="color: #1565C0; margin: 0 0 0.5rem 0; font-size: 0.95rem;">ObjectKey</h5>
+                                    <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.85rem;">使用对象作为标识，适用于复杂数据</p>
+                                    <div style="background: #263238; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.8rem; color: #80cbc4;">
+                                        <pre style="margin: 0;">Text(item.name, key: ObjectKey(item))</pre>
+                                    </div>
+                                </div>
+                                <div style="background: #e3f2fd; padding: 1rem; border-radius: 8px;">
+                                    <h5 style="color: #1565C0; margin: 0 0 0.5rem 0; font-size: 0.95rem;">UniqueKey</h5>
+                                    <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.85rem;">生成唯一标识，每次创建都不同</p>
+                                    <div style="background: #263238; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.8rem; color: #80cbc4;">
+                                        <pre style="margin: 0;">Text('Item', key: UniqueKey())</pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 style="color: #1976D2; margin: 0 0 0.75rem 0; font-size: 1.1rem;">2. GlobalKey（全局 Key）</h4>
+                            <p style="color: #666; font-size: 0.9rem; margin: 0 0 0.75rem 0;">在整个应用范围内唯一标识一个 Widget</p>
+                            <div style="background: #e8f5e9; padding: 1rem; border-radius: 8px;">
+                                <div style="background: #263238; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.8rem; color: #80cbc4; margin-bottom: 0.75rem;">
+                                    <pre style="margin: 0;"><span style="color: #bb80b3;">// 定义 GlobalKey</span>
+<span style="color: #82aaff;">final</span> _formKey = <span style="color: #ffcb6b;">GlobalKey</span>&lt;<span style="color: #ffcb6b;">FormState</span>&gt;();
+
+<span style="color: #bb80b3;">// 使用 Key 访问 Widget 状态</span>
+_formKey.currentState?.save();
+_formKey.currentState?.validate();</pre>
+                                </div>
+                                <p style="margin: 0; color: #666; font-size: 0.85rem;">⚠️ 注意：GlobalKey 性能开销较大，仅在必要时使用</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 style="color: #7B1FA2; margin-top: 1.5rem;">🎯 使用场景</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1rem 0;">
+                        <div style="background: white; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #4CAF50;">
+                            <h5 style="color: #2E7D32; margin: 0 0 0.5rem 0;">✅ 列表项交换</h5>
+                            <p style="margin: 0; color: #666; font-size: 0.9rem;">ListView/GridView 中可拖拽排序的项</p>
+                        </div>
+                        <div style="background: white; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #4CAF50;">
+                            <h5 style="color: #2E7D32; margin: 0 0 0.5rem 0;">✅ 表单验证</h5>
+                            <p style="margin: 0; color: #666; font-size: 0.9rem;">需要访问 FormState 进行验证</p>
+                        </div>
+                        <div style="background: white; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #FF9800;">
+                            <h5 style="color: #E65100; margin: 0 0 0.5rem 0;">⚠️ 页面切换</h5>
+                            <p style="margin: 0; color: #666; font-size: 0.9rem;">跨页面保持状态时谨慎使用</p>
+                        </div>
+                        <div style="background: white; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #F44336;">
+                            <h5 style="color: #C62828; margin: 0 0 0.5rem 0;">❌ 静态列表</h5>
+                            <p style="margin: 0; color: #666; font-size: 0.9rem;">内容固定不变的列表不需要 Key</p>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 4px solid #FF9800; padding: 1.25rem; margin: 1.5rem 0; border-radius: 8px;">
+                        <h5 style="color: #E65100; margin: 0 0 0.5rem 0;">💡 最佳实践</h5>
+                        <ul style="margin: 0; padding-left: 1.25rem; color: #424242; font-size: 0.9rem; line-height: 1.7;">
+                            <li style="margin-bottom: 0.4rem;"><strong>优先使用 ValueKey/ObjectKey</strong>：使用业务数据作为 Key，避免使用索引</li>
+                            <li style="margin-bottom: 0.4rem;"><strong>避免滥用 UniqueKey</strong>：会导致 Widget 每次都重建，失去性能优化</li>
+                            <li style="margin-bottom: 0.4rem;"><strong>谨慎使用 GlobalKey</strong>：性能开销大，仅用于表单等必要场景</li>
+                            <li><strong>Key 应该稳定</strong>：同一 Widget 的 Key 在重建时应保持不变</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="navigator" class="component-card">
                     <h2>📍 1. Navigator 基础导航</h2>
                     <p>Navigator 是 Flutter 的核心导航组件，管理页面栈。</p>
 
@@ -699,7 +797,7 @@ final args = ModalRoute.of(context)!.settings.arguments as Map;</code></pre>
                     </div>
                 </div>
 
-                <div class="component-card">
+                <div id="tabbar" class="component-card">
                     <h2>📑 3. TabBar 和 BottomNavigationBar</h2>
                     <p>实现应用内的标签导航。</p>
 
