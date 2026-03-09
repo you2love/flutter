@@ -32,6 +32,10 @@
                         <span class="tab-icon">🧭</span>
                         <span class="tab-text">路由导航</span>
                     </button>
+                    <button class="tab-btn" data-tab="key">
+                        <span class="tab-icon">🔑</span>
+                        <span class="tab-text">Key 详解</span>
+                    </button>
                     <button class="tab-btn" data-tab="ecosystem">
                         <span class="tab-icon">🌍</span>
                         <span class="tab-text">第三方生态</span>
@@ -711,13 +715,6 @@
 
                     <!-- 核心概念链接 -->
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 2rem;">
-                        <a href="key-widgets.html" style="padding: 1.25rem; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-radius: 10px; text-decoration: none; border: 2px solid #9C27B0; transition: all 0.3s ease;">
-                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
-                                <span style="font-size: 1.5rem;">🔑</span>
-                                <h4 style="color: #6A1B9A; margin: 0;">Flutter Key 详解</h4>
-                            </div>
-                            <p style="color: #424242; font-size: 0.9rem; margin: 0;">理解 Key 的作用对于优化性能和保持状态至关重要</p>
-                        </a>
                         <a href="navigation-widgets.html#navigator" style="padding: 1.25rem; background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-radius: 10px; text-decoration: none; border: 2px solid #2196F3; transition: all 0.3s ease;">
                             <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
                                 <span style="font-size: 1.5rem;">📍</span>
@@ -731,6 +728,118 @@
                                 <h4 style="color: #2E7D32; margin: 0;">TabBar 导航</h4>
                             </div>
                             <p style="color: #424242; font-size: 0.9rem; margin: 0;">实现应用内的标签导航和底部导航栏</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key 详解 Tab -->
+            <div class="tab-panel" id="key">
+                <div class="container">
+                    <h2>🔑 Flutter Key 详解</h2>
+                    <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">Key 是 Flutter 中用于标识 Widget 的重要机制，理解 Key 的作用对于优化性能和保持状态至关重要。</p>
+
+                    <!-- Key 的核心作用 -->
+                    <div class="component-card" style="background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-left: 4px solid #9C27B0;">
+                        <h3 style="color: #6A1B9A; margin-top: 0;">📌 为什么需要 Key</h3>
+                        <p style="color: #424242;">当同类型的 Widget 在列表中交换位置时，Flutter 默认会复用 Element，导致状态错乱。Key 用于解决这类问题。</p>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0;">
+                            <div style="background: #ffebee; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #F44336;">
+                                <h4 style="color: #C62828; margin: 0 0 1rem 0;">❌ 没有 Key</h4>
+                                <p style="margin: 0; color: #666; font-size: 0.95rem;">Widget 交换位置时，Element 保持原位，状态跟随位置而非数据</p>
+                            </div>
+                            <div style="background: #e8f5e9; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4CAF50;">
+                                <h4 style="color: #2E7D32; margin: 0 0 1rem 0;">✅ 使用 Key</h4>
+                                <p style="margin: 0; color: #666; font-size: 0.95rem;">Widget 交换位置时，Element 跟随 Key 移动，状态保持正确</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Key 的类型 -->
+                    <div class="component-card">
+                        <h3>📚 Key 的类型</h3>
+                        
+                        <div style="display: grid; gap: 1rem; margin: 1.5rem 0;">
+                            <div style="background: #e3f2fd; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #1565C0;">
+                                <h4 style="color: #1565C0; margin: 0 0 0.75rem 0; font-size: 1.1rem;">ValueKey</h4>
+                                <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.95rem;">使用值作为标识，适用于简单数据类型</p>
+                                <div style="background: #263238; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #80cbc4;">
+                                    <pre style="margin: 0;">Text('Item $i', key: ValueKey(i))</pre>
+                                </div>
+                            </div>
+
+                            <div style="background: #e3f2fd; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #1565C0;">
+                                <h4 style="color: #1565C0; margin: 0 0 0.75rem 0; font-size: 1.1rem;">ObjectKey</h4>
+                                <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.95rem;">使用对象作为标识，适用于复杂数据</p>
+                                <div style="background: #263238; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #80cbc4;">
+                                    <pre style="margin: 0;">Text(item.name, key: ObjectKey(item))</pre>
+                                </div>
+                            </div>
+
+                            <div style="background: #e3f2fd; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #FF9800;">
+                                <h4 style="color: #E65100; margin: 0 0 0.75rem 0; font-size: 1.1rem;">UniqueKey</h4>
+                                <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.95rem;">生成唯一标识，每次创建都不同</p>
+                                <div style="background: #263238; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #80cbc4;">
+                                    <pre style="margin: 0;">Text('Item', key: UniqueKey())</pre>
+                                </div>
+                                <div style="margin-top: 0.75rem; padding: 0.5rem; background: rgba(255, 152, 0, 0.1); border-radius: 6px;">
+                                    <p style="margin: 0; color: #E65100; font-size: 0.85rem;">⚠️ 滥用会导致性能问题</p>
+                                </div>
+                            </div>
+
+                            <div style="background: #e8f5e9; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4CAF50;">
+                                <h4 style="color: #2E7D32; margin: 0 0 0.75rem 0; font-size: 1.1rem;">GlobalKey</h4>
+                                <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.95rem;">在整个应用范围内唯一标识一个 Widget</p>
+                                <div style="background: #263238; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #80cbc4;">
+                                    <pre style="margin: 0;">final _formKey = GlobalKey&lt;FormState&gt;();
+_formKey.currentState?.validate();</pre>
+                                </div>
+                                <div style="margin-top: 0.75rem; padding: 0.5rem; background: rgba(255, 152, 0, 0.1); border-radius: 6px;">
+                                    <p style="margin: 0; color: #E65100; font-size: 0.85rem;">⚠️ 性能开销大，仅在必要时使用</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 使用场景 -->
+                    <div class="component-card">
+                        <h3>🎯 使用场景</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                            <div style="background: white; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #4CAF50;">
+                                <h5 style="color: #2E7D32; margin: 0 0 0.5rem 0;">✅ 列表项交换</h5>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem;">ListView/GridView 中可拖拽排序的项</p>
+                            </div>
+                            <div style="background: white; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #4CAF50;">
+                                <h5 style="color: #2E7D32; margin: 0 0 0.5rem 0;">✅ 表单验证</h5>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem;">需要访问 FormState 进行验证</p>
+                            </div>
+                            <div style="background: white; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #FF9800;">
+                                <h5 style="color: #E65100; margin: 0 0 0.5rem 0;">⚠️ 页面切换</h5>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem;">跨页面保持状态时谨慎使用</p>
+                            </div>
+                            <div style="background: white; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #F44336;">
+                                <h5 style="color: #C62828; margin: 0 0 0.5rem 0;">❌ 静态列表</h5>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem;">内容固定不变的列表不需要 Key</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 最佳实践 -->
+                    <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 4px solid #FF9800; padding: 1.5rem; border-radius: 8px; margin: 2rem 0;">
+                        <h4 style="color: #E65100; margin: 0 0 1rem 0;">💡 最佳实践</h4>
+                        <ul style="margin: 0; padding-left: 1.25rem; color: #424242; font-size: 0.95rem; line-height: 1.8;">
+                            <li style="margin-bottom: 0.5rem;"><strong>优先使用 ValueKey/ObjectKey</strong>：使用业务数据作为 Key，避免使用索引</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>避免滥用 UniqueKey</strong>：会导致 Widget 每次都重建，失去性能优化</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>谨慎使用 GlobalKey</strong>：性能开销大，仅用于表单等必要场景</li>
+                            <li><strong>Key 应该稳定</strong>：同一 Widget 的 Key 在重建时应保持不变</li>
+                        </ul>
+                    </div>
+
+                    <!-- 详细教程链接 -->
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a href="key-widgets.html" style="display: inline-block; padding: 1rem 2.5rem; background: var(--primary-color); color: white; text-decoration: none; border-radius: 10px; font-weight: 600; font-size: 1.05rem; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);">
+                            📖 查看详细 Key 教程
                         </a>
                     </div>
                 </div>
