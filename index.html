@@ -28,6 +28,10 @@
                         <span class="tab-icon">🧩</span>
                         <span class="tab-text">组件系统</span>
                     </button>
+                    <button class="tab-btn" data-tab="routing">
+                        <span class="tab-icon">🧭</span>
+                        <span class="tab-text">路由导航</span>
+                    </button>
                     <button class="tab-btn" data-tab="ecosystem">
                         <span class="tab-icon">🌍</span>
                         <span class="tab-text">第三方生态</span>
@@ -477,6 +481,232 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 路由系统 Tab -->
+            <div class="tab-panel" id="routing">
+                <div class="container">
+                    <h2>🧭 Flutter 路由系统详解</h2>
+                    <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">路由（Route）是应用中页面跳转和导航的核心机制。Flutter 提供了强大的路由系统，包括 <strong>Navigator 1.0（命令式）</strong>和 <strong>Navigator 2.0（声明式）</strong>两套方案。</p>
+
+                    <!-- 路由核心概念 -->
+                    <div class="routing-concepts">
+                        <h3>📚 核心概念</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-bottom: 2rem;">
+                            <div style="padding: 1.25rem; background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-radius: 12px; border-left: 4px solid #2196F3;">
+                                <h5 style="color: #1976D2; margin: 0 0 0.5rem 0; font-size: 1rem;">📄 Route（路由）</h5>
+                                <p style="margin: 0; color: #424242; font-size: 0.9rem; line-height: 1.6;">代表应用中的一个页面或屏幕，是屏幕的抽象</p>
+                            </div>
+                            <div style="padding: 1.25rem; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-radius: 12px; border-left: 4px solid #4CAF50;">
+                                <h5 style="color: #388E3C; margin: 0 0 0.5rem 0; font-size: 1rem;">🧭 Navigator（导航器）</h5>
+                                <p style="margin: 0; color: #424242; font-size: 0.9rem; line-height: 1.6;">管理路由栈的组件，负责页面的入栈和出栈</p>
+                            </div>
+                            <div style="padding: 1.25rem; background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-radius: 12px; border-left: 4px solid #FF9800;">
+                                <h5 style="color: #F57C00; margin: 0 0 0.5rem 0; font-size: 1rem;">📚 路由栈</h5>
+                                <p style="margin: 0; color: #424242; font-size: 0.9rem; line-height: 1.6;">由 Navigator 维护的页面堆栈，遵循后进先出（LIFO）原则</p>
+                            </div>
+                            <div style="padding: 1.25rem; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-radius: 12px; border-left: 4px solid #9C27B0;">
+                                <h5 style="color: #7B1FA2; margin: 0 0 0.5rem 0; font-size: 1rem;">🔄 页面切换</h5>
+                                <p style="margin: 0; color: #424242; font-size: 0.9rem; line-height: 1.6;">通过推送（push）和弹出（pop）操作实现页面跳转</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 路由栈示意图 -->
+                    <div style="background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; border: 2px solid #e0e0e0;">
+                        <h3 style="text-align: center; color: #424242; margin: 0 0 1.5rem 0; font-size: 1.3rem;">📊 路由栈示意图</h3>
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem;">
+                            <div style="padding: 0.75rem 2rem; background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">← pop 返回上一页</div>
+                            <div style="font-size: 1.5rem; color: #666;">↑</div>
+                            <div style="padding: 0.75rem 2rem; background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">当前页面（页面 C）</div>
+                            <div style="padding: 0.75rem 2rem; background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">上一页（页面 B）</div>
+                            <div style="padding: 0.75rem 2rem; background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">首页（页面 A）</div>
+                            <div style="font-size: 1.5rem; color: #666;">↓</div>
+                            <div style="padding: 0.75rem 2rem; background: linear-gradient(135deg, #607D8B 0%, #455A64 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">→ push 跳转到新页</div>
+                        </div>
+                    </div>
+
+                    <!-- Navigator 1.0 vs 2.0 对比 -->
+                    <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 2rem; overflow-x: auto;">
+                        <h3 style="color: #424242; margin: 0 0 1rem 0; font-size: 1.3rem;">🔄 Navigator 1.0 vs Navigator 2.0</h3>
+                        <table style="width: 100%; border-collapse: collapse; min-width: 600px;">
+                            <thead>
+                                <tr style="background: var(--primary-color); color: white;">
+                                    <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">特性</th>
+                                    <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Navigator 1.0</th>
+                                    <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Navigator 2.0</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="background: #f8f9fa;">
+                                    <td style="padding: 0.75rem; border: 1px solid #ddd; font-weight: 600;">编程范式</td>
+                                    <td style="padding: 0.75rem; border: 1px solid #ddd;">命令式</td>
+                                    <td style="padding: 0.75rem; border: 1px solid #ddd;">声明式</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem; border: 1px solid #ddd; font-weight: 600;">状态管理</td>
+                                    <td style="padding: 0.75rem; border: 1px solid #ddd;">由 Navigator 内部管理</td>
+                                    <td style="padding: 0.75rem; border: 1px solid #ddd;">由开发者完全控制</td>
+                                </tr>
+                                <tr style="background: #f8f9fa;">
+                                    <td style="padding: 0.75rem; border: 1px solid #ddd; font-weight: 600;">适用场景</td>
+                                    <td style="padding: 0.75rem; border: 1px solid #ddd;">简单应用、快速开发</td>
+                                    <td style="padding: 0.75rem; border: 1px solid #ddd;">复杂应用、深度链接、Web</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem; border: 1px solid #ddd; font-weight: 600;">学习曲线</td>
+                                    <td style="padding: 0.75rem; border: 1px solid #ddd;">简单</td>
+                                    <td style="padding: 0.75rem; border: 1px solid #ddd;">较复杂</td>
+                                </tr>
+                                <tr style="background: #f8f9fa;">
+                                    <td style="padding: 0.75rem; border: 1px solid #ddd; font-weight: 600;">URL 同步</td>
+                                    <td style="padding: 0.75rem; border: 1px solid #ddd;">需要手动处理</td>
+                                    <td style="padding: 0.75rem; border: 1px solid #ddd;">自动同步</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 常用路由类型 -->
+                    <div class="routing-types">
+                        <h3>📦 常用路由类型</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                            <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <h4 style="color: var(--primary-color); margin: 0 0 0.75rem 0;">MaterialPageRoute</h4>
+                                <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.95rem;">Material Design 风格的页面切换，包含平台特定的转场动画</p>
+                                <div style="background: #263238; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #80cbc4; overflow-x: auto;">
+                                    <pre style="margin: 0;">MaterialPageRoute(
+  builder: (context) =&gt; SecondPage()
+)</pre>
+                                </div>
+                            </div>
+                            <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <h4 style="color: var(--primary-color); margin: 0 0 0.75rem 0;">CupertinoPageRoute</h4>
+                                <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.95rem;">iOS 风格的页面切换，使用 iOS 原生转场动画</p>
+                                <div style="background: #263238; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #80cbc4; overflow-x: auto;">
+                                    <pre style="margin: 0;">CupertinoPageRoute(
+  builder: (context) =&gt; SecondPage()
+)</pre>
+                                </div>
+                            </div>
+                            <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <h4 style="color: var(--primary-color); margin: 0 0 0.75rem 0;">PageRouteBuilder</h4>
+                                <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.95rem;">自定义页面转场动画的通用路由</p>
+                                <div style="background: #263238; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #80cbc4; overflow-x: auto;">
+                                    <pre style="margin: 0;">PageRouteBuilder(
+  pageBuilder: ...,
+  transitionsBuilder: ...
+)</pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 基本导航方法 -->
+                    <div class="routing-navigation">
+                        <h3>🔧 基本导航方法</h3>
+                        <div style="background: #263238; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; overflow-x: auto;">
+<pre style="margin: 0; color: #80cbc4; font-family: monospace; font-size: 0.9rem; line-height: 1.6;"><code><span style="color: #bb80b3;">// 推送新页面</span>
+<span style="color: #82aaff;">Navigator</span>.<span style="color: #ffcb6b;">push</span>(
+  context<span style="color: #89ddff;">,</span>
+  <span style="color: #ffcb6b;">MaterialPageRoute</span>(builder<span style="color: #89ddff;">:</span> (context) <span style="color: #89ddff;">=&gt;</span> <span style="color: #ffcb6b;">SecondPage</span>())<span style="color: #89ddff;">,</span>
+)<span style="color: #89ddff;">;</span>
+
+<span style="color: #bb80b3;">// 返回上一页</span>
+<span style="color: #82aaff;">Navigator</span>.<span style="color: #ffcb6b;">pop</span>(context)<span style="color: #89ddff;">;</span>
+
+<span style="color: #bb80b3;">// 推送页面并等待返回结果</span>
+<span style="color: #82aaff;">final</span> result = <span style="color: #89ddff;">await</span> <span style="color: #82aaff;">Navigator</span>.<span style="color: #ffcb6b;">push</span>(...) <span style="color: #89ddff;">;</span>
+
+<span style="color: #bb80b3;">// 返回时传递数据</span>
+<span style="color: #82aaff;">Navigator</span>.<span style="color: #ffcb6b;">pop</span>(context<span style="color: #89ddff;">,</span> <span style="color: #c3e88d;">'返回的数据'</span>)<span style="color: #89ddff;">;</span>
+
+<span style="color: #bb80b3;">// 替换当前页面</span>
+<span style="color: #82aaff;">Navigator</span>.<span style="color: #ffcb6b;">pushReplacement</span>(...) <span style="color: #89ddff;">;</span>
+
+<span style="color: #bb80b3;">// 清空栈并推送新页面</span>
+<span style="color: #82aaff;">Navigator</span>.<span style="color: #ffcb6b;">pushAndRemoveUntil</span>(
+  context<span style="color: #89ddff;">,</span>
+  <span style="color: #ffcb6b;">MaterialPageRoute</span>(builder<span style="color: #89ddff;">:</span> (_) <span style="color: #89ddff;">=&gt;</span> <span style="color: #ffcb6b;">HomePage</span>())<span style="color: #89ddff;">,</span>
+  (route) <span style="color: #89ddff;">=&gt;</span> <span style="color: #82aaff;">false</span><span style="color: #89ddff;">,</span>
+)<span style="color: #89ddff;">;</span></code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 命名路由 -->
+                    <div class="routing-named">
+                        <h3>🏷️ 命名路由（Named Routes）</h3>
+                        <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 1rem;">
+                            <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.95rem;">通过字符串名称定义路由，集中管理所有页面跳转</p>
+                            <div style="background: #263238; border-radius: 8px; padding: 1.25rem; overflow-x: auto;">
+<pre style="margin: 0; color: #80cbc4; font-family: monospace; font-size: 0.9rem; line-height: 1.6;"><code><span style="color: #bb80b3;">// 在 MaterialApp 中定义路由</span>
+<span style="color: #ffcb6b;">MaterialApp</span>(
+  routes<span style="color: #89ddff;">:</span> {
+    <span style="color: #c3e88d;">'/'</span><span style="color: #89ddff;">:</span> (context) <span style="color: #89ddff;">=&gt;</span> <span style="color: #ffcb6b;">HomePage</span>()<span style="color: #89ddff;">,</span>
+    <span style="color: #c3e88d;">'/details'</span><span style="color: #89ddff;">:</span> (context) <span style="color: #89ddff;">=&gt;</span> <span style="color: #ffcb6b;">DetailsPage</span>()<span style="color: #89ddff;">,</span>
+    <span style="color: #c3e88d;">'/settings'</span><span style="color: #89ddff;">:</span> (context) <span style="color: #89ddff;">=&gt;</span> <span style="color: #ffcb6b;">SettingsPage</span>()<span style="color: #89ddff;">,</span>
+  }<span style="color: #89ddff;">,</span>
+)<span style="color: #89ddff;">;</span>
+
+<span style="color: #bb80b3;">// 导航到命名路由</span>
+<span style="color: #82aaff;">Navigator</span>.<span style="color: #ffcb6b;">pushNamed</span>(context<span style="color: #89ddff;">,</span> <span style="color: #c3e88d;">'/details'</span>)<span style="color: #89ddff;">;</span>
+
+<span style="color: #bb80b3;">// 带参数的命名路由</span>
+<span style="color: #82aaff;">Navigator</span>.<span style="color: #ffcb6b;">pushNamed</span>(
+  context<span style="color: #89ddff;">,</span>
+  <span style="color: #c3e88d;">'/details'</span><span style="color: #89ddff;">,</span>
+  arguments<span style="color: #89ddff;">:</span> {<span style="color: #c3e88d;">'id'</span><span style="color: #89ddff;">:</span> <span style="color: #f78c6c;">123</span>}<span style="color: #89ddff;">,</span>
+)<span style="color: #89ddff;">;</span></code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 推荐包 -->
+                    <div class="routing-packages">
+                        <h3>📦 推荐路由包</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-bottom: 2rem;">
+                            <div style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-radius: 12px; padding: 1.5rem; border-left: 4px solid #4CAF50;">
+                                <h4 style="color: #2E7D32; margin: 0 0 0.75rem 0; font-size: 1.1rem;">go_router</h4>
+                                <p style="margin: 0 0 1rem 0; color: #424242; font-size: 0.95rem;">官方推荐的声明式路由包，支持深度链接和 Web URL</p>
+                                <div style="background: rgba(255,255,255,0.5); padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem; color: #1B5E20;">
+                                    flutter pub add go_router
+                                </div>
+                            </div>
+                            <div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-radius: 12px; padding: 1.5rem; border-left: 4px solid #2196F3;">
+                                <h4 style="color: #1565C0; margin: 0 0 0.75rem 0; font-size: 1.1rem;">auto_route</h4>
+                                <p style="margin: 0 0 1rem 0; color: #424242; font-size: 0.95rem;">代码生成路由，类型安全，支持嵌套路由</p>
+                                <div style="background: rgba(255,255,255,0.5); padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem; color: #0D47A1;">
+                                    flutter pub add auto_route
+                                </div>
+                            </div>
+                            <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-radius: 12px; padding: 1.5rem; border-left: 4px solid #FF9800;">
+                                <h4 style="color: #E65100; margin: 0 0 0.75rem 0; font-size: 1.1rem;">beamer</h4>
+                                <p style="margin: 0 0 1rem 0; color: #424242; font-size: 0.95rem;">基于 Navigator 2.0 的简化封装</p>
+                                <div style="background: rgba(255,255,255,0.5); padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem; color: #E65100;">
+                                    flutter pub add beamer
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 选择建议 -->
+                    <div style="padding: 1.5rem; background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 4px solid #FF9800; border-radius: 8px; margin-bottom: 2rem;">
+                        <h4 style="color: #F57C00; margin: 0 0 1rem 0; font-size: 1.1rem;">⚠️ 选择建议</h4>
+                        <ul style="margin: 0; padding-left: 1.5rem; color: #424242; font-size: 0.95rem; line-height: 1.8;">
+                            <li style="margin-bottom: 0.5rem;"><strong>初学者或简单应用：</strong>推荐使用 Navigator 1.0，学习曲线低，开发效率高</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>复杂应用或需要深度链接：</strong>推荐使用 go_router（基于 Navigator 2.0）</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>Web 应用：</strong>必须使用 Navigator 2.0 或 go_router 以支持 URL 和浏览器导航</li>
+                            <li><strong>类型安全需求：</strong>使用 auto_route 进行代码生成</li>
+                        </ul>
+                    </div>
+
+                    <!-- 详细教程链接 -->
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a href="navigation-widgets.html" style="display: inline-block; padding: 1rem 2.5rem; background: var(--primary-color); color: white; text-decoration: none; border-radius: 10px; font-weight: 600; font-size: 1.05rem; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);">
+                            📖 查看详细路由教程
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1216,6 +1446,64 @@
                                         <td style="padding: 0.75rem; border: 1px solid #ddd;">★★★☆☆</td>
                                         <td style="padding: 0.75rem; border: 1px solid #ddd;">专注于 UI 生成，可视化编辑</td>
                                         <td style="padding: 0.75rem; border: 1px solid #ddd;">UI 设计、布局实现</td>
+                                    </tr>
+                                    <!-- Flutter 专用 AI 工具 -->
+                                    <tr style="background: #e3f2fd;">
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd; font-weight: 600;">FlutterFlow</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">可视化构建</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">★★★★★</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">Flutter 专用，可视化拖拽构建应用</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">快速原型、无代码开发</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd; font-weight: 600;">AppFlowy.AI</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">AI 辅助开发</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">★★★★☆</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">Flutter 应用 AI 辅助开发</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">Flutter 应用开发</td>
+                                    </tr>
+                                    <!-- 国内 AI 工具 -->
+                                    <tr style="background: #e8f5e9;">
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd; font-weight: 600;">通义千问</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">对话式 AI</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">★★★★☆</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">阿里云大模型，代码生成能力强</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">代码生成、需求分析</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd; font-weight: 600;">文心一言</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">对话式 AI</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">★★★★☆</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">百度大模型，中文理解优秀</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">中文文档、代码解释</td>
+                                    </tr>
+                                    <tr style="background: #e8f5e9;">
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd; font-weight: 600;">智谱清言</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">对话式 AI</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">★★★★☆</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">智谱 AI 大模型，代码质量高</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">代码审查、优化建议</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd; font-weight: 600;">讯飞星火</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">对话式 AI</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">★★★★☆</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">科大讯飞大模型，多模态能力强</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">多模态开发、语音交互</td>
+                                    </tr>
+                                    <tr style="background: #e8f5e9;">
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd; font-weight: 600;">通义灵码</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">IDE 集成</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">★★★★☆</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">阿里云代码助手，深度集成 IDE</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">代码补全、片段生成</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd; font-weight: 600;">CodeGeeX</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">IDE 集成</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">★★★★☆</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">智谱 AI 代码助手，支持多语言</td>
+                                        <td style="padding: 0.75rem; border: 1px solid #ddd;">代码补全、翻译、解释</td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -6,177 +6,285 @@
     <title>导航组件详解 - Flutter 学习教程</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        :root {
+            --primary-color: #2196F3;
+            --secondary-color: #1976D2;
+            --accent-color: #03DAC6;
+            --success-color: #4CAF50;
+            --warning-color: #FF9800;
+            --danger-color: #F44336;
+            --text-color: #333;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --dark-bg: #1e1e1e;
+            --border-radius: 12px;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-hover: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
         .tutorial-page {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 2rem auto;
-            padding: 2rem;
+            padding: 2.5rem;
             background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
         }
 
         .tutorial-nav {
             margin-bottom: 2rem;
             padding-bottom: 1rem;
-            border-bottom: 2px solid #f0f0f0;
+            border-bottom: 2px solid #e0e0e0;
         }
 
         .tutorial-nav a {
             color: var(--primary-color);
             text-decoration: none;
             font-weight: 600;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
         }
 
         .tutorial-nav a:hover {
-            text-decoration: underline;
+            background: rgba(33, 150, 243, 0.1);
+            text-decoration: none;
+            transform: translateX(-4px);
         }
 
         .tutorial-content h1 {
             color: var(--primary-color);
             margin-bottom: 1rem;
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tutorial-content > p {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.8;
         }
 
         .tutorial-content h2 {
             color: var(--secondary-color);
-            margin-top: 2.5rem;
+            margin-top: 3rem;
             margin-bottom: 1.5rem;
-            border-bottom: 2px solid #e0e0e0;
-            padding-bottom: 0.5rem;
+            font-size: 1.6rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .tutorial-content h2:before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 28px;
+            background: linear-gradient(180deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 2px;
         }
 
         .tutorial-content h3 {
             color: var(--text-color);
             margin-top: 2rem;
             margin-bottom: 1rem;
-            font-size: 1.3rem;
+            font-size: 1.35rem;
+            font-weight: 600;
         }
 
         .tutorial-content h4 {
-            color: #666;
+            color: var(--secondary-color);
             margin-top: 1.5rem;
             margin-bottom: 0.8rem;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
+            font-weight: 600;
         }
 
         .tutorial-content p {
             margin-bottom: 1rem;
             line-height: 1.8;
+            color: var(--text-light);
         }
 
         .tutorial-content ul, .tutorial-content ol {
             margin-bottom: 1rem;
             padding-left: 2rem;
             line-height: 1.8;
+            color: var(--text-light);
         }
 
         .tutorial-content li {
             margin-bottom: 0.6rem;
         }
 
+        /* Info boxes */
         .note-box {
-            background: #e3f2fd;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
             border-left: 4px solid var(--primary-color);
-            padding: 1rem 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: 4px;
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(33, 150, 243, 0.15);
+        }
+
+        .note-box strong {
+            color: var(--secondary-color);
         }
 
         .warning-box {
-            background: #fff3e0;
-            border-left: 4px solid #ff9800;
-            padding: 1rem 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: 4px;
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-left: 4px solid var(--warning-color);
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(255, 152, 0, 0.15);
+        }
+
+        .warning-box strong {
+            color: #E65100;
         }
 
         .tip-box {
-            background: #e8f5e9;
-            border-left: 4px solid #4caf50;
-            padding: 1rem 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: 4px;
-        }
-
-        .code-block {
-            background: var(--dark-bg);
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            overflow-x: auto;
-            margin: 1.5rem 0;
-            border-left: 3px solid var(--accent-color);
-        }
-
-        .code-block pre {
-            margin: 0;
-            color: #00ff00;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        .code-block code {
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        .copy-btn {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .copy-btn:hover {
-            background: var(--secondary-color);
-            transform: translateY(-1px);
-        }
-
-        .topic-nav {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 2px solid #f0f0f0;
-        }
-
-        .topic-nav a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 600;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--primary-color);
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-
-        .topic-nav a:hover {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        .keyword { color: #ff79c6; }
-        .string { color: #f1fa8c; }
-        .function { color: #8be9fd; }
-        .comment { color: #6272a4; font-style: italic; }
-        .number { color: #bd93f9; }
-        .type { color: #50fa7b; }
-        .property { color: #ffb86c; }
-
-        .component-card {
-            background: #f8f9fa;
-            padding: 2rem;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 4px solid var(--success-color);
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
             border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.15);
+        }
+
+        .tip-box strong {
+            color: #2E7D32;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+            border-radius: var(--border-radius);
+            padding: 2rem;
             margin: 2rem 0;
             border: 1px solid #e0e0e0;
         }
 
-        .component-card h3 {
-            margin-top: 0;
+        .info-box h4 {
             color: var(--primary-color);
+            margin-top: 1.5rem;
         }
 
+        .info-box h4:first-child {
+            margin-top: 0;
+        }
+
+        /* Code blocks */
+        .code-block {
+            background: var(--dark-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .code-block pre {
+            margin: 0;
+        }
+
+        .code-block code {
+            font-family: 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #d4d4d4;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            transform: translateY(-1px);
+        }
+
+        /* Component cards */
+        .component-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            margin: 2.5rem 0;
+            border: 1px solid #e0e0e0;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .component-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        }
+
+        .component-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-4px);
+        }
+
+        .component-card h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .component-card h3 {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Feature list */
         .feature-list {
             list-style: none;
             padding-left: 0;
@@ -186,14 +294,202 @@
             padding-left: 2rem;
             position: relative;
             margin-bottom: 0.8rem;
+            color: var(--text-light);
         }
 
         .feature-list li:before {
             content: '✓';
             position: absolute;
             left: 0;
-            color: #4caf50;
+            color: var(--success-color);
             font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .data-table caption {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .data-table th {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+            color: var(--text-light);
+        }
+
+        .data-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .data-table tr:hover {
+            background: #e3f2fd;
+        }
+
+        /* Diagram */
+        .diagram-container {
+            margin: 2rem 0;
+        }
+
+        .diagram-container h3 {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Flowchart */
+        .flowchart-container {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+            border: 1px solid #e0e0e0;
+        }
+
+        .flowchart-container h3 {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .flow-node {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-radius: 10px;
+            font-weight: 600;
+            margin: 0.5rem;
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+            min-width: 150px;
+            text-align: center;
+        }
+
+        .flow-node.decision {
+            background: linear-gradient(135deg, var(--warning-color) 0%, #F57C00 100%);
+            box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+        }
+
+        .flow-node.start-end {
+            background: linear-gradient(135deg, var(--success-color) 0%, #43A047 100%);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+
+        .flow-arrow {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin: 0.5rem 0;
+        }
+
+        /* Topic navigation */
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e0e0e0;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .topic-nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .topic-nav a:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+        }
+
+        /* Syntax highlighting */
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #8be9fd; }
+        .comment { color: #6272a4; font-style: italic; }
+        .number { color: #bd93f9; }
+        .type { color: #50fa7b; }
+        .property { color: #ffb86c; }
+        .operator { color: #ff79c6; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tutorial-page {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            .tutorial-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .tutorial-content h2 {
+                font-size: 1.4rem;
+            }
+
+            .topic-nav {
+                flex-direction: column;
+            }
+
+            .topic-nav a {
+                text-align: center;
+                justify-content: center;
+            }
+
+            .data-table {
+                font-size: 0.85rem;
+            }
+
+            .data-table th, .data-table td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tutorial-content {
+            animation: fadeIn 0.6s ease-out;
         }
     </style>
 </head>
@@ -222,11 +518,11 @@
             </div>
 
             <div class="tutorial-content">
-                <h1>导航组件详解</h1>
+                <h1>🧭 导航组件详解</h1>
                 <p>导航是应用的核心功能，Flutter 提供了强大的导航系统。本教程将详细介绍 Navigator、Router 以及页面跳转的最佳实践。</p>
 
                 <div class="note-box">
-                    <strong>重要提示：</strong>Flutter 3.28+ 引入了 Navigator 2.0，提供了更强大的路由管理和状态管理能力。
+                    <strong>💡 重要提示：</strong>Flutter 3.28+ 引入了 Navigator 2.0，提供了更强大的路由管理和状态管理能力。
                 </div>
 
                 <!-- Flutter 路由基础 -->
@@ -245,22 +541,22 @@
 
                     <div class="diagram-container">
                         <h3>📊 路由栈示意图</h3>
-                        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; padding: 2rem; background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%); border-radius: 12px; border: 2px solid #e0e0e0;">
-                            <div style="padding: 1rem 3rem; background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%); color: white; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem; padding: 2.5rem; background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%); border-radius: 16px; border: 2px solid #e0e0e0; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+                            <div style="padding: 0.875rem 2.5rem; background: linear-gradient(135deg, #4CAF50 0%, #43A047 100%); color: white; border-radius: 10px; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3); transition: all 0.3s ease;">
                                 ← 返回上一页（pop）
                             </div>
-                            <div style="font-size: 1.5rem; color: #666;">↑</div>
-                            <div style="padding: 1rem 3rem; background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%); color: white; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                            <div style="font-size: 1.75rem; color: #666; font-weight: 300;">↓</div>
+                            <div style="padding: 0.875rem 2.5rem; background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%); color: white; border-radius: 10px; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3); transition: all 0.3s ease;">
                                 当前页面（页面 C）
                             </div>
-                            <div style="padding: 1rem 3rem; background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%); color: white; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                            <div style="padding: 0.875rem 2.5rem; background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%); color: white; border-radius: 10px; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3); transition: all 0.3s ease;">
                                 上一页（页面 B）
                             </div>
-                            <div style="padding: 1rem 3rem; background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%); color: white; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                            <div style="padding: 0.875rem 2.5rem; background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%); color: white; border-radius: 10px; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3); transition: all 0.3s ease;">
                                 首页（页面 A）
                             </div>
-                            <div style="font-size: 1.5rem; color: #666;">↓</div>
-                            <div style="padding: 1rem 3rem; background: linear-gradient(135deg, #607D8B 0%, #455A64 100%); color: white; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                            <div style="font-size: 1.75rem; color: #666; font-weight: 300;">↓</div>
+                            <div style="padding: 0.875rem 2.5rem; background: linear-gradient(135deg, #607D8B 0%, #455A64 100%); color: white; border-radius: 10px; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 12px rgba(96, 125, 139, 0.3); transition: all 0.3s ease;">
                                 → 跳转到新页（push）
                             </div>
                         </div>
@@ -269,49 +565,53 @@
                     <h3>🔄 Navigator 1.0 vs Navigator 2.0</h3>
                     <table class="data-table">
                         <caption>两套路由系统对比</caption>
-                        <tr>
-                            <th>特性</th>
-                            <th>Navigator 1.0</th>
-                            <th>Navigator 2.0</th>
-                        </tr>
-                        <tr>
-                            <td><strong>编程范式</strong></td>
-                            <td>命令式（Imperative）</td>
-                            <td>声明式（Declarative）</td>
-                        </tr>
-                        <tr>
-                            <td><strong>状态管理</strong></td>
-                            <td>由 Navigator 内部管理</td>
-                            <td>由开发者完全控制</td>
-                        </tr>
-                        <tr>
-                            <td><strong>适用场景</strong></td>
-                            <td>简单应用、快速开发</td>
-                            <td>复杂应用、深度链接、Web</td>
-                        </tr>
-                        <tr>
-                            <td><strong>学习曲线</strong></td>
-                            <td>简单</td>
-                            <td>较复杂</td>
-                        </tr>
-                        <tr>
-                            <td><strong>API</strong></td>
-                            <td>Navigator.push/pop</td>
-                            <td>Router、RouteInformationParser</td>
-                        </tr>
-                        <tr>
-                            <td><strong>URL 同步</strong></td>
-                            <td>需要手动处理</td>
-                            <td>自动同步</td>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th>特性</th>
+                                <th>Navigator 1.0</th>
+                                <th>Navigator 2.0</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>编程范式</strong></td>
+                                <td>命令式（Imperative）</td>
+                                <td>声明式（Declarative）</td>
+                            </tr>
+                            <tr>
+                                <td><strong>状态管理</strong></td>
+                                <td>由 Navigator 内部管理</td>
+                                <td>由开发者完全控制</td>
+                            </tr>
+                            <tr>
+                                <td><strong>适用场景</strong></td>
+                                <td>简单应用、快速开发</td>
+                                <td>复杂应用、深度链接、Web</td>
+                            </tr>
+                            <tr>
+                                <td><strong>学习曲线</strong></td>
+                                <td>简单</td>
+                                <td>较复杂</td>
+                            </tr>
+                            <tr>
+                                <td><strong>API</strong></td>
+                                <td>Navigator.push/pop</td>
+                                <td>Router、RouteInformationParser</td>
+                            </tr>
+                            <tr>
+                                <td><strong>URL 同步</strong></td>
+                                <td>需要手动处理</td>
+                                <td>自动同步</td>
+                            </tr>
+                        </tbody>
                     </table>
 
                     <div class="warning-box">
                         <strong>⚠️ 选择建议：</strong>
                         <ul class="feature-list">
-                            <li>初学者或简单应用：推荐使用 Navigator 1.0，学习曲线低，开发效率高</li>
-                            <li>复杂应用或需要深度链接：推荐使用 Navigator 2.0，提供更强大的控制能力</li>
-                            <li>Web 应用：必须使用 Navigator 2.0 以支持 URL 和浏览器导航</li>
+                            <li><strong>初学者或简单应用：</strong>推荐使用 Navigator 1.0，学习曲线低，开发效率高</li>
+                            <li><strong>复杂应用或需要深度链接：</strong>推荐使用 Navigator 2.0，提供更强大的控制能力</li>
+                            <li><strong>Web 应用：</strong>必须使用 Navigator 2.0 以支持 URL 和浏览器导航</li>
                         </ul>
                     </div>
 
@@ -527,7 +827,7 @@ SafeNavigator.pushNamed(context, '/profile');</code></pre>
                 </div>
 
                 <div class="component-card">
-                    <h2>1. Navigator 基础导航</h2>
+                    <h2>📍 1. Navigator 基础导航</h2>
                     <p>Navigator 是 Flutter 的核心导航组件，管理页面栈。</p>
 
                     <h3>基本导航方法</h3>
@@ -592,7 +892,7 @@ final args = ModalRoute.of(context)!.settings.arguments as Map;</code></pre>
                 </div>
 
                 <div class="component-card">
-                    <h2>2. 路由构造函数</h2>
+                    <h2>🔧 2. 路由构造函数</h2>
                     <p>使用 onGenerateRoute 实现更灵活的路由管理。</p>
 
                     <div class="code-block">
@@ -617,7 +917,7 @@ final args = ModalRoute.of(context)!.settings.arguments as Map;</code></pre>
                 </div>
 
                 <div class="component-card">
-                    <h2>3. TabBar 和 BottomNavigationBar</h2>
+                    <h2>📑 3. TabBar 和 BottomNavigationBar</h2>
                     <p>实现应用内的标签导航。</p>
 
                     <h3>TabBar 示例</h3>
@@ -723,7 +1023,7 @@ class _BottomNavExampleState extends State<BottomNavExample> {
                 </div>
 
                 <div class="component-card">
-                    <h2>4. Drawer 侧边导航</h2>
+                    <h2>🚪 4. Drawer 侧边导航</h2>
                     <p>实现应用内的侧边抽屉导航。</p>
 
                     <div class="code-block">
@@ -780,7 +1080,7 @@ class _BottomNavExampleState extends State<BottomNavExample> {
                 </div>
 
                 <div class="component-card">
-                    <h2>5. Hero 动画</h2>
+                    <h2>✨ 5. Hero 动画</h2>
                     <p>在页面间实现共享元素的过渡动画。</p>
 
                     <div class="code-block">
@@ -819,7 +1119,7 @@ Scaffold(
                 </div>
 
                 <div class="component-card">
-                    <h2>6. 页面过渡动画</h2>
+                    <h2>🎬 6. 页面过渡动画</h2>
                     <p>自定义页面切换的过渡动画。</p>
 
                     <div class="code-block">
@@ -867,25 +1167,25 @@ Navigator.push(
                 <!-- 导航流程图 -->
                 <div class="flowchart-container">
                     <h3>🔀 页面导航流程图</h3>
-                    <div style="text-align: center; padding: 1rem;">
+                    <div style="text-align: center; padding: 1.5rem;">
                         <div class="flow-node start-end">当前页面</div>
                         <div class="flow-arrow">↓</div>
                         <div class="flow-node decision">导航方式？</div>
-                        <div style="display: flex; justify-content: center; gap: 1rem; margin: 1rem 0;">
+                        <div style="display: flex; justify-content: center; gap: 1.5rem; margin: 1.5rem 0; flex-wrap: wrap;">
                             <div style="display: flex; flex-direction: column; align-items: center;">
                                 <div class="flow-node">Navigator.push</div>
                                 <div class="flow-arrow">↓</div>
-                                <div class="flow-node">新页面入栈</div>
+                                <div class="flow-node" style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); color: #1565C0; box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);">新页面入栈</div>
                             </div>
                             <div style="display: flex; flex-direction: column; align-items: center;">
-                                <div class="flow-node">Navigator.pop</div>
+                                <div class="flow-node" style="background: linear-gradient(135deg, #4CAF50 0%, #43A047 100%);">Navigator.pop</div>
                                 <div class="flow-arrow">↓</div>
-                                <div class="flow-node">当前页面出栈</div>
+                                <div class="flow-node" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); color: #2E7D32; box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);">当前页面出栈</div>
                             </div>
                             <div style="display: flex; flex-direction: column; align-items: center;">
-                                <div class="flow-node">Navigator.pushReplacement</div>
+                                <div class="flow-node" style="background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);">Navigator.pushReplacement</div>
                                 <div class="flow-arrow">↓</div>
-                                <div class="flow-node">替换当前页面</div>
+                                <div class="flow-node" style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); color: #E65100; box-shadow: 0 4px 12px rgba(255, 152, 0, 0.2);">替换当前页面</div>
                             </div>
                         </div>
                         <div class="flow-arrow">↓</div>
@@ -908,31 +1208,31 @@ Navigator.push(
                         </thead>
                         <tbody>
                             <tr>
-                                <td>push</td>
+                                <td><code style="background: #e3f2fd; padding: 0.25rem 0.5rem; border-radius: 4px; color: #1565C0;">push</code></td>
                                 <td>入栈</td>
                                 <td>有</td>
                                 <td>打开新页面</td>
                             </tr>
                             <tr>
-                                <td>pop</td>
+                                <td><code style="background: #e8f5e9; padding: 0.25rem 0.5rem; border-radius: 4px; color: #2E7D32;">pop</code></td>
                                 <td>出栈</td>
                                 <td>有</td>
                                 <td>返回上一页</td>
                             </tr>
                             <tr>
-                                <td>pushReplacement</td>
+                                <td><code style="background: #fff3e0; padding: 0.25rem 0.5rem; border-radius: 4px; color: #E65100;">pushReplacement</code></td>
                                 <td>替换</td>
                                 <td>无</td>
                                 <td>替换当前页</td>
                             </tr>
                             <tr>
-                                <td>pushAndRemoveUntil</td>
+                                <td><code style="background: #f3e5f5; padding: 0.25rem 0.5rem; border-radius: 4px; color: #6A1B9A;">pushAndRemoveUntil</code></td>
                                 <td>清空</td>
                                 <td>无</td>
                                 <td>登录后清空栈</td>
                             </tr>
                             <tr>
-                                <td>pushNamed</td>
+                                <td><code style="background: #e3f2fd; padding: 0.25rem 0.5rem; border-radius: 4px; color: #1565C0;">pushNamed</code></td>
                                 <td>入栈</td>
                                 <td>有</td>
                                 <td>命名路由</td>
@@ -941,19 +1241,22 @@ Navigator.push(
                     </table>
                 </div>
 
-                <h2>导航最佳实践</h2>
-                <ul class="feature-list">
-                    <li>使用命名路由提高代码可维护性</li>
-                    <li>合理使用 onGenerateRoute 处理复杂路由</li>
-                    <li>使用 Hero 动画提升用户体验</li>
-                    <li>为所有页面设置合适的过渡动画</li>
-                    <li>使用路由守卫实现权限控制</li>
-                    <li>避免过深的页面栈，适时清理</li>
-                    <li>使用状态管理工具（如 GetX）简化导航</li>
-                </ul>
+                <h2>📋 导航最佳实践</h2>
+                <div class="tip-box">
+                    <ul class="feature-list">
+                        <li><strong>使用命名路由</strong>：集中管理路由，避免硬编码页面路径</li>
+                        <li><strong>路由常量化</strong>：将路由路径定义为常量，避免字符串拼写错误</li>
+                        <li><strong>参数类型安全</strong>：使用数据模型类传递复杂参数，而不是 Map</li>
+                        <li><strong>错误处理</strong>：为未知路由定义 404 页面</li>
+                        <li><strong>页面缓存</strong>：使用 AutomaticKeepAliveClientMixin 保持页面状态</li>
+                        <li><strong>转场动画</strong>：根据平台选择合适的 PageRoute 类型</li>
+                        <li><strong>路由测试</strong>：编写单元测试验证路由跳转逻辑</li>
+                        <li><strong>性能优化</strong>：使用 const 构造函数减少重建</li>
+                    </ul>
+                </div>
 
                 <div class="note-box">
-                    <strong>下一步：</strong>掌握导航组件后，继续学习对话框组件。
+                    <strong>🎯 下一步：</strong>掌握导航组件后，继续学习对话框组件。
                 </div>
 
                 <div class="topic-nav">
