@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuildContext 详解 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary-color: #2196F3;
+            --secondary-color: #1976D2;
+            --accent-color: #03DAC6;
+            --success-color: #4CAF50;
+            --warning-color: #FF9800;
+            --danger-color: #F44336;
+            --text-color: #333;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --dark-bg: #1e1e1e;
+            --border-radius: 12px;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-hover: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .tutorial-page {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 2.5rem;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .tutorial-nav {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tutorial-nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .tutorial-nav a:hover {
+            background: rgba(33, 150, 243, 0.1);
+            text-decoration: none;
+            transform: translateX(-4px);
+        }
+
+        .tutorial-content h1 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tutorial-content > p {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .tutorial-content h2 {
+            color: var(--secondary-color);
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .tutorial-content h2:before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 28px;
+            background: linear-gradient(180deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 2px;
+        }
+
+        .tutorial-content h3 {
+            color: var(--text-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.35rem;
+            font-weight: 600;
+        }
+
+        .tutorial-content h4 {
+            color: var(--secondary-color);
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        .tutorial-content p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        .tutorial-content ul, .tutorial-content ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        .tutorial-content li {
+            margin-bottom: 0.6rem;
+        }
+
+        .note-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(33, 150, 243, 0.15);
+        }
+
+        .note-box strong {
+            color: var(--secondary-color);
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-left: 4px solid var(--warning-color);
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(255, 152, 0, 0.15);
+        }
+
+        .warning-box strong {
+            color: #E65100;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 4px solid var(--success-color);
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.15);
+        }
+
+        .tip-box strong {
+            color: #2E7D32;
+        }
+
+        .code-block {
+            background: var(--dark-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .code-block pre {
+            margin: 0;
+        }
+
+        .code-block code {
+            font-family: 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #d4d4d4;
+        }
+
+        .component-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            margin: 2.5rem 0;
+            border: 1px solid #e0e0e0;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .component-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        }
+
+        .component-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-4px);
+        }
+
+        .component-card h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .component-card h3 {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            padding-left: 2rem;
+            position: relative;
+            margin-bottom: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .feature-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .data-table caption {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .data-table th {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+            color: var(--text-light);
+        }
+
+        .data-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .data-table tr:hover {
+            background: #e3f2fd;
+        }
+
+        .topic-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e0e0e0;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .topic-nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .topic-nav a:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+        }
+
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #8be9fd; }
+        .comment { color: #6272a4; font-style: italic; }
+        .number { color: #bd93f9; }
+        .type { color: #50fa7b; }
+        .property { color: #ffb86c; }
+
+        @media (max-width: 768px) {
+            .tutorial-page {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            .tutorial-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .tutorial-content h2 {
+                font-size: 1.4rem;
+            }
+
+            .topic-nav {
+                flex-direction: column;
+            }
+
+            .topic-nav a {
+                text-align: center;
+                justify-content: center;
+            }
+
+            .data-table {
+                font-size: 0.85rem;
+            }
+
+            .data-table th, .data-table td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tutorial-content {
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#getting-started">入门指南</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                    <li><a href="index.html#examples">示例</a></li>
+                    <li><a href="index.html#resources">资源</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="tutorial-page">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="tutorial-content">
+                <h1>🎯 BuildContext 详解</h1>
+                <p>BuildContext 是 Flutter 中最重要的概念之一，它是 Widget 在 Widget 树中的位置引用，提供了访问主题、路由、MediaQuery 等能力。</p>
+
+                <div class="note-box">
+                    <strong>💡 重要提示：</strong>理解 BuildContext 的工作原理对于掌握 Flutter 开发至关重要，很多常见错误都与 context 使用不当有关。
+                </div>
+
+                <!-- 什么是 BuildContext -->
+                <div class="component-card" style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 4px solid #FF9800;">
+                    <h2>📍 什么是 BuildContext</h2>
+                    
+                    <div style="background: white; border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="font-size: 3rem;">📍</div>
+                            <div>
+                                <h3 style="color: #1565C0; margin: 0 0 0.5rem 0; font-size: 1.2rem;">BuildContext 本质</h3>
+                                <p style="margin: 0; color: #666;">BuildContext 是 Element 的接口，每个 Widget 在构建时都会获得一个 BuildContext，代表它在 Widget 树中的位置。</p>
+                            </div>
+                        </div>
+                        <div style="background: #263238; border-radius: 10px; padding: 1.25rem; overflow-x: auto;">
+<pre style="margin: 0; color: #80cbc4; font-family: monospace; font-size: 0.85rem; line-height: 1.8;"><code><span style="color: #bb80b3;">// BuildContext 简化定义</span>
+<span style="color: #82aaff;">abstract</span> <span style="color: #82aaff;">class</span> <span style="color: #ffcb6b;">BuildContext</span> {
+  <span style="color: #bb80b3;">// 获取 Widget 所在的 Element</span>
+  <span style="color: #ffcb6b;">Element</span> <span style="color: #ffcb6b;">get</span> element;
+  
+  <span style="color: #bb80b3;">// 访问主题</span>
+  <span style="color: #ffcb6b;">ThemeData</span> <span style="color: #ffcb6b;">get</span> theme;
+  
+  <span style="color: #bb80b3;">// 访问 MediaQuery</span>
+  <span style="color: #ffcb6b;">MediaQueryData</span> <span style="color: #ffcb6b;">get</span> mediaQuery;
+  
+  <span style="color: #bb80b3;">// 查找祖先 Widget</span>
+  T? findAncestorWidgetOfExactType&lt;T&gt;();
+  
+  <span style="color: #bb80b3;">// 查找最近的特定类型 Widget</span>
+  T? dependOnInheritedWidgetOfExactType&lt;T&gt;();
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 style="color: #1976D2; margin-top: 1.5rem;">Widget-Element-Context 关系</h3>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0;">
+                        <div style="text-align: center; padding: 1.5rem; background: #e3f2fd; border-radius: 12px; border: 2px solid #1565C0;">
+                            <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">📋</div>
+                            <h4 style="color: #1565C0; margin: 0 0 0.5rem 0;">Widget</h4>
+                            <p style="margin: 0; color: #666; font-size: 0.9rem;">配置信息<br>不可变对象<br>每次重建创建新实例</p>
+                        </div>
+                        <div style="text-align: center; padding: 1.5rem; background: #c8e6c9; border-radius: 12px; border: 2px solid #2E7D32;">
+                            <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">🔗</div>
+                            <h4 style="color: #2E7D32; margin: 0 0 0.5rem 0;">Element</h4>
+                            <p style="margin: 0; color: #666; font-size: 0.9rem;">管理状态<br>可复用对象<br>实现 BuildContext</p>
+                        </div>
+                        <div style="text-align: center; padding: 1.5rem; background: #fff3e0; border-radius: 12px; border: 2px solid #E65100;">
+                            <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">🎨</div>
+                            <h4 style="color: #E65100; margin: 0 0 0.5rem 0;">RenderObject</h4>
+                            <p style="margin: 0; color: #666; font-size: 0.9rem;">负责渲染<br>屏幕绘制<br>布局和绘制</p>
+                        </div>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: #f5f5f5; border-radius: 8px;">
+                        <p style="margin: 0; color: #424242; font-size: 0.95rem;"><strong>流程：</strong>Widget 创建 → Element 实例化（实现 BuildContext）→ RenderObject 渲染</p>
+                    </div>
+                </div>
+
+                <!-- BuildContext 的常见用途 -->
+                <div class="component-card">
+                    <h2>🛠️ BuildContext 的常见用途</h2>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin: 1.5rem 0;">
+                        <div style="background: white; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #2196F3; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <h3 style="color: #1565C0; margin: 0 0 0.75rem 0; font-size: 1.1rem;">🎨 访问主题</h3>
+                            <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.9rem;">获取应用主题配置</p>
+                            <div style="background: #e3f2fd; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #1565C0;">
+                                <pre style="margin: 0;">Theme.of(context)
+Theme.of(context).primaryColor
+Theme.of(context).textTheme</pre>
+                            </div>
+                        </div>
+
+                        <div style="background: white; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4CAF50; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <h3 style="color: #2E7D32; margin: 0 0 0.75rem 0; font-size: 1.1rem;">📐 获取屏幕尺寸</h3>
+                            <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.9rem;">访问媒体查询信息</p>
+                            <div style="background: #e8f5e9; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #2E7D32;">
+                                <pre style="margin: 0;">MediaQuery.of(context)
+MediaQuery.of(context).size
+MediaQuery.of(context).padding</pre>
+                            </div>
+                        </div>
+
+                        <div style="background: white; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #FF9800; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <h3 style="color: #E65100; margin: 0 0 0.75rem 0; font-size: 1.1rem;">🧭 路由导航</h3>
+                            <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.9rem;">页面跳转和导航</p>
+                            <div style="background: #fff3e0; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #E65100;">
+                                <pre style="margin: 0;">Navigator.of(context)
+Navigator.push(context, route)
+Navigator.pop(context)</pre>
+                            </div>
+                        </div>
+
+                        <div style="background: white; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #9C27B0; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <h3 style="color: #6A1B9A; margin: 0 0 0.75rem 0; font-size: 1.1rem;">💬 显示对话框</h3>
+                            <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.9rem;">弹窗和提示</p>
+                            <div style="background: #f3e5f5; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #6A1B9A;">
+                                <pre style="margin: 0;">showDialog(context: context, ...)
+ScaffoldMessenger.of(context)
+    .showSnackBar(...)</pre>
+                            </div>
+                        </div>
+
+                        <div style="background: white; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #00BCD4; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <h3 style="color: #006064; margin: 0 0 0.75rem 0; font-size: 1.1rem;">📦 访问资源</h3>
+                            <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.9rem;">获取图片和字符串</p>
+                            <div style="background: #e0f7fa; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #006064;">
+                                <pre style="margin: 0;">AssetImage.fromBundle(
+  DefaultAssetBundle.of(context),
+  'assets/image.png',
+)
+DefaultAssetBundle.of(context)
+    .loadString('assets/data.json')</pre>
+                            </div>
+                        </div>
+
+                        <div style="background: white; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #795548; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <h3 style="color: #3E2723; margin: 0 0 0.75rem 0; font-size: 1.1rem;">🔍 查找祖先</h3>
+                            <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.9rem;">向上查找 Widget</p>
+                            <div style="background: #efebe9; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #3E2723;">
+                                <pre style="margin: 0;">context.findAncestorWidgetOfExactType&lt;T&gt;()
+context.findAncestorStateOfType&lt;T&gt;()
+context.dependOnInheritedWidgetOfExactType&lt;T&gt;()</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 常见错误 -->
+                <div class="component-card" style="background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%); border-left: 4px solid #F44336;">
+                    <h2>⚠️ 常见错误：在 build 之外使用 context</h2>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+                        <div style="background: white; padding: 2rem; border-radius: 12px; border: 2px solid #F44336;">
+                            <h3 style="color: #C62828; margin: 0 0 1.5rem 0; font-size: 1.3rem; text-align: center;">❌ 错误用法</h3>
+                            <div style="background: #263238; padding: 1.25rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #80cbc4;">
+<pre style="margin: 0;"><span style="color: #82aaff;">class</span> <span style="color: #ffcb6b;">MyWidget</span> <span style="color: #82aaff;">extends</span> <span style="color: #ffcb6b;">StatefulWidget</span> {
+  <span style="color: #82aaff;">final</span> BuildContext context; <span style="color: #bb80b3;">// ❌ 错误</span>
+  
+  <span style="color: #ffcb6b;">MyWidget</span>({<span style="color: #82aaff;">required</span> <span style="color: #82aaff;">this</span>.context});
+  
+  <span style="color: #82aaff;">void</span> loadData() {
+    <span style="color: #bb80b3;">// ❌ 在 build 外部使用 context</span>
+    <span style="color: #ffcb6b;">Navigator</span>.<span style="color: #ffcb6b;">push</span>(context, ...);
+  }
+  
+  @override
+  Widget build(BuildContext context) {
+    <span style="color: #82aaff;">return</span> <span style="color: #ffcb6b;">Container</span>();
+  }
+}</pre>
+                            </div>
+                            <div style="margin-top: 1.5rem; padding: 1rem; background: #ffebee; border-radius: 8px; border-left: 4px solid #F44336;">
+                                <h4 style="color: #C62828; margin: 0 0 0.5rem 0; font-size: 1rem;">问题分析</h4>
+                                <ul style="margin: 0; padding-left: 1.25rem; color: #424242; font-size: 0.9rem; line-height: 1.8;">
+                                    <li style="margin-bottom: 0.4rem;">context 可能会过期，导致不可预测的行为</li>
+                                    <li style="margin-bottom: 0.4rem;">保存的 context 引用可能指向已销毁的 Element</li>
+                                    <li>可能引发 <code style="background: #ffcdd2; padding: 0.2rem 0.4rem; border-radius: 4px;">NoSuchMethodError</code> 或 <code style="background: #ffcdd2; padding: 0.2rem 0.4rem; border-radius: 4px;">AssertionError</code></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div style="background: white; padding: 2rem; border-radius: 12px; border: 2px solid #4CAF50;">
+                            <h3 style="color: #2E7D32; margin: 0 0 1.5rem 0; font-size: 1.3rem; text-align: center;">✅ 正确用法</h3>
+                            <div style="background: #263238; padding: 1.25rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #80cbc4;">
+<pre style="margin: 0;"><span style="color: #82aaff;">class</span> <span style="color: #ffcb6b;">MyWidget</span> <span style="color: #82aaff;">extends</span> <span style="color: #ffcb6b;">StatefulWidget</span> {
+  <span style="color: #82aaff;">void</span> loadData() {
+    <span style="color: #bb80b3;">// ✅ 使用 addPostFrameCallback</span>
+    <span style="color: #ffcb6b;">WidgetsBinding</span>.instance
+        .addPostFrameCallback((_) {
+      <span style="color: #ffcb6b;">Navigator</span>.<span style="color: #ffcb6b;">push</span>(context, ...);
+    });
+  }
+  
+  <span style="color: #82aaff;">void</span> showDialog() {
+    <span style="color: #bb80b3;">// ✅ 在回调中使用</span>
+    <span style="color: #ffcb6b;">showDialog</span>(
+      context: context,
+      builder: (_) => <span style="color: #ffcb6b;">AlertDialog</span>(...),
+    );
+  }
+  
+  @override
+  Widget build(BuildContext context) {
+    <span style="color: #82aaff;">return</span> <span style="color: #ffcb6b;">ElevatedButton</span>(
+      onPressed: () => loadData(),
+      child: <span style="color: #ffcb6b;">Text</span>(<span style="color: #c3e88d;">'加载'</span>),
+    );
+  }
+}</pre>
+                            </div>
+                            <div style="margin-top: 1.5rem; padding: 1rem; background: #e8f5e9; border-radius: 8px; border-left: 4px solid #4CAF50;">
+                                <h4 style="color: #2E7D32; margin: 0 0 0.5rem 0; font-size: 1rem;">最佳实践</h4>
+                                <ul style="margin: 0; padding-left: 1.25rem; color: #424242; font-size: 0.9rem; line-height: 1.8;">
+                                    <li style="margin-bottom: 0.4rem;">在 build 方法内直接使用 context</li>
+                                    <li style="margin-bottom: 0.4rem;">在回调函数（onPressed、onTap 等）中使用</li>
+                                    <li>使用 addPostFrameCallback 在 build 后执行</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Context 层级关系 -->
+                <div class="component-card">
+                    <h2>📊 Context 层级关系</h2>
+                    
+                    <p style="color: #666; font-size: 1rem; margin: 1.5rem 0;">不同层级的 context 能访问的资源不同，越往上能访问的祖先 Widget 越多。</p>
+                    
+                    <div style="background: white; border-radius: 12px; padding: 2rem; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                            <div style="padding: 1rem 3rem; background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%); color: white; border-radius: 10px; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3); width: 100%; text-align: center;">
+                                🏛️ MaterialApp（根 Context）- 可访问所有祖先
+                            </div>
+                            <div style="font-size: 1.75rem; color: #666; font-weight: 300;">↓</div>
+                            <div style="padding: 1rem 3rem; background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%); color: white; border-radius: 10px; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3); width: 90%; text-align: center;">
+                                📐 Scaffold（中等 Context）- 可访问 Theme、Navigator
+                            </div>
+                            <div style="font-size: 1.75rem; color: #666; font-weight: 300;">↓</div>
+                            <div style="padding: 1rem 3rem; background: linear-gradient(135deg, #4CAF50 0%, #43A047 100%); color: white; border-radius: 10px; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3); width: 80%; text-align: center;">
+                                📄 Body（子 Context）- 可访问 Scaffold 状态
+                            </div>
+                            <div style="font-size: 1.75rem; color: #666; font-weight: 300;">↓</div>
+                            <div style="padding: 1rem 3rem; background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%); color: white; border-radius: 10px; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3); width: 70%; text-align: center;">
+                                🎯 Widget（当前 Context）- 只能访问祖先
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 4px solid #FF9800; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;">
+                        <h3 style="color: #E65100; margin: 0 0 1rem 0; font-size: 1.1rem;">⚠️ 常见层级问题</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div style="background: white; padding: 1rem; border-radius: 8px;">
+                                <h4 style="color: #C62828; margin: 0 0 0.5rem 0; font-size: 0.95rem;">❌ 错误示例</h4>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem;">在 MaterialApp 的 context 上调用 <code style="background: #ffcdd2; padding: 0.2rem 0.4rem; border-radius: 4px;">Scaffold.of(context)</code></p>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px;">
+                                <h4 style="color: #2E7D32; margin: 0 0 0.5rem 0; font-size: 0.95rem;">✅ 解决方案</h4>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem;">在 Scaffold 子 Widget 的 context 上调用</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 最佳实践 -->
+                <div class="tip-box">
+                    <strong>💡 最佳实践总结</strong>
+                    <ul style="margin: 1rem 0 0 0; padding-left: 1.25rem; color: #424242; line-height: 1.8;">
+                        <li><strong>不要保存 context 引用</strong>：context 只在 build 方法执行期间有效</li>
+                        <li><strong>在回调中使用 context</strong>：如 onTap、onPressed 等回调函数中</li>
+                        <li><strong>使用 addPostFrameCallback</strong>：如果需要在 build 后执行异步操作</li>
+                        <li><strong>注意 context 层级</strong>：某些操作需要特定层级的 context（如 showDialog 需要 Scaffold 之上）</li>
+                        <li><strong>避免在 initState 中使用 context</strong>：此时 Widget 树还未完全构建</li>
+                    </ul>
+                </div>
+
+                <div class="topic-nav">
+                    <a href="key-widgets.html">← Key 详解</a>
+                    <a href="navigation-widgets.html">导航组件 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
