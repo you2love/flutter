@@ -109,6 +109,11 @@
         }
 
         /* info-box 内的 h2 不显示左侧装饰条 */
+        .info-box h2 {
+            display: block;
+            margin-top: 0;
+        }
+        
         .info-box h2:before,
         .info-box h3:before {
             display: none !important;
@@ -186,6 +191,107 @@
 
         .tip-box strong {
             color: #2E7D32;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%) !important;
+            border-radius: var(--border-radius);
+            padding: 2.5rem !important;
+            margin: 2.5rem 0;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: none !important;
+        }
+
+        .tutorial-page .info-box h2 {
+            color: var(--primary-color) !important;
+            margin-top: 0 !important;
+            margin-bottom: 1.5rem !important;
+            font-size: 1.5rem !important;
+            font-weight: 600 !important;
+        }
+
+        .tutorial-page .info-box h2:before {
+            display: none !important;
+            content: none !important;
+        }
+
+        .tutorial-page .info-box h3 {
+            color: var(--secondary-color) !important;
+            margin-top: 2rem !important;
+            margin-bottom: 1rem !important;
+            font-size: 1.25rem !important;
+            font-weight: 600 !important;
+        }
+
+        .tutorial-page .info-box h3:before {
+            display: none !important;
+            content: none !important;
+        }
+
+        .tutorial-page .info-box h3:first-of-type {
+            margin-top: 0 !important;
+        }
+
+        .tutorial-page .info-box h4 {
+            color: var(--primary-color) !important;
+            margin-top: 1.5rem !important;
+        }
+
+        .tutorial-page .info-box h4:first-child {
+            margin-top: 0 !important;
+        }
+
+        .tutorial-page .info-box p {
+            color: var(--text-light) !important;
+        }
+
+        .tutorial-page .info-box .code-block {
+            background: #263238 !important;
+            margin: 1rem 0 !important;
+        }
+
+        .tutorial-page .info-box .feature-list {
+            margin-top: 1rem !important;
+        }
+
+        .tutorial-page .info-box .data-table {
+            margin-top: 1rem !important;
+            font-size: 0.95rem !important;
+        }
+
+        .tutorial-page .info-box .warning-box,
+        .tutorial-page .info-box .tip-box {
+            margin: 1.5rem 0 !important;
+        }
+
+        /* info-box 内自定义标题样式 */
+        .info-box-title {
+            color: var(--primary-color) !important;
+            font-size: 1.5rem !important;
+            font-weight: 600 !important;
+            margin-top: 0 !important;
+            margin-bottom: 1rem !important;
+        }
+
+        .info-box-section-title {
+            color: var(--secondary-color) !important;
+            font-size: 1.25rem !important;
+            font-weight: 600 !important;
+            margin-top: 2rem !important;
+            margin-bottom: 1rem !important;
+        }
+
+        .info-box-section-title:first-of-type {
+            margin-top: 0 !important;
+        }
+
+        .info-box-subtitle {
+            color: var(--primary-color) !important;
+            font-size: 1.1rem !important;
+            font-weight: 600 !important;
+            margin-top: 1.5rem !important;
+            margin-bottom: 0.75rem !important;
         }
 
         /* Code blocks */
@@ -515,6 +621,306 @@
                     <strong>💡 重要提示：</strong>Flutter 3.28+ 引入了 Navigator 2.0，提供了更强大的路由管理和状态管理能力。
                 </div>
 
+                <!-- Flutter 路由基础 -->
+                <div class="info-box">
+                    <div class="info-box-title">🧭 Flutter 路由系统详解</div>
+                    <p>路由是应用中页面跳转和导航的核心机制。Flutter 提供了两套路由系统：<strong>Navigator 1.0（命令式）</strong>和<strong>Navigator 2.0（声明式）</strong>。</p>
+
+                    <div class="info-box-section-title">📚 路由核心概念</div>
+                    <ul class="feature-list">
+                        <li><strong>Route（路由）</strong>：代表应用中的一个页面或屏幕，是屏幕的抽象</li>
+                        <li><strong>Navigator（导航器）</strong>：管理路由栈的组件，负责页面的入栈和出栈</li>
+                        <li><strong>路由栈</strong>：由 Navigator 维护的页面堆栈，遵循后进先出（LIFO）原则</li>
+                        <li><strong>页面切换</strong>：通过推送（push）和弹出（pop）操作实现页面跳转</li>
+                        <li><strong>路由参数</strong>：在页面跳转时传递的数据，包括导航参数和返回参数</li>
+                    </ul>
+
+                    <div class="diagram-container">
+                        <h3>📊 路由栈示意图</h3>
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem; padding: 2.5rem; background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%); border-radius: 16px; border: 2px solid #e0e0e0; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+                            <div style="padding: 0.875rem 2.5rem; background: linear-gradient(135deg, #4CAF50 0%, #43A047 100%); color: white; border-radius: 10px; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3); transition: all 0.3s ease;">
+                                ← 返回上一页（pop）
+                            </div>
+                            <div style="font-size: 1.75rem; color: #666; font-weight: 300;">↓</div>
+                            <div style="padding: 0.875rem 2.5rem; background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%); color: white; border-radius: 10px; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3); transition: all 0.3s ease;">
+                                当前页面（页面 C）
+                            </div>
+                            <div style="padding: 0.875rem 2.5rem; background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%); color: white; border-radius: 10px; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3); transition: all 0.3s ease;">
+                                上一页（页面 B）
+                            </div>
+                            <div style="padding: 0.875rem 2.5rem; background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%); color: white; border-radius: 10px; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3); transition: all 0.3s ease;">
+                                首页（页面 A）
+                            </div>
+                            <div style="font-size: 1.75rem; color: #666; font-weight: 300;">↓</div>
+                            <div style="padding: 0.875rem 2.5rem; background: linear-gradient(135deg, #607D8B 0%, #455A64 100%); color: white; border-radius: 10px; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 12px rgba(96, 125, 139, 0.3); transition: all 0.3s ease;">
+                                → 跳转到新页（push）
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box-section-title">🔄 Navigator 1.0 vs Navigator 2.0</div>
+                    <table class="data-table">
+                        <caption>两套路由系统对比</caption>
+                        <thead>
+                            <tr>
+                                <th>特性</th>
+                                <th>Navigator 1.0</th>
+                                <th>Navigator 2.0</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>编程范式</strong></td>
+                                <td>命令式（Imperative）</td>
+                                <td>声明式（Declarative）</td>
+                            </tr>
+                            <tr>
+                                <td><strong>状态管理</strong></td>
+                                <td>由 Navigator 内部管理</td>
+                                <td>由开发者完全控制</td>
+                            </tr>
+                            <tr>
+                                <td><strong>适用场景</strong></td>
+                                <td>简单应用、快速开发</td>
+                                <td>复杂应用、深度链接、Web</td>
+                            </tr>
+                            <tr>
+                                <td><strong>学习曲线</strong></td>
+                                <td>简单</td>
+                                <td>较复杂</td>
+                            </tr>
+                            <tr>
+                                <td><strong>API</strong></td>
+                                <td>Navigator.push/pop</td>
+                                <td>Router、RouteInformationParser</td>
+                            </tr>
+                            <tr>
+                                <td><strong>URL 同步</strong></td>
+                                <td>需要手动处理</td>
+                                <td>自动同步</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="warning-box">
+                        <strong>⚠️ 选择建议：</strong>
+                        <ul class="feature-list">
+                            <li><strong>初学者或简单应用：</strong>推荐使用 Navigator 1.0，学习曲线低，开发效率高</li>
+                            <li><strong>复杂应用或需要深度链接：</strong>推荐使用 Navigator 2.0，提供更强大的控制能力</li>
+                            <li><strong>Web 应用：</strong>必须使用 Navigator 2.0 以支持 URL 和浏览器导航</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box-section-title">🎯 路由类型</div>
+                    <div class="info-box">
+                        <h4>1. MaterialPageRoute</h4>
+                        <p>Material Design 风格的页面切换，包含平台特定的转场动画。</p>
+                        <div class="code-block">
+                            <pre><code>MaterialPageRoute(
+  builder: (context) => const SecondPage(),
+  fullscreenDialog: false,  // 是否为全屏对话框
+  maintainState: true,      // 是否保持页面状态
+)</code></pre>
+                        </div>
+
+                        <h4>2. CupertinoPageRoute</h4>
+                        <p>iOS 风格的页面切换，使用 iOS 原生转场动画。</p>
+                        <div class="code-block">
+                            <pre><code>CupertinoPageRoute(
+  builder: (context) => const SecondPage(),
+)</code></pre>
+                        </div>
+
+                        <h4>3. PageRouteBuilder</h4>
+                        <p>自定义页面转场动画的通用路由。</p>
+                        <div class="code-block">
+                            <pre><code>PageRouteBuilder(
+  pageBuilder: (context, animation, secondaryAnimation) => const SecondPage(),
+  transitionsBuilder: (context, animation, secondaryAnimation, child) {
+    const begin = Offset(0.0, 1.0);
+    const end = Offset.zero;
+    const curve = Curves.ease;
+
+    var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+    var offsetAnimation = animation.drive(tween);
+
+    return SlideTransition(
+      position: offsetAnimation,
+      child: child,
+    );
+  },
+)</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="info-box-section-title">📤 路由参数传递</div>
+                    <div class="info-box">
+                        <div class="info-box-subtitle">通过构造函数传递参数</div>
+                        <div class="code-block">
+                            <pre><code>// 定义带参数的页面
+class DetailsPage extends StatelessWidget {
+  final String title;
+  final int id;
+
+  const DetailsPage({
+    super.key,
+    required this.title,
+    required this.id,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(title)),
+      body: Center(child: Text('ID: $id')),
+    );
+  }
+}
+
+// 传递参数
+Navigator.push(
+  context,
+  MaterialPageRoute(
+    builder: (context) => DetailsPage(
+      title: '产品详情',
+      id: 123,
+    ),
+  ),
+);</code></pre>
+                        </div>
+
+                        <div class="info-box-subtitle">通过 arguments 传递参数（命名路由）</div>
+                        <div class="code-block">
+                            <pre><code>// 在 MaterialApp 中定义路由
+MaterialApp(
+  routes: {
+    '/': (context) => const HomePage(),
+    '/details': (context) {
+      final args = ModalRoute.of(context)!.settings.arguments as Map;
+      return DetailsPage(
+        title: args['title'] as String,
+        id: args['id'] as int,
+      );
+    },
+  },
+);
+
+// 传递参数
+Navigator.pushNamed(
+  context,
+  '/details',
+  arguments: {'title': '产品详情', 'id': 123},
+);</code></pre>
+                        </div>
+
+                        <div class="info-box-subtitle">页面返回数据</div>
+                        <div class="code-block">
+                            <pre><code>// 推送页面并等待返回结果
+final result = await Navigator.push(
+  context,
+  MaterialPageRoute(builder: (context) => const SelectionPage()),
+);
+
+if (result != null) {
+  print('用户选择了: $result');
+}
+
+// 在 SelectionPage 中返回数据
+Navigator.pop(context, '选择的结果');</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="info-box-section-title">🛡️ 路由守卫和中间件</div>
+                    <div class="info-box">
+                        <p>路由守卫用于在页面跳转前进行权限验证、登录检查等操作。</p>
+                        <div class="code-block">
+                            <pre><code>class AuthGuard {
+  static Future<bool> canAccess(BuildContext context, String route) async {
+    // 检查用户是否已登录
+    final isLoggedIn = await AuthService.isLoggedIn();
+    
+    if (!isLoggedIn && route != '/login') {
+      // 未登录，跳转到登录页
+      Navigator.pushReplacementNamed(context, '/login');
+      return false;
+    }
+    
+    return true;
+  }
+}
+
+// 使用路由守卫
+class SafeNavigator {
+  static Future<T?> pushNamed<T>(
+    BuildContext context,
+    String routeName, {
+    Object? arguments,
+  }) async {
+    final canAccess = await AuthGuard.canAccess(context, routeName);
+    if (!canAccess) return null;
+    
+    return Navigator.pushNamed<T>(context, routeName, arguments: arguments);
+  }
+}
+
+// 使用方式
+SafeNavigator.pushNamed(context, '/profile');</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="info-box-section-title">🔗 深度链接</div>
+                    <div class="info-box">
+                        <p>深度链接允许用户通过 URL 直接打开应用中的特定页面。</p>
+                        <div class="code-block">
+                            <pre><code>MaterialApp(
+  // 支持深度链接
+  onGenerateRoute: (settings) {
+    // 解析 URL
+    final uri = Uri.parse(settings.name!);
+    
+    // 处理不同路径
+    switch (uri.path) {
+      case '/':
+        return MaterialPageRoute(builder: (_) => const HomePage());
+      case '/product':
+        final id = int.tryParse(uri.queryParameters['id'] ?? '0');
+        return MaterialPageRoute(
+          builder: (_) => ProductPage(id: id ?? 0),
+        );
+      case '/user':
+        final userId = uri.queryParameters['userId'];
+        return MaterialPageRoute(
+          builder: (_) => UserProfilePage(userId: userId),
+        );
+      default:
+        return MaterialPageRoute(builder: (_) => const NotFoundPage());
+    }
+  },
+  
+  // 处理外部链接
+  initialRoute: '/',
+);
+
+// 示例 URL：
+// https://example.com/product?id=123
+// https://example.com/user?userId=john</code></pre>
+                        </div>
+                    </div>
+
+                    <h3>💡 路由最佳实践</h3>
+                    <div class="tip-box">
+                        <ul class="feature-list">
+                            <li><strong>使用命名路由</strong>：集中管理路由，避免硬编码页面路径</li>
+                            <li><strong>路由常量化</strong>：将路由路径定义为常量，避免字符串拼写错误</li>
+                            <li><strong>参数类型安全</strong>：使用数据模型类传递复杂参数，而不是 Map</li>
+                            <li><strong>错误处理</strong>：为未知路由定义 404 页面</li>
+                            <li><strong>页面缓存</strong>：使用 AutomaticKeepAliveClientMixin 保持页面状态</li>
+                            <li><strong>转场动画</strong>：根据平台选择合适的PageRoute类型</li>
+                            <li><strong>路由测试</strong>：编写单元测试验证路由跳转逻辑</li>
+                            <li><strong>性能优化</strong>：使用 const 构造函数减少重建</li>
+                        </ul>
+                    </div>
+                </div>
 
                 <div class="component-card">
                     <h2>📍 1. Navigator 基础导航</h2>
