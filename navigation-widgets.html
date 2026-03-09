@@ -515,6 +515,99 @@
                     <strong>💡 重要提示：</strong>Flutter 3.28+ 引入了 Navigator 2.0，提供了更强大的路由管理和状态管理能力。
                 </div>
 
+                <!-- 导航原理 -->
+                <div class="component-card" style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 4px solid #2196F3;">
+                    <h2>🔬 导航原理</h2>
+                    <p style="color: #1565C0;">Flutter 的导航系统基于<strong>路由栈（Route Stack）</strong>模型，理解其工作原理对于掌握页面跳转至关重要。</p>
+
+                    <h3 style="color: #1976D2; margin-top: 1.5rem;">📚 路由栈机制</h3>
+                    <p style="color: #424242;">Navigator 内部维护一个路由栈，遵循<strong>后进先出（LIFO）</strong>原则：</p>
+                    <ul class="feature-list" style="margin: 1rem 0;">
+                        <li><strong>push</strong>：将新路由压入栈顶，当前页面被覆盖</li>
+                        <li><strong>pop</strong>：将栈顶路由弹出，返回上一页</li>
+                        <li><strong>pushReplacement</strong>：弹出栈顶路由，再压入新路由</li>
+                        <li><strong>pushAndRemoveUntil</strong>：清空栈中所有路由，再压入新路由</li>
+                    </ul>
+
+                    <div style="background: white; border-radius: 12px; padding: 2rem; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <h4 style="text-align: center; color: #1976D2; margin: 0 0 1.5rem 0;">📊 路由栈工作流程</h4>
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem;">
+                            <div style="padding: 0.75rem 2rem; background: linear-gradient(135deg, #4CAF50 0%, #43A047 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);">
+                                ← pop() 弹出栈顶
+                            </div>
+                            <div style="font-size: 1.5rem; color: #666;">↑</div>
+                            <div style="padding: 0.75rem 2rem; background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);">
+                                页面 C（栈顶）
+                            </div>
+                            <div style="padding: 0.75rem 2rem; background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);">
+                                页面 B
+                            </div>
+                            <div style="padding: 0.75rem 2rem; background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3);">
+                                页面 A（栈底/首页）
+                            </div>
+                            <div style="font-size: 1.5rem; color: #666;">↓</div>
+                            <div style="padding: 0.75rem 2rem; background: linear-gradient(135deg, #607D8B 0%, #455A64 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(96, 125, 139, 0.3);">
+                                → push() 压入新页面
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 style="color: #1976D2; margin-top: 1.5rem;">🔄 页面切换原理</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                        <div style="background: white; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #4CAF50;">
+                            <h5 style="color: #2E7D32; margin: 0 0 0.5rem 0;">push 操作</h5>
+                            <p style="margin: 0; color: #666; font-size: 0.9rem;">新页面入栈 → 触发 build → 执行动画 → 显示新页面</p>
+                        </div>
+                        <div style="background: white; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #F44336;">
+                            <h5 style="color: #C62828; margin: 0 0 0.5rem 0;">pop 操作</h5>
+                            <p style="margin: 0; color: #666; font-size: 0.9rem;">当前页面出栈 → 触发 dispose → 执行动画 → 显示上一页</p>
+                        </div>
+                        <div style="background: white; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #FF9800;">
+                            <h5 style="color: #E65100; margin: 0 0 0.5rem 0;">replace 操作</h5>
+                            <p style="margin: 0; color: #666; font-size: 0.9rem;">先 pop 再 push → 原子操作 → 无返回动画</p>
+                        </div>
+                    </div>
+
+                    <h3 style="color: #1976D2; margin-top: 1.5rem;">📞 参数传递原理</h3>
+                    <div style="background: white; border-radius: 10px; padding: 1.5rem; margin: 1rem 0;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e0e0e0;">
+                            <div style="background: #e3f2fd; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; color: #1565C0;">正向传递</h4>
+                            <p style="margin: 0; color: #666;">通过构造函数或 settings.arguments 传递数据给新页面</p>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="background: #e8f5e9; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; color: #2E7D32;">反向返回</h4>
+                            <p style="margin: 0; color: #666;">通过 pop(result) 返回数据，await push 接收结果</p>
+                        </div>
+                    </div>
+
+                    <h3 style="color: #1976D2; margin-top: 1.5rem;">🎭 动画原理</h3>
+                    <p style="color: #424242;">页面切换动画由<strong>PageRouteBuilder</strong>的 transitionsBuilder 控制：</p>
+                    <div style="background: #263238; border-radius: 10px; padding: 1.25rem; margin: 1rem 0; overflow-x: auto;">
+<pre style="margin: 0; color: #80cbc4; font-family: monospace; font-size: 0.85rem; line-height: 1.6;"><code>PageRouteBuilder(
+  pageBuilder: (context, animation, secondaryAnimation) =&gt; SecondPage(),
+  transitionsBuilder: (context, animation, secondaryAnimation, child) {
+    <span style="color: #bb80b3;">// animation: 当前页面的动画控制器（0.0 - 1.0）</span>
+    <span style="color: #bb80b3;">// secondaryAnimation: 下一页进入时的动画控制器</span>
+    <span style="color: #bb80b3;">// child: 要显示的页面 Widget</span>
+    
+    <span style="color: #82aaff;">var</span> tween = <span style="color: #ffcb6b;">Tween</span>(begin: <span style="color: #82aaff;">Offset</span>(<span style="color: #f78c6c;">1.0</span>, <span style="color: #f78c6c;">0.0</span>), end: <span style="color: #82aaff;">Offset</span>.zero);
+    <span style="color: #82aaff;">return</span> <span style="color: #ffcb6b;">SlideTransition</span>(
+      position: animation.<span style="color: #ffcb6b;">drive</span>(tween),
+      child: child,
+    );
+  },
+)</code></pre>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 4px solid #FF9800; padding: 1.25rem; margin: 1.5rem 0; border-radius: 8px;">
+                        <h5 style="color: #E65100; margin: 0 0 0.5rem 0;">💡 关键点</h5>
+                        <ul style="margin: 0; padding-left: 1.25rem; color: #424242; font-size: 0.9rem; line-height: 1.7;">
+                            <li style="margin-bottom: 0.4rem;"><strong>animation 值从 0.0 到 1.0</strong>：表示当前页面从开始到结束的动画进度</li>
+                            <li style="margin-bottom: 0.4rem;"><strong>secondaryAnimation</strong>：当新页面推入时，当前页面的退出动画</li>
+                            <li><strong>child 参数</strong>：已经构建好的页面 Widget，直接包装动画即可</li>
+                        </ul>
+                    </div>
+                </div>
 
                 <div class="component-card">
                     <h2>📍 1. Navigator 基础导航</h2>
