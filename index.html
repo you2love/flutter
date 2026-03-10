@@ -36,6 +36,10 @@
                         <span class="tab-icon">🔑</span>
                         <span class="tab-text">Key 详解</span>
                     </button>
+                    <button class="tab-btn" data-tab="context">
+                        <span class="tab-icon">🎯</span>
+                        <span class="tab-text">BuildContext</span>
+                    </button>
                     <button class="tab-btn" data-tab="ecosystem">
                         <span class="tab-icon">🌍</span>
                         <span class="tab-text">第三方生态</span>
@@ -1013,6 +1017,165 @@ _formKey.currentState?.validate();</pre>
                 </div>
             </div>
 
+            <!-- BuildContext 详解 Tab -->
+            <div class="tab-panel" id="context">
+                <div class="container">
+                    <h2>🎯 BuildContext 详解</h2>
+                    <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">BuildContext 是 Flutter 中最重要的概念之一，它是 Widget 在 Widget 树中的位置引用，提供了访问主题、路由、MediaQuery 等能力。</p>
+
+                    <!-- 什么是 BuildContext -->
+                    <div class="component-card" style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 4px solid #FF9800;">
+                        <h3 style="color: #E65100; margin-top: 0;">📍 什么是 BuildContext</h3>
+                        <p style="color: #424242;">BuildContext 是 Element 的接口，每个 Widget 在构建时都会获得一个 BuildContext，代表它在 Widget 树中的位置。</p>
+                        
+                        <div style="background: #263238; border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; overflow-x: auto;">
+<pre style="margin: 0; color: #80cbc4; font-family: monospace; font-size: 0.85rem; line-height: 1.8;"><code><span style="color: #bb80b3;">// BuildContext 简化定义</span>
+<span style="color: #82aaff;">abstract</span> <span style="color: #82aaff;">class</span> <span style="color: #ffcb6b;">BuildContext</span> {
+  <span style="color: #ffcb6b;">Element</span> <span style="color: #ffcb6b;">get</span> element;
+  <span style="color: #ffcb6b;">ThemeData</span> <span style="color: #ffcb6b;">get</span> theme;
+  <span style="color: #ffcb6b;">MediaQueryData</span> <span style="color: #ffcb6b;">get</span> mediaQuery;
+  T? findAncestorWidgetOfExactType&lt;T&gt;();
+  T? dependOnInheritedWidgetOfExactType&lt;T&gt;();
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Widget-Element-Context 关系 -->
+                    <div class="component-card">
+                        <h3>🔗 Widget-Element-Context 关系</h3>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0;">
+                            <div style="text-align: center; padding: 1.5rem; background: #e3f2fd; border-radius: 12px; border: 2px solid #1565C0;">
+                                <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">📋</div>
+                                <h4 style="color: #1565C0; margin: 0 0 0.5rem 0;">Widget</h4>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem;">配置信息<br>不可变对象<br>每次重建创建新实例</p>
+                            </div>
+                            <div style="text-align: center; padding: 1.5rem; background: #c8e6c9; border-radius: 12px; border: 2px solid #2E7D32;">
+                                <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">🔗</div>
+                                <h4 style="color: #2E7D32; margin: 0 0 0.5rem 0;">Element</h4>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem;">管理状态<br>可复用对象<br>实现 BuildContext</p>
+                            </div>
+                            <div style="text-align: center; padding: 1.5rem; background: #fff3e0; border-radius: 12px; border: 2px solid #E65100;">
+                                <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">🎨</div>
+                                <h4 style="color: #E65100; margin: 0 0 0.5rem 0;">RenderObject</h4>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem;">负责渲染<br>屏幕绘制<br>布局和绘制</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BuildContext 的常见用途 -->
+                    <div class="component-card">
+                        <h3>🛠️ BuildContext 的常见用途</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                            <div style="background: white; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #2196F3;">
+                                <h5 style="color: #1565C0; margin: 0 0 0.5rem 0;">🎨 访问主题</h5>
+                                <div style="background: #e3f2fd; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem; color: #1565C0;">
+                                    <pre style="margin: 0;">Theme.of(context)
+Theme.of(context).primaryColor</pre>
+                                </div>
+                            </div>
+                            <div style="background: white; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #4CAF50;">
+                                <h5 style="color: #2E7D32; margin: 0 0 0.5rem 0;">📐 获取屏幕尺寸</h5>
+                                <div style="background: #e8f5e9; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem; color: #2E7D32;">
+                                    <pre style="margin: 0;">MediaQuery.of(context)
+MediaQuery.of(context).size</pre>
+                                </div>
+                            </div>
+                            <div style="background: white; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #FF9800;">
+                                <h5 style="color: #E65100; margin: 0 0 0.5rem 0;">🧭 路由导航</h5>
+                                <div style="background: #fff3e0; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem; color: #E65100;">
+                                    <pre style="margin: 0;">Navigator.of(context)
+Navigator.push(context, ...)</pre>
+                                </div>
+                            </div>
+                            <div style="background: white; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #9C27B0;">
+                                <h5 style="color: #6A1B9A; margin: 0 0 0.5rem 0;">💬 显示对话框</h5>
+                                <div style="background: #f3e5f5; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem; color: #6A1B9A;">
+                                    <pre style="margin: 0;">showDialog(context: context, ...)
+ScaffoldMessenger.of(context)
+    .showSnackBar(...)</pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 常见错误 -->
+                    <div class="component-card" style="background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%); border-left: 4px solid #F44336;">
+                        <h3 style="color: #C62828; margin-top: 0;">⚠️ 常见错误：在 build 之外使用 context</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
+                            <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 2px solid #F44336;">
+                                <h4 style="color: #C62828; margin: 0 0 1rem 0; text-align: center;">❌ 错误用法</h4>
+                                <div style="background: #263238; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #80cbc4;">
+                                    <pre style="margin: 0;"><span style="color: #82aaff;">class</span> <span style="color: #ffcb6b;">MyWidget</span> <span style="color: #82aaff;">extends</span> <span style="color: #ffcb6b;">StatefulWidget</span> {
+  <span style="color: #82aaff;">final</span> BuildContext context; <span style="color: #bb80b3;">// ❌</span>
+  
+  <span style="color: #ffcb6b;">MyWidget</span>({<span style="color: #82aaff;">required</span> <span style="color: #82aaff;">this</span>.context});
+  
+  <span style="color: #82aaff;">void</span> loadData() {
+    <span style="color: #ffcb6b;">Navigator</span>.<span style="color: #ffcb6b;">push</span>(context, ...); <span style="color: #bb80b3;">// ❌</span>
+  }
+}</pre>
+                                </div>
+                            </div>
+                            <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 2px solid #4CAF50;">
+                                <h4 style="color: #2E7D32; margin: 0 0 1rem 0; text-align: center;">✅ 正确用法</h4>
+                                <div style="background: #263238; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #80cbc4;">
+                                    <pre style="margin: 0;"><span style="color: #82aaff;">class</span> <span style="color: #ffcb6b;">MyWidget</span> <span style="color: #82aaff;">extends</span> <span style="color: #ffcb6b;">StatefulWidget</span> {
+  <span style="color: #82aaff;">void</span> loadData() {
+    <span style="color: #ffcb6b;">WidgetsBinding</span>.instance
+        .<span style="color: #ffcb6b;">addPostFrameCallback</span>((_) {
+      <span style="color: #ffcb6b;">Navigator</span>.<span style="color: #ffcb6b;">push</span>(context, ...); <span style="color: #bb80b3;">// ✅</span>
+    });
+  }
+}</pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Context 层级关系 -->
+                    <div class="component-card">
+                        <h3>📊 Context 层级关系</h3>
+                        <div style="background: white; border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0;">
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                                <div style="padding: 0.75rem 2rem; background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3);">
+                                    MaterialApp（根 Context）
+                                </div>
+                                <div style="font-size: 1.5rem; color: #666;">↓</div>
+                                <div style="padding: 0.75rem 2rem; background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);">
+                                    Scaffold（中等 Context）
+                                </div>
+                                <div style="font-size: 1.5rem; color: #666;">↓</div>
+                                <div style="padding: 0.75rem 2rem; background: linear-gradient(135deg, #4CAF50 0%, #43A047 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);">
+                                    Body（子 Context）
+                                </div>
+                                <div style="font-size: 1.5rem; color: #666;">↓</div>
+                                <div style="padding: 0.75rem 2rem; background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);">
+                                    Widget（当前 Context）
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 最佳实践 -->
+                    <div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 4px solid #2196F3; padding: 1.5rem; border-radius: 8px; margin: 2rem 0;">
+                        <h4 style="color: #1565C0; margin: 0 0 1rem 0;">💡 最佳实践</h4>
+                        <ul style="margin: 0; padding-left: 1.25rem; color: #424242; font-size: 0.95rem; line-height: 1.8;">
+                            <li style="margin-bottom: 0.5rem;"><strong>不要保存 context 引用</strong>：context 只在 build 方法执行期间有效</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>在回调中使用 context</strong>：如 onTap、onPressed 等回调函数中</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>使用 addPostFrameCallback</strong>：如果需要在 build 后执行异步操作</li>
+                            <li><strong>注意 context 层级</strong>：某些操作需要特定层级的 context</li>
+                        </ul>
+                    </div>
+
+                    <!-- 详细教程链接 -->
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a href="context-widgets.html" style="display: inline-block; padding: 1rem 2.5rem; background: var(--primary-color); color: white; text-decoration: none; border-radius: 10px; font-weight: 600; font-size: 1.05rem; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);">
+                            📖 查看 BuildContext 完整教程
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             <!-- 第三方生态 Tab -->
             <div class="tab-panel" id="ecosystem">
                 <div class="container">
@@ -1523,12 +1686,19 @@ _formKey.currentState?.validate();</pre>
                                 <div class="path-step">
                                     <span class="path-number">3</span>
                                     <div class="path-text">
+                                        <strong>渲染机制</strong>
+                                        <span>深入理解 Flutter 渲染原理</span>
+                                    </div>
+                                </div>
+                                <div class="path-step">
+                                    <span class="path-number">4</span>
+                                    <div class="path-text">
                                         <strong>布局组件</strong>
                                         <span>学习页面结构构建</span>
                                     </div>
                                 </div>
                                 <div class="path-step">
-                                    <span class="path-number">4</span>
+                                    <span class="path-number">5</span>
                                     <div class="path-text">
                                         <strong>交互组件</strong>
                                         <span>掌握用户输入和响应</span>
@@ -1560,6 +1730,19 @@ _formKey.currentState?.validate();</pre>
                                 <span class="tag">Widget树</span>
                             </div>
                             <a href="widget-basics.html" class="tutorial-link">开始学习 →</a>
+                        </div>
+
+                        <div class="tutorial-item">
+                            <h3>渲染机制深度解析</h3>
+                            <p>深入理解 Flutter 的渲染机制，包括 Widget 树、Element 树、RenderObject 树和 Layer 树的工作原理。通过具体示例追踪从代码到屏幕的完整渲染流程，掌握性能优化技巧。</p>
+                            <div class="tutorial-tags">
+                                <span class="tag">Widget树</span>
+                                <span class="tag">Element树</span>
+                                <span class="tag">RenderObject</span>
+                                <span class="tag">Layer树</span>
+                                <span class="tag">性能优化</span>
+                            </div>
+                            <a href="rendering-mechanism.html" class="tutorial-link">开始学习 →</a>
                         </div>
 
                         <!-- 组件教程 -->
