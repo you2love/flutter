@@ -2924,29 +2924,6 @@ class CounterWidget extends StatelessWidget {
                     <h2>🤖 Flutter AI 代码生成</h2>
                     <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">利用 AI 工具大幅提升 Flutter 开发效率，从需求描述到完整代码的智能转换</p>
                     
-                    <!-- AI 代码生成优势 -->
-                    <div class="ai-benefits">
-                        <h3>💡 AI 代码生成优势</h3>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
-                            <div style="padding: 1.5rem; background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-radius: 12px; border-left: 4px solid #2196F3;">
-                                <h4 style="color: #1976D2; margin: 0 0 0.75rem 0; font-size: 1.1rem;">⚡ 快速开发</h4>
-                                <p style="margin: 0; color: #424242; font-size: 0.95rem; line-height: 1.6;">从需求描述自动生成代码，节省 60-80% 的编码时间</p>
-                            </div>
-                            <div style="padding: 1.5rem; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-radius: 12px; border-left: 4px solid #4CAF50;">
-                                <h4 style="color: #388E3C; margin: 0 0 0.75rem 0; font-size: 1.1rem;">🎯 精准实现</h4>
-                                <p style="margin: 0; color: #424242; font-size: 0.95rem; line-height: 1.6;">理解复杂需求，生成符合 Flutter 最佳实践的代码</p>
-                            </div>
-                            <div style="padding: 1.5rem; background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-radius: 12px; border-left: 4px solid #FF9800;">
-                                <h4 style="color: #F57C00; margin: 0 0 0.75rem 0; font-size: 1.1rem;">🔄 迭代优化</h4>
-                                <p style="margin: 0; color: #424242; font-size: 0.95rem; line-height: 1.6;">持续优化代码，根据反馈自动调整和改进</p>
-                            </div>
-                            <div style="padding: 1.5rem; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-radius: 12px; border-left: 4px solid #9C27B0;">
-                                <h4 style="color: #7B1FA2; margin: 0 0 0.75rem 0; font-size: 1.1rem;">📚 学习辅助</h4>
-                                <p style="margin: 0; color: #424242; font-size: 0.95rem; line-height: 1.6;">通过 AI 生成的代码学习 Flutter 的最佳实践和设计模式</p>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- AI 工具对比 -->
                     <div class="ai-tools-comparison">
                         <h3>🛠️ 主流 AI 工具对比</h3>
@@ -3139,115 +3116,124 @@ class CounterWidget extends StatelessWidget {
                         </div>
                     </div>
 
-                    <!-- AI 代码生成流程 -->
-                    <div class="ai-coding-workflow">
-                        <h3>🔄 AI 代码生成工作流程</h3>
-                        <div style="background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%); border-radius: 12px; padding: 2rem; margin-top: 1.5rem; border: 2px solid #e0e0e0;">
-                            <div style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
-                                <div style="display: flex; align-items: center; gap: 1rem; width: 100%;">
-                                    <div style="padding: 1rem 1.5rem; background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); flex-shrink: 0;">
-                                        1️⃣ 需求分析
-                                    </div>
-                                    <div style="flex: 1; padding: 1rem; background: white; border-radius: 8px; border: 1px solid #e0e0e0;">
-                                        <strong>明确需求</strong>：功能需求、技术约束
-                                    </div>
-                                </div>
-                                <div style="font-size: 1.5rem; color: #666;">↓</div>
-                                <div style="display: flex; align-items: center; gap: 1rem; width: 100%;">
-                                    <div style="padding: 1rem 1.5rem; background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); flex-shrink: 0;">
-                                        2️⃣ 编写提示词
-                                    </div>
-                                    <div style="flex: 1; padding: 1rem; background: white; border-radius: 8px; border: 1px solid #e0e0e0;">
-                                        <strong>结构化描述</strong>：清晰的提示词
+                    <!-- AI 代码生成全流程工具 -->
+                    <div class="ai-full-workflow">
+                        <h3>🔄 AI 代码生成全流程</h3>
+                        
+                        <!-- 设计稿阶段 -->
+                        <div style="margin-top: 1.5rem;">
+                            <h4 style="color: #9C27B0;">🎨 一、设计稿阶段</h4>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                                <div style="background: white; border-radius: 12px; padding: 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #9C27B0;">
+                                    <h5 style="color: #7B1FA2; margin: 0 0 0.5rem 0;">Figma AI / Galileo AI</h5>
+                                    <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.9rem;">将草图/描述转为设计稿</p>
+                                    <div style="background: #f5f5f5; padding: 0.5rem; border-radius: 6px; font-size: 0.8rem;">
+                                        <strong>实例：</strong>输入"移动端登录页面"，AI生成完整UI设计
                                     </div>
                                 </div>
-                                <div style="font-size: 1.5rem; color: #666;">↓</div>
-                                <div style="display: flex; align-items: center; gap: 1rem; width: 100%;">
-                                    <div style="padding: 1rem 1.5rem; background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); flex-shrink: 0;">
-                                        3️⃣ 生成代码
-                                    </div>
-                                    <div style="flex: 1; padding: 1rem; background: white; border-radius: 8px; border: 1px solid #e0e0e0;">
-                                        <strong>AI 生成</strong>：初始代码
-                                    </div>
-                                </div>
-                                <div style="font-size: 1.5rem; color: #666;">↓</div>
-                                <div style="display: flex; align-items: center; gap: 1rem; width: 100%;">
-                                    <div style="padding: 1rem 1.5rem; background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); flex-shrink: 0;">
-                                        4️⃣ 代码审查
-                                    </div>
-                                    <div style="flex: 1; padding: 1rem; background: white; border-radius: 8px; border: 1px solid #e0e0e0;">
-                                        <strong>质量检查</strong>：安全性、性能
-                                    </div>
-                                </div>
-                                <div style="font-size: 1.5rem; color: #666;">↓</div>
-                                <div style="display: flex; align-items: center; gap: 1rem; width: 100%;">
-                                    <div style="padding: 1rem 1.5rem; background: linear-gradient(135deg, #F44336 0%, #D32F2F 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); flex-shrink: 0;">
-                                        5️⃣ 迭代优化
-                                    </div>
-                                    <div style="flex: 1; padding: 1rem; background: white; border-radius: 8px; border: 1px solid #e0e0e0;">
-                                        <strong>持续改进</strong>：反馈优化
-                                    </div>
-                                </div>
-                                <div style="font-size: 1.5rem; color: #666;">↓</div>
-                                <div style="display: flex; align-items: center; gap: 1rem; width: 100%;">
-                                    <div style="padding: 1rem 1.5rem; background: linear-gradient(135deg, #607D8B 0%, #455A64 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); flex-shrink: 0;">
-                                        6️⃣ 集成测试
-                                    </div>
-                                    <div style="flex: 1; padding: 1rem; background: white; border-radius: 8px; border: 1px solid #e0e0e0;">
-                                        <strong>完整测试</strong>：单元测试、集成测试
+                                <div style="background: white; border-radius: 12px; padding: 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #9C27B0;">
+                                    <h5 style="color: #7B1FA2; margin: 0 0 0.5rem 0;">UIzard / Locofy</h5>
+                                    <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.9rem;">设计稿转Flutter代码</p>
+                                    <div style="background: #f5f5f5; padding: 0.5rem; border-radius: 6px; font-size: 0.8rem;">
+                                        <strong>实例：</strong>Figma设计稿 → Flutter Widget代码
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- 返工修复过程 -->
-                    <div class="ai-repair-process" style="margin-top: 2rem;">
-                        <h3>🔧 返工修复过程</h3>
-                        <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-radius: 12px; padding: 2rem; margin-top: 1.5rem; border: 2px solid #ffb74d;">
-                            <div style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
-                                <div style="display: flex; align-items: center; gap: 1rem; width: 100%;">
-                                    <div style="padding: 1rem 1.5rem; background: linear-gradient(135deg, #FF5722 0%, #E64A19 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); flex-shrink: 0;">
-                                        1️⃣ 错误识别
-                                    </div>
-                                    <div style="flex: 1; padding: 1rem; background: white; border-radius: 8px; border: 1px solid #ffb74d;">
-                                        <strong>定位问题</strong>：分析编译错误、运行时异常
+                        <!-- 需求分析阶段 -->
+                        <div style="margin-top: 1.5rem;">
+                            <h4 style="color: #4CAF50;">📋 二、需求分析阶段</h4>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                                <div style="background: white; border-radius: 12px; padding: 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #4CAF50;">
+                                    <h5 style="color: #388E3C; margin: 0 0 0.5rem 0;">ChatGPT / Claude</h5>
+                                    <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.9rem;">自然语言需求转技术规格</p>
+                                    <div style="background: #f5f5f5; padding: 0.5rem; border-radius: 6px; font-size: 0.8rem;">
+                                        <strong>实例：</strong>"用户登录功能" → API接口、数据模型、页面结构
                                     </div>
                                 </div>
-                                <div style="font-size: 1.5rem; color: #666;">↓</div>
-                                <div style="display: flex; align-items: center; gap: 1rem; width: 100%;">
-                                    <div style="padding: 1rem 1.5rem; background: linear-gradient(135deg, #00BCD4 0%, #0097A7 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); flex-shrink: 0;">
-                                        2️⃣ 原因分析
-                                    </div>
-                                    <div style="flex: 1; padding: 1rem; background: white; border-radius: 8px; border: 1px solid #ffb74d;">
-                                        <strong>分析根因</strong>：理解错误产生的根本原因
+                                <div style="background: white; border-radius: 12px; padding: 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #4CAF50;">
+                                    <h5 style="color: #388E3C; margin: 0 0 0.5rem 0;">Mermaid.js</h5>
+                                    <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.9rem;">生成流程图/架构图</p>
+                                    <div style="background: #f5f5f5; padding: 0.5rem; border-radius: 6px; font-size: 0.8rem;">
+                                        <strong>实例：</strong>文本描述 → 架构图、流程图
                                     </div>
                                 </div>
-                                <div style="font-size: 1.5rem; color: #666;">↓</div>
-                                <div style="display: flex; align-items: center; gap: 1rem; width: 100%;">
-                                    <div style="padding: 1rem 1.5rem; background: linear-gradient(135deg, #8BC34A 0%, #689F38 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); flex-shrink: 0;">
-                                        3️⃣ 反馈 AI
-                                    </div>
-                                    <div style="flex: 1; padding: 1rem; background: white; border-radius: 8px; border: 1px solid #ffb74d;">
-                                        <strong>提供上下文</strong>：错误信息 + 相关代码 + 修复要求
-                                    </div>
-                                </div>
-                                <div style="font-size: 1.5rem; color: #666;">↓</div>
-                                <div style="display: flex; align-items: center; gap: 1rem; width: 100%;">
-                                    <div style="padding: 1rem 1.5rem; background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); flex-shrink: 0;">
-                                        4️⃣ 重新生成
-                                    </div>
-                                    <div style="flex: 1; padding: 1rem; background: white; border-radius: 8px; border: 1px solid #ffb74d;">
-                                        <strong>获取修复</strong>：AI 生成修复后的代码
+                            </div>
+                        </div>
+
+                        <!-- 代码生成阶段 -->
+                        <div style="margin-top: 1.5rem;">
+                            <h4 style="color: #2196F3;">💻 三、代码生成阶段</h4>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                                <div style="background: white; border-radius: 12px; padding: 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #2196F3;">
+                                    <h5 style="color: #1976D2; margin: 0 0 0.5rem 0;">GitHub Copilot</h5>
+                                    <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.9rem;">IDE内代码补全建议</p>
+                                    <div style="background: #f5f5f5; padding: 0.5rem; border-radius: 6px; font-size: 0.8rem;">
+                                        <strong>实例：</strong>输入"class User" → 自动生成Model类
                                     </div>
                                 </div>
-                                <div style="font-size: 1.5rem; color: #666;">↓</div>
-                                <div style="display: flex; align-items: center; gap: 1rem; width: 100%;">
-                                    <div style="padding: 1rem 1.5rem; background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%); color: white; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); flex-shrink: 0;">
-                                        5️⃣ 验证修复
+                                <div style="background: white; border-radius: 12px; padding: 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #2196F3;">
+                                    <h5 style="color: #1976D2; margin: 0 0 0.5rem 0;">Cursor / Windsurf</h5>
+                                    <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.9rem;">AI驱动的代码编辑器</p>
+                                    <div style="background: #f5f5f5; padding: 0.5rem; border-radius: 6px; font-size: 0.8rem;">
+                                        <strong>实例：</strong>"@P 文件名 创建登录页面" → 完整代码
                                     </div>
-                                    <div style="flex: 1; padding: 1rem; background: white; border-radius: 8px; border: 1px solid #ffb74d;">
-                                        <strong>测试验证</strong>：运行测试确保问题解决
+                                </div>
+                                <div style="background: white; border-radius: 12px; padding: 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #2196F3;">
+                                    <h5 style="color: #1976D2; margin: 0 0 0.5rem 0;">v0.dev / Bolt.new</h5>
+                                    <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.9rem;">描述生成完整页面</p>
+                                    <div style="background: #f5f5f5; padding: 0.5rem; border-radius: 6px; font-size: 0.8rem;">
+                                        <strong>实例：</strong>"Flutter登录页，蓝色主题" → 完整代码
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 调试修复阶段 -->
+                        <div style="margin-top: 1.5rem;">
+                            <h4 style="color: #F44336;">🐛 四、调试修复阶段</h4>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                                <div style="background: white; border-radius: 12px; padding: 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #F44336;">
+                                    <h5 style="color: #D32F2F; margin: 0 0 0.5rem 0;">Flutter DevTools</h5>
+                                    <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.9rem;">性能分析、Widget检查</p>
+                                    <div style="background: #f5f5f5; padding: 0.5rem; border-radius: 6px; font-size: 0.8rem;">
+                                        <strong>实例：</strong>布局问题 → Widget Tree可视化排查
+                                    </div>
+                                </div>
+                                <div style="background: white; border-radius: 12px; padding: 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #F44336;">
+                                    <h5 style="color: #D32F2F; margin: 0 0 0.5rem 0;">ChatGPT / Claude 调试</h5>
+                                    <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.9rem;">错误分析+修复建议</p>
+                                    <div style="background: #f5f5f5; padding: 0.5rem; border-radius: 6px; font-size: 0.8rem;">
+                                        <strong>实例：</strong>粘贴错误信息 → 分析原因+提供修复代码
+                                    </div>
+                                </div>
+                                <div style="background: white; border-radius: 12px; padding: 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #F44336;">
+                                    <h5 style="color: #D32F2F; margin: 0 0 0.5rem 0;">flutter analyze</h5>
+                                    <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.9rem;">静态代码分析</p>
+                                    <div style="background: #f5f5f5; padding: 0.5rem; border-radius: 6px; font-size: 0.8rem;">
+                                        <strong>实例：</strong>运行 `flutter analyze` → 发现潜在问题
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 测试阶段 -->
+                        <div style="margin-top: 1.5rem;">
+                            <h4 style="color: #FF9800;">🧪 五、测试阶段</h4>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                                <div style="background: white; border-radius: 12px; padding: 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #FF9800;">
+                                    <h5 style="color: #F57C00; margin: 0 0 0.5rem 0;">AI生成测试用例</h5>
+                                    <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.9rem;">ChatGPT/Claude生成单元测试</p>
+                                    <div style="background: #f5f5f5; padding: 0.5rem; border-radius: 6px; font-size: 0.8rem;">
+                                        <strong>实例：</strong>"为LoginController生成单元测试" → 完整测试代码
+                                    </div>
+                                </div>
+                                <div style="background: white; border-radius: 12px; padding: 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #FF9800;">
+                                    <h5 style="color: #F57C00; margin: 0 0 0.5rem 0;">Golden Test</h5>
+                                    <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.9rem;">UI截图对比测试</p>
+                                    <div style="background: #f5f5f5; padding: 0.5rem; border-radius: 6px; font-size: 0.8rem;">
+                                        <strong>实例：</strong>Widget渲染截图对比，确保UI一致性
                                     </div>
                                 </div>
                             </div>
@@ -3285,36 +3271,6 @@ class CounterWidget extends StatelessWidget {
                         </div>
                     </div>
 
-                    <!-- 推荐工具 -->
-                    <div class="recommended-tools">
-                        <h3>🌟 推荐工具组合</h3>
-                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; padding: 2rem; margin-top: 1.5rem; color: white;">
-                            <h4 style="color: white; margin: 0 0 1.5rem 0; font-size: 1.3rem;">💼 专业开发者推荐组合</h4>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-                                <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 1.5rem; backdrop-filter: blur(10px);">
-                                    <div style="font-size: 2rem; margin-bottom: 0.75rem;">⚡</div>
-                                    <h5 style="color: white; margin: 0 0 0.5rem 0; font-size: 1.1rem;">Cursor IDE</h5>
-                                    <p style="margin: 0; color: rgba(255,255,255,0.9); font-size: 0.9rem; line-height: 1.6;">日常开发的主要工具，提供智能代码补全和上下文理解，大幅提升编码效率。</p>
-                                </div>
-                                <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 1.5rem; backdrop-filter: blur(10px);">
-                                    <div style="font-size: 2rem; margin-bottom: 0.75rem;">💬</div>
-                                    <h5 style="color: white; margin: 0 0 0.5rem 0; font-size: 1.1rem;">ChatGPT / Claude</h5>
-                                    <p style="margin: 0; color: rgba(255,255,255,0.9); font-size: 0.9rem; line-height: 1.6;">复杂需求分析和架构设计，通过对话式交互实现深度理解和方案设计。</p>
-                                </div>
-                                <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 1.5rem; backdrop-filter: blur(10px);">
-                                    <div style="font-size: 2rem; margin-bottom: 0.75rem;">🔍</div>
-                                    <h5 style="color: white; margin: 0 0 0.5rem 0; font-size: 1.1rem;">GitHub Copilot</h5>
-                                    <p style="margin: 0; color: rgba(255,255,255,0.9); font-size: 0.9rem; line-height: 1.6;">代码补全辅助，特别是在编写重复性代码和标准模式时非常有效。</p>
-                                </div>
-                            </div>
-                            <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 8px;">
-                                <p style="margin: 0; color: white; font-size: 0.95rem; line-height: 1.6;">
-                                    <strong>💡 使用建议：</strong>日常开发使用 Cursor 快速编写代码，遇到复杂问题时使用 ChatGPT/Claude 进行深度分析，Copilot 作为代码补全的补充工具。三者结合可以覆盖从快速开发到复杂设计的全部场景。
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- 注意事项 -->
                     <div class="ai-warnings">
                         <h3>⚠️ 使用注意事项</h3>
@@ -3330,20 +3286,6 @@ class CounterWidget extends StatelessWidget {
                         </div>
                     </div>
 
-                    <!-- 总结 -->
-                    <div class="ai-summary">
-                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; padding: 2rem; margin-top: 2rem; color: white; text-align: center;">
-                            <h3 style="color: white; margin: 0 0 1rem 0; font-size: 1.5rem;">🚀 开始使用 AI 提升 Flutter 开发效率</h3>
-                            <p style="margin: 0 0 1.5rem 0; color: rgba(255,255,255,0.9); font-size: 1.1rem; line-height: 1.6;">
-                                AI 工具正在改变软件开发的方式，掌握 AI 辅助开发将成为未来开发者的核心能力。通过合理的提示词和持续的学习，你可以大幅提升开发效率，将更多精力投入到创新和业务逻辑的实现上。
-                            </p>
-                            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                                <span style="padding: 0.5rem 1.5rem; background: rgba(255,255,255,0.2); border-radius: 20px; font-size: 0.9rem;">💡 从小功能开始尝试</span>
-                                <span style="padding: 0.5rem 1.5rem; background: rgba(255,255,255,0.2); border-radius: 20px; font-size: 0.9rem;">🔄 持续迭代优化</span>
-                                <span style="padding: 0.5rem 1.5rem; background: rgba(255,255,255,0.2); border-radius: 20px; font-size: 0.9rem;">📚 学习最佳实践</span>
-                                <span style="padding: 0.5rem 1.5rem; background: rgba(255,255,255,0.2); border-radius: 20px; font-size: 0.9rem;">✅ 质量第一</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
