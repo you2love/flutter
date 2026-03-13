@@ -255,6 +255,21 @@
                     <h2>1. TextField 文本输入框</h2>
                     <p>TextField 是最常用的文本输入组件，支持单行和多行输入、自动验证、格式化等功能。</p>
 
+                    <!-- TextField 渲染图 -->
+                    <div style="background: #f5f5f5; border-radius: 12px; padding: 20px; margin: 20px 0;">
+                        <h4 style="margin-bottom: 15px; color: #333; text-align: center;">📐 TextField 渲染效果</h4>
+                        <div style="background: white; border: 1px solid #ccc; border-radius: 8px; padding: 12px 16px; max-width: 300px; margin: 0 auto; display: flex; align-items: center; gap: 10px;">
+                            <span style="color: #666;">🔍</span>
+                            <input type="text" placeholder="请输入文本..." style="border: none; outline: none; flex: 1; font-size: 16px;">
+                            <span style="color: #999;">✏️</span>
+                        </div>
+                        <div style="margin-top: 15px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                            <div style="text-align: center; font-size: 12px;"><span style="color: #666;">prefixIcon</span></div>
+                            <div style="text-align: center; font-size: 12px;"><span style="color: #666;">hintText</span></div>
+                            <div style="text-align: center; font-size: 12px;"><span style="color: #666;">suffixIcon</span></div>
+                        </div>
+                    </div>
+
                     <h3>核心属性</h3>
                     <table class="parameter-table">
                         <tr>
@@ -683,6 +698,29 @@ FloatingActionButton.extended(
                     <h2>7. Checkbox 复选框</h2>
                     <p>Checkbox 用于选择多个选项的状态。</p>
 
+                    <!-- Checkbox 渲染图 -->
+                    <div style="background: #f5f5f5; border-radius: 12px; padding: 20px; margin: 20px 0;">
+                        <h4 style="margin-bottom: 15px; color: #333; text-align: center;">📐 Checkbox 渲染效果</h4>
+                        <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+                            <div style="text-align: center;">
+                                <div style="width: 24px; height: 24px; border: 2px solid #ccc; border-radius: 4px; margin: 0 auto 5px;"></div>
+                                <span style="font-size: 12px; color: #666;">未选中</span>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="width: 24px; height: 24px; border: 2px solid #2196F3; border-radius: 4px; background: #2196F3; margin: 0 auto 5px; display: flex; align-items: center; justify-content: center;">
+                                    <span style="color: white; font-size: 16px;">✓</span>
+                                </div>
+                                <span style="font-size: 12px; color: #666;">选中</span>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="width: 24px; height: 24px; border: 2px solid #999; border-radius: 4px; background: #eee; margin: 0 auto 5px; display: flex; align-items: center; justify-content: center;">
+                                    <span style="color: #666; font-size: 14px;">-</span>
+                                </div>
+                                <span style="font-size: 12px; color: #666;">半选中</span>
+                            </div>
+                        </div>
+                    </div>
+
                     <h3>使用示例</h3>
                     <div class="code-block">
                         <pre><code>// 基本 Checkbox
@@ -761,6 +799,25 @@ RadioListTile<Gender>(
                 <div class="component-card">
                     <h2>9. Switch 开关</h2>
                     <p>Switch 用于切换开/关状态。</p>
+
+                    <!-- Switch 渲染图 -->
+                    <div style="background: #f5f5f5; border-radius: 12px; padding: 20px; margin: 20px 0;">
+                        <h4 style="margin-bottom: 15px; color: #333; text-align: center;">📐 Switch 渲染效果</h4>
+                        <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+                            <div style="text-align: center;">
+                                <div style="width: 50px; height: 26px; background: #ccc; border-radius: 13px; margin: 0 auto 5px; position: relative;">
+                                    <div style="width: 22px; height: 22px; background: white; border-radius: 50%; position: absolute; top: 2px; left: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);"></div>
+                                </div>
+                                <span style="font-size: 12px; color: #666;">关闭 (off)</span>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="width: 50px; height: 26px; background: #4CAF50; border-radius: 13px; margin: 0 auto 5px; position: relative;">
+                                    <div style="width: 22px; height: 22px; background: white; border-radius: 50%; position: absolute; top: 2px; right: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);"></div>
+                                </div>
+                                <span style="font-size: 12px; color: #666;">开启 (on)</span>
+                            </div>
+                        </div>
+                    </div>
 
                     <h3>使用示例</h3>
                     <div class="code-block">

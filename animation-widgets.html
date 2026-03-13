@@ -233,6 +233,23 @@
                     <h2>1. AnimatedContainer 隐式动画</h2>
                     <p>AnimatedContainer 是最简单的动画组件，自动处理属性变化。</p>
 
+                    <!-- AnimatedContainer 渲染图 -->
+                    <div style="background: #f5f5f5; border-radius: 12px; padding: 20px; margin: 20px 0;">
+                        <h4 style="margin-bottom: 15px; color: #333; text-align: center;">📐 AnimatedContainer 动画效果</h4>
+                        <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+                            <div style="text-align: center;">
+                                <p style="font-size: 12px; color: #666; margin-bottom: 8px;">状态A</p>
+                                <div style="width: 60px; height: 60px; background: #2196F3; border-radius: 8px; transition: all 0.3s;"></div>
+                            </div>
+                            <div style="display: flex; align-items: center; color: #999;">→</div>
+                            <div style="text-align: center;">
+                                <p style="font-size: 12px; color: #666; margin-bottom: 8px;">状态B</p>
+                                <div style="width: 100px; height: 100px; background: #FF9800; border-radius: 50%; transition: all 0.3s;"></div>
+                            </div>
+                        </div>
+                        <p style="text-align: center; color: #666; font-size: 12px; margin-top: 15px;">属性变化时自动产生过渡动画 (duration: 300ms)</p>
+                    </div>
+
                     <div class="code-block">
                         <pre><code>class AnimatedContainerExample extends StatefulWidget {
   const AnimatedContainerExample({super.key});

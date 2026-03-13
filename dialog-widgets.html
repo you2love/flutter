@@ -233,6 +233,19 @@
                     <h2>1. AlertDialog 警告对话框</h2>
                     <p>AlertDialog 是最常用的对话框，用于显示警告、确认信息。</p>
 
+                    <!-- AlertDialog 渲染图 -->
+                    <div style="background: #f5f5f5; border-radius: 12px; padding: 20px; margin: 20px 0;">
+                        <h4 style="margin-bottom: 15px; color: #333; text-align: center;">📐 AlertDialog 渲染效果</h4>
+                        <div style="position: relative; width: 280px; height: 180px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); overflow: hidden;">
+                            <div style="background: #2196F3; padding: 15px; color: white; font-weight: bold;">标题</div>
+                            <div style="padding: 20px; color: #333;">这是对话框的内容区域，用于显示提示信息。</div>
+                            <div style="position: absolute; bottom: 15px; right: 15px; display: flex; gap: 10px;">
+                                <div style="background: #eee; padding: 8px 16px; border-radius: 4px; font-size: 14px; color: #666;">取消</div>
+                                <div style="background: #2196F3; padding: 8px 16px; border-radius: 4px; font-size: 14px; color: white;">确定</div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="code-block">
                         <pre><code>// 基本对话框
 showDialog(
@@ -316,6 +329,22 @@ showDialog(
                     <h2>3. BottomSheet 底部表单</h2>
                     <p>BottomSheet 从屏幕底部滑出，适合显示更多内容。</p>
 
+                    <!-- BottomSheet 渲染图 -->
+                    <div style="background: #f5f5f5; border-radius: 12px; padding: 20px; margin: 20px 0;">
+                        <h4 style="margin-bottom: 15px; color: #333; text-align: center;">📐 BottomSheet 渲染效果</h4>
+                        <div style="position: relative; width: 300px; height: 200px; margin: 0 auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
+                            <div style="background: #eee; height: 100%; display: flex; align-items: center; justify-content: center; color: #999;">页面内容区域</div>
+                            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: white; border-top-left-radius: 16px; border-top-right-radius: 16px; box-shadow: 0 -2px 10px rgba(0,0,0,0.1);">
+                                <div style="width: 40px; height: 4px; background: #ddd; border-radius: 2px; margin: 10px auto 5px;"></div>
+                                <div style="padding: 15px; text-align: center; color: #333; font-weight: bold;">底部表单内容</div>
+                                <div style="padding: 0 15px 20px; display: flex; gap: 10px; justify-content: center;">
+                                    <div style="background: #eee; padding: 10px 20px; border-radius: 6px; font-size: 14px;">选项1</div>
+                                    <div style="background: #2196F3; padding: 10px 20px; border-radius: 6px; font-size: 14px; color: white;">选项2</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="code-block">
                         <pre><code>// 模态底部表单
 showModalBottomSheet(
@@ -366,6 +395,19 @@ Scaffold(
                 <div class="component-card">
                     <h2>4. SnackBar 轻量提示</h2>
                     <p>SnackBar 用于显示简短的消息提示。</p>
+
+                    <!-- SnackBar 渲染图 -->
+                    <div style="background: #f5f5f5; border-radius: 12px; padding: 20px; margin: 20px 0;">
+                        <h4 style="margin-bottom: 15px; color: #333; text-align: center;">📐 SnackBar 渲染效果</h4>
+                        <div style="position: relative; width: 300px; height: 150px; margin: 0 auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
+                            <div style="background: #eee; height: 100%; display: flex; align-items: center; justify-content: center; color: #999;">页面内容区域</div>
+                            <div style="position: absolute; bottom: 20px; left: 10px; right: 10px; background: #323232; border-radius: 8px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center;">
+                                <span style="color: white; font-size: 14px;">操作成功</span>
+                                <span style="color: #64B5F6; font-size: 14px; cursor: pointer;">撤销</span>
+                            </div>
+                        </div>
+                        <p style="text-align: center; color: #666; font-size: 12px; margin-top: 10px;">从底部弹出，短暂显示后自动消失</p>
+                    </div>
 
                     <div class="code-block">
                         <pre><code>// 基本提示
