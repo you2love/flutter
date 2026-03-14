@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initTabNavigation();
     // 代码复制功能
     initCopyButtons();
+    // 小程序代码示例标签切换
+    initExampleTabs();
 });
 
 // Tab 切换功能
@@ -268,3 +270,25 @@ function bookmarkPage() {
 }
 
 console.log('Flutter 教程网站已加载完成！');
+// 小程序代码示例标签切换功能
+function initExampleTabs() {
+    const exampleTabs = document.querySelectorAll('.example-tab');
+    const exampleContents = document.querySelectorAll('.example-content');
+
+    exampleTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const targetExample = this.getAttribute('data-example');
+
+            // 移除所有 active 类
+            exampleTabs.forEach(t => t.classList.remove('active'));
+            exampleContents.forEach(c => c.classList.remove('active'));
+
+            // 添加 active 类到当前标签和内容
+            this.classList.add('active');
+            const targetContent = document.getElementById('example-' + targetExample);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+        });
+    });
+}

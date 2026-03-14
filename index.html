@@ -2302,7 +2302,7 @@ class _CounterPageState extends State<CounterPage> {
                                 </div>
                                 <h4>Desktop</h4>
                                 <p class="platform-desc">生产力应用首选</p>
-                                
+
                                 <div class="platform-info-grid">
                                     <div class="info-box">
                                         <div class="info-icon">💻</div>
@@ -2338,6 +2338,54 @@ class _CounterPageState extends State<CounterPage> {
                                     <div class="feature-badge">
                                         <span class="feature-dot"></span>
                                         <span>企业分发</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="platform-card platform-harmony">
+                                <div class="platform-badge">HarmonyOS</div>
+                                <div class="platform-icon-wrapper">
+                                    <div class="platform-icon">🔴</div>
+                                    <div class="platform-glow"></div>
+                                </div>
+                                <h4>鸿蒙系统</h4>
+                                <p class="platform-desc">华为全场景操作系统</p>
+
+                                <div class="platform-info-grid">
+                                    <div class="info-box">
+                                        <div class="info-icon">📦</div>
+                                        <div>
+                                            <span class="info-label">输出格式</span>
+                                            <span class="info-value">HAP / APP</span>
+                                        </div>
+                                    </div>
+                                    <div class="info-box">
+                                        <div class="info-icon">🏪</div>
+                                        <div>
+                                            <span class="info-label">发布渠道</span>
+                                            <span class="info-value">华为应用市场</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="platform-commands">
+                                    <code class="cmd-block">
+                                        <span class="cmd-prompt">$</span> flutter build hap
+                                    </code>
+                                </div>
+
+                                <div class="platform-features">
+                                    <div class="feature-badge">
+                                        <span class="feature-dot"></span>
+                                        <span>OpenHarmony 适配</span>
+                                    </div>
+                                    <div class="feature-badge">
+                                        <span class="feature-dot"></span>
+                                        <span>ArkTS 支持</span>
+                                    </div>
+                                    <div class="feature-badge">
+                                        <span class="feature-dot"></span>
+                                        <span>一次开发，多端部署</span>
                                     </div>
                                 </div>
                             </div>
@@ -2441,6 +2489,658 @@ class _CounterPageState extends State<CounterPage> {
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 鸿蒙系统打包适配 -->
+                    <div class="harmony-section">
+                        <div class="section-title">
+                            <span class="title-number">03</span>
+                            <h4>鸿蒙系统打包适配</h4>
+                            <div class="title-underline"></div>
+                        </div>
+
+                        <div class="harmony-intro">
+                            <div class="intro-card harmony-card">
+                                <div class="intro-icon">🔴</div>
+                                <div class="intro-content">
+                                    <h4>Flutter 适配鸿蒙系统</h4>
+                                    <p>Flutter 官方已支持鸿蒙系统（HarmonyOS），通过 OpenHarmony 适配层，可以将 Flutter 应用打包发布到鸿蒙设备上，实现一次开发，多端部署。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="harmony-content">
+                            <h4>📋 适配要求</h4>
+                            <div class="requirements-grid">
+                                <div class="requirement-item">
+                                    <div class="requirement-icon">🛠️</div>
+                                    <h5>开发环境</h5>
+                                    <ul>
+                                        <li>Flutter SDK 3.x 或更高版本</li>
+                                        <li>DevEco Studio 4.x 或更高版本</li>
+                                        <li>OpenHarmony SDK API 9+</li>
+                                        <li>Node.js 14.x 或更高版本</li>
+                                    </ul>
+                                </div>
+                                <div class="requirement-item">
+                                    <div class="requirement-icon">⚙️</div>
+                                    <h5>配置要求</h5>
+                                    <ul>
+                                        <li>在 pubspec.yaml 中添加 harmony 平台支持</li>
+                                        <li>配置 ohos-signing-pkg-name.json 签名配置</li>
+                                        <li>设置应用包名和版本号</li>
+                                        <li>配置权限清单（ohos_manifest.json）</li>
+                                    </ul>
+                                </div>
+                                <div class="requirement-item">
+                                    <div class="requirement-icon">📱</div>
+                                    <h5>设备要求</h5>
+                                    <ul>
+                                        <li>HarmonyOS 3.0+ 设备</li>
+                                        <li>OpenHarmony 3.1+ 设备</li>
+                                        <li>支持手机、平板、智慧屏等多种终端</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <h4 style="margin-top: 2rem;">🔨 打包步骤</h4>
+                            <div class="steps-container">
+                                <div class="step-item">
+                                    <div class="step-number-badge">1</div>
+                                    <div class="step-details">
+                                        <h5>启用鸿蒙平台支持</h5>
+                                        <p>在项目根目录执行以下命令启用鸿蒙平台：</p>
+                                        <pre class="code-block"><code>flutter create --platforms=harmony .</code></pre>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number-badge">2</div>
+                                    <div class="step-details">
+                                        <h5>配置签名</h5>
+                                        <p>在 DevEco Studio 中配置签名信息，生成 ohos-signing-pkg-name.json 文件：</p>
+                                        <pre class="code-block"><code>{
+  "package": "com.example.myapp",
+  "signing-cert-sha256": "YOUR_SHA256"
+}</code></pre>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number-badge">3</div>
+                                    <div class="step-details">
+                                        <h5>配置应用信息</h5>
+                                        <p>编辑 ohos/entry/src/main/module.json5 文件，配置应用名称、图标、权限等：</p>
+                                        <pre class="code-block"><code>{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": ["phone", "tablet"],
+    "deliveryWithInstall": true,
+    "installationFree": false
+  }
+}</code></pre>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number-badge">4</div>
+                                    <div class="step-details">
+                                        <h5>构建 HAP 包</h5>
+                                        <p>执行打包命令生成 HAP 安装包：</p>
+                                        <pre class="code-block"><code># 构建 Debug 版本
+flutter build hap --debug
+
+# 构建 Release 版本
+flutter build hap --release
+
+# 构建 Profile 版本
+flutter build hap --profile</code></pre>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number-badge">5</div>
+                                    <div class="step-details">
+                                        <h5>签名打包</h5>
+                                        <p>使用签名密钥对 HAP 包进行签名：</p>
+                                        <pre class="code-block"><code>flutter build hap --release --obfuscate --split-debug-info=build/symbols</code></pre>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number-badge">6</div>
+                                    <div class="step-details">
+                                        <h5>测试与发布</h5>
+                                        <p>在真机或模拟器上测试应用，然后上传到华为应用市场：</p>
+                                        <pre class="code-block"><code># 运行到设备
+flutter run -d <device-id>
+
+# 查看连接的设备
+flutter devices</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h4 style="margin-top: 2rem;">⚠️ 注意事项</h4>
+                            <div class="notes-grid">
+                                <div class="note-card note-warning">
+                                    <div class="note-icon">⚡</div>
+                                    <h5>性能优化</h5>
+                                    <p>鸿蒙系统的渲染机制与 Android 有所不同，建议针对鸿蒙设备进行性能测试和优化。</p>
+                                </div>
+                                <div class="note-card note-info">
+                                    <div class="note-icon">📐</div>
+                                    <h5>适配多端</h5>
+                                    <p>利用鸿蒙的分布式特性，可以实现一次开发，多端部署，覆盖手机、平板、智慧屏等设备。</p>
+                                </div>
+                                <div class="note-card note-success">
+                                    <div class="note-icon">🔐</div>
+                                    <h5>安全合规</h5>
+                                    <p>遵循华为应用市场的安全规范和隐私政策要求，确保应用合规发布。</p>
+                                </div>
+                            </div>
+
+                            <h4 style="margin-top: 2rem;">📚 参考资源</h4>
+                            <div class="resources-list">
+                                <a href="https://docs.flutter.dev/" target="_blank" class="resource-link">
+                                    <span class="resource-icon">📖</span>
+                                    <span>Flutter 官方文档</span>
+                                </a>
+                                <a href="https://developer.harmonyos.com/" target="_blank" class="resource-link">
+                                    <span class="resource-icon">🔴</span>
+                                    <span>HarmonyOS 开发者官网</span>
+                                </a>
+                                <a href="https://gitee.com/openharmony" target="_blank" class="resource-link">
+                                    <span class="resource-icon">📦</span>
+                                    <span>OpenHarmony 代码仓</span>
+                                </a>
+                                <a href="https://developer.huawei.com/consumer/cn/doc/hap-develop-guides" target="_blank" class="resource-link">
+                                    <span class="resource-icon">🛠️</span>
+                                    <span>HAP 开发指南</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 小程序打包适配 -->
+                    <div class="miniprogram-section">
+                        <div class="section-title">
+                            <span class="title-number">04</span>
+                            <h4>多端小程序打包</h4>
+                            <div class="title-underline"></div>
+                        </div>
+
+                        <div class="miniprogram-intro">
+                            <div class="intro-card miniprogram-card">
+                                <div class="intro-icon">🔲</div>
+                                <div class="intro-content">
+                                    <h4>Flutter 开发小程序</h4>
+                                    <p>通过 mpflutter、flutter-uni 等方案，可以使用 Flutter 开发微信小程序、支付宝小程序、抖音小程序等多端小程序，实现一套代码多端运行。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 小程序平台对比 -->
+                        <div class="miniprogram-platforms">
+                            <h4>📱 支持的小程序平台</h4>
+                            <div class="miniprogram-grid">
+                                <div class="miniprogram-card-item wechat">
+                                    <div class="mp-icon-wrapper">
+                                        <div class="mp-icon">💚</div>
+                                    </div>
+                                    <h5>微信小程序</h5>
+                                    <p class="mp-desc">覆盖 12 亿+ 用户</p>
+                                    <div class="mp-info">
+                                        <div class="mp-info-item">
+                                            <span class="mp-label">框架</span>
+                                            <span class="mp-value">mpflutter</span>
+                                        </div>
+                                        <div class="mp-info-item">
+                                            <span class="mp-label">输出</span>
+                                            <span class="mp-value">小程序包</span>
+                                        </div>
+                                        <div class="mp-info-item">
+                                            <span class="mp-label">发布</span>
+                                            <span class="mp-value">微信小程序后台</span>
+                                        </div>
+                                    </div>
+                                    <div class="mp-command">
+                                        <code>mpflutter build wechat</code>
+                                    </div>
+                                </div>
+
+                                <div class="miniprogram-card-item alipay">
+                                    <div class="mp-icon-wrapper">
+                                        <div class="mp-icon">💙</div>
+                                    </div>
+                                    <h5>支付宝小程序</h5>
+                                    <p class="mp-desc">商业服务首选</p>
+                                    <div class="mp-info">
+                                        <div class="mp-info-item">
+                                            <span class="mp-label">框架</span>
+                                            <span class="mp-value">mpflutter / uni-app</span>
+                                        </div>
+                                        <div class="mp-info-item">
+                                            <span class="mp-label">输出</span>
+                                            <span class="mp-value">小程序包</span>
+                                        </div>
+                                        <div class="mp-info-item">
+                                            <span class="mp-label">发布</span>
+                                            <span class="mp-value">支付宝开放平台</span>
+                                        </div>
+                                    </div>
+                                    <div class="mp-command">
+                                        <code>mpflutter build alipay</code>
+                                    </div>
+                                </div>
+
+                                <div class="miniprogram-card-item douyin">
+                                    <div class="mp-icon-wrapper">
+                                        <div class="mp-icon">🎵</div>
+                                    </div>
+                                    <h5>抖音小程序</h5>
+                                    <p class="mp-desc">短视频流量红利</p>
+                                    <div class="mp-info">
+                                        <div class="mp-info-item">
+                                            <span class="mp-label">框架</span>
+                                            <span class="mp-value">mpflutter</span>
+                                        </div>
+                                        <div class="mp-info-item">
+                                            <span class="mp-label">输出</span>
+                                            <span class="mp-value">小程序包</span>
+                                        </div>
+                                        <div class="mp-info-item">
+                                            <span class="mp-label">发布</span>
+                                            <span class="mp-value">抖音开放平台</span>
+                                        </div>
+                                    </div>
+                                    <div class="mp-command">
+                                        <code>mpflutter build douyin</code>
+                                    </div>
+                                </div>
+
+                                <div class="miniprogram-card-item baidu">
+                                    <div class="mp-icon-wrapper">
+                                        <div class="mp-icon">💛</div>
+                                    </div>
+                                    <h5>百度小程序</h5>
+                                    <p class="mp-desc">搜索流量入口</p>
+                                    <div class="mp-info">
+                                        <div class="mp-info-item">
+                                            <span class="mp-label">框架</span>
+                                            <span class="mp-value">mpflutter</span>
+                                        </div>
+                                        <div class="mp-info-item">
+                                            <span class="mp-label">输出</span>
+                                            <span class="mp-value">小程序包</span>
+                                        </div>
+                                        <div class="mp-info-item">
+                                            <span class="mp-label">发布</span>
+                                            <span class="mp-value">百度智能小程序</span>
+                                        </div>
+                                    </div>
+                                    <div class="mp-command">
+                                        <code>mpflutter build baidu</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- mpflutter 方案详解 -->
+                        <div class="solution-detail">
+                            <h4>🔧 mpflutter 方案详解</h4>
+                            <p class="solution-desc">mpflutter 是目前最成熟的 Flutter 小程序解决方案，支持微信小程序、支付宝小程序、抖音小程序等多个平台。</p>
+
+                            <div class="solution-steps">
+                                <div class="solution-step">
+                                    <div class="step-header">
+                                        <span class="step-badge">步骤 1</span>
+                                        <h5>安装 mpflutter  CLI</h5>
+                                    </div>
+                                    <div class="step-content-block">
+                                        <div class="code-block-wrapper">
+                                            <pre><code class="language-bash"># 安装 mpflutter CLI 工具
+npm install -g @mpflutter/cli
+
+# 或者使用 yarn
+yarn global add @mpflutter/cli</code></pre>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="solution-step">
+                                    <div class="step-header">
+                                        <span class="step-badge">步骤 2</span>
+                                        <h5>创建项目</h5>
+                                    </div>
+                                    <div class="step-content-block">
+                                        <div class="code-block-wrapper">
+                                            <pre><code class="language-bash"># 创建新的 mpflutter 项目
+mpflutter create my_miniprogram
+
+# 进入项目目录
+cd my_miniprogram
+
+# 安装依赖
+npm install</code></pre>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="solution-step">
+                                    <div class="step-header">
+                                        <span class="step-badge">步骤 3</span>
+                                        <h5>开发调试</h5>
+                                    </div>
+                                    <div class="step-content-block">
+                                        <div class="code-block-wrapper">
+                                            <pre><code class="language-bash"># 启动微信开发者工具（监听模式）
+mpflutter dev wechat
+
+# 启动支付宝开发者工具
+mpflutter dev alipay
+
+# 启动抖音开发者工具
+mpflutter dev douyin</code></pre>
+                                        </div>
+                                        <div class="tip-box">
+                                            <span class="tip-icon">💡</span>
+                                            <span>运行后会自动打开对应的小程序开发者工具，支持热重载</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="solution-step">
+                                    <div class="step-header">
+                                        <span class="step-badge">步骤 4</span>
+                                        <h5>构建发布</h5>
+                                    </div>
+                                    <div class="step-content-block">
+                                        <div class="code-block-wrapper">
+                                            <pre><code class="language-bash"># 构建微信小程序
+mpflutter build wechat
+
+# 构建支付宝小程序
+mpflutter build alipay
+
+# 构建抖音小程序
+mpflutter build douyin
+
+# 构建百度小程序
+mpflutter build baidu</code></pre>
+                                        </div>
+                                        <div class="tip-box">
+                                            <span class="tip-icon">📂</span>
+                                            <span>构建产物输出到 <code>dist/wechat</code>、<code>dist/alipay</code> 等目录</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 代码示例 -->
+                        <div class="code-example-section">
+                            <h4>📝 代码示例</h4>
+                            <div class="example-tabs">
+                                <div class="example-tab active" data-example="basic">基础示例</div>
+                                <div class="example-tab" data-example="network">网络请求</div>
+                                <div class="example-tab" data-example="storage">本地存储</div>
+                            </div>
+
+                            <div class="example-content active" id="example-basic">
+                                <pre><code class="language-dart">import 'package:flutter/material.dart';
+import 'package:mpflutter_core/mpflutter_core.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: '小程序 Demo',
+      home: CounterPage(),
+    );
+  }
+}
+
+class CounterPage extends StatefulWidget {
+  @override
+  State<CounterPage> createState() => _CounterPageState();
+}
+
+class _CounterPageState extends State<CounterPage> {
+  int _count = 0;
+
+  void _increment() {
+    setState(() {
+      _count++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('计数器'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              '你点击了:',
+              style: TextStyle(fontSize: 16),
+            ),
+            Text(
+              '$_count 次',
+              style: TextStyle(fontSize: 36, color: Colors.blue),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _increment,
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+}</code></pre>
+                            </div>
+
+                            <div class="example-content" id="example-network">
+                                <pre><code class="language-dart">import 'package:flutter/material.dart';
+import 'package:mpflutter_core/mpflutter_core.dart';
+import 'dart:convert';
+
+class NetworkDemo extends StatefulWidget {
+  @override
+  State<NetworkDemo> createState() => _NetworkDemoState();
+}
+
+class _NetworkDemoState extends State<NetworkDemo> {
+  List<dynamic> _users = [];
+  bool _loading = false;
+
+  Future<void> _fetchUsers() async {
+    setState(() {
+      _loading = true;
+    });
+
+    try {
+      // 使用 mpflutter 的网络 API
+      final response = await MPNetwork.request(
+        'https://api.example.com/users',
+        method: 'GET',
+      );
+
+      setState(() {
+        _users = json.decode(response.data);
+        _loading = false;
+      });
+    } catch (e) {
+      setState(() {
+        _loading = false;
+      });
+      MP.showModal(title: '错误', content: '请求失败：$e');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('网络请求示例')),
+      body: Column(
+        children: [
+          ElevatedButton(
+            onPressed: _loading ? null : _fetchUsers,
+            child: Text(_loading ? '加载中...' : '获取用户列表'),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: _users.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(_users[index]['name']),
+                  subtitle: Text(_users[index]['email']),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}</code></pre>
+                            </div>
+
+                            <div class="example-content" id="example-storage">
+                                <pre><code class="language-dart">import 'package:flutter/material.dart';
+import 'package:mpflutter_core/mpflutter_core.dart';
+
+class StorageDemo extends StatefulWidget {
+  @override
+  State<StorageDemo> createState() => _StorageDemoState();
+}
+
+class _StorageDemoState extends State<StorageDemo> {
+  String _savedValue = '';
+  TextEditingController _controller = TextEditingController();
+
+  Future<void> _saveData() async {
+    await MPStorage.set(key: 'my_key', value: _controller.text);
+    setState(() {
+      _savedValue = _controller.text;
+    });
+    MP.showModal(title: '提示', content: '保存成功');
+  }
+
+  Future<void> _loadData() async {
+    final value = await MPStorage.get(key: 'my_key');
+    setState(() {
+      _savedValue = value ?? '暂无数据';
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('本地存储示例')),
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          children: [
+            TextField(
+              controller: _controller,
+              decoration: InputDecoration(
+                labelText: '输入要保存的内容',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 16),
+            Row(
+              children: [
+                ElevatedButton(
+                  onPressed: _saveData,
+                  child: Text('保存'),
+                ),
+                SizedBox(width: 16),
+                ElevatedButton(
+                  onPressed: _loadData,
+                  child: Text('读取'),
+                ),
+              ],
+            ),
+            SizedBox(height: 24),
+            Text(
+              '保存的内容：$_savedValue',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- 注意事项 -->
+                        <div class="notice-section">
+                            <h4>⚠️ 注意事项</h4>
+                            <div class="notice-grid">
+                                <div class="notice-item">
+                                    <div class="notice-icon">📦</div>
+                                    <h5>包体积限制</h5>
+                                    <p>小程序主包体积限制为 2MB，需要使用分包加载</p>
+                                </div>
+                                <div class="notice-item">
+                                    <div class="notice-icon">🔌</div>
+                                    <h5>API 兼容性</h5>
+                                    <p>部分 Flutter/Dart API 在小程序环境中不可用</p>
+                                </div>
+                                <div class="notice-item">
+                                    <div class="notice-icon">🎨</div>
+                                    <h5>UI 差异</h5>
+                                    <p>小程序原生组件与 Flutter 渲染可能存在差异</p>
+                                </div>
+                                <div class="notice-item">
+                                    <div class="notice-icon">⚡</div>
+                                    <h5>性能优化</h5>
+                                    <p>避免过多动画和复杂布局，注意内存管理</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 学习资源 -->
+                        <div class="resources-section">
+                            <h4>📚 学习资源</h4>
+                            <div class="resources-grid">
+                                <a href="https://github.com/mpflutter/mpflutter" target="_blank" class="resource-link">
+                                    <span class="resource-icon">📦</span>
+                                    <span>mpflutter GitHub</span>
+                                </a>
+                                <a href="https://mpflutter.com" target="_blank" class="resource-link">
+                                    <span class="resource-icon">📖</span>
+                                    <span>mpflutter 官方文档</span>
+                                </a>
+                                <a href="https://developers.weixin.qq.com/miniprogram/dev/framework/" target="_blank" class="resource-link">
+                                    <span class="resource-icon">💚</span>
+                                    <span>微信小程序开发文档</span>
+                                </a>
+                                <a href="https://opendocs.alipay.com/mini/05xh9y" target="_blank" class="resource-link">
+                                    <span class="resource-icon">💙</span>
+                                    <span>支付宝小程序开发文档</span>
+                                </a>
+                                <a href="https://developer.open-douyin.com/docs/resource/zh-CN/mini-app/develop/guide" target="_blank" class="resource-link">
+                                    <span class="resource-icon">🎵</span>
+                                    <span>抖音小程序开发文档</span>
+                                </a>
+                                <a href="https://smartprogram.baidu.com/docs/develop/tutorial/introduction/" target="_blank" class="resource-link">
+                                    <span class="resource-icon">💛</span>
+                                    <span>百度小程序开发文档</span>
+                                </a>
                             </div>
                         </div>
                     </div>
