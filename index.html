@@ -60,6 +60,10 @@
                         <span class="tab-icon">🤖</span>
                         <span class="tab-text">AI 代码生成</span>
                     </button>
+                    <button class="tab-btn" data-tab="ai-framework">
+                        <span class="tab-icon">🧠</span>
+                        <span class="tab-text">AI 框架</span>
+                    </button>
                     <button class="tab-btn" data-tab="state-management">
                         <span class="tab-icon">🔄</span>
                         <span class="tab-text">状态管理</span>
@@ -4324,6 +4328,403 @@ class CounterWidget extends StatelessWidget {
                 </div>
             </div>
         </div>
+
+            <!-- AI 框架 Tab -->
+            <div class="tab-panel" id="ai-framework">
+                <div class="container">
+                    <h2>🧠 Flutter AI 框架</h2>
+                    <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">探索 Flutter 与 AI 大模型集成的主流框架，包括 GenUI、Plugin Assets AI、Flutter MCP、Genkit Dart 等，让 AI 能力轻松融入你的 Flutter 应用。</p>
+
+                    <!-- AI 框架概览 -->
+                    <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 2px solid #0ea5e9; padding: 1.5rem; margin: 1.5rem 0; border-radius: 12px;">
+                        <h3 style="color: #0369a1; margin: 0 0 1rem 0; font-size: 1.2rem;">📋 AI 框架概览</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                            <div style="background: white; padding: 1.25rem; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🎨</div>
+                                <h4 style="color: #0ea5e9; margin: 0 0 0.5rem 0;">GenUI</h4>
+                                <p style="color: #64748b; font-size: 0.9rem; margin: 0;">动态 UI 生成框架</p>
+                            </div>
+                            <div style="background: white; padding: 1.25rem; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔌</div>
+                                <h4 style="color: #0ea5e9; margin: 0 0 0.5rem 0;">Plugin Assets AI</h4>
+                                <p style="color: #64748b; font-size: 0.9rem; margin: 0;">AI 资源插件方案</p>
+                            </div>
+                            <div style="background: white; padding: 1.25rem; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔗</div>
+                                <h4 style="color: #0ea5e9; margin: 0 0 0.5rem 0;">Flutter MCP</h4>
+                                <p style="color: #64748b; font-size: 0.9rem; margin: 0;">模型上下文协议</p>
+                            </div>
+                            <div style="background: white; padding: 1.25rem; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🚀</div>
+                                <h4 style="color: #0ea5e9; margin: 0 0 0.5rem 0;">Genkit Dart</h4>
+                                <p style="color: #64748b; font-size: 0.9rem; margin: 0;">Google AI 工具包</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 框架选择建议 -->
+                    <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px;">
+                        <h4 style="color: #92400e; margin: 0 0 1rem 0; font-size: 1.1rem;">💡 框架选择建议</h4>
+                        <ul style="margin: 0; padding-left: 1.25rem; color: #78350f; font-size: 0.95rem; line-height: 1.8;">
+                            <li><strong>快速原型开发</strong>：选择 GenUI，通过自然语言描述快速生成 UI</li>
+                            <li><strong>资源优化管理</strong>：选择 Plugin Assets AI，自动压缩和优化资源</li>
+                            <li><strong>AI 对话功能</strong>：选择 Flutter MCP，统一接口支持多种 AI 模型</li>
+                            <li><strong>企业级 AI 应用</strong>：选择 Genkit Dart，完整的 AI 开发工具链</li>
+                            <li><strong>组合使用</strong>：多个框架可以组合使用，如 MCP + Genkit 实现强大的 AI 功能</li>
+                        </ul>
+                    </div>
+
+                    <!-- GenUI 详细介绍 -->
+                    <div class="genui-detail-section">
+                        <div class="section-title">
+                            <span class="title-number">01</span>
+                            <h3>🎨 GenUI - 动态 UI 生成框架详解</h3>
+                            <div class="title-underline"></div>
+                        </div>
+
+                        <!-- 什么是 GenUI -->
+                        <div style="background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); border: 2px solid #7c3aed; padding: 1.5rem; margin: 1.5rem 0; border-radius: 12px;">
+                            <h4 style="color: #6d28d9; margin: 0 0 1rem 0; font-size: 1.2rem;">📖 什么是 GenUI？</h4>
+                            <p style="color: #475569; line-height: 1.8; margin: 0; font-size: 1rem;">
+                                GenUI（Generative UI）是一个基于 AI 大模型的动态 UI 生成框架，专为 Flutter 开发者设计。它允许开发者通过自然语言描述来生成 Flutter UI 代码，将传统的"手写代码"模式转变为"描述需求→AI 生成→人工优化"的新模式。GenUI 不仅支持实时预览和代码导出，还提供了丰富的自定义组件扩展能力，是快速原型开发、设计稿转代码、UI 迭代优化的利器。
+                            </p>
+                        </div>
+
+                        <!-- 工作原理 -->
+                        <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 1.5rem 0;">
+                            <h4 style="color: #7c3aed; margin: 0 0 1.5rem 0; font-size: 1.2rem;">🔄 GenUI 工作原理</h4>
+                            
+                            <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem;">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; flex-shrink: 0;">1</div>
+                                    <div style="flex: 1; background: #f5f3ff; padding: 1rem; border-radius: 8px;">
+                                        <strong style="color: #6d28d9;">输入描述</strong>
+                                        <p style="color: #6b7280; font-size: 0.9rem; margin: 0.25rem 0 0 0;">开发者用自然语言描述 UI 需求（如"创建一个登录页面，包含用户名和密码输入框"）</p>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; flex-shrink: 0;">2</div>
+                                    <div style="flex: 1; background: #f5f3ff; padding: 1rem; border-radius: 8px;">
+                                        <strong style="color: #6d28d9;">AI 理解与转换</strong>
+                                        <p style="color: #6b7280; font-size: 0.9rem; margin: 0.25rem 0 0 0;">AI 模型分析描述，理解 UI 结构、组件类型、布局关系，转换为 Flutter Widget 树</p>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; flex-shrink: 0;">3</div>
+                                    <div style="flex: 1; background: #f5f3ff; padding: 1rem; border-radius: 8px;">
+                                        <strong style="color: #6d28d9;">代码生成</strong>
+                                        <p style="color: #6b7280; font-size: 0.9rem; margin: 0.25rem 0 0 0;">根据 Widget 树生成符合 Flutter 规范的 Dart 代码，遵循最佳实践</p>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; flex-shrink: 0;">4</div>
+                                    <div style="flex: 1; background: #f5f3ff; padding: 1rem; border-radius: 8px;">
+                                        <strong style="color: #6d28d9;">实时预览</strong>
+                                        <p style="color: #6b7280; font-size: 0.9rem; margin: 0.25rem 0 0 0;">在模拟器或真机上实时渲染生成的 UI，支持即时调整和迭代</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 流程图 -->
+                            <div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 1.5rem; border-radius: 10px; overflow-x: auto;">
+                                <div style="display: flex; align-items: center; justify-content: space-between; min-width: 600px; gap: 0.5rem;">
+                                    <div style="text-align: center; flex-shrink: 0;">
+                                        <div style="width: 60px; height: 60px; background: #7c3aed; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; font-size: 1.5rem;">💬</div>
+                                        <span style="color: #e2e8f0; font-size: 0.85rem;">自然语言描述</span>
+                                    </div>
+                                    <div style="color: #94a3b8; font-size: 1.5rem;">→</div>
+                                    <div style="text-align: center; flex-shrink: 0;">
+                                        <div style="width: 60px; height: 60px; background: #0ea5e9; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; font-size: 1.5rem;">🧠</div>
+                                        <span style="color: #e2e8f0; font-size: 0.85rem;">AI 理解</span>
+                                    </div>
+                                    <div style="color: #94a3b8; font-size: 1.5rem;">→</div>
+                                    <div style="text-align: center; flex-shrink: 0;">
+                                        <div style="width: 60px; height: 60px; background: #10b981; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; font-size: 1.5rem;">🌳</div>
+                                        <span style="color: #e2e8f0; font-size: 0.85rem;">Widget 树</span>
+                                    </div>
+                                    <div style="color: #94a3b8; font-size: 1.5rem;">→</div>
+                                    <div style="text-align: center; flex-shrink: 0;">
+                                        <div style="width: 60px; height: 60px; background: #f59e0b; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; font-size: 1.5rem;">📝</div>
+                                        <span style="color: #e2e8f0; font-size: 0.85rem;">Dart 代码</span>
+                                    </div>
+                                    <div style="color: #94a3b8; font-size: 1.5rem;">→</div>
+                                    <div style="text-align: center; flex-shrink: 0;">
+                                        <div style="width: 60px; height: 60px; background: #ec4899; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; font-size: 1.5rem;">👁️</div>
+                                        <span style="color: #e2e8f0; font-size: 0.85rem;">实时预览</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 核心特性 -->
+                        <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 1.5rem 0;">
+                            <h4 style="color: #7c3aed; margin: 0 0 1.5rem 0; font-size: 1.2rem;">✨ 核心特性</h4>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+                                <div style="background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #7c3aed;">
+                                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                        <span style="font-size: 1.5rem;">📝</span>
+                                        <h5 style="color: #6d28d9; margin: 0;">自然语言描述</h5>
+                                    </div>
+                                    <p style="color: #475569; font-size: 0.9rem; margin: 0; line-height: 1.6;">支持中文和英文描述，AI 能理解复杂的 UI 需求，包括布局、样式、交互等</p>
+                                </div>
+                                
+                                <div style="background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #7c3aed;">
+                                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                        <span style="font-size: 1.5rem;">👁️</span>
+                                        <h5 style="color: #6d28d9; margin: 0;">实时预览</h5>
+                                    </div>
+                                    <p style="color: #475569; font-size: 0.9rem; margin: 0; line-height: 1.6;">生成过程中实时预览 UI 效果，支持热重载，所见即所得</p>
+                                </div>
+                                
+                                <div style="background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #7c3aed;">
+                                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                        <span style="font-size: 1.5rem;">📦</span>
+                                        <h5 style="color: #6d28d9; margin: 0;">组件库支持</h5>
+                                    </div>
+                                    <p style="color: #475569; font-size: 0.9rem; margin: 0; line-height: 1.6;">内置 Material Design 和 Cupertino 组件库，支持自定义组件注册</p>
+                                </div>
+                                
+                                <div style="background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #7c3aed;">
+                                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                        <span style="font-size: 1.5rem;">🔄</span>
+                                        <h5 style="color: #6d28d9; margin: 0;">迭代优化</h5>
+                                    </div>
+                                    <p style="color: #475569; font-size: 0.9rem; margin: 0; line-height: 1.6;">支持多轮对话优化，基于反馈逐步完善 UI 设计</p>
+                                </div>
+                                
+                                <div style="background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #7c3aed;">
+                                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                        <span style="font-size: 1.5rem;">🎨</span>
+                                        <h5 style="color: #6d28d9; margin: 0;">主题定制</h5>
+                                    </div>
+                                    <p style="color: #475569; font-size: 0.9rem; margin: 0; line-height: 1.6;">支持自定义主题色、字体、圆角等样式参数</p>
+                                </div>
+                                
+                                <div style="background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #7c3aed;">
+                                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                        <span style="font-size: 1.5rem;">📤</span>
+                                        <h5 style="color: #6d28d9; margin: 0;">代码导出</h5>
+                                    </div>
+                                    <p style="color: #475569; font-size: 0.9rem; margin: 0; line-height: 1.6;">一键导出完整 Dart 代码，可直接集成到 Flutter 项目</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 安装与配置 -->
+                        <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 1.5rem 0;">
+                            <h4 style="color: #7c3aed; margin: 0 0 1.5rem 0; font-size: 1.2rem;">⚙️ 安装与配置</h4>
+                            
+                            <div style="margin-bottom: 1.5rem;">
+                                <h5 style="color: #475569; margin: 0 0 0.75rem 0; font-size: 1rem;">1. 添加依赖</h5>
+                                <div style="background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto;">
+                                    <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6;"><code># pubspec.yaml
+dependencies:
+  genui: ^1.0.0
+  genui_material: ^1.0.0  # Material 组件库
+  genui_cupertino: ^1.0.0 # Cupertino 组件库</code></pre>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 1.5rem;">
+                                <h5 style="color: #475569; margin: 0 0 0.75rem 0; font-size: 1rem;">2. 初始化配置</h5>
+                                <div style="background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto;">
+                                    <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6;"><code>import 'package:genui/genui.dart';
+import 'package:genui_material/genui_material.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // 初始化 GenUI 客户端
+  await GenUI.initialize(
+    apiKey: 'your-api-key',  // 获取 API Key
+    theme: GenUITheme(
+      primaryColor: Colors.blue,
+      fontFamily: 'Roboto',
+      borderRadius: 8.0,
+    ),
+    plugins: [
+      MaterialComponentsPlugin(),
+      CupertinoComponentsPlugin(),
+    ],
+  );
+
+  runApp(MyApp());
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 使用示例 -->
+                        <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 1.5rem 0;">
+                            <h4 style="color: #7c3aed; margin: 0 0 1.5rem 0; font-size: 1.2rem;">📝 使用示例</h4>
+                            
+                            <!-- 示例 1：基础用法 -->
+                            <div style="margin-bottom: 1.5rem;">
+                                <h5 style="color: #475569; margin: 0 0 0.75rem 0; font-size: 1rem;">示例 1：基础 UI 生成</h5>
+                                <div style="background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;">
+                                    <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6;"><code>import 'package:genui/genui.dart';
+
+class LoginPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GenUIBuilder(
+      prompt: '''
+创建一个登录页面，包含：
+- 顶部居中 Logo（使用 Icon 图标）
+- 标题文本"欢迎登录"
+- 用户名输入框，带用户图标
+- 密码输入框，带锁图标，隐藏输入
+- 蓝色登录按钮，圆角
+- 底部"忘记密码"和"注册账号"链接
+''',
+      loadingBuilder: (context) => Center(child: CircularProgressIndicator()),
+      errorBuilder: (context, error) => Center(child: Text('生成失败：$error')),
+    );
+  }
+}</code></pre>
+                                </div>
+                            </div>
+
+                            <!-- 示例 2：带参数定制 -->
+                            <div style="margin-bottom: 1.5rem;">
+                                <h5 style="color: #475569; margin: 0 0 0.75rem 0; font-size: 1rem;">示例 2：带参数定制</h5>
+                                <div style="background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;">
+                                    <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6;"><code>class ProductCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GenUIBuilder(
+      prompt: '''
+创建商品卡片组件：
+- 商品图片（顶部，圆角）
+- 商品名称（加粗）
+- 价格（红色，大字体）
+- 购买按钮（底部）
+''',
+      config: GenUIConfig(
+        style: GenUIStyle(
+          primaryColor: Colors.orange,
+          cardElevation: 4.0,
+          borderRadius: 12.0,
+        ),
+        layout: GenUILayout(
+          padding: EdgeInsets.all(12),
+          spacing: 8.0,
+        ),
+      ),
+    );
+  }
+}</code></pre>
+                                </div>
+                            </div>
+
+                            <!-- 示例 3：多轮对话优化 -->
+                            <div style="margin-bottom: 1.5rem;">
+                                <h5 style="color: #475569; margin: 0 0 0.75rem 0; font-size: 1rem;">示例 3：多轮对话优化</h5>
+                                <div style="background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;">
+                                    <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6;"><code>class ChatExample extends StatelessWidget {
+  final _genui = GenUIClient(apiKey: 'your-key');
+  
+  Future<void> generateWithRefinement() async {
+    // 第一轮：基础描述
+    var result = await _genui.generate('''
+创建一个个人中心页面
+''');
+    
+    // 第二轮：添加具体要求
+    result = await _genui.refine(result, '''
+添加头像（圆形，顶部居中）
+添加用户名和邮箱显示
+添加菜单列表（设置、收藏、帮助、关于我们）
+''');
+    
+    // 第三轮：调整样式
+    result = await _genui.refine(result, '''
+使用蓝色主题
+菜单项添加图标
+底部添加退出登录按钮
+''');
+    
+    // 使用最终生成的代码
+    final widget = GenUIBuilder.fromCode(result.code);
+  }
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 支持的组件 -->
+                        <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 1.5rem 0;">
+                            <h4 style="color: #7c3aed; margin: 0 0 1.5rem 0; font-size: 1.2rem;">🧩 支持的组件类型</h4>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                                <div style="background: #f8fafc; padding: 1rem; border-radius: 8px;">
+                                    <h5 style="color: #475569; margin: 0 0 0.5rem 0; font-size: 0.95rem;">📦 基础组件</h5>
+                                    <p style="color: #64748b; font-size: 0.85rem; margin: 0;">Text, Icon, Image, Container, SizedBox</p>
+                                </div>
+                                <div style="background: #f8fafc; padding: 1rem; border-radius: 8px;">
+                                    <h5 style="color: #475569; margin: 0 0 0.5rem 0; font-size: 0.95rem;">📐 布局组件</h5>
+                                    <p style="color: #64748b; font-size: 0.85rem; margin: 0;">Row, Column, Stack, Grid, ListView</p>
+                                </div>
+                                <div style="background: #f8fafc; padding: 1rem; border-radius: 8px;">
+                                    <h5 style="color: #475569; margin: 0 0 0.5rem 0; font-size: 0.95rem;">⌨️ 输入组件</h5>
+                                    <p style="color: #64748b; font-size: 0.85rem; margin: 0;">TextField, Button, Checkbox, Switch</p>
+                                </div>
+                                <div style="background: #f8fafc; padding: 1rem; border-radius: 8px;">
+                                    <h5 style="color: #475569; margin: 0 0 0.5rem 0; font-size: 0.95rem;">🎨  Material 组件</h5>
+                                    <p style="color: #64748b; font-size: 0.85rem; margin: 0;">AppBar, Card, Drawer, BottomNavigationBar</p>
+                                </div>
+                                <div style="background: #f8fafc; padding: 1rem; border-radius: 8px;">
+                                    <h5 style="color: #475569; margin: 0 0 0.5rem 0; font-size: 0.95rem;">🍎 Cupertino 组件</h5>
+                                    <p style="color: #64748b; font-size: 0.85rem; margin: 0;">CupertinoNavigationBar, CupertinoButton</p>
+                                </div>
+                                <div style="background: #f8fafc; padding: 1rem; border-radius: 8px;">
+                                    <h5 style="color: #475569; margin: 0 0 0.5rem 0; font-size: 0.95rem;">🎬 动画组件</h5>
+                                    <p style="color: #64748b; font-size: 0.85rem; margin: 0;">AnimatedContainer, Hero, TweenAnimation</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 最佳实践 -->
+                        <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px;">
+                            <h4 style="color: #92400e; margin: 0 0 1rem 0; font-size: 1.1rem;">💡 GenUI 最佳实践</h4>
+                            <ul style="margin: 0; padding-left: 1.25rem; color: #78350f; font-size: 0.95rem; line-height: 1.8;">
+                                <li><strong>描述要具体</strong>：详细说明布局、颜色、交互等要求，避免模糊描述</li>
+                                <li><strong>分步生成</strong>：复杂页面先整体后局部，逐步细化</li>
+                                <li><strong>善用迭代</strong>：基于生成结果提出修改意见，不要期望一次完美</li>
+                                <li><strong>人工审查</strong>：生成的代码需要人工审查和优化，特别是业务逻辑部分</li>
+                                <li><strong>保存模板</strong>：将常用的 UI 模式保存为模板，提高复用性</li>
+                                <li><strong>组合使用</strong>：GenUI 生成 UI 框架，手动补充业务逻辑和数据绑定</li>
+                            </ul>
+                        </div>
+
+                        <!-- 限制与注意事项 -->
+                        <div style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); border-left: 4px solid #ef4444; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px;">
+                            <h4 style="color: #991b1b; margin: 0 0 1rem 0; font-size: 1.1rem;">⚠️ 限制与注意事项</h4>
+                            <ul style="margin: 0; padding-left: 1.25rem; color: #7f1d1d; font-size: 0.95rem; line-height: 1.8;">
+                                <li><strong>网络依赖</strong>：需要网络连接才能使用 AI 生成服务</li>
+                                <li><strong>复杂逻辑</strong>：复杂的业务逻辑和数据流需要手动实现</li>
+                                <li><strong>性能优化</strong>：生成的代码可能需要性能优化（如列表懒加载）</li>
+                                <li><strong>自定义组件</strong>：自定义组件需要提前注册才能被 AI 识别</li>
+                                <li><strong>版本兼容</strong>：注意 Flutter 版本兼容性，及时更新 GenUI 包</li>
+                            </ul>
+                        </div>
+
+                        <!-- 资源链接 -->
+                        <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 1.5rem 0;">
+                            <h4 style="color: #7c3aed; margin: 0 0 1rem 0; font-size: 1.1rem;">📚 学习资源</h4>
+                            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                                <a href="https://pub.dev/packages/genui" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; background: #7c3aed; color: white; text-decoration: none; border-radius: 6px; font-size: 0.9rem;">📦 Pub.dev</a>
+                                <a href="https://github.com/genui/genui" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; background: #24292f; color: white; text-decoration: none; border-radius: 6px; font-size: 0.9rem;">💻 GitHub</a>
+                                <a href="https://genui.dev" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; background: #0ea5e9; color: white; text-decoration: none; border-radius: 6px; font-size: 0.9rem;">🌐 官方网站</a>
+                                <a href="https://genui.dev/docs" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; background: #10b981; color: white; text-decoration: none; border-radius: 6px; font-size: 0.9rem;">📖 文档教程</a>
+                                <a href="https://discord.gg/genui" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; background: #5865f2; color: white; text-decoration: none; border-radius: 6px; font-size: 0.9rem;">💬 Discord 社区</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
     </main>
 
     <script src="script.js"></script>
