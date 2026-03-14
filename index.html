@@ -5242,6 +5242,929 @@ class UpdateManager {
                 </div>
             </div>
 
+            <!-- Flutter MCP 详细介绍 -->
+            <div class="flutter-mcp-section">
+                <div class="section-title">
+                    <span class="title-number">03</span>
+                    <h3>🔗 Flutter MCP - 模型上下文协议详解</h3>
+                    <div class="title-underline"></div>
+                </div>
+
+                <!-- 什么是 Flutter MCP -->
+                <div style="background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%); border: 2px solid #dc2626; padding: 1.5rem; margin: 1.5rem 0; border-radius: 12px;">
+                    <h4 style="color: #b91c1c; margin: 0 0 1rem 0; font-size: 1.2rem;">📖 什么是 Flutter MCP？</h4>
+                    <p style="color: #475569; line-height: 1.8; margin: 0; font-size: 1rem;">
+                        Flutter MCP（Model Context Protocol）是一个用于 Flutter 应用与 AI 大模型通信的标准协议实现。它提供了统一的接口封装、上下文管理、流式响应和错误处理，让 Flutter 应用能够轻松集成各种 AI 模型服务（如 ChatGPT、Claude、Gemini、通义千问等）。MCP 的核心目标是屏蔽不同 AI 模型的 API 差异，提供一致的开发体验，同时支持强大的上下文管理和工具调用功能。
+                    </p>
+                </div>
+
+                <!-- 为什么需要 MCP -->
+                <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 1.5rem 0;">
+                    <h4 style="color: #dc2626; margin: 0 0 1.5rem 0; font-size: 1.2rem;">💡 为什么需要 MCP？</h4>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; margin-bottom: 1.5rem;">
+                        <div style="background: #fef2f2; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #dc2626;">
+                            <h5 style="color: #b91c1c; margin: 0 0 0.75rem 0;">❌ 没有 MCP 的问题</h5>
+                            <ul style="margin: 0; padding-left: 1.25rem; color: #7f1d1d; font-size: 0.9rem; line-height: 1.8;">
+                                <li>每个 AI 模型 API 不同，需要分别实现</li>
+                                <li>认证方式各异（API Key、OAuth、JWT 等）</li>
+                                <li>请求/响应格式不统一</li>
+                                <li>上下文管理需要自己实现</li>
+                                <li>流式响应处理复杂</li>
+                                <li>错误处理逻辑分散</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="background: #f0fdf4; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #16a34a;">
+                            <h5 style="color: #15803d; margin: 0 0 0.75rem 0;">✅ 使用 MCP 的优势</h5>
+                            <ul style="margin: 0; padding-left: 1.25rem; color: #166534; font-size: 0.9rem; line-height: 1.8;">
+                                <li>统一接口，一套代码支持所有模型</li>
+                                <li>标准化认证流程</li>
+                                <li>一致的请求/响应格式</li>
+                                <li>内置上下文管理</li>
+                                <li>简化的流式响应 API</li>
+                                <li>完善的错误处理和重试机制</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 对比图 -->
+                    <div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 1.5rem; border-radius: 10px; overflow-x: auto;">
+                        <div style="min-width: 600px;">
+                            <div style="text-align: center; margin-bottom: 1rem; color: #e2e8f0; font-size: 0.9rem;">传统方式 vs MCP 方式</div>
+                            <div style="display: flex; justify-content: space-between; gap: 1rem;">
+                                <!-- 传统方式 -->
+                                <div style="flex: 1;">
+                                    <div style="background: #dc2626; padding: 0.75rem; border-radius: 8px; text-align: center; color: white; margin-bottom: 0.5rem; font-weight: bold;">传统方式</div>
+                                    <div style="background: #450a0a; padding: 1rem; border-radius: 6px; color: #fca5a5; font-size: 0.8rem;">
+                                        <div style="margin-bottom: 0.5rem;">📱 Flutter App</div>
+                                        <div style="border-left: 2px solid #dc2626; padding-left: 1rem; margin-left: 0.5rem;">
+                                            <div style="margin: 0.5rem 0;">→ ChatGPT API</div>
+                                            <div style="margin: 0.5rem 0;">→ Claude API</div>
+                                            <div style="margin: 0.5rem 0;">→ Gemini API</div>
+                                            <div style="margin: 0.5rem 0;">→ 通义千问 API</div>
+                                        </div>
+                                        <div style="margin-top: 0.75rem; color: #f87171;">❌ 代码重复、维护困难</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- MCP 方式 -->
+                                <div style="flex: 1;">
+                                    <div style="background: #16a34a; padding: 0.75rem; border-radius: 8px; text-align: center; color: white; margin-bottom: 0.5rem; font-weight: bold;">MCP 方式</div>
+                                    <div style="background: #052e16; padding: 1rem; border-radius: 6px; color: #86efac; font-size: 0.8rem;">
+                                        <div style="margin-bottom: 0.5rem;">📱 Flutter App</div>
+                                        <div style="background: #16a34a; padding: 0.5rem; border-radius: 4px; text-align: center; margin: 0.5rem 0;">🔗 Flutter MCP</div>
+                                        <div style="border-left: 2px solid #16a34a; padding-left: 1rem; margin-left: 0.5rem;">
+                                            <div style="margin: 0.5rem 0;">→ ChatGPT</div>
+                                            <div style="margin: 0.5rem 0;">→ Claude</div>
+                                            <div style="margin: 0.5rem 0;">→ Gemini</div>
+                                            <div style="margin: 0.5rem 0;">→ 通义千问</div>
+                                        </div>
+                                        <div style="margin-top: 0.75rem; color: #4ade80;">✅ 统一接口、易于维护</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 核心特性 -->
+                <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 1.5rem 0;">
+                    <h4 style="color: #dc2626; margin: 0 0 1.5rem 0; font-size: 1.2rem;">✨ 核心特性</h4>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+                        <div style="background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #dc2626;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                <span style="font-size: 1.5rem;">🔌</span>
+                                <h5 style="color: #b91c1c; margin: 0;">统一接口</h5>
+                            </div>
+                            <p style="color: #475569; font-size: 0.9rem; margin: 0; line-height: 1.6;">封装不同 AI 模型的 API 差异，提供一致的调用接口，切换模型无需修改业务代码</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #dc2626;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                <span style="font-size: 1.5rem;">📝</span>
+                                <h5 style="color: #b91c1c; margin: 0;">上下文管理</h5>
+                            </div>
+                            <p style="color: #475569; font-size: 0.9rem; margin: 0; line-height: 1.6;">自动管理对话历史和上下文，支持多轮对话、会话隔离、上下文长度控制</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #dc2626;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                <span style="font-size: 1.5rem;">🌊</span>
+                                <h5 style="color: #b91c1c; margin: 0;">流式响应</h5>
+                            </div>
+                            <p style="color: #475569; font-size: 0.9rem; margin: 0; line-height: 1.6;">支持 SSE 流式输出，实时显示 AI 回复，提升用户体验，减少等待焦虑</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #dc2626;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                <span style="font-size: 1.5rem;">🛡️</span>
+                                <h5 style="color: #b91c1c; margin: 0;">错误处理</h5>
+                            </div>
+                            <p style="color: #475569; font-size: 0.9rem; margin: 0; line-height: 1.6;">完善的错误分类、自动重试、降级策略，提供友好的错误提示</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #dc2626;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                <span style="font-size: 1.5rem;">🔧</span>
+                                <h5 style="color: #b91c1c; margin: 0;">工具调用</h5>
+                            </div>
+                            <p style="color: #475569; font-size: 0.9rem; margin: 0; line-height: 1.6;">支持 Function Calling，AI 可调用预定义的工具（如查询天气、搜索等）</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #dc2626;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                <span style="font-size: 1.5rem;">🔐</span>
+                                <h5 style="color: #b91c1c; margin: 0;">安全认证</h5>
+                            </div>
+                            <p style="color: #475569; font-size: 0.9rem; margin: 0; line-height: 1.6;">支持多种认证方式（API Key、OAuth、JWT），密钥安全管理，支持刷新 Token</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #dc2626;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                <span style="font-size: 1.5rem;">📊</span>
+                                <h5 style="color: #b91c1c; margin: 0;">请求监控</h5>
+                            </div>
+                            <p style="color: #475569; font-size: 0.9rem; margin: 0; line-height: 1.6;">请求日志、性能监控、用量统计、费用追踪，帮助优化使用成本</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #dc2626;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                <span style="font-size: 1.5rem;">🔄</span>
+                                <h5 style="color: #b91c1c; margin: 0;">模型切换</h5>
+                            </div>
+                            <p style="color: #475569; font-size: 0.9rem; margin: 0; line-height: 1.6;">运行时动态切换模型，支持负载均衡、故障转移、A/B 测试</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 支持的 AI 模型 -->
+                <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 1.5rem 0;">
+                    <h4 style="color: #dc2626; margin: 0 0 1.5rem 0; font-size: 1.2rem;">🤖 支持的 AI 模型</h4>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 8px; text-align: center; border: 2px solid #e2e8f0;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🟢</div>
+                            <h5 style="color: #334155; margin: 0 0 0.25rem 0;">ChatGPT</h5>
+                            <p style="color: #64748b; font-size: 0.8rem; margin: 0;">OpenAI</p>
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 8px; text-align: center; border: 2px solid #e2e8f0;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔵</div>
+                            <h5 style="color: #334155; margin: 0 0 0.25rem 0;">Claude</h5>
+                            <p style="color: #64748b; font-size: 0.8rem; margin: 0;">Anthropic</p>
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 8px; text-align: center; border: 2px solid #e2e8f0;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🟣</div>
+                            <h5 style="color: #334155; margin: 0 0 0.25rem 0;">Gemini</h5>
+                            <p style="color: #64748b; font-size: 0.8rem; margin: 0;">Google</p>
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 8px; text-align: center; border: 2px solid #e2e8f0;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔴</div>
+                            <h5 style="color: #334155; margin: 0 0 0.25rem 0;">通义千问</h5>
+                            <p style="color: #64748b; font-size: 0.8rem; margin: 0;">阿里云</p>
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 8px; text-align: center; border: 2px solid #e2e8f0;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🟡</div>
+                            <h5 style="color: #334155; margin: 0 0 0.25rem 0;">文心一言</h5>
+                            <p style="color: #64748b; font-size: 0.8rem; margin: 0;">百度</p>
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 8px; text-align: center; border: 2px solid #e2e8f0;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🟠</div>
+                            <h5 style="color: #334155; margin: 0 0 0.25rem 0;">智谱清言</h5>
+                            <p style="color: #64748b; font-size: 0.8rem; margin: 0;">智谱 AI</p>
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 8px; text-align: center; border: 2px solid #e2e8f0;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🟣</div>
+                            <h5 style="color: #334155; margin: 0 0 0.25rem 0;">讯飞星火</h5>
+                            <p style="color: #64748b; font-size: 0.8rem; margin: 0;">科大讯飞</p>
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 8px; text-align: center; border: 2px solid #e2e8f0;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔷</div>
+                            <h5 style="color: #334155; margin: 0 0 0.25rem 0;">DeepSeek</h5>
+                            <p style="color: #64748b; font-size: 0.8rem; margin: 0;">深度求索</p>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 1rem; border-radius: 8px; border-left: 4px solid #0284c7;">
+                        <p style="color: #0369a1; margin: 0; font-size: 0.9rem;">
+                            <strong>💡 提示：</strong>所有支持 OpenAI 兼容 API 的模型都可以直接使用，包括自部署的模型（如 Llama、ChatGLM 等）
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 安装与配置 -->
+                <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 1.5rem 0;">
+                    <h4 style="color: #dc2626; margin: 0 0 1.5rem 0; font-size: 1.2rem;">⚙️ 安装与配置</h4>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <h5 style="color: #475569; margin: 0 0 0.75rem 0; font-size: 1rem;">1. 添加依赖</h5>
+                        <div style="background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto;">
+                            <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6;"><code># pubspec.yaml
+dependencies:
+  flutter_mcp: ^1.0.0
+  
+  # 可选：各模型提供商的插件
+  flutter_mcp_openai: ^1.0.0   # ChatGPT
+  flutter_mcp_anthropic: ^1.0.0 # Claude
+  flutter_mcp_google: ^1.0.0   # Gemini
+  flutter_mcp_aliyun: ^1.0.0   # 通义千问</code></pre>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <h5 style="color: #475569; margin: 0 0 0.75rem 0; font-size: 1rem;">2. 基础配置</h5>
+                        <div style="background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto;">
+                            <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6;"><code>import 'package:flutter_mcp/flutter_mcp.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // 初始化 MCP 客户端
+  final mcp = FlutterMCP(
+    // 选择提供商
+    provider: MCPProvider.openai,
+    
+    // API 密钥
+    apiKey: 'your-api-key',
+    
+    // 可选：自定义配置
+    config: MCPConfig(
+      // 模型名称
+      model: 'gpt-4',
+      
+      // 温度（创造性）
+      temperature: 0.7,
+      
+      // 最大 token 数
+      maxTokens: 2000,
+      
+      // 超时时间
+      timeout: Duration(seconds: 30),
+      
+      // 重试配置
+      retryConfig: RetryConfig(
+        maxRetries: 3,
+        initialDelay: Duration(seconds: 1),
+        maxDelay: Duration(seconds: 10),
+      ),
+    ),
+    
+    // 可选：自定义 HTTP 客户端
+    httpClient: CustomHttpClient(),
+  );
+
+  runApp(MyApp());
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <h5 style="color: #475569; margin: 0 0 0.75rem 0; font-size: 1rem;">3. 多模型配置</h5>
+                        <div style="background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto;">
+                            <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6;"><code>// 配置多个模型
+final mcp = FlutterMCP.multi(
+  providers: {
+    'primary': MCPConfig(
+      provider: MCPProvider.openai,
+      apiKey: 'your-openai-key',
+      model: 'gpt-4',
+    ),
+    'backup': MCPConfig(
+      provider: MCPProvider.anthropic,
+      apiKey: 'your-anthropic-key',
+      model: 'claude-3',
+    ),
+    'cheap': MCPConfig(
+      provider: MCPProvider.openai,
+      apiKey: 'your-openai-key',
+      model: 'gpt-3.5-turbo',
+    ),
+  },
+  
+  // 负载均衡策略
+  loadBalancer: LoadBalancer.roundRobin(),
+  
+  // 故障转移
+  failover: Failover(
+    enabled: true,
+    fallbackProvider: 'backup',
+  ),
+);</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 使用示例 -->
+                <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 1.5rem 0;">
+                    <h4 style="color: #dc2626; margin: 0 0 1.5rem 0; font-size: 1.2rem;">📝 使用示例</h4>
+                    
+                    <!-- 示例 1：基础对话 -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <h5 style="color: #475569; margin: 0 0 0.75rem 0; font-size: 1rem;">示例 1：基础对话</h5>
+                        <div style="background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;">
+                            <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6;"><code>import 'package:flutter_mcp/flutter_mcp.dart';
+
+class ChatService {
+  final mcp = FlutterMCP(
+    provider: MCPProvider.openai,
+    apiKey: 'your-api-key',
+  );
+
+  // 发送单轮对话
+  Future<String> chat(String message) async {
+    final response = await mcp.chat(
+      messages: [
+        MCPMessage(
+          role: MCPRole.user,
+          content: message,
+        ),
+      ],
+    );
+    
+    return response.content;
+  }
+
+  // 使用示例
+  Future<void> example() async {
+    final answer = await chat('请用 Flutter 写一个计数器应用');
+    print(answer);
+  }
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 示例 2：多轮对话 -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <h5 style="color: #475569; margin: 0 0 0.75rem 0; font-size: 1rem;">示例 2：多轮对话（上下文管理）</h5>
+                        <div style="background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;">
+                            <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6;"><code>class ConversationManager {
+  final mcp = FlutterMCP(
+    provider: MCPProvider.openai,
+    apiKey: 'your-api-key',
+  );
+
+  // 创建会话
+  Future<String> startConversation() async {
+    // 创建新会话，返回会话 ID
+    final conversationId = await mcp.createConversation(
+      config: ConversationConfig(
+        // 系统提示
+        systemPrompt: '你是一位专业的 Flutter 开发助手',
+        // 上下文长度限制
+        maxContextLength: 10,
+        // 会话过期时间
+        expireAfter: Duration(hours: 24),
+      ),
+    );
+    
+    return conversationId;
+  }
+
+  // 多轮对话
+  Future<String> sendMessage(
+    String conversationId,
+    String message,
+  ) async {
+    final response = await mcp.chat(
+      messages: [
+        MCPMessage(
+          role: MCPRole.user,
+          content: message,
+        ),
+      ],
+      conversationId: conversationId,  // 传入会话 ID
+    );
+    
+    return response.content;
+  }
+
+  // 使用示例
+  Future<void> example() async {
+    final convId = await startConversation();
+    
+    // 第一轮
+    await sendMessage(convId, '什么是 Provider？');
+    
+    // 第二轮（AI 知道上下文）
+    await sendMessage(convId, '如何使用它？');
+    
+    // 第三轮（AI 仍然知道上下文）
+    await sendMessage(convId, '有其他的替代方案吗？');
+  }
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 示例 3：流式响应 -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <h5 style="color: #475569; margin: 0 0 0.75rem 0; font-size: 1rem;">示例 3：流式响应（实时显示）</h5>
+                        <div style="background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;">
+                            <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6;"><code>class StreamingChat extends StatefulWidget {
+  @override
+  State<StreamingChat> createState() => _StreamingChatState();
+}
+
+class _StreamingChatState extends State<StreamingChat> {
+  final mcp = FlutterMCP(
+    provider: MCPProvider.openai,
+    apiKey: 'your-api-key',
+  );
+  
+  final _messages = <String>[];
+  bool _isStreaming = false;
+
+  Future<void> sendMessage(String message) async {
+    setState(() {
+      _messages.add('用户：$message');
+      _isStreaming = true;
+    });
+
+    final response = StringBuffer();
+
+    // 流式响应
+    final stream = mcp.chatStream(
+      messages: [
+        MCPMessage(
+          role: MCPRole.user,
+          content: message,
+        ),
+      ],
+    );
+
+    // 逐字显示 AI 回复
+    await for (final chunk in stream) {
+      setState(() {
+        response.write(chunk);
+      });
+    }
+
+    setState(() {
+      _messages.add('AI：$response');
+      _isStreaming = false;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+          child: ListView.builder(
+            itemCount: _messages.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(_messages[index]),
+              );
+            },
+          ),
+        ),
+        if (_isStreaming)
+          LinearProgressIndicator(),
+      ],
+    );
+  }
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 示例 4：工具调用 -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <h5 style="color: #475569; margin: 0 0 0.75rem 0; font-size: 1rem;">示例 4：工具调用（Function Calling）</h5>
+                        <div style="background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;">
+                            <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6;"><code>class ToolCallingExample {
+  final mcp = FlutterMCP(
+    provider: MCPProvider.openai,
+    apiKey: 'your-api-key',
+  );
+
+  // 定义工具
+  final tools = [
+    MCPTool(
+      name: 'get_weather',
+      description: '获取指定城市的天气信息',
+      parameters: {
+        'type': 'object',
+        'properties': {
+          'city': {
+            'type': 'string',
+            'description': '城市名称，如"北京"、"上海"',
+          },
+          'date': {
+            'type': 'string',
+            'description': '日期（可选），格式：YYYY-MM-DD',
+          },
+        },
+        'required': ['city'],
+      },
+      // 工具执行函数
+      handler: (args) async {
+        final city = args['city'];
+        final date = args['date'] ?? '今天';
+        
+        // 调用天气 API
+        final weather = await fetchWeather(city, date);
+        
+        return {
+          'temperature': weather.temperature,
+          'condition': weather.condition,
+          'humidity': weather.humidity,
+        };
+      },
+    ),
+    
+    MCPTool(
+      name: 'search_news',
+      description: '搜索新闻',
+      parameters: {
+        'type': 'object',
+        'properties': {
+          'query': {
+            'type': 'string',
+            'description': '搜索关键词',
+          },
+          'limit': {
+            'type': 'integer',
+            'description': '返回结果数量',
+          },
+        },
+        'required': ['query'],
+      },
+      handler: (args) async {
+        return await searchNews(args['query'], args['limit']);
+      },
+    ),
+  ];
+
+  // 使用工具调用
+  Future<String> chatWithTools(String message) async {
+    final response = await mcp.chat(
+      messages: [
+        MCPMessage(
+          role: MCPRole.user,
+          content: message,
+        ),
+      ],
+      tools: tools,  // 注册工具
+      toolChoice: 'auto',  // AI 自动决定是否调用工具
+    );
+    
+    return response.content;
+  }
+
+  // 使用示例
+  Future<void> example() async {
+    // AI 会自动调用 get_weather 工具
+    final answer = await chatWithTools('北京今天天气怎么样？');
+    print(answer);  // "北京今天晴朗，气温 25°C..."
+    
+    // AI 会自动调用 search_news 工具
+    final news = await chatWithTools('最近有什么 AI 相关的新闻？');
+    print(news);
+  }
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 示例 5：错误处理 -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <h5 style="color: #475569; margin: 0 0 0.75rem 0; font-size: 1rem;">示例 5：错误处理与重试</h5>
+                        <div style="background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;">
+                            <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6;"><code>class RobustChat {
+  final mcp = FlutterMCP(
+    provider: MCPProvider.openai,
+    apiKey: 'your-api-key',
+    config: MCPConfig(
+      retryConfig: RetryConfig(
+        maxRetries: 3,
+        initialDelay: Duration(seconds: 1),
+        maxDelay: Duration(seconds: 10),
+        // 重试的 HTTP 状态码
+        retryOnStatus: [408, 429, 500, 502, 503, 504],
+      ),
+    ),
+  );
+
+  Future<String> chat(String message) async {
+    try {
+      final response = await mcp.chat(
+        messages: [
+          MCPMessage(
+            role: MCPRole.user,
+            content: message,
+          ),
+        ],
+      );
+      
+      return response.content;
+      
+    } on MCPTimeoutException catch (e) {
+      // 超时处理
+      return '请求超时，请检查网络连接';
+      
+    } on MCPRateLimitException catch (e) {
+      // 频率限制处理
+      final retryAfter = e.retryAfter;
+      return '请求过于频繁，请${retryAfter.inSeconds}秒后再试';
+      
+    } on MCPAuthenticationException catch (e) {
+      // 认证失败处理
+      return 'API 密钥无效，请检查配置';
+      
+    } on MCPQuotaExceededException catch (e) {
+      // 配额超限处理
+      return 'API 配额已用尽，请升级账户';
+      
+    } on MCPException catch (e) {
+      // 其他错误
+      return '发生错误：${e.message}';
+    }
+  }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 完整聊天应用示例 -->
+                <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 1.5rem 0;">
+                    <h4 style="color: #dc2626; margin: 0 0 1.5rem 0; font-size: 1.2rem;">📱 完整聊天应用示例</h4>
+                    
+                    <div style="background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto;">
+                        <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6;"><code>import 'package:flutter/material.dart';
+import 'package:flutter_mcp/flutter_mcp.dart';
+
+class AIChatApp extends StatefulWidget {
+  @override
+  State<AIChatApp> createState() => _AIChatAppState();
+}
+
+class _AIChatAppState extends State<AIChatApp> {
+  late final FlutterMCP _mcp;
+  final List<ChatMessage> _messages = [];
+  final TextEditingController _controller = TextEditingController();
+  bool _isLoading = false;
+  String? _conversationId;
+
+  @override
+  void initState() {
+    super.initState();
+    _mcp = FlutterMCP(
+      provider: MCPProvider.openai,
+      apiKey: 'your-api-key',
+      config: MCPConfig(
+        model: 'gpt-4',
+        temperature: 0.7,
+      ),
+    );
+    _initConversation();
+  }
+
+  Future<void> _initConversation() async {
+    _conversationId = await _mcp.createConversation(
+      config: ConversationConfig(
+        systemPrompt: '你是一位友好、专业的 AI 助手',
+      ),
+    );
+  }
+
+  Future<void> _sendMessage() async {
+    if (_controller.text.isEmpty || _isLoading) return;
+
+    final userMessage = _controller.text;
+    _controller.clear();
+
+    setState(() {
+      _messages.add(ChatMessage(
+        role: 'user',
+        content: userMessage,
+        timestamp: DateTime.now(),
+      ));
+      _isLoading = true;
+    });
+
+    try {
+      final response = await _mcp.chat(
+        messages: [
+          MCPMessage(
+            role: MCPRole.user,
+            content: userMessage,
+          ),
+        ],
+        conversationId: _conversationId,
+      );
+
+      setState(() {
+        _messages.add(ChatMessage(
+          role: 'assistant',
+          content: response.content,
+          timestamp: DateTime.now(),
+        ));
+      });
+    } catch (e) {
+      setState(() {
+        _messages.add(ChatMessage(
+          role: 'system',
+          content: '错误：$e',
+          timestamp: DateTime.now(),
+        ));
+      });
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('AI 助手'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.delete_outline),
+            onPressed: () async {
+              if (_conversationId != null) {
+                await _mcp.clearConversation(_conversationId!);
+                setState(() {
+                  _messages.clear();
+                });
+              }
+            },
+          ),
+        ],
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: _messages.length,
+              itemBuilder: (context, index) {
+                final message = _messages[index];
+                return _buildMessageBubble(message);
+              },
+            ),
+          ),
+          if (_isLoading) LinearProgressIndicator(),
+          Padding(
+            padding: EdgeInsets.all(8),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _controller,
+                    decoration: InputDecoration(
+                      hintText: '输入消息...',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                      contentPadding: EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 12,
+                      ),
+                    ),
+                    onSubmitted: (_) => _sendMessage(),
+                  ),
+                ),
+                SizedBox(width: 8),
+                CircleAvatar(
+                  child: IconButton(
+                    icon: Icon(Icons.send),
+                    onPressed: _sendMessage,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMessageBubble(ChatMessage message) {
+    final isUser = message.role == 'user';
+    
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Row(
+        mainAxisAlignment: isUser
+            ? MainAxisAlignment.end
+            : MainAxisAlignment.start,
+        children: [
+          if (!isUser)
+            CircleAvatar(
+              backgroundColor: Colors.blue,
+              child: Icon(Icons.smart_toy, color: Colors.white),
+            ),
+          SizedBox(width: 8),
+          Flexible(
+            child: Container(
+              padding: EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: isUser ? Colors.blue : Colors.grey[300],
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    message.content,
+                    style: TextStyle(
+                      color: isUser ? Colors.white : Colors.black,
+                    ),
+                  ),
+                  SizedBox(height: 4),
+                  Text(
+                    _formatTime(message.timestamp),
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: isUser ? Colors.white70 : Colors.black54,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(width: 8),
+          if (isUser)
+            CircleAvatar(
+              backgroundColor: Colors.green,
+              child: Icon(Icons.person, color: Colors.white),
+            ),
+        ],
+      ),
+    );
+  }
+
+  String _formatTime(DateTime time) {
+    return '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}';
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+}
+
+class ChatMessage {
+  final String role;
+  final String content;
+  final DateTime timestamp;
+
+  ChatMessage({
+    required this.role,
+    required this.content,
+    required this.timestamp,
+  });
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- 最佳实践 -->
+                <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px;">
+                    <h4 style="color: #92400e; margin: 0 0 1rem 0; font-size: 1.1rem;">💡 Flutter MCP 最佳实践</h4>
+                    <ul style="margin: 0; padding-left: 1.25rem; color: #78350f; font-size: 0.95rem; line-height: 1.8;">
+                        <li><strong>使用会话管理</strong>：多轮对话使用会话 ID，避免重复发送历史消息</li>
+                        <li><strong>流式响应提升体验</strong>：长文本回复使用流式，减少用户等待焦虑</li>
+                        <li><strong>合理设置上下文长度</strong>：上下文过长会增加成本和延迟，建议限制在 5-10 轮</li>
+                        <li><strong>实现降级策略</strong>：配置备用模型，主模型故障时自动切换</li>
+                        <li><strong>监控用量和成本</strong>：定期检查 API 使用情况，设置预算告警</li>
+                        <li><strong>缓存常用回复</strong>：对于常见问题，可以缓存 AI 回复，减少 API 调用</li>
+                        <li><strong>保护 API 密钥</strong>：不要将密钥硬编码在代码中，使用环境变量或安全存储</li>
+                        <li><strong>实现请求限流</strong>：避免短时间内大量请求触发频率限制</li>
+                    </ul>
+                </div>
+
+                <!-- 限制与注意事项 -->
+                <div style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); border-left: 4px solid #ef4444; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px;">
+                    <h4 style="color: #991b1b; margin: 0 0 1rem 0; font-size: 1.1rem;">⚠️ 限制与注意事项</h4>
+                    <ul style="margin: 0; padding-left: 1.25rem; color: #7f1d1d; font-size: 0.95rem; line-height: 1.8;">
+                        <li><strong>网络依赖</strong>：需要网络连接才能使用 AI 服务</li>
+                        <li><strong>API 成本</strong>：按使用量计费，需要注意成本控制</li>
+                        <li><strong>响应延迟</strong>：网络请求需要时间，建议实现加载状态和超时处理</li>
+                        <li><strong>数据隐私</strong>：不要发送敏感信息（如密码、个人信息）到 AI 服务</li>
+                        <li><strong>内容审核</strong>：AI 可能生成不当内容，建议实现内容过滤</li>
+                        <li><strong>速率限制</strong>：各模型有请求频率限制，需要实现限流逻辑</li>
+                        <li><strong>模型差异</strong>：不同模型的输出风格和质量可能有差异</li>
+                    </ul>
+                </div>
+
+                <!-- 资源链接 -->
+                <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 1.5rem 0;">
+                    <h4 style="color: #dc2626; margin: 0 0 1rem 0; font-size: 1.1rem;">📚 学习资源</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                        <a href="https://pub.dev/packages/flutter_mcp" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; background: #dc2626; color: white; text-decoration: none; border-radius: 6px; font-size: 0.9rem;">📦 Pub.dev</a>
+                        <a href="https://github.com/flutter-ai/flutter-mcp" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; background: #24292f; color: white; text-decoration: none; border-radius: 6px; font-size: 0.9rem;">💻 GitHub</a>
+                        <a href="https://modelcontextprotocol.io" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; background: #0ea5e9; color: white; text-decoration: none; border-radius: 6px; font-size: 0.9rem;">📖 MCP 协议</a>
+                        <a href="https://flutter-mcp.dev" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; background: #10b981; color: white; text-decoration: none; border-radius: 6px; font-size: 0.9rem;">🌐 官方文档</a>
+                        <a href="https://github.com/flutter-ai/flutter-mcp/issues" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; background: #f59e0b; color: white; text-decoration: none; border-radius: 6px; font-size: 0.9rem;">🐛 问题反馈</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     </main>
 
     <script src="script.js"></script>
