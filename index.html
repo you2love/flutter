@@ -3747,7 +3747,43 @@ class CounterWidget extends StatelessWidget {
                     <!-- AI 提示词最佳实践 -->
                     <div class="ai-prompt-practices">
                         <h3>📝 AI 提示词最佳实践</h3>
-                        
+
+                        <!-- 提示词万能公式 -->
+                        <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 2px solid #0ea5e9; padding: 1.5rem; margin: 1.5rem 0; border-radius: 12px;">
+                            <h4 style="color: #0369a1; margin: 0 0 1rem 0; font-size: 1.2rem;">🎯 提示词万能公式</h4>
+                            <div style="background: white; border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;">
+                                <code style="color: #0ea5e9; font-size: 1rem; font-weight: 600;">
+                                    角色定位 + 任务描述 + 上下文信息 + 约束条件 + 输出格式 + 示例参考
+                                </code>
+                            </div>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                                <div style="background: white; border-radius: 8px; padding: 1rem;">
+                                    <strong style="color: #0ea5e9;">👤 角色定位</strong>
+                                    <p style="margin: 0.5rem 0 0 0; color: #64748b; font-size: 0.9rem;">"你是一位资深 Flutter 开发工程师，擅长 UI 设计和性能优化"</p>
+                                </div>
+                                <div style="background: white; border-radius: 8px; padding: 1rem;">
+                                    <strong style="color: #0ea5e9;">📋 任务描述</strong>
+                                    <p style="margin: 0.5rem 0 0 0; color: #64748b; font-size: 0.9rem;">"请创建一个登录页面，包含表单验证和错误处理"</p>
+                                </div>
+                                <div style="background: white; border-radius: 8px; padding: 1rem;">
+                                    <strong style="color: #0ea5e9;">📖 上下文信息</strong>
+                                    <p style="margin: 0.5rem 0 0 0; color: #64748b; font-size: 0.9rem;">"项目使用 Provider 状态管理，API 接口已定义"</p>
+                                </div>
+                                <div style="background: white; border-radius: 8px; padding: 1rem;">
+                                    <strong style="color: #0ea5e9;">⚠️ 约束条件</strong>
+                                    <p style="margin: 0.5rem 0 0 0; color: #64748b; font-size: 0.9rem;">"使用 Material 3 设计，支持深色模式，代码需要注释"</p>
+                                </div>
+                                <div style="background: white; border-radius: 8px; padding: 1rem;">
+                                    <strong style="color: #0ea5e9;">📦 输出格式</strong>
+                                    <p style="margin: 0.5rem 0 0 0; color: #64748b; font-size: 0.9rem;">"完整的 Dart 代码文件，包含 import 和 export"</p>
+                                </div>
+                                <div style="background: white; border-radius: 8px; padding: 1rem;">
+                                    <strong style="color: #0ea5e9;">📝 示例参考</strong>
+                                    <p style="margin: 0.5rem 0 0 0; color: #64748b; font-size: 0.9rem;">"参考如下输入输出格式..."</p>
+                                </div>
+                            </div>
+                        </div>
+
                         <div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 4px solid #2196F3; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px;">
                             <h4 style="color: #1976D2; margin: 0 0 1rem 0; font-size: 1.1rem;">✅ 好的提示词特征</h4>
                             <ul style="margin: 0; padding-left: 1.25rem; color: #424242; font-size: 0.95rem; line-height: 1.8;">
@@ -3769,9 +3805,307 @@ class CounterWidget extends StatelessWidget {
                             </ul>
                         </div>
 
+                        <!-- 常用提示词模板库 -->
+                        <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 1.5rem 0;">
+                            <h4 style="color: #424242; margin: 0 0 1.5rem 0; font-size: 1.2rem;">📚 常用提示词模板库</h4>
+
+                            <!-- 模板 1：创建 Widget -->
+                            <div style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+                                <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 1rem; border-bottom: 1px solid #e2e8f0;">
+                                    <h5 style="color: #475569; margin: 0; font-size: 1rem;">📦 模板 1：创建自定义 Widget</h5>
+                                </div>
+                                <div style="padding: 1rem; background: #1e293b;">
+                                    <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6; white-space: pre-wrap;">你是一位资深 Flutter 开发工程师。请帮我创建一个【自定义 Widget 名称】，要求：
+
+【功能描述】
+- 功能 1：...
+- 功能 2：...
+- 功能 3：...
+
+【技术约束】
+- 使用【StatelessWidget/StatefulWidget】
+- 支持【主题定制/动画效果/手势处理】
+- 遵循【Material Design/Cupertino】设计规范
+- 代码需要详细注释
+
+【输入参数】
+- 参数 1：类型、说明
+- 参数 2：类型、说明
+
+【回调函数】
+- 回调 1：触发时机、参数说明
+- 回调 2：触发时机、参数说明
+
+请提供完整的代码实现和使用示例。</pre>
+                                </div>
+                            </div>
+
+                            <!-- 模板 2：页面开发 -->
+                            <div style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+                                <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 1rem; border-bottom: 1px solid #e2e8f0;">
+                                    <h5 style="color: #475569; margin: 0; font-size: 1rem;">📄 模板 2：完整页面开发</h5>
+                                </div>
+                                <div style="padding: 1rem; background: #1e293b;">
+                                    <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6; white-space: pre-wrap;">请帮我开发一个【页面名称】页面，这是一个【电商/社交/工具】类应用。
+
+【页面结构】
+1. 顶部：【AppBar 配置、标题、操作按钮】
+2. 主体：【内容区域布局、数据展示方式】
+3. 底部：【底部导航、操作按钮】
+
+【数据源】
+- API 接口：【接口地址/数据结构】
+- 本地数据：【存储方式/数据模型】
+
+【交互功能】
+- 用户操作：【点击/滑动/输入】
+- 反馈方式：【SnackBar/Dialog/页面跳转】
+- 加载状态：【Loading 指示器/骨架屏】
+
+【状态管理】
+- 使用【Provider/Riverpod/GetX】
+- 需要处理：【数据加载/错误处理/缓存策略】
+
+【UI 要求】
+- 设计风格：【Material 3/自定义】
+- 响应式：【支持平板/多端适配】
+- 动画效果：【页面切换/元素动画】
+
+请提供完整的页面代码，包括 Widget 树、状态管理、API 调用。</pre>
+                                </div>
+                            </div>
+
+                            <!-- 模板 3：代码优化 -->
+                            <div style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+                                <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 1rem; border-bottom: 1px solid #e2e8f0;">
+                                    <h5 style="color: #475569; margin: 0; font-size: 1rem;">⚡ 模板 3：代码优化重构</h5>
+                                </div>
+                                <div style="padding: 1rem; background: #1e293b;">
+                                    <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6; white-space: pre-wrap;">请帮我优化以下 Flutter 代码：
+
+【当前代码】
+```dart
+【粘贴需要优化的代码】
+```
+
+【存在的问题】
+- 性能问题：【如：列表滚动卡顿、内存泄漏】
+- 代码结构：【如：代码重复、职责不清】
+- 可维护性：【如：缺少注释、命名不规范】
+
+【优化目标】
+- 性能提升：【具体指标，如 FPS、内存占用】
+- 代码质量：【遵循 SOLID 原则、设计模式】
+- 可维护性：【添加注释、单元测试】
+
+【约束条件】
+- 保持现有功能不变
+- 兼容【Flutter 版本】
+- 不引入新的依赖
+
+请提供优化后的代码，并说明优化点和收益。</pre>
+                                </div>
+                            </div>
+
+                            <!-- 模板 4：Bug 调试 -->
+                            <div style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+                                <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 1rem; border-bottom: 1px solid #e2e8f0;">
+                                    <h5 style="color: #475569; margin: 0; font-size: 1rem;">🐛 模板 4：Bug 调试修复</h5>
+                                </div>
+                                <div style="padding: 1rem; background: #1e293b;">
+                                    <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6; white-space: pre-wrap;">我遇到了一个 Flutter 开发问题，请帮我分析并解决：
+
+【错误信息】
+```
+【完整粘贴错误日志/堆栈信息】
+```
+
+【问题描述】
+- 预期行为：...
+- 实际行为：...
+- 复现步骤：
+  1. ...
+  2. ...
+  3. ...
+
+【环境信息】
+- Flutter 版本：【如 3.16.0】
+- 目标平台：【Android/iOS/Web】
+- 相关依赖：【包名和版本】
+
+【已尝试的解决方案】
+- 尝试 1：... 结果：...
+- 尝试 2：... 结果：...
+
+【相关代码】
+```dart
+【粘贴相关代码片段】
+```
+
+请分析错误原因，提供解决方案和修复代码。</pre>
+                                </div>
+                            </div>
+
+                            <!-- 模板 5：API 集成 -->
+                            <div style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+                                <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 1rem; border-bottom: 1px solid #e2e8f0;">
+                                    <h5 style="color: #475569; margin: 0; font-size: 1rem;">🌐 模板 5：API 集成封装</h5>
+                                </div>
+                                <div style="padding: 1rem; background: #1e293b;">
+                                    <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6; white-space: pre-wrap;">请帮我封装一个 API 服务层，用于对接【后端服务名称】。
+
+【API 基础信息】
+- Base URL: 【https://api.example.com】
+- 认证方式：【JWT Token/OAuth2/API Key】
+- 数据格式：【JSON/Protobuf】
+
+【需要封装的接口】
+1. 【接口名称 1】
+   - Method: 【GET/POST/PUT/DELETE】
+   - Endpoint: 【/api/v1/...】
+   - 请求参数：【参数列表和类型】
+   - 响应数据：【返回数据结构】
+
+2. 【接口名称 2】
+   ...
+
+【技术要求】
+- 使用【Dio/HTTP】包
+- 实现【请求拦截/响应拦截/错误处理】
+- 支持【Token 刷新/重试机制/超时处理】
+- 添加【日志打印/性能监控】
+
+【数据模型】
+```dart
+【粘贴或描述数据模型结构】
+```
+
+请提供完整的 API 服务层代码，包括客户端配置、接口定义、数据模型。</pre>
+                                </div>
+                            </div>
+
+                            <!-- 模板 6：单元测试 -->
+                            <div style="border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+                                <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 1rem; border-bottom: 1px solid #e2e8f0;">
+                                    <h5 style="color: #475569; margin: 0; font-size: 1rem;">🧪 模板 6：单元测试生成</h5>
+                                </div>
+                                <div style="padding: 1rem; background: #1e293b;">
+                                    <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6; white-space: pre-wrap;">请为以下 Flutter 代码编写完整的单元测试：
+
+【被测代码】
+```dart
+【粘贴需要测试的类/函数代码】
+```
+
+【测试要求】
+- 测试框架：【flutter_test/mockito】
+- 覆盖率目标：【如 80% 以上】
+- 测试类型：【单元测试/Widget 测试/集成测试】
+
+【需要覆盖的场景】
+1. 正常流程：【输入有效数据，验证正确输出】
+2. 边界条件：【空值/最大值/最小值】
+3. 异常情况：【网络错误/数据格式错误】
+4. 状态变化：【状态更新后的 UI 变化】
+
+【Mock 需求】
+- 需要 Mock 的对象：【API 服务/数据库/状态管理】
+- Mock 行为：【返回数据/抛出异常】
+
+请提供完整的测试代码，包括测试准备、执行、断言。</pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 场景化提示词示例 -->
+                        <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 2px solid #22c55e; padding: 1.5rem; margin: 1.5rem 0; border-radius: 12px;">
+                            <h4 style="color: #15803d; margin: 0 0 1.5rem 0; font-size: 1.2rem;">🎬 场景化提示词示例</h4>
+
+                            <div style="margin-bottom: 1.5rem;">
+                                <h5 style="color: #16a34a; margin: 0 0 0.5rem 0; font-size: 1rem;">场景 1：快速原型开发</h5>
+                                <div style="background: #1e293b; padding: 1rem; border-radius: 8px; color: #86efac; font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.6;">
+你是一位 Flutter 快速原型开发专家。我需要在 30 分钟内创建一个电商应用的首页原型。<br><br>
+<strong>功能需求：</strong><br>
+- 顶部搜索栏，支持关键词搜索<br>
+- Banner 轮播图，自动播放<br>
+- 商品分类网格，4 列布局<br>
+- 推荐商品列表，下拉刷新<br>
+- 底部导航栏，5 个 Tab<br><br>
+<strong>技术要求：</strong><br>
+- 使用假数据，不需要真实 API<br>
+- Material Design 3 风格<br>
+- 代码结构清晰，便于后续扩展<br><br>
+请提供完整的首页代码，包括所有 Widget 和假数据定义。
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 1.5rem;">
+                                <h5 style="color: #16a34a; margin: 0 0 0.5rem 0; font-size: 1rem;">场景 2：性能优化诊断</h5>
+                                <div style="background: #1e293b; padding: 1rem; border-radius: 8px; color: #86efac; font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.6;">
+你是一位 Flutter 性能优化专家。我的应用在低端 Android 设备上滚动卡顿。<br><br>
+<strong>问题现象：</strong><br>
+- ListView 滚动时 FPS 降至 30 以下<br>
+- 快速滑动时出现白屏<br>
+- 内存占用超过 200MB<br><br>
+<strong>当前实现：</strong><br>
+- 列表项包含图片和复杂布局<br>
+- 使用 Image.network 加载图片<br>
+- 每个列表项有独立的状态<br><br>
+<strong>优化目标：</strong><br>
+- FPS 稳定在 60<br>
+- 内存占用低于 100MB<br>
+- 滚动流畅无卡顿<br><br>
+请分析可能的性能瓶颈，提供优化方案和具体代码修改。
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 1.5rem;">
+                                <h5 style="color: #16a34a; margin: 0 0 0.5rem 0; font-size: 1rem;">场景 3：跨平台适配</h5>
+                                <div style="background: #1e293b; padding: 1rem; border-radius: 8px; color: #86efac; font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.6;">
+你是一位 Flutter 跨平台开发专家。我需要将现有的 Android 应用适配到 iOS 和 Web 平台。<br><br>
+<strong>当前状况：</strong><br>
+- 仅支持 Android 平台<br>
+- 使用了 platform-specific 代码<br>
+- 有本地存储和网络请求<br><br>
+<strong>适配要求：</strong><br>
+- iOS：遵循 Cupertino 设计规范<br>
+- Web：支持响应式布局，适配桌面和移动端<br>
+- 共享 90% 以上的代码<br><br>
+<strong>需要处理：</strong><br>
+- 平台判断和适配<br>
+- 导航栏样式差异<br>
+- 文件存储方式差异<br>
+- 键盘处理差异<br><br>
+请提供跨平台适配方案和关键代码实现。
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 1.5rem;">
+                                <h5 style="color: #16a34a; margin: 0 0 0.5rem 0; font-size: 1rem;">场景 4：代码审查改进</h4>
+                                <div style="background: #1e293b; padding: 1rem; border-radius: 8px; color: #86efac; font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.6;">
+你是一位资深 Flutter 技术专家，正在进行代码审查。<br><br>
+<strong>审查代码：</strong><br>
+```dart<br>
+【粘贴待审查的代码】<br>
+```<br><br>
+<strong>审查维度：</strong><br>
+1. 代码规范：命名、格式、注释<br>
+2. 性能问题：内存、CPU、渲染<br>
+3. 安全性：数据加密、权限检查<br>
+4. 可维护性：复杂度、可测试性<br>
+5. 最佳实践：设计模式、架构<br><br>
+<strong>输出要求：</strong><br>
+- 列出所有问题，按严重程度分级<br>
+- 每个问题提供修复建议<br>
+- 提供改进后的完整代码<br><br>
+请进行全面的代码审查，给出专业的改进建议。
+                                </div>
+                            </div>
+                        </div>
+
                         <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 1.5rem 0;">
                             <h4 style="color: #424242; margin: 0 0 1rem 0; font-size: 1.1rem;">💬 Flutter 提示词示例</h4>
-                            
+
                             <div style="margin-bottom: 1.5rem;">
                                 <h5 style="color: #1976D2; margin: 0 0 0.5rem 0; font-size: 1rem;">示例 1：创建登录页面</h5>
                                 <div style="background: #1a1a2e; padding: 1rem; border-radius: 8px; color: #00ff00; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6;">
