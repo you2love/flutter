@@ -6165,6 +6165,1073 @@ class ChatMessage {
         </div>
     </div>
 
+            <!-- Genkit Dart 详细介绍 -->
+            <div class="genkit-dart-section">
+                <div class="section-title">
+                    <span class="title-number">04</span>
+                    <h3>🚀 Genkit Dart - Google AI 工具包详解</h3>
+                    <div class="title-underline"></div>
+                </div>
+
+                <!-- 什么是 Genkit Dart -->
+                <div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border: 2px solid #ea4335; padding: 1.5rem; margin: 1.5rem 0; border-radius: 12px;">
+                    <h4 style="color: #c5221f; margin: 0 0 1rem 0; font-size: 1.2rem;">📖 什么是 Genkit Dart？</h4>
+                    <p style="color: #475569; line-height: 1.8; margin: 0; font-size: 1rem;">
+                        Genkit Dart 是 Google 推出的 AI 应用开发工具包 Dart 语言版本，是 Firebase Genkit 生态的重要组成部分。它提供了一套完整的 AI 功能，包括模型抽象、流程编排、提示词模板、评估测试、RAG（检索增强生成）等。Genkit Dart 让 Flutter 开发者能够轻松构建 AI 驱动的应用，支持与 Gemini、Vertex AI、Ollama 等多种 AI 模型集成，并提供插件系统扩展功能。
+                    </p>
+                </div>
+
+                <!-- Genkit 生态系统 -->
+                <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 1.5rem 0;">
+                    <h4 style="color: #ea4335; margin: 0 0 1.5rem 0; font-size: 1.2rem;">🌍 Genkit 生态系统</h4>
+                    
+                    <div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                        <div style="text-align: center; color: #e2e8f0; margin-bottom: 1rem; font-size: 0.9rem;">Genkit 生态系统架构</div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                            <!-- Genkit Core -->
+                            <div style="background: #ea4335; padding: 1rem; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔴</div>
+                                <div style="font-weight: bold; color: white;">Genkit Core</div>
+                                <div style="font-size: 0.8rem; color: #fecaca; margin-top: 0.5rem;">核心库（Dart/TS）</div>
+                            </div>
+                            
+                            <!-- 模型提供商 -->
+                            <div style="background: #4285f4; padding: 1rem; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🤖</div>
+                                <div style="font-weight: bold; color: white;">模型提供商</div>
+                                <div style="font-size: 0.75rem; color: #bfdbfe; margin-top: 0.5rem;">Gemini / Vertex AI / Ollama</div>
+                            </div>
+                            
+                            <!-- 插件系统 -->
+                            <div style="background: #10b981; padding: 1rem; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔌</div>
+                                <div style="font-weight: bold; color: white;">插件系统</div>
+                                <div style="font-size: 0.75rem; color: #a7f3d0; margin-top: 0.5rem;">向量数据库 / 检索 / 存储</div>
+                            </div>
+                            
+                            <!-- Flutter 应用 -->
+                            <div style="background: #0ea5e9; padding: 1rem; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📱</div>
+                                <div style="font-weight: bold; color: white;">Flutter 应用</div>
+                                <div style="font-size: 0.75rem; color: #bae6fd; margin-top: 0.5rem;">AI 驱动的移动应用</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem;">
+                        <div style="background: #fef2f2; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #ea4335;">
+                            <h5 style="color: #c5221f; margin: 0 0 0.75rem 0;">🎯 Genkit 定位</h5>
+                            <p style="color: #475569; font-size: 0.9rem; margin: 0; line-height: 1.6;">Genkit 是 Google 推出的全栈 AI 开发框架，Dart 版本让 Flutter 开发者能够使用相同的 API 和理念构建 AI 应用，与 Firebase Genkit 后端无缝集成。</p>
+                        </div>
+                        
+                        <div style="background: #f0fdf4; padding: 1.25rem; border-radius: 10px; border-left: 4px solid #16a34a;">
+                            <h5 style="color: #15803d; margin: 0 0 0.75rem 0;">💡 使用场景</h5>
+                            <ul style="margin: 0; padding-left: 1.25rem; color: #166534; font-size: 0.9rem; line-height: 1.8;">
+                                <li>智能聊天助手</li>
+                                <li>内容生成应用</li>
+                                <li>RAG 知识库问答</li>
+                                <li>AI 工作流编排</li>
+                                <li>多模型对比测试</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 核心特性 -->
+                <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 1.5rem 0;">
+                    <h4 style="color: #ea4335; margin: 0 0 1.5rem 0; font-size: 1.2rem;">✨ 核心特性</h4>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+                        <div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #ea4335;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                <span style="font-size: 1.5rem;">🤖</span>
+                                <h5 style="color: #c5221f; margin: 0;">模型抽象</h5>
+                            </div>
+                            <p style="color: #475569; font-size: 0.9rem; margin: 0; line-height: 1.6;">统一接口支持 Gemini、Vertex AI、Ollama 等多种模型，切换模型无需修改业务代码</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #ea4335;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                <span style="font-size: 1.5rem;">⛓️</span>
+                                <h5 style="color: #c5221f; margin: 0;">流程编排</h5>
+                            </div>
+                            <p style="color: #475569; font-size: 0.9rem; margin: 0; line-height: 1.6;">使用 Flow 编排复杂 AI 工作流，支持多步骤、条件分支、并行执行</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #ea4335;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                <span style="font-size: 1.5rem;">📝</span>
+                                <h5 style="color: #c5221f; margin: 0;">提示词模板</h5>
+                            </div>
+                            <p style="color: #475569; font-size: 0.9rem; margin: 0; line-height: 1.6;">定义和管理可复用的提示词模板，支持变量替换、条件渲染</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #ea4335;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                <span style="font-size: 1.5rem;">📊</span>
+                                <h5 style="color: #c5221f; margin: 0;">评估测试</h5>
+                            </div>
+                            <p style="color: #475569; font-size: 0.9rem; margin: 0; line-height: 1.6;">内置评估工具，测试 AI 输出质量，支持自定义评估指标</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #ea4335;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                <span style="font-size: 1.5rem;">🔍</span>
+                                <h5 style="color: #c5221f; margin: 0;">RAG 支持</h5>
+                            </div>
+                            <p style="color: #475569; font-size: 0.9rem; margin: 0; line-height: 1.6;">检索增强生成，支持向量数据库、文档索引、语义搜索</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #ea4335;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                <span style="font-size: 1.5rem;">🔌</span>
+                                <h5 style="color: #c5221f; margin: 0;">插件生态</h5>
+                            </div>
+                            <p style="color: #475569; font-size: 0.9rem; margin: 0; line-height: 1.6;">丰富的插件支持（Pinecone、Firebase、Google Search 等）</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #ea4335;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                <span style="font-size: 1.5rem;">🔥</span>
+                                <h5 style="color: #c5221f; margin: 0;">Firebase 集成</h5>
+                            </div>
+                            <p style="color: #475569; font-size: 0.9rem; margin: 0; line-height: 1.6;">与 Firebase 服务无缝集成（Firestore、Auth、Cloud Functions）</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #ea4335;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                <span style="font-size: 1.5rem;">🌊</span>
+                                <h5 style="color: #c5221f; margin: 0;">流式响应</h5>
+                            </div>
+                            <p style="color: #475569; font-size: 0.9rem; margin: 0; line-height: 1.6;">支持流式生成，实时显示 AI 输出，提升用户体验</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 支持的模型和插件 -->
+                <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 1.5rem 0;">
+                    <h4 style="color: #ea4335; margin: 0 0 1.5rem 0; font-size: 1.2rem;">🤖 支持的模型和插件</h4>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <h5 style="color: #475569; margin: 0 0 0.75rem 0; font-size: 1rem;">AI 模型</h5>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem;">
+                            <div style="background: #f8fafc; padding: 0.75rem; border-radius: 6px; text-align: center; border: 2px solid #e2e8f0;">
+                                <div style="font-size: 1.5rem;">🟣</div>
+                                <div style="color: #334155; font-size: 0.85rem; font-weight: 600;">Gemini</div>
+                            </div>
+                            <div style="background: #f8fafc; padding: 0.75rem; border-radius: 6px; text-align: center; border: 2px solid #e2e8f0;">
+                                <div style="font-size: 1.5rem;">☁️</div>
+                                <div style="color: #334155; font-size: 0.85rem; font-weight: 600;">Vertex AI</div>
+                            </div>
+                            <div style="background: #f8fafc; padding: 0.75rem; border-radius: 6px; text-align: center; border: 2px solid #e2e8f0;">
+                                <div style="font-size: 1.5rem;">🦙</div>
+                                <div style="color: #334155; font-size: 0.85rem; font-weight: 600;">Ollama</div>
+                            </div>
+                            <div style="background: #f8fafc; padding: 0.75rem; border-radius: 6px; text-align: center; border: 2px solid #e2e8f0;">
+                                <div style="font-size: 1.5rem;">🟢</div>
+                                <div style="color: #334155; font-size: 0.85rem; font-weight: 600;">ChatGPT</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <h5 style="color: #475569; margin: 0 0 0.75rem 0; font-size: 1rem;">向量数据库</h5>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem;">
+                            <div style="background: #f8fafc; padding: 0.75rem; border-radius: 6px; text-align: center; border: 2px solid #e2e8f0;">
+                                <div style="color: #334155; font-size: 0.85rem; font-weight: 600;">🌲 Pinecone</div>
+                            </div>
+                            <div style="background: #f8fafc; padding: 0.75rem; border-radius: 6px; text-align: center; border: 2px solid #e2e8f0;">
+                                <div style="color: #334155; font-size: 0.85rem; font-weight: 600;">🔵 Chroma</div>
+                            </div>
+                            <div style="background: #f8fafc; padding: 0.75rem; border-radius: 6px; text-align: center; border: 2px solid #e2e8f0;">
+                                <div style="color: #334155; font-size: 0.85rem; font-weight: 600;">📦 Qdrant</div>
+                            </div>
+                            <div style="background: #f8fafc; padding: 0.75rem; border-radius: 6px; text-align: center; border: 2px solid #e2e8f0;">
+                                <div style="color: #334155; font-size: 0.85rem; font-weight: 600;">🔴 Redis</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h5 style="color: #475569; margin: 0 0 0.75rem 0; font-size: 1rem;">其他插件</h5>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem;">
+                            <div style="background: #f8fafc; padding: 0.75rem; border-radius: 6px; text-align: center; border: 2px solid #e2e8f0;">
+                                <div style="color: #334155; font-size: 0.85rem; font-weight: 600;">🔥 Firebase</div>
+                            </div>
+                            <div style="background: #f8fafc; padding: 0.75rem; border-radius: 6px; text-align: center; border: 2px solid #e2e8f0;">
+                                <div style="color: #334155; font-size: 0.85rem; font-weight: 600;">🔍 Google Search</div>
+                            </div>
+                            <div style="background: #f8fafc; padding: 0.75rem; border-radius: 6px; text-align: center; border: 2px solid #e2e8f0;">
+                                <div style="color: #334155; font-size: 0.85rem; font-weight: 600;">📄 PDF Parser</div>
+                            </div>
+                            <div style="background: #f8fafc; padding: 0.75rem; border-radius: 6px; text-align: center; border: 2px solid #e2e8f0;">
+                                <div style="color: #334155; font-size: 0.85rem; font-weight: 600;">🌐 Web Scraper</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 安装与配置 -->
+                <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 1.5rem 0;">
+                    <h4 style="color: #ea4335; margin: 0 0 1.5rem 0; font-size: 1.2rem;">⚙️ 安装与配置</h4>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <h5 style="color: #475569; margin: 0 0 0.75rem 0; font-size: 1rem;">1. 添加依赖</h5>
+                        <div style="background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto;">
+                            <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6;"><code># pubspec.yaml
+dependencies:
+  genkit: ^1.0.0
+  
+  # 模型提供商插件
+  genkit_google_ai: ^1.0.0    # Google AI (Gemini)
+  genkit_vertex_ai: ^1.0.0    # Vertex AI
+  genkit_ollama: ^1.0.0       # Ollama 本地模型
+  genkit_openai: ^1.0.0       # OpenAI
+  
+  # 向量数据库插件
+  genkit_pinecone: ^1.0.0     # Pinecone 向量数据库
+  genkit_chroma: ^1.0.0       # Chroma
+  
+  # 其他插件
+  genkit_firebase: ^1.0.0     # Firebase 集成
+  genkit_google_search: ^1.0.0 # Google 搜索</code></pre>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <h5 style="color: #475569; margin: 0 0 0.75rem 0; font-size: 1rem;">2. 环境配置</h5>
+                        <div style="background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto;">
+                            <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6;"><code># .env 文件（不要提交到版本控制）
+# Google AI API 密钥
+GOOGLE_GENAI_API_KEY=your-google-api-key
+
+# Vertex AI 配置
+VERTEX_AI_PROJECT_ID=your-project-id
+VERTEX_AI_LOCATION=us-central1
+
+# Pinecone 配置
+PINECONE_API_KEY=your-pinecone-key
+PINECONE_INDEX_NAME=your-index
+
+# OpenAI API 密钥（可选）
+OPENAI_API_KEY=your-openai-key</code></pre>
+                        </div>
+                        <p style="color: #64748b; font-size: 0.85rem; margin-top: 0.5rem; font-style: italic;">💡 提示：使用 flutter_dotenv 包加载环境变量</p>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <h5 style="color: #475569; margin: 0 0 0.75rem 0; font-size: 1rem;">3. 初始化 Genkit</h5>
+                        <div style="background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto;">
+                            <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6;"><code>import 'package:genkit/genkit.dart';
+import 'package:genkit_google_ai/genkit_google_ai.dart';
+import 'package:genkit_pinecone/genkit_pinecone.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // 加载环境变量
+  await DotEnv.init();
+  
+  // 初始化 Genkit
+  final genkit = Genkit(
+    plugins: [
+      // Google AI 插件
+      GoogleAIPlugin(
+        apiKey: dotenv.env['GOOGLE_GENAI_API_KEY'],
+      ),
+      // Pinecone 向量数据库插件
+      PineconePlugin(
+        apiKey: dotenv.env['PINECONE_API_KEY'],
+        indexName: dotenv.env['PINECONE_INDEX_NAME'],
+      ),
+    ],
+    // 默认配置
+    defaultModel: 'googleai/gemini-pro',
+    defaultConfig: ModelConfig(
+      temperature: 0.7,
+      maxOutputTokens: 2000,
+    ),
+  );
+
+  runApp(MyApp(genkit: genkit));
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 使用示例 -->
+                <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 1.5rem 0;">
+                    <h4 style="color: #ea4335; margin: 0 0 1.5rem 0; font-size: 1.2rem;">📝 使用示例</h4>
+                    
+                    <!-- 示例 1：基础生成 -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <h5 style="color: #475569; margin: 0 0 0.75rem 0; font-size: 1rem;">示例 1：基础文本生成</h5>
+                        <div style="background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;">
+                            <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6;"><code>import 'package:genkit/genkit.dart';
+
+class BasicGeneration {
+  final Genkit genkit;
+
+  BasicGeneration(this.genkit);
+
+  // 简单文本生成
+  Future<String> generateText(String prompt) async {
+    final response = await genkit.generate(
+      model: 'googleai/gemini-pro',
+      prompt: prompt,
+    );
+    
+    return response.text;
+  }
+
+  // 带配置的生成
+  Future<String> generateWithConfig(String prompt) async {
+    final response = await genkit.generate(
+      model: 'googleai/gemini-pro',
+      prompt: prompt,
+      config: ModelConfig(
+        temperature: 0.8,  // 更高创造性
+        maxOutputTokens: 4000,
+        topP: 0.95,
+      ),
+    );
+    
+    return response.text;
+  }
+
+  // 使用示例
+  Future<void> example() async {
+    final story = await generateText('写一个关于 Flutter 开发者的科幻故事');
+    print(story);
+    
+    final code = await generateWithConfig('用 Dart 写一个快速排序算法');
+    print(code);
+  }
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 示例 2：提示词模板 -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <h5 style="color: #475569; margin: 0 0 0.75rem 0; font-size: 1rem;">示例 2：提示词模板</h5>
+                        <div style="background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;">
+                            <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6;"><code>import 'package:genkit/genkit.dart';
+
+class PromptTemplates {
+  final Genkit genkit;
+
+  PromptTemplates(this.genkit);
+
+  // 定义提示词模板
+  void registerTemplates() {
+    // 代码审查模板
+    genkit.definePromptTemplate(
+      name: 'code-review',
+      template: PromptTemplate(
+        messages: [
+          Message(
+            role: 'system',
+            content: '你是一位资深的 Flutter 代码审查专家。请审查以下代码并提供改进建议。',
+          ),
+          Message(
+            role: 'user',
+            content: '''请审查以下 Dart 代码：
+
+```dart
+{{code}}
+```
+
+请从以下方面进行审查：
+1. 代码规范和风格
+2. 性能优化建议
+3. 潜在的错误和问题
+4. 最佳实践建议''',
+          ),
+        ],
+      ),
+    );
+
+    // 应用创意生成模板
+    genkit.definePromptTemplate(
+      name: 'app-idea-generator',
+      template: PromptTemplate(
+        messages: [
+          Message(
+            role: 'system',
+            content: '你是一位富有创意的移动应用产品经理。',
+          ),
+          Message(
+            role: 'user',
+            content: '''请为{{topic}}主题设计一个 Flutter 应用创意。
+
+要求：
+1. 应用名称（3 个选项）
+2. 目标用户群体
+3. 核心功能（5-7 个）
+4. 盈利模式
+5. 技术难点和解决方案''',
+          ),
+        ],
+      ),
+    );
+  }
+
+  // 使用模板
+  Future<String> reviewCode(String code) async {
+    final response = await genkit.generateWithTemplate(
+      templateName: 'code-review',
+      variables: {'code': code},
+    );
+    
+    return response.text;
+  }
+
+  // 使用示例
+  Future<void> example() async {
+    final review = await reviewCode('''
+class CounterWidget extends StatefulWidget {
+  @override
+  _CounterWidgetState createState() => _CounterWidgetState();
+}
+
+class _CounterWidgetState extends State<CounterWidget> {
+  int count = 0;
+  void increment() {
+    count++;
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Text('$count');
+  }
+}
+''');
+    print(review);
+  }
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 示例 3：Flow 流程编排 -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <h5 style="color: #475569; margin: 0 0 0.75rem 0; font-size: 1rem;">示例 3：Flow 流程编排</h5>
+                        <div style="background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;">
+                            <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6;"><code>import 'package:genkit/genkit.dart';
+
+class AIFlowExample {
+  final Genkit genkit;
+
+  AIFlowExample(this.genkit);
+
+  // 定义 AI 工作流
+  void defineFlows() {
+    // 内容生成工作流
+    genkit.defineFlow(
+      name: 'content-generation-flow',
+      handler: (ContentInput input) async {
+        // 步骤 1：生成大纲
+        final outline = await genkit.generate(
+          model: 'googleai/gemini-pro',
+          prompt: '为"${input.topic}"生成一个详细的大纲',
+        );
+
+        // 步骤 2：根据大纲生成内容
+        final content = await genkit.generate(
+          model: 'googleai/gemini-pro',
+          prompt: '''根据以下大纲撰写完整内容：
+
+${outline.text}
+
+要求：
+- 详细阐述每个要点
+- 提供实际示例
+- 字数：${input.wordCount}字''',
+        );
+
+        // 步骤 3：质量评估
+        final evaluation = await genkit.evaluate(
+          model: 'googleai/gemini-pro',
+          input: content.text,
+          criteria: [
+            EvaluationCriteria(
+              name: '准确性',
+              description: '内容是否准确无误',
+            ),
+            EvaluationCriteria(
+              name: '完整性',
+              description: '是否覆盖了大纲的所有要点',
+            ),
+            EvaluationCriteria(
+              name: '可读性',
+              description: '文章是否流畅易读',
+            ),
+          ],
+        );
+
+        // 步骤 4：如果评分低则重新生成
+        if (evaluation.score < 0.8) {
+          final improvedContent = await genkit.generate(
+            model: 'googleai/gemini-pro',
+            prompt: '''根据以下反馈改进内容：
+
+原始内容：
+${content.text}
+
+反馈意见：
+${evaluation.feedback}
+
+请改进内容以提高评分。''',
+          );
+          return improvedContent.text;
+        }
+
+        return content.text;
+      },
+    );
+
+    // 多步骤客服工作流
+    genkit.defineFlow(
+      name: 'customer-support-flow',
+      handler: (SupportInput input) async {
+        // 步骤 1：理解用户问题
+        final understanding = await genkit.generate(
+          model: 'googleai/gemini-pro',
+          prompt: '分析用户问题：${input.question}',
+        );
+
+        // 步骤 2：检索知识库
+        final knowledge = await retrieveKnowledge(understanding.text);
+
+        // 步骤 3：生成回答
+        final answer = await genkit.generate(
+          model: 'googleai/gemini-pro',
+          prompt: '''基于以下知识回答用户问题：
+
+相关知识：
+$knowledge
+
+用户问题：
+${input.question}''',
+        );
+
+        // 步骤 4：情感分析
+        final sentiment = await analyzeSentiment(input.question);
+
+        return SupportResponse(
+          answer: answer.text,
+          sentiment: sentiment,
+          sources: knowledge.sources,
+        );
+      },
+    );
+  }
+
+  // 执行工作流
+  Future<String> generateContent(String topic, int wordCount) async {
+    final flow = genkit.getFlow('content-generation-flow');
+    final result = await flow.run(ContentInput(
+      topic: topic,
+      wordCount: wordCount,
+    ));
+    return result;
+  }
+}
+
+class ContentInput {
+  final String topic;
+  final int wordCount;
+  ContentInput({required this.topic, required this.wordCount});
+}
+
+class SupportInput {
+  final String question;
+  SupportInput({required this.question});
+}
+
+class SupportResponse {
+  final String answer;
+  final String sentiment;
+  final List<String> sources;
+  SupportResponse({
+    required this.answer,
+    required this.sentiment,
+    required this.sources,
+  });
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 示例 4：RAG 检索增强生成 -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <h5 style="color: #475569; margin: 0 0 0.75rem 0; font-size: 1rem;">示例 4：RAG（检索增强生成）</h5>
+                        <div style="background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;">
+                            <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6;"><code>import 'package:genkit/genkit.dart';
+import 'package:genkit_pinecone/genkit_pinecone.dart';
+
+class RAGExample {
+  final Genkit genkit;
+  late final VectorStore _vectorStore;
+
+  RAGExample(this.genkit) {
+    _vectorStore = genkit.getVectorStore('pinecone');
+  }
+
+  // 索引文档
+  Future<void> indexDocuments() async {
+    final documents = [
+      Document(
+        content: 'Flutter 是 Google 开发的开源 UI 软件工具包',
+        metadata: {
+          'category': '技术',
+          'tags': ['flutter', 'mobile', 'dart'],
+          'source': 'Flutter 官方文档',
+        },
+      ),
+      Document(
+        content: 'Dart 是 Flutter 使用的编程语言，由 Google 开发',
+        metadata: {
+          'category': '技术',
+          'tags': ['dart', 'programming', 'language'],
+          'source': 'Dart 官方文档',
+        },
+      ),
+      // ... 更多文档
+    ];
+
+    await _vectorStore.indexDocuments(
+      documents: documents,
+      embeddingModel: 'googleai/text-embedding-004',
+    );
+  }
+
+  // RAG 查询
+  Future<RAGResponse> query(String question) async {
+    // 步骤 1：检索相关文档
+    final relevantDocs = await _vectorStore.similaritySearch(
+      query: question,
+      topK: 5,
+      filter: {'category': '技术'},
+    );
+
+    // 步骤 2：构建上下文
+    final context = relevantDocs
+        .map((doc) => '''来源：${doc.metadata['source']}
+内容：${doc.content}''')
+        .join('\n\n');
+
+    // 步骤 3：生成回答
+    final response = await genkit.generate(
+      model: 'googleai/gemini-pro',
+      prompt: '''基于以下上下文回答问题。如果上下文中没有相关信息，请说明你不知道。
+
+上下文：
+$context
+
+问题：$question
+
+请用中文回答。''',
+    );
+
+    return RAGResponse(
+      answer: response.text,
+      sources: relevantDocs.map((d) => d.metadata['source'] as String).toList(),
+      confidence: response.confidence,
+    );
+  }
+
+  // 使用示例
+  Future<void> example() async {
+    // 先索引文档
+    await indexDocuments();
+
+    // 查询
+    final response = await query('Flutter 使用什么编程语言？');
+    
+    print('回答：${response.answer}');
+    print('来源：${response.sources}');
+    print('置信度：${response.confidence}');
+  }
+}
+
+class RAGResponse {
+  final String answer;
+  final List<String> sources;
+  final double confidence;
+
+  RAGResponse({
+    required this.answer,
+    required this.sources,
+    required this.confidence,
+  });
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 示例 5：流式生成 -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <h5 style="color: #475569; margin: 0 0 0.75rem 0; font-size: 1rem;">示例 5：流式生成（实时显示）</h5>
+                        <div style="background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem;">
+                            <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6;"><code>import 'package:flutter/material.dart';
+import 'package:genkit/genkit.dart';
+
+class StreamingExample extends StatefulWidget {
+  final Genkit genkit;
+
+  const StreamingExample({Key? key, required this.genkit}) : super(key: key);
+
+  @override
+  State<StreamingExample> createState() => _StreamingExampleState();
+}
+
+class _StreamingExampleState extends State<StreamingExample> {
+  final _controller = TextEditingController();
+  final _output = StringBuffer();
+  bool _isGenerating = false;
+
+  Future<void> _generateStream() async {
+    if (_controller.text.isEmpty || _isGenerating) return;
+
+    setState(() {
+      _output.clear();
+      _isGenerating = true;
+    });
+
+    // 流式生成
+    final stream = widget.genkit.generateStream(
+      model: 'googleai/gemini-pro',
+      prompt: _controller.text,
+    );
+
+    // 逐块接收
+    await for (final chunk in stream) {
+      setState(() {
+        _output.write(chunk);
+      });
+    }
+
+    setState(() {
+      _isGenerating = false;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(16),
+      child: Column(
+        children: [
+          TextField(
+            controller: _controller,
+            decoration: InputDecoration(
+              labelText: '输入提示词',
+              border: OutlineInputBorder(),
+            ),
+            onSubmitted: (_) => _generateStream(),
+          ),
+          SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: _isGenerating ? null : _generateStream,
+            child: Text(_isGenerating ? '生成中...' : '开始生成'),
+          ),
+          SizedBox(height: 16),
+          if (_isGenerating) LinearProgressIndicator(),
+          SizedBox(height: 16),
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: SingleChildScrollView(
+                child: Text(_output.toString()),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 完整 AI 助手应用 -->
+                <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 1.5rem 0;">
+                    <h4 style="color: #ea4335; margin: 0 0 1.5rem 0; font-size: 1.2rem;">📱 完整 AI 助手应用示例</h4>
+                    
+                    <div style="background: #1e293b; padding: 1rem; border-radius: 8px; overflow-x: auto;">
+                        <pre style="margin: 0; color: #e2e8f0; font-size: 0.85rem; line-height: 1.6;"><code>import 'package:flutter/material.dart';
+import 'package:genkit/genkit.dart';
+import 'package:genkit_google_ai/genkit_google_ai.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  final genkit = Genkit(
+    plugins: [
+      GoogleAIPlugin(apiKey: 'your-api-key'),
+    ],
+  );
+
+  runApp(MyAIAssistant(genkit: genkit));
+}
+
+class MyAIAssistant extends StatelessWidget {
+  final Genkit genkit;
+
+  const MyAIAssistant({Key? key, required this.genkit}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'AI 助手',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: ChatScreen(genkit: genkit),
+    );
+  }
+}
+
+class ChatScreen extends StatefulWidget {
+  final Genkit genkit;
+
+  const ChatScreen({Key? key, required this.genkit}) : super(key: key);
+
+  @override
+  State<ChatScreen> createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
+  final _messages = <ChatMessage>[];
+  final _controller = TextEditingController();
+  bool _isLoading = false;
+
+  Future<void> _sendMessage() async {
+    if (_controller.text.isEmpty || _isLoading) return;
+
+    final userMessage = _controller.text;
+    _controller.clear();
+
+    setState(() {
+      _messages.add(ChatMessage(
+        role: 'user',
+        content: userMessage,
+        timestamp: DateTime.now(),
+      ));
+      _isLoading = true;
+    });
+
+    try {
+      // 构建对话历史
+      final history = _messages
+          .map((m) => '${m.role == 'user' ? '用户' : '助手'}: ${m.content}')
+          .join('\n');
+
+      final response = await widget.genkit.generate(
+        model: 'googleai/gemini-pro',
+        prompt: '''你是一位友好的 AI 助手。
+
+对话历史：
+$history
+
+用户：$userMessage
+助手：''',
+      );
+
+      setState(() {
+        _messages.add(ChatMessage(
+          role: 'assistant',
+          content: response.text,
+          timestamp: DateTime.now(),
+        ));
+      });
+    } catch (e) {
+      setState(() {
+        _messages.add(ChatMessage(
+          role: 'system',
+          content: '错误：$e',
+          timestamp: DateTime.now(),
+        ));
+      });
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('AI 助手'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.delete_outline),
+            onPressed: () => setState(() => _messages.clear()),
+          ),
+        ],
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: _messages.length,
+              itemBuilder: (context, index) {
+                return _buildMessageBubble(_messages[index]);
+              },
+            ),
+          ),
+          if (_isLoading) LinearProgressIndicator(),
+          Padding(
+            padding: EdgeInsets.all(8),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _controller,
+                    decoration: InputDecoration(
+                      hintText: '输入消息...',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                      contentPadding: EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 12,
+                      ),
+                    ),
+                    onSubmitted: (_) => _sendMessage(),
+                  ),
+                ),
+                SizedBox(width: 8),
+                CircleAvatar(
+                  child: IconButton(
+                    icon: Icon(Icons.send),
+                    onPressed: _sendMessage,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMessageBubble(ChatMessage message) {
+    final isUser = message.role == 'user';
+    
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      child: Row(
+        mainAxisAlignment: isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
+        children: [
+          if (!isUser)
+            CircleAvatar(
+              backgroundColor: Colors.deepPurple,
+              child: Icon(Icons.smart_toy, color: Colors.white, size: 20),
+            ),
+          SizedBox(width: 8),
+          Flexible(
+            child: Container(
+              padding: EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: isUser ? Colors.deepPurple : Colors.grey[300],
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Text(
+                message.content,
+                style: TextStyle(
+                  color: isUser ? Colors.white : Colors.black,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(width: 8),
+          if (isUser)
+            CircleAvatar(
+              backgroundColor: Colors.green,
+              child: Icon(Icons.person, color: Colors.white, size: 20),
+            ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+}
+
+class ChatMessage {
+  final String role;
+  final String content;
+  final DateTime timestamp;
+
+  ChatMessage({
+    required this.role,
+    required this.content,
+    required this.timestamp,
+  });
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- 最佳实践 -->
+                <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px;">
+                    <h4 style="color: #92400e; margin: 0 0 1rem 0; font-size: 1.1rem;">💡 Genkit Dart 最佳实践</h4>
+                    <ul style="margin: 0; padding-left: 1.25rem; color: #78350f; font-size: 0.95rem; line-height: 1.8;">
+                        <li><strong>使用 Flow 编排复杂流程</strong>：将多步骤 AI 任务封装为 Flow，便于复用和测试</li>
+                        <li><strong>定义提示词模板</strong>：将常用提示词保存为模板，保持一致性</li>
+                        <li><strong>实现评估机制</strong>：使用 Genkit 的评估工具测试 AI 输出质量</li>
+                        <li><strong>利用 RAG 增强能力</strong>：对于专业知识，使用 RAG 而非依赖模型训练数据</li>
+                        <li><strong>流式响应提升体验</strong>：长文本生成使用流式，减少用户等待</li>
+                        <li><strong>合理配置模型参数</strong>：根据场景调整 temperature、maxTokens 等参数</li>
+                        <li><strong>保护 API 密钥</strong>：使用环境变量，不要硬编码密钥</li>
+                        <li><strong>监控用量和成本</strong>：定期检查 API 使用情况，设置预算告警</li>
+                    </ul>
+                </div>
+
+                <!-- 限制与注意事项 -->
+                <div style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); border-left: 4px solid #ef4444; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px;">
+                    <h4 style="color: #991b1b; margin: 0 0 1rem 0; font-size: 1.1rem;">⚠️ 限制与注意事项</h4>
+                    <ul style="margin: 0; padding-left: 1.25rem; color: #7f1d1d; font-size: 0.95rem; line-height: 1.8;">
+                        <li><strong>网络依赖</strong>：需要网络连接才能使用云端 AI 服务</li>
+                        <li><strong>API 成本</strong>：按使用量计费，需要注意成本控制</li>
+                        <li><strong>响应延迟</strong>：网络请求需要时间，建议实现加载状态</li>
+                        <li><strong>数据隐私</strong>：不要发送敏感信息到 AI 服务</li>
+                        <li><strong>模型限制</strong>：了解各模型的能力边界和限制</li>
+                        <li><strong>插件兼容性</strong>：确保插件版本与 Genkit 核心兼容</li>
+                        <li><strong>本地模型</strong>：考虑使用 Ollama 等本地模型减少延迟和成本</li>
+                    </ul>
+                </div>
+
+                <!-- 资源链接 -->
+                <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 1.5rem 0;">
+                    <h4 style="color: #ea4335; margin: 0 0 1rem 0; font-size: 1.1rem;">📚 学习资源</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                        <a href="https://pub.dev/packages/genkit" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; background: #ea4335; color: white; text-decoration: none; border-radius: 6px; font-size: 0.9rem;">📦 Pub.dev</a>
+                        <a href="https://github.com/firebase/genkit" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; background: #24292f; color: white; text-decoration: none; border-radius: 6px; font-size: 0.9rem;">💻 GitHub</a>
+                        <a href="https://firebase.google.com/docs/genkit" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; background: #ffca28; color: #333; text-decoration: none; border-radius: 6px; font-size: 0.9rem;">🔥 Firebase Genkit</a>
+                        <a href="https://ai.google.dev" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; background: #4285f4; color: white; text-decoration: none; border-radius: 6px; font-size: 0.9rem;">🤖 Google AI</a>
+                        <a href="https://github.com/firebase/genkit/issues" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; background: #f59e0b; color: white; text-decoration: none; border-radius: 6px; font-size: 0.9rem;">🐛 问题反馈</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     </main>
 
     <script src="script.js"></script>
