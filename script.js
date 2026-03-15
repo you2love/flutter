@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initTabNavigation();
     // 代码复制功能
     initCopyButtons();
+    // 代码块折叠功能
+    initCodeBlockCollapse();
     // 小程序代码示例标签切换
     initExampleTabs();
 });
@@ -60,6 +62,36 @@ function initCopyButtons() {
                 console.error('复制失败:', err);
                 alert('复制失败，请手动选择文本复制');
             });
+        });
+    });
+}
+
+// 代码块折叠功能
+function initCodeBlockCollapse() {
+    const codeBlocks = document.querySelectorAll('.code-block');
+
+    codeBlocks.forEach(codeBlock => {
+        // 检查代码块是否已经有折叠按钮
+        if (codeBlock.querySelector('.code-block-toggle')) {
+            return;
+        }
+
+        // 创建折叠按钮
+        const toggleBtn = document.createElement('button');
+        toggleBtn.className = 'code-block-toggle';
+        toggleBtn.textContent = '代码';
+        
+        // 将按钮插入到代码块的开头
+        codeBlock.insertBefore(toggleBtn, codeBlock.firstChild);
+
+        // 添加点击事件
+        toggleBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            codeBlock.classList.toggle('collapsed');
+            
+            // 更新按钮文本
+            const isCollapsed = codeBlock.classList.contains('collapsed');
+            toggleBtn.textContent = isCollapsed ? '代码 (展开)' : '代码 (收起)';
         });
     });
 }

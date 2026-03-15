@@ -402,6 +402,7 @@ body {
     border-radius: var(--border-radius);
     overflow-x: auto;
     margin-bottom: 1rem;
+    position: relative;
 }
 
 .code-block pre {
@@ -409,10 +410,47 @@ body {
     color: #00ff00;
     font-size: 0.9rem;
     line-height: 1.6;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    max-height: none;
+    overflow: visible;
 }
 
 .code-block code {
     font-family: 'Courier New', Courier, monospace;
+}
+
+/* 代码块折叠按钮 */
+.code-block-toggle {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: none;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    z-index: 10;
+    transition: background 0.3s ease;
+}
+
+.code-block-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* 代码块折叠状态 */
+.code-block.collapsed pre {
+    max-height: 60px;
+    overflow: hidden;
+}
+
+.code-block.collapsed .code-block-toggle::after {
+    content: " (展开)";
+}
+
+.code-block:not(.collapsed) .code-block-toggle::after {
+    content: " (收起)";
 }
 
 .copy-btn {
