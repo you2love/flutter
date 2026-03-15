@@ -176,6 +176,14 @@
                     <h2>📇 Card</h2>
                     <p>Card 是一个材质设计的卡片组件，用于展示相关内容，通常包含标题、文本和图片。</p>
 
+                    <h3>渲染预览</h3>
+                    <div class="example-preview">
+                        <div style="background: white; border-radius: 12px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); width: 300px; text-align: left;">
+                            <h4 style="margin: 0 0 8px 0; font-size: 18px; font-weight: bold; color: #333;">卡片标题</h4>
+                            <p style="margin: 0; color: #666; font-size: 14px;">这是卡片的内容部分</p>
+                        </div>
+                    </div>
+
                     <h3>基本用法</h3>
                     <div class="code-block">
                         <pre><code>Card(
@@ -201,14 +209,6 @@
     ),
   ),
 )</code></pre>
-                    </div>
-
-                    <h3>渲染预览</h3>
-                    <div class="example-preview">
-                        <div style="background: white; border-radius: 12px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); width: 300px; text-align: left;">
-                            <h4 style="margin: 0 0 8px 0; font-size: 18px; font-weight: bold; color: #333;">卡片标题</h4>
-                            <p style="margin: 0; color: #666; font-size: 14px;">这是卡片的内容部分</p>
-                        </div>
                     </div>
 
                     <h3>常用属性</h3>
@@ -255,21 +255,6 @@
                     <h2>🏷️ Chip</h2>
                     <p>Chip 是一个小型的信息标签，用于展示相关信息，如标签、选项、状态等。</p>
 
-                    <h3>基本用法</h3>
-                    <div class="code-block">
-                        <pre><code>Chip(
-  label: Text('标签文本'),
-  avatar: CircleAvatar(
-    backgroundColor: Colors.blue.shade700,
-    child: Text('A'),
-  ),
-  deleteIcon: Icon(Icons.close),
-  onDeleted: () {
-    print('删除标签');
-  },
-)</code></pre>
-                    </div>
-
                     <h3>渲染预览</h3>
                     <div class="example-preview">
                         <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
@@ -283,6 +268,21 @@
                                 标签二
                             </span>
                         </div>
+                    </div>
+
+                    <h3>基本用法</h3>
+                    <div class="code-block">
+                        <pre><code>Chip(
+  label: Text('标签文本'),
+  avatar: CircleAvatar(
+    backgroundColor: Colors.blue.shade700,
+    child: Text('A'),
+  ),
+  deleteIcon: Icon(Icons.close),
+  onDeleted: () {
+    print('删除标签');
+  },
+)</code></pre>
                     </div>
 
                     <h3>常用属性</h3>
@@ -329,6 +329,17 @@
                     <h2>➖ Divider</h2>
                     <p>Divider 是一个水平分隔线，用于在内容之间创建视觉分隔。</p>
 
+                    <h3>渲染预览</h3>
+                    <div class="example-preview">
+                        <div style="width: 300px;">
+                            <p style="margin: 0; color: #333; font-size: 14px;">第一部分内容</p>
+                            <div style="height: 20px; display: flex; align-items: center;">
+                                <div style="width: 100%; height: 2px; background: #9e9e9e;"></div>
+                            </div>
+                            <p style="margin: 0; color: #333; font-size: 14px;">第二部分内容</p>
+                        </div>
+                    </div>
+
                     <h3>基本用法</h3>
                     <div class="code-block">
                         <pre><code>Column(
@@ -342,17 +353,6 @@
     Text('第二部分内容'),
   ],
 )</code></pre>
-                    </div>
-
-                    <h3>渲染预览</h3>
-                    <div class="example-preview">
-                        <div style="width: 300px;">
-                            <p style="margin: 0; color: #333; font-size: 14px;">第一部分内容</p>
-                            <div style="height: 20px; display: flex; align-items: center;">
-                                <div style="width: 100%; height: 2px; background: #9e9e9e;"></div>
-                            </div>
-                            <p style="margin: 0; color: #333; font-size: 14px;">第二部分内容</p>
-                        </div>
                     </div>
 
                     <h3>常用属性</h3>
@@ -399,26 +399,6 @@
                     <h2>↔️ Spacer</h2>
                     <p>Spacer 是一个灵活的空白空间组件，用于在 Flex 布局中占据剩余空间。</p>
 
-                    <h3>基本用法</h3>
-                    <div class="code-block">
-                        <pre><code>Row(
-  children: [
-    Text('左侧内容'),
-    Spacer(),
-    Text('右侧内容'),
-  ],
-)
-
-// 在 Column 中使用
-Column(
-  children: [
-    Text('顶部内容'),
-    Spacer(),
-    Text('底部内容'),
-  ],
-)</code></pre>
-                    </div>
-
                     <h3>渲染预览</h3>
                     <div class="example-preview">
                         <div style="width: 400px;">
@@ -439,6 +419,26 @@ Column(
                                 <span style="background: #4CAF50; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px;">底部内容</span>
                             </div>
                         </div>
+                    </div>
+
+                    <h3>基本用法</h3>
+                    <div class="code-block">
+                        <pre><code>Row(
+  children: [
+    Text('左侧内容'),
+    Spacer(),
+    Text('右侧内容'),
+  ],
+)
+
+// 在 Column 中使用
+Column(
+  children: [
+    Text('顶部内容'),
+    Spacer(),
+    Text('底部内容'),
+  ],
+)</code></pre>
                     </div>
 
                     <h3>常用属性</h3>
@@ -464,6 +464,23 @@ Column(
                 <div class="component-section" id="appbar">
                     <h2>📱 AppBar</h2>
                     <p>AppBar 是应用栏组件，通常位于页面顶部，包含标题、操作按钮等。</p>
+
+                    <h3>渲染预览</h3>
+                    <div class="example-preview">
+                        <div style="width: 100%; max-width: 400px; text-align: left;">
+                            <div style="background: #2196F3; color: white; padding: 12px 16px; display: flex; align-items: center; border-radius: 4px 4px 0 0; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                <div style="margin-right: 16px; cursor: pointer;">☰</div>
+                                <div style="flex: 1; font-size: 18px; font-weight: 500;">应用标题</div>
+                                <div style="display: flex; gap: 8px;">
+                                    <div style="cursor: pointer;">🔍</div>
+                                    <div style="cursor: pointer;">⚙️</div>
+                                </div>
+                            </div>
+                            <div style="background: white; padding: 40px; text-align: center; border: 1px solid #ddd; border-top: none; border-radius: 0 0 4px 4px;">
+                                <p style="margin: 0; color: #333;">页面内容</p>
+                            </div>
+                        </div>
+                    </div>
 
                     <h3>基本用法</h3>
                     <div class="code-block">
@@ -497,23 +514,6 @@ Column(
     child: Text('页面内容'),
   ),
 )</code></pre>
-                    </div>
-
-                    <h3>渲染预览</h3>
-                    <div class="example-preview">
-                        <div style="width: 100%; max-width: 400px; text-align: left;">
-                            <div style="background: #2196F3; color: white; padding: 12px 16px; display: flex; align-items: center; border-radius: 4px 4px 0 0; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-                                <div style="margin-right: 16px; cursor: pointer;">☰</div>
-                                <div style="flex: 1; font-size: 18px; font-weight: 500;">应用标题</div>
-                                <div style="display: flex; gap: 8px;">
-                                    <div style="cursor: pointer;">🔍</div>
-                                    <div style="cursor: pointer;">⚙️</div>
-                                </div>
-                            </div>
-                            <div style="background: white; padding: 40px; text-align: center; border: 1px solid #ddd; border-top: none; border-radius: 0 0 4px 4px;">
-                                <p style="margin: 0; color: #333;">页面内容</p>
-                            </div>
-                        </div>
                     </div>
 
                     <h3>常用属性</h3>
@@ -565,6 +565,18 @@ Column(
                     <h2>⭐ FloatingActionButton</h2>
                     <p>FloatingActionButton (FAB) 是一个浮动操作按钮，用于执行主要的操作。</p>
 
+                    <h3>渲染预览</h3>
+                    <div class="example-preview">
+                        <div style="width: 100%; max-width: 400px; position: relative; text-align: left;">
+                            <div style="background: white; padding: 40px; text-align: center; border: 1px solid #ddd; border-radius: 4px;">
+                                <p style="margin: 0; color: #333;">页面内容</p>
+                            </div>
+                            <div style="position: absolute; bottom: 20px; right: 20px; width: 56px; height: 56px; background: #2196F3; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0,0,0,0.3); cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                                <div style="color: white; font-size: 24px; font-weight: 300;">+</div>
+                            </div>
+                        </div>
+                    </div>
+
                     <h3>基本用法</h3>
                     <div class="code-block">
                         <pre><code>Scaffold(
@@ -583,18 +595,6 @@ Column(
     tooltip: '添加',
   ),
 )</code></pre>
-                    </div>
-
-                    <h3>渲染预览</h3>
-                    <div class="example-preview">
-                        <div style="width: 100%; max-width: 400px; position: relative; text-align: left;">
-                            <div style="background: white; padding: 40px; text-align: center; border: 1px solid #ddd; border-radius: 4px;">
-                                <p style="margin: 0; color: #333;">页面内容</p>
-                            </div>
-                            <div style="position: absolute; bottom: 20px; right: 20px; width: 56px; height: 56px; background: #2196F3; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0,0,0,0.3); cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-                                <div style="color: white; font-size: 24px; font-weight: 300;">+</div>
-                            </div>
-                        </div>
                     </div>
 
                     <h3>常用属性</h3>
