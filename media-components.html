@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>媒体组件详解 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Prism.js 语法高亮 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        .tutorial-page {
+            width: 100%;
+            margin: 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .tutorial-nav {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .tutorial-nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tutorial-nav a:hover {
+            text-decoration: underline;
+        }
+
+        .tutorial-content h1 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .tutorial-content h2 {
+            color: var(--secondary-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .tutorial-content h3 {
+            color: var(--text-color);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tutorial-content p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .note-box {
+            background: #e3f2fd;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .code-block {
+            background: var(--dark-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: #00ff00;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .code-block code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .copy-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+
+        .copy-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .component-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .component-section h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .property-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .property-table th,
+        .property-table td {
+            border: 1px solid #ddd;
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        .property-table th {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .property-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .example-preview {
+            background: #f5f5f5;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .example-preview h4 {
+            margin-top: 0;
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="tutorial-page">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="tutorial-content">
+                <h1>🎵 媒体组件详解</h1>
+                <p style="font-size: 1.2rem; color: #666;">Flutter 提供了丰富的媒体处理功能，包括视频播放、音频播放、相机访问、图片选择等。这些功能通常需要使用第三方包。</p>
+
+                <!-- VideoPlayer 组件 -->
+                <div class="component-section" id="video">
+                    <h2>🎬 VideoPlayer</h2>
+                    <p>VideoPlayer 用于播放视频文件，需要使用 video_player 包。</p>
+
+                    <h3>使用 video_player 包</h3>
+                    <div class="code-block">
+                        <pre><code>// 1. 添加依赖
+// dependencies:
+//   video_player: ^2.8.0
+
+// 2. 使用示例
+import 'package:video_player/video_player.dart';
+
+class VideoPlayerExample extends StatefulWidget {
+  @override
+  _VideoPlayerExampleState createState() => _VideoPlayerExampleState();
+}
+
+class _VideoPlayerExampleState extends State<VideoPlayerExample> {
+  late VideoPlayerController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = VideoPlayerController.asset('assets/video.mp4')
+      ..initialize().then((_) {
+        setState(() {});
+      });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('视频播放器')),
+      body: Center(
+        child: _controller.value.isInitialized
+            ? AspectRatio(
+                aspectRatio: _controller.value.aspectRatio,
+                child: VideoPlayer(_controller),
+              )
+            : CircularProgressIndicator(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            _controller.value.isPlaying
+                ? _controller.pause()
+                : _controller.play();
+          });
+        },
+        child: Icon(
+          _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+        ),
+      ),
+    );
+  }
+}</code></pre>
+                    </div>
+
+                    <h3>常用方法</h3>
+                    <ul>
+                        <li><strong>play()</strong>：播放视频</li>
+                        <li><strong>pause()</strong>：暂停视频</li>
+                        <li><strong>seekTo()</strong>：跳转到指定位置</li>
+                        <li><strong>setVolume()</strong>：设置音量</li>
+                        <li><strong>setPlaybackSpeed()</strong>：设置播放速度</li>
+                    </ul>
+
+                    <div class="note-box">
+                        <strong>💡 提示：</strong>记得在 dispose() 中释放 VideoPlayerController。
+                    </div>
+                </div>
+
+                <!-- AudioPlayer 组件 -->
+                <div class="component-section" id="audio">
+                    <h2>🎵 AudioPlayer</h2>
+                    <p>AudioPlayer 用于播放音频文件，需要使用 audioplayers 包。</p>
+
+                    <h3>使用 audioplayers 包</h3>
+                    <div class="code-block">
+                        <pre><code>// 1. 添加依赖
+// dependencies:
+//   audioplayers: ^5.2.0
+
+// 2. 使用示例
+import 'package:audioplayers/audioplayers.dart';
+
+class AudioPlayerExample extends StatefulWidget {
+  @override
+  _AudioPlayerExampleState createState() => _AudioPlayerExampleState();
+}
+
+class _AudioPlayerExampleState extends State<AudioPlayerExample> {
+  final AudioPlayer _audioPlayer = AudioPlayer();
+  bool _isPlaying = false;
+  Duration _duration = Duration.zero;
+  Duration _position = Duration.zero;
+
+  @override
+  void initState() {
+    super.initState();
+    _audioPlayer.onDurationChanged.listen((duration) {
+      setState(() {
+        _duration = duration;
+      });
+    });
+
+    _audioPlayer.onPositionChanged.listen((position) {
+      setState(() {
+        _position = position;
+      });
+    });
+
+    _audioPlayer.onPlayerStateChanged.listen((state) {
+      setState(() {
+        _isPlaying = state == PlayerState.playing;
+      });
+    });
+  }
+
+  Future<void> _playAudio() async {
+    await _audioPlayer.play(AssetSource('audio/music.mp3'));
+  }
+
+  @override
+  void dispose() {
+    _audioPlayer.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('音频播放器')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('位置: ${_position.inSeconds}/${_duration.inSeconds}秒'),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  icon: Icon(_isPlaying ? Icons.pause : Icons.play_arrow),
+                  onPressed: _isPlaying
+                      ? () => _audioPlayer.pause()
+                      : _playAudio,
+                ),
+                IconButton(
+                  icon: Icon(Icons.stop),
+                  onPressed: () => _audioPlayer.stop(),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}</code></pre>
+                    </div>
+
+                    <h3>常用方法</h3>
+                    <ul>
+                        <li><strong>play()</strong>：播放音频</li>
+                        <li><strong>pause()</strong>：暂停音频</li>
+                        <li><strong>stop()</strong>：停止音频</li>
+                        <li><strong>seek()</strong>：跳转到指定位置</li>
+                        <li><strong>setVolume()</strong>：设置音量</li>
+                    </ul>
+
+                    <div class="note-box">
+                        <strong>💡 提示：</strong>audioplayers 支持多种音频格式，包括 mp3、wav、ogg 等。
+                    </div>
+                </div>
+
+                <!-- Camera 组件 -->
+                <div class="component-section" id="camera">
+                    <h2>📷 Camera</h2>
+                    <p>Camera 用于访问设备相机，需要使用 camera 包。</p>
+
+                    <h3>使用 camera 包</h3>
+                    <div class="code-block">
+                        <pre><code>// 1. 添加依赖
+// dependencies:
+//   camera: ^0.10.5
+
+// 2. 使用示例
+import 'package:camera/camera.dart';
+
+class CameraExample extends StatefulWidget {
+  @override
+  _CameraExampleState createState() => _CameraExampleState();
+}
+
+class _CameraExampleState extends State<CameraExample> {
+  late CameraController _controller;
+  late List<CameraDescription> _cameras;
+  bool _isInitialized = false;
+
+  @override
+  void initState() async {
+    super.initState();
+    _cameras = await availableCameras();
+    _controller = CameraController(
+      _cameras[0],
+      ResolutionPreset.high,
+    );
+    await _controller.initialize();
+    setState(() {
+      _isInitialized = true;
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  Future<void> _takePicture() async {
+    if (!_controller.value.isInitialized) return;
+    final image = await _controller.takePicture();
+    print('照片路径: ${image.path}');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (!_isInitialized) {
+      return Center(child: CircularProgressIndicator());
+    }
+    return Scaffold(
+      appBar: AppBar(title: Text('相机')),
+      body: CameraPreview(_controller),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _takePicture,
+        child: Icon(Icons.camera_alt),
+      ),
+    );
+  }
+}</code></pre>
+                    </div>
+
+                    <div class="note-box">
+                        <strong>💡 提示：</strong>使用相机需要在 Android 和 iOS 上配置相应的权限。
+                    </div>
+                </div>
+
+                <!-- ImagePicker 组件 -->
+                <div class="component-section" id="imagepicker">
+                    <h2>📷 ImagePicker</h2>
+                    <p>ImagePicker 用于从图库或相机选择图片，需要使用 image_picker 包。</p>
+
+                    <h3>使用 image_picker 包</h3>
+                    <div class="code-block">
+                        <pre><code>// 1. 添加依赖
+// dependencies:
+//   image_picker: ^1.0.0
+
+// 2. 使用示例
+import 'package:image_picker/image_picker.dart';
+
+class ImagePickerExample extends StatefulWidget {
+  @override
+  _ImagePickerExampleState createState() => _ImagePickerExampleState();
+}
+
+class _ImagePickerExampleState extends State<ImagePickerExample> {
+  final ImagePicker _picker = ImagePicker();
+  XFile? _image;
+
+  Future<void> _pickImageFromGallery() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _image = image;
+    });
+  }
+
+  Future<void> _pickImageFromCamera() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.camera);
+    setState(() {
+      _image = image;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('图片选择器')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _image != null
+                ? Image.file(File(_image!.path))
+                : Text('未选择图片'),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: _pickImageFromGallery,
+                  child: Text('从图库选择'),
+                ),
+                SizedBox(width: 20),
+                ElevatedButton(
+                  onPressed: _pickImageFromCamera,
+                  child: Text('拍照'),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}</code></pre>
+                    </div>
+
+                    <h3>常用方法</h3>
+                    <ul>
+                        <li><strong>pickImage()</strong>：选择单张图片</li>
+                        <li><strong>pickMultiImage()</strong>：选择多张图片</li>
+                        <li><strong>pickVideo()</strong>：选择视频</li>
+                    </ul>
+
+                    <div class="note-box">
+                        <strong>💡 提示：</strong>使用 ImagePicker 需要在 Android 和 iOS 上配置相应的权限。
+                    </div>
+                </div>
+
+                <div class="tutorial-nav" style="margin-top: 3rem;">
+                    <a href="index.html">← 返回首页</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <!-- Prism.js 语法高亮 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-dart.min.js"></script>
+</body>
+</html>

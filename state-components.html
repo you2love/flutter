@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>状态组件详解 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Prism.js 语法高亮 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        .tutorial-page {
+            width: 100%;
+            margin: 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .tutorial-nav {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .tutorial-nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tutorial-nav a:hover {
+            text-decoration: underline;
+        }
+
+        .tutorial-content h1 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .tutorial-content h2 {
+            color: var(--secondary-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .tutorial-content h3 {
+            color: var(--text-color);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tutorial-content p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .note-box {
+            background: #e3f2fd;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .code-block {
+            background: var(--dark-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: #00ff00;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .code-block code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .copy-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+
+        .copy-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .component-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .component-section h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .property-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .property-table th,
+        .property-table td {
+            border: 1px solid #ddd;
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        .property-table th {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .property-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .example-preview {
+            background: #f5f5f5;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .example-preview h4 {
+            margin-top: 0;
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="tutorial-page">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="tutorial-content">
+                <h1>🔄 状态组件详解</h1>
+                <p style="font-size: 1.2rem; color: #666;">状态管理是 Flutter 开发的核心概念。本页面将详细介绍各种状态组件和状态管理方案。</p>
+
+                <!-- StatelessWidget 组件 -->
+                <div class="component-section" id="stateless">
+                    <h2>🎯 StatelessWidget</h2>
+                    <p>StatelessWidget 是无状态组件，其 UI 只依赖于传入的参数，不依赖内部状态。</p>
+
+                    <h3>基本用法</h3>
+                    <div class="code-block">
+                        <pre><code>class MyTextWidget extends StatelessWidget {
+  final String text;
+  final Color color;
+
+  const MyTextWidget({
+    Key? key,
+    required this.text,
+    this.color = Colors.black,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: TextStyle(color: color),
+    );
+  }
+}</code></pre>
+                    </div>
+
+                    <h3>使用场景</h3>
+                    <ul>
+                        <li>静态内容展示</li>
+                        <li>纯 UI 组件</li>
+                        <li>不涉及状态变化的场景</li>
+                    </ul>
+
+                    <div class="note-box">
+                        <strong>💡 提示：</strong>StatelessWidget 更轻量，性能更好，在不需要状态管理的场景下优先使用。
+                    </div>
+                </div>
+
+                <!-- StatefulWidget 组件 -->
+                <div class="component-section" id="stateful">
+                    <h2>🔄 StatefulWidget</h2>
+                    <p>StatefulWidget 是有状态组件，可以维护内部状态，状态变化时会重新构建 UI。</p>
+
+                    <h3>基本用法</h3>
+                    <div class="code-block">
+                        <pre><code>class CounterWidget extends StatefulWidget {
+  @override
+  _CounterWidgetState createState() => _CounterWidgetState();
+}
+
+class _CounterWidgetState extends State<CounterWidget> {
+  int _counter = 0;
+
+  void _increment() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          '计数器: $_counter',
+          style: TextStyle(fontSize: 24),
+        ),
+        SizedBox(height: 20),
+        ElevatedButton(
+          onPressed: _increment,
+          child: Text('增加'),
+        ),
+      ],
+    );
+  }
+}</code></pre>
+                    </div>
+
+                    <h3>生命周期</h3>
+                    <ul>
+                        <li><strong>initState()</strong>：组件初始化时调用</li>
+                        <li><strong>build()</strong>：构建 UI 时调用</li>
+                        <li><strong>didUpdateWidget()</strong>：父组件重建时调用</li>
+                        <li><strong>setState()</strong>：更新状态并重建 UI</li>
+                        <li><strong>dispose()</strong>：组件销毁时调用</li>
+                    </ul>
+
+                    <div class="note-box">
+                        <strong>💡 提示：</strong>使用 setState() 更新状态时，Flutter 会自动调用 build() 方法重新构建 UI。
+                    </div>
+                </div>
+
+                <!-- InheritedWidget 组件 -->
+                <div class="component-section" id="inherited">
+                    <h2>📡 InheritedWidget</h2>
+                    <p>InheritedWidget 是用于在组件树中向下传递数据的组件，常用于状态管理。</p>
+
+                    <h3>基本用法</h3>
+                    <div class="code-block">
+                        <pre><code>class CounterProvider extends InheritedWidget {
+  final int counter;
+  final VoidCallback increment;
+
+  const CounterProvider({
+    Key? key,
+    required this.counter,
+    required this.increment,
+    required Widget child,
+  }) : super(key: key, child: child);
+
+  static CounterProvider of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<CounterProvider>()!;
+  }
+
+  @override
+  bool updateShouldNotify(CounterProvider oldWidget) {
+    return counter != oldWidget.counter;
+  }
+}
+
+// 使用示例
+class CounterWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final provider = CounterProvider.of(context);
+    return Column(
+      children: [
+        Text('计数器: ${provider.counter}'),
+        ElevatedButton(
+          onPressed: provider.increment,
+          child: Text('增加'),
+        ),
+      ],
+    );
+  }
+}</code></pre>
+                    </div>
+
+                    <h3>使用场景</h3>
+                    <ul>
+                        <li>全局状态管理</li>
+                        <li>主题管理</li>
+                        <li>用户信息传递</li>
+                    </ul>
+
+                    <div class="note-box">
+                        <strong>💡 提示：</strong>InheritedWidget 是许多状态管理方案（如 Provider、Bloc）的基础。
+                    </div>
+                </div>
+
+                <!-- FutureBuilder 组件 -->
+                <div class="component-section" id="future">
+                    <h2>⏳ FutureBuilder</h2>
+                    <p>FutureBuilder 用于根据 Future 的状态构建不同的 UI。</p>
+
+                    <h3>基本用法</h3>
+                    <div class="code-block">
+                        <pre><code>FutureBuilder<String>(
+  future: _fetchData(),
+  builder: (context, snapshot) {
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      return CircularProgressIndicator();
+    } else if (snapshot.hasError) {
+      return Text('错误: ${snapshot.error}');
+    } else if (snapshot.hasData) {
+      return Text('数据: ${snapshot.data}');
+    } else {
+      return Text('无数据');
+    }
+  },
+)
+
+Future<String> _fetchData() async {
+  await Future.delayed(Duration(seconds: 2));
+  return '获取的数据';
+}</code></pre>
+                    </div>
+
+                    <h3>状态类型</h3>
+                    <ul>
+                        <li><strong>none</strong>：Future 未开始</li>
+                        <li><strong>waiting</strong>：正在等待结果</li>
+                        <li><strong>active</strong>：正在执行</li>
+                        <li><strong>done</strong>：已完成</li>
+                    </ul>
+
+                    <div class="note-box">
+                        <strong>💡 提示：</strong>FutureBuilder 适用于一次性异步操作，如网络请求、文件读取等。
+                    </div>
+                </div>
+
+                <!-- StreamBuilder 组件 -->
+                <div class="component-section" id="stream">
+                    <h2>📡 StreamBuilder</h2>
+                    <p>StreamBuilder 用于根据 Stream 的数据流构建 UI，适用于持续的数据更新场景。</p>
+
+                    <h3>基本用法</h3>
+                    <div class="code-block">
+                        <pre><code>StreamBuilder<int>(
+  stream: _counterStream,
+  builder: (context, snapshot) {
+    if (snapshot.hasError) {
+      return Text('错误: ${snapshot.error}');
+    }
+    switch (snapshot.connectionState) {
+      case ConnectionState.none:
+        return Text('等待连接...');
+      case ConnectionState.waiting:
+        return CircularProgressIndicator();
+      case ConnectionState.active:
+        return Text('计数: ${snapshot.data}');
+      case ConnectionState.done:
+        return Text('流已结束');
+    }
+  },
+)
+
+Stream<int> get _counterStream async* {
+  for (int i = 0; i < 10; i++) {
+    await Future.delayed(Duration(seconds: 1));
+    yield i;
+  }
+}</code></pre>
+                    </div>
+
+                    <h3>使用场景</h3>
+                    <ul>
+                        <li>实时数据更新</li>
+                        <li>WebSocket 连接</li>
+                        <li>用户输入监听</li>
+                        <li>数据库查询</li>
+                    </ul>
+
+                    <div class="note-box">
+                        <strong>💡 提示：</strong>StreamBuilder 适用于持续的数据流，如实时聊天、股票价格等场景。
+                    </div>
+                </div>
+
+                <div class="tutorial-nav" style="margin-top: 3rem;">
+                    <a href="index.html">← 返回首页</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <!-- Prism.js 语法高亮 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-dart.min.js"></script>
+</body>
+</html>

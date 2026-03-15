@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择器组件详解 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Prism.js 语法高亮 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        .tutorial-page {
+            width: 100%;
+            margin: 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .tutorial-nav {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .tutorial-nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tutorial-nav a:hover {
+            text-decoration: underline;
+        }
+
+        .tutorial-content h1 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .tutorial-content h2 {
+            color: var(--secondary-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .tutorial-content h3 {
+            color: var(--text-color);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tutorial-content p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .note-box {
+            background: #e3f2fd;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .code-block {
+            background: var(--dark-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: #00ff00;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .code-block code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .copy-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+
+        .copy-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .component-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .component-section h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .property-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .property-table th,
+        .property-table td {
+            border: 1px solid #ddd;
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        .property-table th {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .property-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .example-preview {
+            background: #f5f5f5;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .example-preview h4 {
+            margin-top: 0;
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="tutorial-page">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="tutorial-content">
+                <h1>📊 选择器组件详解</h1>
+                <p style="font-size: 1.2rem; color: #666;">Flutter 提供了多种选择器组件，用于日期、时间、颜色、文件等选择的场景。</p>
+
+                <!-- DatePicker 组件 -->
+                <div class="component-section" id="datepicker">
+                    <h2>📅 DatePicker</h2>
+                    <p>DatePicker 是日期选择器，用于选择日期。</p>
+
+                    <h3>基本用法</h3>
+                    <div class="code-block">
+                        <pre><code>ElevatedButton(
+  onPressed: () async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+      locale: Locale('zh', 'CN'),
+      helpText: '选择日期',
+      cancelText: '取消',
+      confirmText: '确定',
+    );
+    if (picked != null) {
+      print('选择的日期: $picked');
+    }
+  },
+  child: Text('选择日期'),
+)</code></pre>
+                    </div>
+
+                    <h3>常用属性</h3>
+                    <table class="property-table">
+                        <tr>
+                            <th>属性</th>
+                            <th>类型</th>
+                            <th>说明</th>
+                        </tr>
+                        <tr>
+                            <td>initialDate</td>
+                            <td>DateTime</td>
+                            <td>初始日期</td>
+                        </tr>
+                        <tr>
+                            <td>firstDate</td>
+                            <td>DateTime</td>
+                            <td>最早可选日期</td>
+                        </tr>
+                        <tr>
+                            <td>lastDate</td>
+                            <td>DateTime</td>
+                            <td>最晚可选日期</td>
+                        </tr>
+                        <tr>
+                            <td>locale</td>
+                            <td>Locale</td>
+                            <td>本地化</td>
+                        </tr>
+                        <tr>
+                            <td>helpText</td>
+                            <td>String</td>
+                            <td>帮助文本</td>
+                        </tr>
+                    </table>
+
+                    <div class="note-box">
+                        <strong>💡 提示：</strong>需要引入 flutter_localizations 包以支持中文。
+                    </div>
+                </div>
+
+                <!-- TimePicker 组件 -->
+                <div class="component-section" id="timepicker">
+                    <h2>⏰ TimePicker</h2>
+                    <p>TimePicker 是时间选择器，用于选择时间。</p>
+
+                    <h3>基本用法</h3>
+                    <div class="code-block">
+                        <pre><code>ElevatedButton(
+  onPressed: () async {
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+      helpText: '选择时间',
+      cancelText: '取消',
+      confirmText: '确定',
+    );
+    if (picked != null) {
+      print('选择的时间: ${picked.format(context)}');
+    }
+  },
+  child: Text('选择时间'),
+)</code></pre>
+                    </div>
+
+                    <h3>常用属性</h3>
+                    <table class="property-table">
+                        <tr>
+                            <th>属性</th>
+                            <th>类型</th>
+                            <th>说明</th>
+                        </tr>
+                        <tr>
+                            <td>initialTime</td>
+                            <td>TimeOfDay</td>
+                            <td>初始时间</td>
+                        </tr>
+                        <tr>
+                            <td>builder</td>
+                            <td>WidgetBuilder</td>
+                            <td>自定义构建器</td>
+                        </tr>
+                        <tr>
+                            <td>helpText</td>
+                            <td>String</td>
+                            <td>帮助文本</td>
+                        </tr>
+                        <tr>
+                            <td>cancelText</td>
+                            <td>String</td>
+                            <td>取消文本</td>
+                        </tr>
+                        <tr>
+                            <td>confirmText</td>
+                            <td>String</td>
+                            <td>确认文本</td>
+                        </tr>
+                    </table>
+
+                    <div class="note-box">
+                        <strong>💡 提示：</strong>TimeOfDay 提供了 format() 方法来格式化时间显示。
+                    </div>
+                </div>
+
+                <!-- ColorPicker 组件 -->
+                <div class="component-section" id="colorpicker">
+                    <h2>🎨 ColorPicker</h2>
+                    <p>ColorPicker 是颜色选择器，用于选择颜色。Flutter 没有内置的颜色选择器，需要使用第三方包。</p>
+
+                    <h3>使用 flutter_colorpicker 包</h3>
+                    <div class="code-block">
+                        <pre><code>// 1. 添加依赖
+// dependencies:
+//   flutter_colorpicker: ^1.0.3
+
+// 2. 使用示例
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+
+Color _currentColor = Colors.blue;
+
+ElevatedButton(
+  onPressed: () {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('选择颜色'),
+        content: SingleChildScrollView(
+          child: ColorPicker(
+            pickerColor: _currentColor,
+            onColorChanged: (color) {
+              setState(() {
+                _currentColor = color;
+              });
+            },
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text('取消'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text('确定'),
+          ),
+        ],
+      ),
+    );
+  },
+  child: Text('选择颜色'),
+)</code></pre>
+                    </div>
+
+                    <div class="note-box">
+                        <strong>💡 提示：</strong>flutter_colorpicker 是一个流行的颜色选择器包，提供了丰富的颜色选择功能。
+                    </div>
+                </div>
+
+                <!-- FilePicker 组件 -->
+                <div class="component-section" id="filepicker">
+                    <h2>📁 FilePicker</h2>
+                    <p>FilePicker 是文件选择器，用于选择文件。需要使用 file_picker 第三方包。</p>
+
+                    <h3>使用 file_picker 包</h3>
+                    <div class="code-block">
+                        <pre><code>// 1. 添加依赖
+// dependencies:
+//   file_picker: ^6.0.0
+
+// 2. 使用示例
+import 'package:file_picker/file_picker.dart';
+
+ElevatedButton(
+  onPressed: () async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['jpg', 'png', 'pdf'],
+    );
+
+    if (result != null) {
+      PlatformFile file = result.files.first;
+      print('文件名: ${file.name}');
+      print('文件大小: ${file.size}');
+      print('文件路径: ${file.path}');
+    }
+  },
+  child: Text('选择文件'),
+)
+
+// 选择多个文件
+ElevatedButton(
+  onPressed: () async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      allowMultiple: true,
+    );
+
+    if (result != null) {
+      print('选择了 ${result.files.length} 个文件');
+    }
+  },
+  child: Text('选择多个文件'),
+)</code></pre>
+                    </div>
+
+                    <h3>常用方法</h3>
+                    <ul>
+                        <li><strong>pickFiles()</strong>：选择文件</li>
+                        <li><strong>pickDirectory()</strong>：选择目录</li>
+                        <li><strong>clearTemporaryFiles()</strong>：清除临时文件</li>
+                    </ul>
+
+                    <div class="note-box">
+                        <strong>💡 提示：</strong>file_picker 支持选择单个或多个文件，可以限制文件类型。
+                    </div>
+                </div>
+
+                <div class="tutorial-nav" style="margin-top: 3rem;">
+                    <a href="index.html">← 返回首页</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <!-- Prism.js 语法高亮 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-dart.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>画布组件详解 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Prism.js 语法高亮 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        .tutorial-page {
+            width: 100%;
+            margin: 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .tutorial-nav {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .tutorial-nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .tutorial-nav a:hover {
+            text-decoration: underline;
+        }
+
+        .tutorial-content h1 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .tutorial-content h2 {
+            color: var(--secondary-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .tutorial-content h3 {
+            color: var(--text-color);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tutorial-content p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .note-box {
+            background: #e3f2fd;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .code-block {
+            background: var(--dark-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: #00ff00;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .code-block code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .copy-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+
+        .copy-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .component-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .component-section h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .property-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .property-table th,
+        .property-table td {
+            border: 1px solid #ddd;
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        .property-table th {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .property-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .example-preview {
+            background: #f5f5f5;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .example-preview h4 {
+            margin-top: 0;
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="tutorial-page">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="tutorial-content">
+                <h1>🎨 画布组件详解</h1>
+                <p style="font-size: 1.2rem; color: #666;">Flutter 提供了强大的 2D 绘图功能，通过画布组件可以实现自定义图形和动画效果。</p>
+
+                <!-- CustomPaint 组件 -->
+                <div class="component-section" id="custompaint">
+                    <h2>🖌️ CustomPaint</h2>
+                    <p>CustomPaint 是一个自定义绘制组件，通过 CustomPainter 实现自定义绘制逻辑。</p>
+
+                    <h3>基本用法</h3>
+                    <div class="code-block">
+                        <pre><code>class MyPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = Colors.blue
+      ..style = PaintingStyle.fill;
+
+    // 绘制圆形
+    canvas.drawCircle(
+      Offset(size.width / 2, size.height / 2),
+      size.width / 4,
+      paint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return false;
+  }
+}
+
+CustomPaint(
+  painter: MyPainter(),
+  size: Size(200, 200),
+)</code></pre>
+                    </div>
+
+                    <h3>常用属性</h3>
+                    <table class="property-table">
+                        <tr>
+                            <th>属性</th>
+                            <th>类型</th>
+                            <th>说明</th>
+                        </tr>
+                        <tr>
+                            <td>painter</td>
+                            <td>CustomPainter</td>
+                            <td>前景绘制器</td>
+                        </tr>
+                        <tr>
+                            <td>foregroundPainter</td>
+                            <td>CustomPainter</td>
+                            <td>背景绘制器</td>
+                        </tr>
+                        <tr>
+                            <td>size</td>
+                            <td>Size</td>
+                            <td>画布尺寸</td>
+                        </tr>
+                        <tr>
+                            <td>child</td>
+                            <td>Widget</td>
+                            <td>子组件</td>
+                        </tr>
+                    </table>
+
+                    <div class="note-box">
+                        <strong>💡 提示：</strong>CustomPaint 可以实现复杂的图形绘制，如图表、自定义形状等。
+                    </div>
+                </div>
+
+                <!-- Canvas 组件 -->
+                <div class="component-section" id="canvas">
+                    <h2>🎨 Canvas</h2>
+                    <p>Canvas 是画布对象，提供了丰富的绘制方法，用于在画布上绘制各种图形。</p>
+
+                    <h3>常用绘制方法</h3>
+                    <div class="code-block">
+                        <pre><code>@override
+void paint(Canvas canvas, Size size) {
+  final paint = Paint()
+    ..color = Colors.blue
+    ..strokeWidth = 3
+    ..style = PaintingStyle.stroke;
+
+  // 绘制线段
+  canvas.drawLine(
+    Offset(0, 0),
+    Offset(size.width, size.height),
+    paint,
+  );
+
+  // 绘制矩形
+  canvas.drawRect(
+    Rect.fromLTWH(50, 50, 100, 100),
+    paint,
+  );
+
+  // 绘制圆角矩形
+  canvas.drawRRect(
+    RRect.fromRectAndRadius(
+      Rect.fromLTWH(200, 50, 100, 100),
+      Radius.circular(10),
+    ),
+    paint,
+  );
+
+  // 绘制椭圆
+  canvas.drawOval(
+    Rect.fromLTWH(50, 200, 150, 100),
+    paint,
+  );
+
+  // 绘制路径
+  final path = Path();
+  path.moveTo(200, 250);
+  path.lineTo(300, 250);
+  path.lineTo(250, 200);
+  path.close();
+  canvas.drawPath(path, paint);
+}</code></pre>
+                    </div>
+
+                    <h3>常用方法</h3>
+                    <ul>
+                        <li><strong>drawLine()</strong>：绘制线段</li>
+                        <li><strong>drawRect()</strong>：绘制矩形</li>
+                        <li><strong>drawCircle()</strong>：绘制圆形</li>
+                        <li><strong>drawOval()</strong>：绘制椭圆</li>
+                        <li><strong>drawPath()</strong>：绘制路径</li>
+                        <li><strong>drawImage()</strong>：绘制图片</li>
+                        <li><strong>drawText()</strong>：绘制文本</li>
+                    </ul>
+
+                    <div class="note-box">
+                        <strong>💡 提示：</strong>Canvas 提供了丰富的绘制 API，可以实现各种复杂的图形效果。
+                    </div>
+                </div>
+
+                <!-- Paint 组件 -->
+                <div class="component-section" id="paint">
+                    <h2>🖌️ Paint</h2>
+                    <p>Paint 是绘制样式对象，用于控制绘制的外观，如颜色、线条宽度、填充模式等。</p>
+
+                    <h3>基本用法</h3>
+                    <div class="code-block">
+                        <pre><code>final paint = Paint()
+  ..color = Colors.red
+  ..strokeWidth = 5
+  ..style = PaintingStyle.stroke
+  ..strokeCap = StrokeCap.round
+  ..strokeJoin = StrokeJoin.round
+  ..shader = LinearGradient(
+    colors: [Colors.red, Colors.blue],
+  ).createShader(Rect.fromLTWH(0, 0, 200, 200));
+
+// 填充模式
+final fillPaint = Paint()
+  ..color = Colors.green
+  ..style = PaintingStyle.fill;
+
+// 带阴影
+final shadowPaint = Paint()
+  ..color = Colors.black
+  ..maskFilter = MaskFilter.blur(BlurStyle.normal, 5);</code></pre>
+                    </div>
+
+                    <h3>常用属性</h3>
+                    <table class="property-table">
+                        <tr>
+                            <th>属性</th>
+                            <th>类型</th>
+                            <th>说明</th>
+                        </tr>
+                        <tr>
+                            <td>color</td>
+                            <td>Color</td>
+                            <td>颜色</td>
+                        </tr>
+                        <tr>
+                            <td>strokeWidth</td>
+                            <td>double</td>
+                            <td>线条宽度</td>
+                        </tr>
+                        <tr>
+                            <td>style</td>
+                            <td>PaintingStyle</td>
+                            <td>绘制样式（填充/描边）</td>
+                        </tr>
+                        <tr>
+                            <td>strokeCap</td>
+                            <td>StrokeCap</td>
+                            <td>线端样式</td>
+                        </tr>
+                        <tr>
+                            <td>strokeJoin</td>
+                            <td>StrokeJoin</td>
+                            <td>线连接样式</td>
+                        </tr>
+                        <tr>
+                            <td>shader</td>
+                            <td>Shader</td>
+                            <td>着色器（渐变等）</td>
+                        </tr>
+                        <tr>
+                            <td>maskFilter</td>
+                            <td>MaskFilter</td>
+                            <td>遮罩滤镜（阴影等）</td>
+                        </tr>
+                    </table>
+
+                    <div class="note-box">
+                        <strong>💡 提示：</strong>Paint 的级联操作符（..）可以链式调用，方便设置多个属性。
+                    </div>
+                </div>
+
+                <!-- Path 组件 -->
+                <div class="component-section" id="path">
+                    <h2>📍 Path</h2>
+                    <p>Path 是路径对象，用于定义复杂的图形路径，可以包含直线、曲线、圆弧等。</p>
+
+                    <h3>基本用法</h3>
+                    <div class="code-block">
+                        <pre><code>final path = Path();
+
+// 移动到起点
+path.moveTo(0, 0);
+
+// 绘制直线
+path.lineTo(100, 100);
+
+// 绘制贝塞尔曲线
+path.quadraticBezierTo(
+  150, 150,
+  200, 100,
+);
+
+// 绘制三次贝塞尔曲线
+path.cubicTo(
+  250, 50,
+  300, 150,
+  350, 100,
+);
+
+// 绘制圆弧
+path.arcToPoint(
+  Offset(400, 150),
+  radius: Radius.circular(50),
+);
+
+// 绘制椭圆弧
+path.arcTo(
+  Rect.fromLTWH(400, 150, 100, 100),
+  0,
+  3.14,
+  false,
+);
+
+// 绘制圆形
+path.addOval(
+  Rect.fromCircle(
+    center: Offset(500, 200),
+    radius: 50,
+  ),
+);
+
+// 绘制矩形
+path.addRect(
+  Rect.fromLTWH(50, 200, 100, 100),
+);
+
+// 绘制圆角矩形
+path.addRRect(
+  RRect.fromRectAndRadius(
+    Rect.fromLTWH(200, 200, 100, 100),
+    Radius.circular(20),
+  ),
+);
+
+// 绘制多边形
+path.addPolygon([
+  Offset(350, 200),
+  Offset(400, 300),
+  Offset(300, 300),
+], true);
+
+// 闭合路径
+path.close();
+
+// 绘制路径
+canvas.drawPath(path, paint);</code></pre>
+                    </div>
+
+                    <h3>常用方法</h3>
+                    <ul>
+                        <li><strong>moveTo()</strong>：移动到指定点</li>
+                        <li><strong>lineTo()</strong>：绘制直线</li>
+                        <li><strong>quadraticBezierTo()</strong>：绘制二次贝塞尔曲线</li>
+                        <li><strong>cubicTo()</strong>：绘制三次贝塞尔曲线</li>
+                        <li><strong>arcTo()</strong>：绘制圆弧</li>
+                        <li><strong>addOval()</strong>：添加椭圆</li>
+                        <li><strong>addRect()</strong>：添加矩形</li>
+                        <li><strong>addRRect()</strong>：添加圆角矩形</li>
+                        <li><strong>close()</strong>：闭合路径</li>
+                    </ul>
+
+                    <div class="note-box">
+                        <strong>💡 提示：</strong>Path 可以创建各种复杂的形状，是自定义绘制的核心工具。
+                    </div>
+                </div>
+
+                <div class="tutorial-nav" style="margin-top: 3rem;">
+                    <a href="index.html">← 返回首页</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <!-- Prism.js 语法高亮 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-dart.min.js"></script>
+</body>
+</html>
