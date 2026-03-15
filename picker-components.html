@@ -176,6 +176,83 @@
                     <h2>📅 DatePicker</h2>
                     <p>DatePicker 是日期选择器，用于选择日期。</p>
 
+                    <h3>渲染预览</h3>
+                    <div class="example-preview">
+                        <div style="width: 100%; max-width: 500px; text-align: left;">
+                            <!-- 模拟日期选择器对话框 -->
+                            <div style="background: white; border-radius: 16px; padding: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.15);">
+                                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 14px; overflow: hidden;">
+                                    <!-- 标题 -->
+                                    <div style="background: rgba(255,255,255,0.1); padding: 16px; display: flex; justify-content: space-between; align-items: center;">
+                                        <span style="color: white; font-size: 18px; font-weight: 600;">选择日期</span>
+                                        <div style="display: flex; gap: 8px;">
+                                            <span style="color: rgba(255,255,255,0.8); cursor: pointer; font-size: 14px;">取消</span>
+                                            <span style="color: white; cursor: pointer; font-weight: 600; font-size: 14px;">确定</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 日历 -->
+                                    <div style="padding: 24px;">
+                                        <!-- 年月 -->
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                            <span style="color: white; font-size: 20px; cursor: pointer;">‹</span>
+                                            <span style="color: white; font-size: 18px; font-weight: 600;">2026年 3月</span>
+                                            <span style="color: white; font-size: 20px; cursor: pointer;">›</span>
+                                        </div>
+                                        
+                                        <!-- 星期 -->
+                                        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 8px;">
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; font-size: 12px;">日</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; font-size: 12px;">一</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; font-size: 12px;">二</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; font-size: 12px;">三</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; font-size: 12px;">四</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; font-size: 12px;">五</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; font-size: 12px;">六</div>
+                                        </div>
+                                        
+                                        <!-- 日期 -->
+                                        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px;">
+                                            <div></div>
+                                            <div></div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">1</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">2</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">3</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">4</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">5</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">6</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">7</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">8</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">9</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">10</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">11</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">12</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">13</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">14</div>
+                                            <div style="background: white; color: #667eea; text-align: center; padding: 8px; font-size: 14px; border-radius: 50%; font-weight: 600;">15</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">16</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">17</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">18</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">19</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">20</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">21</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">22</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">23</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">24</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">25</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">26</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">27</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">28</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">29</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">30</div>
+                                            <div style="color: rgba(255,255,255,0.6); text-align: center; padding: 8px; font-size: 14px;">31</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <h3>基本用法</h3>
                     <div class="code-block">
                         <pre><code>ElevatedButton(
@@ -242,6 +319,54 @@
                     <h2>⏰ TimePicker</h2>
                     <p>TimePicker 是时间选择器，用于选择时间。</p>
 
+                    <h3>渲染预览</h3>
+                    <div class="example-preview">
+                        <div style="width: 100%; max-width: 500px; text-align: left;">
+                            <!-- 模拟时间选择器对话框 -->
+                            <div style="background: white; border-radius: 16px; padding: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.15);">
+                                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 14px; overflow: hidden;">
+                                    <!-- 标题 -->
+                                    <div style="background: rgba(255,255,255,0.1); padding: 16px; display: flex; justify-content: space-between; align-items: center;">
+                                        <span style="color: white; font-size: 18px; font-weight: 600;">选择时间</span>
+                                        <div style="display: flex; gap: 8px;">
+                                            <span style="color: rgba(255,255,255,0.8); cursor: pointer; font-size: 14px;">取消</span>
+                                            <span style="color: white; cursor: pointer; font-weight: 600; font-size: 14px;">确定</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 时间选择器 -->
+                                    <div style="padding: 32px 24px;">
+                                        <div style="display: flex; justify-content: center; align-items: center; gap: 16px;">
+                                            <!-- 小时 -->
+                                            <div style="text-align: center;">
+                                                <div style="color: rgba(255,255,255,0.4); font-size: 24px; margin-bottom: 4px;">14</div>
+                                                <div style="background: white; color: #667eea; font-size: 48px; font-weight: 600; padding: 8px 24px; border-radius: 8px;">15</div>
+                                                <div style="color: rgba(255,255,255,0.4); font-size: 24px; margin-top: 4px;">16</div>
+                                            </div>
+                                            
+                                            <!-- 分隔符 -->
+                                            <div style="color: white; font-size: 36px; font-weight: 300;">:</div>
+                                            
+                                            <!-- 分钟 -->
+                                            <div style="text-align: center;">
+                                                <div style="color: rgba(255,255,255,0.4); font-size: 24px; margin-bottom: 4px;">29</div>
+                                                <div style="background: white; color: #667eea; font-size: 48px; font-weight: 600; padding: 8px 24px; border-radius: 8px;">30</div>
+                                                <div style="color: rgba(255,255,255,0.4); font-size: 24px; margin-top: 4px;">31</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 选中时间预览 -->
+                                        <div style="text-align: center; margin-top: 24px;">
+                                            <div style="background: rgba(255,255,255,0.2); color: white; display: inline-block; padding: 8px 24px; border-radius: 20px; font-size: 16px; font-weight: 600;">
+                                                15:30
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <h3>基本用法</h3>
                     <div class="code-block">
                         <pre><code>ElevatedButton(
@@ -305,6 +430,83 @@
                     <h2>🎨 ColorPicker</h2>
                     <p>ColorPicker 是颜色选择器，用于选择颜色。Flutter 没有内置的颜色选择器，需要使用第三方包。</p>
 
+                    <h3>渲染预览</h3>
+                    <div class="example-preview">
+                        <div style="width: 100%; max-width: 500px; text-align: left;">
+                            <!-- 模拟颜色选择器对话框 -->
+                            <div style="background: white; border-radius: 16px; padding: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.15);">
+                                <div style="background: #f5f5f5; border-radius: 14px; overflow: hidden;">
+                                    <!-- 标题 -->
+                                    <div style="background: white; padding: 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e0e0e0;">
+                                        <span style="color: #333; font-size: 18px; font-weight: 600;">选择颜色</span>
+                                        <div style="display: flex; gap: 8px;">
+                                            <span style="color: #666; cursor: pointer; font-size: 14px;">取消</span>
+                                            <span style="color: #2196F3; cursor: pointer; font-weight: 600; font-size: 14px;">确定</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 颜色选择器内容 -->
+                                    <div style="padding: 24px;">
+                                        <!-- 当前颜色 -->
+                                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                                            <div style="width: 60px; height: 60px; background: #2196F3; border-radius: 12px; box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);"></div>
+                                            <div>
+                                                <div style="color: #333; font-size: 14px; font-weight: 600;">#2196F3</div>
+                                                <div style="color: #666; font-size: 12px;">RGB(33, 150, 243)</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 颜色滑块 -->
+                                        <div style="margin-bottom: 16px;">
+                                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                                <span style="color: #666; font-size: 12px;">色相</span>
+                                                <span style="color: #333; font-size: 12px; font-weight: 600;">210°</span>
+                                            </div>
+                                            <div style="height: 20px; background: linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000); border-radius: 4px; position: relative;">
+                                                <div style="position: absolute; left: 58%; top: 50%; transform: translate(-50%, -50%); width: 24px; height: 24px; background: white; border: 3px solid #2196F3; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"></div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div style="margin-bottom: 16px;">
+                                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                                <span style="color: #666; font-size: 12px;">饱和度</span>
+                                                <span style="color: #333; font-size: 12px; font-weight: 600;">90%</span>
+                                            </div>
+                                            <div style="height: 20px; background: linear-gradient(to right, #999, #2196F3); border-radius: 4px; position: relative;">
+                                                <div style="position: absolute; left: 90%; top: 50%; transform: translate(-50%, -50%); width: 24px; height: 24px; background: white; border: 3px solid #2196F3; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"></div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div style="margin-bottom: 20px;">
+                                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                                <span style="color: #666; font-size: 12px;">亮度</span>
+                                                <span style="color: #333; font-size: 12px; font-weight: 600;">50%</span>
+                                            </div>
+                                            <div style="height: 20px; background: linear-gradient(to right, #000, #2196F3, #fff); border-radius: 4px; position: relative;">
+                                                <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 24px; height: 24px; background: white; border: 3px solid #2196F3; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"></div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 预设颜色 -->
+                                        <div style="margin-bottom: 16px;">
+                                            <div style="color: #666; font-size: 12px; margin-bottom: 8px;">预设颜色</div>
+                                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                                <div style="width: 32px; height: 32px; background: #F44336; border-radius: 50%; cursor: pointer;"></div>
+                                                <div style="width: 32px; height: 32px; background: #FF9800; border-radius: 50%; cursor: pointer;"></div>
+                                                <div style="width: 32px; height: 32px; background: #FFEB3B; border-radius: 50%; cursor: pointer;"></div>
+                                                <div style="width: 32px; height: 32px; background: #4CAF50; border-radius: 50%; cursor: pointer;"></div>
+                                                <div style="width: 32px; height: 32px; background: #2196F3; border-radius: 50%; cursor: pointer; border: 3px solid #fff; box-shadow: 0 0 0 2px #2196F3;"></div>
+                                                <div style="width: 32px; height: 32px; background: #9C27B0; border-radius: 50%; cursor: pointer;"></div>
+                                                <div style="width: 32px; height: 32px; background: #E91E63; border-radius: 50%; cursor: pointer;"></div>
+                                                <div style="width: 32px; height: 32px; background: #000000; border-radius: 50%; cursor: pointer;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <h3>使用 flutter_colorpicker 包</h3>
                     <div class="code-block">
                         <pre><code>// 1. 添加依赖
@@ -358,6 +560,84 @@ ElevatedButton(
                 <div class="component-section" id="filepicker">
                     <h2>📁 FilePicker</h2>
                     <p>FilePicker 是文件选择器，用于选择文件。需要使用 file_picker 第三方包。</p>
+
+                    <h3>渲染预览</h3>
+                    <div class="example-preview">
+                        <div style="width: 100%; max-width: 500px; text-align: left;">
+                            <!-- 模拟文件选择器对话框 -->
+                            <div style="background: white; border-radius: 16px; padding: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.15);">
+                                <div style="background: #f5f5f5; border-radius: 14px; overflow: hidden;">
+                                    <!-- 标题 -->
+                                    <div style="background: white; padding: 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e0e0e0;">
+                                        <span style="color: #333; font-size: 18px; font-weight: 600;">选择文件</span>
+                                        <div style="display: flex; gap: 8px;">
+                                            <span style="color: #666; cursor: pointer; font-size: 14px;">取消</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 文件列表 -->
+                                    <div style="padding: 16px;">
+                                        <!-- 文件夹导航 -->
+                                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px; padding: 8px; background: white; border-radius: 8px;">
+                                            <span style="color: #666; font-size: 14px;">📁</span>
+                                            <span style="color: #333; font-size: 14px;">/Documents/Flutter项目</span>
+                                        </div>
+                                        
+                                        <!-- 文件项 -->
+                                        <div style="background: white; border-radius: 8px; overflow: hidden;">
+                                            <div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-bottom: 1px solid #f0f0f0; cursor: pointer; hover: background: #f5f5f5;">
+                                                <span style="font-size: 32px;">📁</span>
+                                                <div style="flex: 1;">
+                                                    <div style="color: #333; font-size: 14px; font-weight: 600;">assets</div>
+                                                    <div style="color: #999; font-size: 12px;">文件夹</div>
+                                                </div>
+                                                <span style="color: #999; font-size: 14px;">›</span>
+                                            </div>
+                                            
+                                            <div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-bottom: 1px solid #f0f0f0; cursor: pointer;">
+                                                <span style="font-size: 32px;">📁</span>
+                                                <div style="flex: 1;">
+                                                    <div style="color: #333; font-size: 14px; font-weight: 600;">lib</div>
+                                                    <div style="color: #999; font-size: 12px;">文件夹</div>
+                                                </div>
+                                                <span style="color: #999; font-size: 14px;">›</span>
+                                            </div>
+                                            
+                                            <div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-bottom: 1px solid #f0f0f0; cursor: pointer;">
+                                                <span style="font-size: 32px;">📄</span>
+                                                <div style="flex: 1;">
+                                                    <div style="color: #333; font-size: 14px; font-weight: 600;">pubspec.yaml</div>
+                                                    <div style="color: #999; font-size: 12px;">2.4 KB</div>
+                                                </div>
+                                                <div style="background: #2196F3; color: white; padding: 4px 12px; border-radius: 4px; font-size: 12px;">选中</div>
+                                            </div>
+                                            
+                                            <div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-bottom: 1px solid #f0f0f0; cursor: pointer;">
+                                                <span style="font-size: 32px;">🖼️</span>
+                                                <div style="flex: 1;">
+                                                    <div style="color: #333; font-size: 14px; font-weight: 600;">logo.png</div>
+                                                    <div style="color: #999; font-size: 12px;">图片文件 · 45.2 KB</div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div style="display: flex; align-items: center; gap: 12px; padding: 12px; cursor: pointer;">
+                                                <span style="font-size: 32px;">📝</span>
+                                                <div style="flex: 1;">
+                                                    <div style="color: #333; font-size: 14px; font-weight: 600;">README.md</div>
+                                                    <div style="color: #999; font-size: 12px;">文档 · 1.8 KB</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 过滤器提示 -->
+                                        <div style="margin-top: 12px; background: #e3f2fd; color: #1976d2; padding: 8px 12px; border-radius: 6px; font-size: 12px;">
+                                            支持的文件类型: .jpg, .png, .pdf
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <h3>使用 file_picker 包</h3>
                     <div class="code-block">
