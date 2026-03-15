@@ -81,6 +81,33 @@ function initCodeBlockCollapse() {
             codeBlock.style.position = 'relative';
         }
 
+        // 自动添加语言类（如果没有）
+        const codeElement = codeBlock.querySelector('code');
+        if (codeElement && !codeElement.className.includes('language-')) {
+            // 检测代码语言
+            const codeText = codeElement.textContent;
+            if (codeText.includes('class ') || codeText.includes('extends ') || codeText.includes('void ') || codeText.includes('Widget ')) {
+                codeElement.classList.add('language-dart');
+            } else if (codeText.includes('# ') || codeText.includes('---') || codeText.includes(': ')) {
+                codeElement.classList.add('language-yaml');
+            } else if (codeText.includes('#!') || codeText.includes('export ') || codeText.includes('import ')) {
+                codeElement.classList.add('language-bash');
+            } else if (codeText.includes('{') && codeText.includes('}') && codeText.includes(':')) {
+                codeElement.classList.add('language-json');
+            } else {
+                codeElement.classList.add('language-plaintext');
+            }
+        }
+
+        // 为 pre 元素添加语言类
+        const preElement = codeBlock.querySelector('pre');
+        if (preElement && !preElement.className.includes('language-') && codeElement) {
+            const languageClass = Array.from(codeElement.classList).find(cls => cls.startsWith('language-'));
+            if (languageClass) {
+                preElement.classList.add(languageClass);
+            }
+        }
+
         // 创建折叠按钮
         const toggleBtn = document.createElement('button');
         toggleBtn.className = 'code-block-toggle';
@@ -92,9 +119,9 @@ function initCodeBlockCollapse() {
         codeBlock.insertBefore(toggleBtn, codeBlock.firstChild);
 
         // 获取代码内容元素（可能是 pre 或 code）
-        let codeElement = codeBlock.querySelector('pre');
-        if (!codeElement) {
-            codeElement = codeBlock.querySelector('code');
+        let targetElement = codeBlock.querySelector('pre');
+        if (!targetElement) {
+            targetElement = codeBlock.querySelector('code');
         }
 
         // 添加点击事件
@@ -108,9 +135,9 @@ function initCodeBlockCollapse() {
                 toggleBtn.textContent = '折叠代码';
                 toggleBtn.setAttribute('aria-label', '折叠代码块');
                 
-                if (codeElement) {
-                    codeElement.style.maxHeight = 'none';
-                    codeElement.style.overflow = 'visible';
+                if (targetElement) {
+                    targetElement.style.maxHeight = 'none';
+                    targetElement.style.overflow = 'visible';
                 }
             } else {
                 // 折叠
@@ -118,9 +145,9 @@ function initCodeBlockCollapse() {
                 toggleBtn.textContent = '展开代码';
                 toggleBtn.setAttribute('aria-label', '展开代码块');
                 
-                if (codeElement) {
-                    codeElement.style.maxHeight = '60px';
-                    codeElement.style.overflow = 'hidden';
+                if (targetElement) {
+                    targetElement.style.maxHeight = '60px';
+                    targetElement.style.overflow = 'hidden';
                 }
             }
         });
@@ -133,6 +160,11 @@ function initCodeBlockCollapse() {
             }
         });
     });
+
+    // 调用 Prism.js 语法高亮
+    if (typeof Prism !== 'undefined') {
+        Prism.highlightAll();
+    }
 }
 
 // 页面加载时的淡入效果
