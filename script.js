@@ -68,7 +68,7 @@ function initCopyButtons() {
 
 // 代码块折叠功能
 function initCodeBlockCollapse() {
-    const codeBlocks = document.querySelectorAll('.code-block');
+    const codeBlocks = document.querySelectorAll('.code-block, pre.code-block');
 
     codeBlocks.forEach(codeBlock => {
         // 检查代码块是否已经有折叠按钮
@@ -76,22 +76,61 @@ function initCodeBlockCollapse() {
             return;
         }
 
+        // 为代码块添加相对定位（如果没有）
+        if (window.getComputedStyle(codeBlock).position === 'static') {
+            codeBlock.style.position = 'relative';
+        }
+
         // 创建折叠按钮
         const toggleBtn = document.createElement('button');
         toggleBtn.className = 'code-block-toggle';
-        toggleBtn.textContent = '代码';
+        toggleBtn.textContent = '折叠代码';
+        toggleBtn.setAttribute('aria-label', '折叠代码块');
+        toggleBtn.setAttribute('type', 'button');
         
         // 将按钮插入到代码块的开头
         codeBlock.insertBefore(toggleBtn, codeBlock.firstChild);
 
+        // 获取代码内容元素（可能是 pre 或 code）
+        let codeElement = codeBlock.querySelector('pre');
+        if (!codeElement) {
+            codeElement = codeBlock.querySelector('code');
+        }
+
         // 添加点击事件
         toggleBtn.addEventListener('click', function(e) {
             e.stopPropagation();
-            codeBlock.classList.toggle('collapsed');
-            
-            // 更新按钮文本
             const isCollapsed = codeBlock.classList.contains('collapsed');
-            toggleBtn.textContent = isCollapsed ? '代码 (展开)' : '代码 (收起)';
+            
+            if (isCollapsed) {
+                // 展开
+                codeBlock.classList.remove('collapsed');
+                toggleBtn.textContent = '折叠代码';
+                toggleBtn.setAttribute('aria-label', '折叠代码块');
+                
+                if (codeElement) {
+                    codeElement.style.maxHeight = 'none';
+                    codeElement.style.overflow = 'visible';
+                }
+            } else {
+                // 折叠
+                codeBlock.classList.add('collapsed');
+                toggleBtn.textContent = '展开代码';
+                toggleBtn.setAttribute('aria-label', '展开代码块');
+                
+                if (codeElement) {
+                    codeElement.style.maxHeight = '60px';
+                    codeElement.style.overflow = 'hidden';
+                }
+            }
+        });
+
+        // 添加键盘支持
+        toggleBtn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleBtn.click();
+            }
         });
     });
 }

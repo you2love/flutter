@@ -396,12 +396,26 @@ body {
     margin-bottom: 1rem;
 }
 
+/* 代码块样式 */
 .code-block {
     background: var(--dark-bg);
     padding: 1.5rem;
     border-radius: var(--border-radius);
     overflow-x: auto;
     margin-bottom: 1rem;
+    position: relative;
+}
+
+/* pre 元素的代码块样式 */
+pre.code-block {
+    margin: 0;
+    color: #00ff00;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    background: var(--dark-bg);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    overflow-x: auto;
     position: relative;
 }
 
@@ -419,38 +433,65 @@ body {
     font-family: 'Courier New', Courier, monospace;
 }
 
+pre.code-block code {
+    display: block;
+}
+
 /* 代码块折叠按钮 */
 .code-block-toggle {
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
     color: #fff;
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 0.25rem 0.75rem;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+    font-weight: 500;
     z-index: 10;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
 }
 
 .code-block-toggle:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.code-block-toggle:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
 }
 
 /* 代码块折叠状态 */
-.code-block.collapsed pre {
+.code-block.collapsed pre,
+.code-block.collapsed code,
+pre.code-block.collapsed {
     max-height: 60px;
     overflow: hidden;
+    mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
 }
 
-.code-block.collapsed .code-block-toggle::after {
-    content: " (展开)";
+/* 复制按钮位置调整 */
+.code-block .copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 5rem; /* 为折叠按钮留出空间 */
+    z-index: 9;
 }
 
-.code-block:not(.collapsed) .code-block-toggle::after {
-    content: " (收起)";
+/* 当只有复制按钮或只有折叠按钮时，调整位置 */
+.code-block .copy-btn:not(:has(+ .code-block-toggle)) {
+    right: 0.5rem;
+}
+
+.code-block-toggle:not(:has(+ .copy-btn)) {
+    right: 0.5rem;
 }
 
 .copy-btn {
