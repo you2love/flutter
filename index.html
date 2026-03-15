@@ -30,6 +30,10 @@
                         <span class="tab-icon">🧩</span>
                         <span class="tab-text">组件系统</span>
                     </button>
+                    <button class="tab-btn" data-tab="composition">
+                        <span class="tab-icon">🔧</span>
+                        <span class="tab-text">组件组合</span>
+                    </button>
                     <button class="tab-btn" data-tab="routing">
                         <span class="tab-icon">🧭</span>
                         <span class="tab-text">路由导航</span>
@@ -752,6 +756,596 @@ FittedBox(
     )<span style="color: #89ddff;">,</span>
   )<span style="color: #89ddff;">,</span>
 )</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- 基础组件详解 -->
+                        <h4 style="color: #424242; margin: 2rem 0 1.5rem 0; font-size: 1.3rem;">📚 基础组件详解</h4>
+                        
+                        <!-- Text 文本组件 -->
+                        <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+                            <h5 style="color: #1976D2; margin: 0 0 1rem 0; font-size: 1.2rem;">📝 Text - 文本组件</h5>
+                            <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.95rem;">Text 是最常用的组件之一，用于显示文本内容。支持丰富的样式定制，包括字体大小、颜色、字重、对齐方式等。</p>
+                            
+                            <!-- Text 渲染图 -->
+                            <div style="background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%); border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; border: 1px solid #bdbdbd;">
+                                <div style="background: white; border-radius: 6px; padding: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                    <div style="text-align: center; font-family: sans-serif;">
+                                        <div style="font-size: 24px; font-weight: bold; color: #1976D2; margin-bottom: 8px;">大标题文本</div>
+                                        <div style="font-size: 16px; color: #424242; margin-bottom: 4px;">普通正文内容</div>
+                                        <div style="font-size: 12px; color: #757575; font-style: italic;">小字注释说明</div>
+                                    </div>
+                                </div>
+                                <div style="margin-top: 8px; font-size: 12px; color: #757575; text-align: center;">Text 组件渲染效果</div>
+                            </div>
+
+                            <div style="background: #263238; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #80cbc4; overflow-x: auto;">
+<pre style="margin: 0; line-height: 1.7;"><code><span style="color: #ffcb6b;">Text</span>(
+  <span style="color: #c3e88d;">'Hello Flutter'</span>,
+  style: <span style="color: #ffcb6b;">TextStyle</span>(
+    fontSize: <span style="color: #f78c6c;">24</span>,
+    fontWeight: <span style="color: #82aaff;">FontWeight</span>.bold,
+    color: <span style="color: #82aaff;">Colors</span>.blue,
+  ),
+)</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Image 图片组件 -->
+                        <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+                            <h5 style="color: #1976D2; margin: 0 0 1rem 0; font-size: 1.2rem;">🖼️ Image - 图片组件</h5>
+                            <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.95rem;">Image 组件用于显示图片，支持多种来源：网络图片、本地资源、内存图片等。提供丰富的 fit 模式控制图片缩放。</p>
+                            
+                            <!-- Image 渲染图 -->
+                            <div style="background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%); border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; border: 1px solid #bdbdbd;">
+                                <div style="background: white; border-radius: 6px; padding: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: flex; gap: 12px; justify-content: center; align-items: center;">
+                                    <div style="width: 80px; height: 80px; background: linear-gradient(45deg, #e3f2fd, #bbdefb); border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 2px dashed #2196F3;">
+                                        <span style="font-size: 12px; color: #1976D2;">cover</span>
+                                    </div>
+                                    <div style="width: 80px; height: 80px; background: linear-gradient(45deg, #e8f5e9, #c8e6c9); border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 2px dashed #4CAF50;">
+                                        <span style="font-size: 12px; color: #2E7D32;">contain</span>
+                                    </div>
+                                    <div style="width: 80px; height: 80px; background: linear-gradient(45deg, #fff3e0, #ffe0b2); border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 2px dashed #FF9800;">
+                                        <span style="font-size: 12px; color: #E65100;">fill</span>
+                                    </div>
+                                </div>
+                                <div style="margin-top: 8px; font-size: 12px; color: #757575; text-align: center;">Image fit 模式展示</div>
+                            </div>
+
+                            <div style="background: #263238; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #80cbc4; overflow-x: auto;">
+<pre style="margin: 0; line-height: 1.7;"><code><span style="color: #ffcb6b;">Image</span>.network(
+  <span style="color: #c3e88d;">'https://example.com/image.png'</span>,
+  fit: <span style="color: #82aaff;">BoxFit</span>.cover,
+  width: <span style="color: #f78c6c;">200</span>,
+  height: <span style="color: #f78c6c;">200</span>,
+)</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Icon 图标组件 -->
+                        <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+                            <h5 style="color: #1976D2; margin: 0 0 1rem 0; font-size: 1.2rem;">⭐ Icon - 图标组件</h5>
+                            <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.95rem;">Icon 组件用于显示 Material Design 图标，可以设置颜色、大小等属性。使用 Icons 类可以访问预定义的图标集。</p>
+                            
+                            <!-- Icon 渲染图 -->
+                            <div style="background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%); border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; border: 1px solid #bdbdbd;">
+                                <div style="background: white; border-radius: 6px; padding: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: flex; gap: 20px; justify-content: center; align-items: center;">
+                                    <div style="width: 48px; height: 48px; background: #e3f2fd; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                        <span style="font-size: 24px;">🏠</span>
+                                    </div>
+                                    <div style="width: 48px; height: 48px; background: #ffebee; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                        <span style="font-size: 24px;">❤️</span>
+                                    </div>
+                                    <div style="width: 48px; height: 48px; background: #fff3e0; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                        <span style="font-size: 24px;">⭐</span>
+                                    </div>
+                                    <div style="width: 48px; height: 48px; background: #f3e5f5; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                        <span style="font-size: 24px;">⚙️</span>
+                                    </div>
+                                </div>
+                                <div style="margin-top: 8px; font-size: 12px; color: #757575; text-align: center;">Icon 图标展示</div>
+                            </div>
+
+                            <div style="background: #263238; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #80cbc4; overflow-x: auto;">
+<pre style="margin: 0; line-height: 1.7;"><code><span style="color: #ffcb6b;">Icon</span>(
+  <span style="color: #82aaff;">Icons</span>.favorite,
+  color: <span style="color: #82aaff;">Colors</span>.red,
+  size: <span style="color: #f78c6c;">48</span>,
+)</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Container 容器组件 -->
+                        <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+                            <h5 style="color: #1976D2; margin: 0 0 1rem 0; font-size: 1.2rem;">📦 Container - 容器组件</h5>
+                            <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.95rem;">Container 是一个多功能组合组件，可以设置内边距、外边距、装饰、约束等。是布局中最常用的组件之一。</p>
+                            
+                            <!-- Container 渲染图 -->
+                            <div style="background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%); border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; border: 1px solid #bdbdbd;">
+                                <div style="background: white; border-radius: 6px; padding: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: flex; gap: 16px; justify-content: center; align-items: center;">
+                                    <div style="width: 100px; height: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+                                        带阴影
+                                    </div>
+                                    <div style="width: 100px; height: 80px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: bold;">
+                                        圆角卡片
+                                    </div>
+                                </div>
+                                <div style="margin-top: 8px; font-size: 12px; color: #757575; text-align: center;">Container 装饰效果</div>
+                            </div>
+
+                            <div style="background: #263238; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #80cbc4; overflow-x: auto;">
+<pre style="margin: 0; line-height: 1.7;"><code><span style="color: #ffcb6b;">Container</span>(
+  padding: <span style="color: #ffcb6b;">EdgeInsets</span>.all(<span style="color: #f78c6c;">16</span>),
+  decoration: <span style="color: #ffcb6b;">BoxDecoration</span>(
+    color: <span style="color: #82aaff;">Colors</span>.blue,
+    borderRadius: <span style="color: #ffcb6b;">BorderRadius</span>.circular(<span style="color: #f78c6c;">8</span>),
+    boxShadow: [
+      <span style="color: #ffcb6b;">BoxShadow</span>(
+        color: <span style="color: #82aaff;">Colors</span>.black.withOpacity(<span style="color: #f78c6c;">0.2</span>),
+        blurRadius: <span style="color: #f78c6c;">10</span>,
+      )
+    ]
+  ),
+)</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Padding 间距组件 -->
+                        <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+                            <h5 style="color: #1976D2; margin: 0 0 1rem 0; font-size: 1.2rem;">↔️ Padding - 间距组件</h5>
+                            <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.95rem;">Padding 用于在子组件周围添加内边距。可以设置统一值，也可以分别设置四个方向的值。</p>
+                            
+                            <!-- Padding 渲染图 -->
+                            <div style="background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%); border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; border: 1px solid #bdbdbd;">
+                                <div style="background: white; border-radius: 6px; padding: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: flex; gap: 20px; justify-content: center; align-items: center;">
+                                    <div style="padding: 8px; background: #e3f2fd; border: 1px dashed #2196F3; border-radius: 4px;">
+                                        <div style="padding: 12px; background: #bbdefb; border-radius: 4px; font-size: 12px; color: #1976D2;">padding</div>
+                                    </div>
+                                    <div style="padding: 8px; background: #e8f5e9; border: 1px dashed #4CAF50; border-radius: 4px;">
+                                        <div style="padding: 16px 24px; background: #c8e6c9; border-radius: 4px; font-size: 12px; color: #2E7D32;">不对称</div>
+                                    </div>
+                                </div>
+                                <div style="margin-top: 8px; font-size: 12px; color: #757575; text-align: center;">Padding 间距效果</div>
+                            </div>
+
+                            <div style="background: #263238; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #80cbc4; overflow-x: auto;">
+<pre style="margin: 0; line-height: 1.7;"><code><span style="color: #ffcb6b;">Padding</span>(
+  padding: <span style="color: #ffcb6b;">EdgeInsets</span>.symmetric(
+    horizontal: <span style="color: #f78c6c;">16</span>,
+    vertical: <span style="color: #f78c6c;">8</span>
+  ),
+  child: <span style="color: #ffcb6b;">Text</span>(<span style="color: #c3e88d;">'Hello'</span>),
+)</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- SizedBox 尺寸组件 -->
+                        <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+                            <h5 style="color: #1976D2; margin: 0 0 1rem 0; font-size: 1.2rem;">📏 SizedBox - 尺寸组件</h5>
+                            <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.95rem;">SizedBox 用于设置子组件的固定尺寸，或作为空白占位符。常用于控制间距和布局。</p>
+                            
+                            <!-- SizedBox 渲染图 -->
+                            <div style="background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%); border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; border: 1px solid #bdbdbd;">
+                                <div style="background: white; border-radius: 6px; padding: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: flex; gap: 20px; justify-content: center; align-items: center;">
+                                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                                        <div style="width: 60px; height: 40px; background: #e3f2fd; border: 1px dashed #2196F3; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #1976D2;">60x40</div>
+                                        <div style="font-size: 10px; color: #757575;">固定尺寸</div>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                                        <div style="width: 60px; height: 40px; background: #ffebee; border: 1px dashed #f44336; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #c62828;">
+                                            <span style="font-size: 16px;">→</span>
+                                        </div>
+                                        <div style="font-size: 10px; color: #757575;">水平间距</div>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                                        <div style="width: 60px; height: 40px; background: #fff3e0; border: 1px dashed #ff9800; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #e65100;">
+                                            <span style="font-size: 16px;">↓</span>
+                                        </div>
+                                        <div style="font-size: 10px; color: #757575;">垂直间距</div>
+                                    </div>
+                                </div>
+                                <div style="margin-top: 8px; font-size: 12px; color: #757575; text-align: center;">SizedBox 尺寸效果</div>
+                            </div>
+
+                            <div style="background: #263238; padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #80cbc4; overflow-x: auto;">
+<pre style="margin: 0; line-height: 1.7;"><code><span style="color: #bb80b3;">// 设置固定尺寸</span>
+<span style="color: #ffcb6b;">SizedBox</span>(
+  width: <span style="color: #f78c6c;">100</span>,
+  height: <span style="color: #f78c6c;">50</span>,
+  child: <span style="color: #ffcb6b;">Text</span>(<span style="color: #c3e88d;">'Box'</span>),
+)
+
+<span style="color: #bb80b3;">// 作为间距</span>
+<span style="color: #ffcb6b;">SizedBox</span>(height: <span style="color: #f78c6c;">16</span>)</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 组件组合方式 Tab -->
+            <div class="tab-panel" id="composition">
+                <div class="container">
+                    <h2>🔧 Flutter 组件组合方式详解</h2>
+                    <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">Flutter 的核心设计理念是<strong>"组合优于继承"</strong>。通过将简单的 Widget 组合在一起，可以构建出复杂的 UI 界面。本页面将一步步深入讲解各种组合方式。</p>
+
+                    <!-- 组合原则 -->
+                    <div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 4px solid #2196F3; padding: 2rem; border-radius: 12px; margin-bottom: 3rem;">
+                        <h3 style="color: #1976D2; margin: 0 0 1.5rem 0; font-size: 1.4rem;">📐 组合核心原则</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                            <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎯</div>
+                                <h4 style="color: #1976D2; margin: 0 0 0.5rem 0; font-size: 1.1rem;">单一职责</h4>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem; line-height: 1.5;">每个 Widget 只负责一个功能，保持简洁</p>
+                            </div>
+                            <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔄</div>
+                                <h4 style="color: #1976D2; margin: 0 0 0.5rem 0; font-size: 1.1rem;">嵌套组合</h4>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem; line-height: 1.5;">通过父子嵌套关系构建复杂结构</p>
+                            </div>
+                            <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">📤</div>
+                                <h4 style="color: #1976D2; margin: 0 0 0.5rem 0; font-size: 1.1rem;">参数传递</h4>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem; line-height: 1.5;">通过构造函数传递配置和子组件</p>
+                            </div>
+                            <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎁</div>
+                                <h4 style="color: #1976D2; margin: 0 0 0.5rem 0; font-size: 1.1rem;">包装模式</h4>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem; line-height: 1.5;">使用 Container、Padding 等包装组件增强功能</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 组合方式详解 -->
+                    <h3 style="color: #424242; margin: 3rem 0 2rem 0; font-size: 1.5rem;">🎯 常见组合方式详解</h3>
+
+                    <!-- 1. Container 包装组合 -->
+                    <div style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 3rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">📦</div>
+                            <h4 style="color: #1976D2; margin: 0; font-size: 1.3rem;">1. Container 包装组合</h4>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem;">
+                            <!-- 渲染图 -->
+                            <div style="background: #f5f5f5; border-radius: 12px; padding: 2rem;">
+                                <h5 style="color: #666; margin: 0 0 1rem 0; text-align: center; font-size: 1rem;">📐 渲染效果</h5>
+                                <div style="background: white; border-radius: 8px; padding: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                    <div style="font-weight: bold; color: #333; margin-bottom: 8px;">卡片标题</div>
+                                    <div style="color: #666; font-size: 0.9rem;">卡片内容区域，包含文本和按钮</div>
+                                    <div style="background: #2196F3; color: white; padding: 8px 16px; border-radius: 6px; text-align: center; margin-top: 12px; font-size: 0.9rem;">操作按钮</div>
+                                </div>
+                                <div style="display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+                                    <div style="font-size: 11px; color: #999; padding: 4px 8px; background: #eee; border-radius: 4px;">Container</div>
+                                    <div style="font-size: 11px; color: #999; padding: 4px 8px; background: #eee; border-radius: 4px;">Padding</div>
+                                    <div style="font-size: 11px; color: #999; padding: 4px 8px; background: #eee; border-radius: 4px;">Column</div>
+                                </div>
+                            </div>
+                            
+                            <!-- 代码 -->
+                            <div>
+                                <div class="code-block">
+                                    <pre><code><span class="token keyword">Container</span>(
+  <span class="token property">padding</span>: <span class="token class-name">EdgeInsets</span>.<span class="token function">all</span>(<span class="token number">16</span>),
+  <span class="token property">decoration</span>: <span class="token class-name">BoxDecoration</span>(
+    <span class="token property">color</span>: <span class="token class-name">Colors</span>.white,
+    <span class="token property">borderRadius</span>: <span class="token class-name">BorderRadius</span>.<span class="token function">circular</span>(<span class="token number">8</span>),
+    <span class="token property">boxShadow</span>: [
+      <span class="token class-name">BoxShadow</span>(
+        <span class="token property">color</span>: <span class="token class-name">Colors</span>.black26,
+        <span class="token property">blurRadius</span>: <span class="token number">4</span>,
+      ),
+    ],
+  ),
+  <span class="token property">child</span>: <span class="token class-name">Column</span>(
+    <span class="token property">mainAxisSize</span>: <span class="token class-name">MainAxisSize</span>.min,
+    <span class="token property">children</span>: [
+      <span class="token class-name">Text</span>(<span class="token string">'卡片标题'</span>),
+      <span class="token class-name">Text</span>(<span class="token string">'卡片内容'</span>),
+      <span class="token class-name">ElevatedButton</span>(
+        <span class="token property">onPressed</span>: () {},
+        <span class="token property">child</span>: <span class="token class-name">Text</span>(<span class="token string">'操作'</span>),
+      ),
+    ],
+  ),
+)</code></pre>
+                                </div>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem; margin-top: 1rem;"><strong>特点：</strong>Container 提供装饰、边距、约束等功能，是最常用的包装组件</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. 布局组件组合 -->
+                    <div style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 3rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="background: linear-gradient(135deg, #4CAF50 0%, #43A047 100%); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">📐</div>
+                            <h4 style="color: #2E7D32; margin: 0; font-size: 1.3rem;">2. 布局组件组合</h4>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                            <!-- Row 组合 -->
+                            <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0e0e0;">
+                                <h5 style="color: #2E7D32; margin: 0 0 1rem 0; font-size: 1.1rem;">Row 水平布局</h5>
+                                <div style="background: white; border-radius: 6px; padding: 12px; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px;">
+                                    <div style="width: 30px; height: 30px; background: #2196F3; border-radius: 50%;"></div>
+                                    <div style="flex: 1; height: 20px; background: #e0e0e0; border-radius: 4px;"></div>
+                                    <div style="width: 30px; height: 30px; background: #FF9800; border-radius: 50%;"></div>
+                                </div>
+                                <div style="font-size: 0.85rem; color: #666;"><strong>用途：</strong>水平排列子组件，支持主轴和交叉轴对齐</div>
+                            </div>
+                            
+                            <!-- Column 组合 -->
+                            <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0e0e0;">
+                                <h5 style="color: #2E7D32; margin: 0 0 1rem 0; font-size: 1.1rem;">Column 垂直布局</h5>
+                                <div style="background: white; border-radius: 6px; padding: 12px; margin-bottom: 1rem; display: flex; flex-direction: column; gap: 8px;">
+                                    <div style="height: 20px; background: #2196F3; border-radius: 4px;"></div>
+                                    <div style="height: 20px; background: #FF9800; border-radius: 4px;"></div>
+                                    <div style="height: 20px; background: #4CAF50; border-radius: 4px;"></div>
+                                </div>
+                                <div style="font-size: 0.85rem; color: #666;"><strong>用途：</strong>垂直排列子组件，适合列表、卡片等垂直内容</div>
+                            </div>
+                            
+                            <!-- Stack 组合 -->
+                            <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0e0e0;">
+                                <h5 style="color: #2E7D32; margin: 0 0 1rem 0; font-size: 1.1rem;">Stack 层叠布局</h5>
+                                <div style="background: white; border-radius: 6px; padding: 12px; margin-bottom: 1rem; position: relative; height: 80px;">
+                                    <div style="position: absolute; left: 10px; top: 10px; width: 60px; height: 60px; background: #2196F3; border-radius: 8px; opacity: 0.7;"></div>
+                                    <div style="position: absolute; right: 10px; bottom: 10px; width: 40px; height: 40px; background: #FF9800; border-radius: 50%;"></div>
+                                </div>
+                                <div style="font-size: 0.85rem; color: #666;"><strong>用途：</strong>子组件层叠叠加，适合头像标签、覆盖层等场景</div>
+                            </div>
+                            
+                            <!-- Expanded 组合 -->
+                            <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0e0e0;">
+                                <h5 style="color: #2E7D32; margin: 0 0 1rem 0; font-size: 1.1rem;">Expanded 弹性布局</h5>
+                                <div style="background: white; border-radius: 6px; padding: 12px; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px;">
+                                    <div style="width: 40px; height: 30px; background: #2196F3; border-radius: 4px;"></div>
+                                    <div style="flex: 1; height: 30px; background: #4CAF50; border-radius: 4px;"></div>
+                                    <div style="flex: 2; height: 30px; background: #FF9800; border-radius: 4px;"></div>
+                                </div>
+                                <div style="font-size: 0.85rem; color: #666;"><strong>用途：</strong>在 Row/Column 中分配剩余空间，实现灵活布局</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. 列表项组合 -->
+                    <div style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 3rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">📝</div>
+                            <h4 style="color: #E65100; margin: 0; font-size: 1.3rem;">3. 列表项组合</h4>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem;">
+                            <!-- 渲染图 -->
+                            <div style="background: #f5f5f5; border-radius: 12px; padding: 2rem;">
+                                <h5 style="color: #666; margin: 0 0 1rem 0; text-align: center; font-size: 1rem;">📐 渲染效果</h5>
+                                <div style="background: white; border-radius: 8px; padding: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                    <div style="display: flex; align-items: center; gap: 12px;">
+                                        <div style="width: 48px; height: 48px; background: #2196F3; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white;">★</div>
+                                        <div style="flex: 1;">
+                                            <div style="font-weight: bold; color: #333;">列表项标题</div>
+                                            <div style="color: #666; font-size: 0.85rem;">这是列表项的描述信息</div>
+                                        </div>
+                                        <div style="color: #999;">→</div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+                                    <div style="font-size: 11px; color: #999; padding: 4px 8px; background: #eee; border-radius: 4px;">Row</div>
+                                    <div style="font-size: 11px; color: #999; padding: 4px 8px; background: #eee; border-radius: 4px;">Icon</div>
+                                    <div style="font-size: 11px; color: #999; padding: 4px 8px; background: #eee; border-radius: 4px;">Expanded</div>
+                                    <div style="font-size: 11px; color: #999; padding: 4px 8px; background: #eee; border-radius: 4px;">Column</div>
+                                </div>
+                            </div>
+                            
+                            <!-- 代码 -->
+                            <div>
+                                <div class="code-block">
+                                    <pre><code><span class="token class-name">Row</span>(
+  <span class="token property">children</span>: [
+    <span class="token class-name">Icon</span>(<span class="token class-name">Icons</span>.star),
+    <span class="token class-name">SizedBox</span>(<span class="token property">width</span>: <span class="token number">12</span>),
+    <span class="token class-name">Expanded</span>(
+      <span class="token property">child</span>: <span class="token class-name">Column</span>(
+        <span class="token property">crossAxisAlignment</span>: <span class="token class-name">CrossAxisAlignment</span>.start,
+        <span class="token property">children</span>: [
+          <span class="token class-name">Text</span>(
+            <span class="token string">'列表项标题'</span>,
+            <span class="token property">style</span>: <span class="token class-name">TextStyle</span>(
+              <span class="token property">fontWeight</span>: <span class="token class-name">FontWeight</span>.bold,
+            ),
+          ),
+          <span class="token class-name">Text</span>(
+            <span class="token string">'描述信息'</span>,
+            <span class="token property">style</span>: <span class="token class-name">TextStyle</span>(
+              <span class="token property">color</span>: <span class="token class-name">Colors</span>.grey,
+              <span class="token property">fontSize</span>: <span class="token number">12</span>,
+            ),
+          ),
+        ],
+      ),
+    ),
+    <span class="token class-name">Icon</span>(<span class="token class-name">Icons</span>.chevron_right),
+  ],
+)</code></pre>
+                                </div>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem; margin-top: 1rem;"><strong>特点：</strong>Row + Expanded + Column 组合实现左右布局，常用于列表项</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. 输入框组合 -->
+                    <div style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 3rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">⌨️</div>
+                            <h4 style="color: #7B1FA2; margin: 0; font-size: 1.3rem;">4. 输入框组合</h4>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem;">
+                            <!-- 渲染图 -->
+                            <div style="background: #f5f5f5; border-radius: 12px; padding: 2rem;">
+                                <h5 style="color: #666; margin: 0 0 1rem 0; text-align: center; font-size: 1rem;">📐 渲染效果</h5>
+                                <div style="background: white; border-radius: 8px; padding: 0 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: flex; align-items: center; height: 50px;">
+                                    <div style="color: #9C27B0; margin-right: 12px;">🔍</div>
+                                    <div style="flex: 1; color: #999; font-size: 14px;">请输入搜索内容...</div>
+                                    <div style="color: #2196F3; margin-left: 8px;">✕</div>
+                                </div>
+                                <div style="display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+                                    <div style="font-size: 11px; color: #999; padding: 4px 8px; background: #eee; border-radius: 4px;">Container</div>
+                                    <div style="font-size: 11px; color: #999; padding: 4px 8px; background: #eee; border-radius: 4px;">TextField</div>
+                                    <div style="font-size: 11px; color: #999; padding: 4px 8px; background: #eee; border-radius: 4px;">prefixIcon</div>
+                                    <div style="font-size: 11px; color: #999; padding: 4px 8px; background: #eee; border-radius: 4px;">suffix</div>
+                                </div>
+                            </div>
+                            
+                            <!-- 代码 -->
+                            <div>
+                                <div class="code-block">
+                                    <pre><code><span class="token class-name">Container</span>(
+  <span class="token property">decoration</span>: <span class="token class-name">BoxDecoration</span>(
+    <span class="token property">border</span>: <span class="token class-name">Border</span>.<span class="token function">all</span>(
+      <span class="token property">color</span>: <span class="token class-name">Colors</span>.grey300,
+      <span class="token property">width</span>: <span class="token number">1</span>,
+    ),
+    <span class="token property">borderRadius</span>: <span class="token class-name">BorderRadius</span>.<span class="token function">circular</span>(<span class="token number">8</span>),
+  ),
+  <span class="token property">child</span>: <span class="token class-name">TextField</span>(
+    <span class="token property">prefixIcon</span>: <span class="token class-name">Icon</span>(<span class="token class-name">Icons</span>.search),
+    <span class="token property">decoration</span>: <span class="token class-name">InputDecoration</span>(
+      <span class="token property">hintText</span>: <span class="token string">'请输入搜索内容...'</span>,
+      <span class="token property">border</span>: <span class="token class-name">InputBorder</span>.none,
+      <span class="token property">suffixIcon</span>: <span class="token class-name">Icon</span>(<span class="token class-name">Icons</span>.cancel),
+    ),
+  ),
+)</code></pre>
+                                </div>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem; margin-top: 1rem;"><strong>特点：</strong>Container + TextField 组合实现带边框的输入框</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. 交互组件组合 -->
+                    <div style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 3rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="background: linear-gradient(135deg, #F44336 0%, #D32F2F 100%); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">👆</div>
+                            <h4 style="color: #C62828; margin: 0; font-size: 1.3rem;">5. 交互组件组合</h4>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                            <!-- GestureDetector 组合 -->
+                            <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0e0e0;">
+                                <h5 style="color: #C62828; margin: 0 0 1rem 0; font-size: 1.1rem;">GestureDetector 手势</h5>
+                                <div style="background: white; border-radius: 6px; padding: 12px; margin-bottom: 1rem; text-align: center; border: 2px dashed #F44336;">
+                                    <div style="color: #666; font-size: 0.9rem;">点击我触发手势</div>
+                                </div>
+                                <div style="font-size: 0.85rem; color: #666;"><strong>用途：</strong>为任意组件添加点击、长按等手势识别</div>
+                            </div>
+                            
+                            <!-- InkWell 组合 -->
+                            <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0e0e0;">
+                                <h5 style="color: #C62828; margin: 0 0 1rem 0; font-size: 1.1rem;">InkWell 涟漪效果</h5>
+                                <div style="background: white; border-radius: 6px; padding: 12px; margin-bottom: 1rem; text-align: center; background: #2196F3; color: white;">
+                                    <div style="font-size: 0.9rem;">Material 点击效果</div>
+                                </div>
+                                <div style="font-size: 0.85rem; color: #666;"><strong>用途：</strong>Material Design 风格的点击反馈，带涟漪动画</div>
+                            </div>
+                            
+                            <!-- Tooltip 组合 -->
+                            <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0e0e0;">
+                                <h5 style="color: #C62828; margin: 0 0 1rem 0; font-size: 1.1rem;">Tooltip 提示框</h5>
+                                <div style="background: white; border-radius: 6px; padding: 12px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                    <div style="background: #2196F3; color: white; padding: 8px 12px; border-radius: 4px; font-size: 0.85rem;">图标</div>
+                                    <div style="background: #333; color: white; padding: 8px 12px; border-radius: 4px; font-size: 0.85rem;">提示信息</div>
+                                </div>
+                                <div style="font-size: 0.85rem; color: #666;"><strong>用途：</strong>鼠标悬停时显示提示信息</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. 变换组合 -->
+                    <div style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 3rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="background: linear-gradient(135deg, #00BCD4 0%, #0097A7 100%); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">🔍</div>
+                            <h4 style="color: #00838F; margin: 0; font-size: 1.3rem;">6. 变换组合</h4>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                            <!-- Transform.rotate 组合 -->
+                            <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0e0e0;">
+                                <h5 style="color: #00838F; margin: 0 0 1rem 0; font-size: 1.1rem;">Transform.rotate 旋转</h5>
+                                <div style="background: white; border-radius: 6px; padding: 12px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; height: 60px;">
+                                    <div style="width: 40px; height: 40px; background: #00BCD4; transform: rotate(45deg); border-radius: 8px;"></div>
+                                </div>
+                                <div style="font-size: 0.85rem; color: #666;"><strong>用途：</strong>旋转子组件，实现动画和视觉效果</div>
+                            </div>
+                            
+                            <!-- Transform.scale 组合 -->
+                            <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0e0e0;">
+                                <h5 style="color: #00838F; margin: 0 0 1rem 0; font-size: 1.1rem;">Transform.scale 缩放</h5>
+                                <div style="background: white; border-radius: 6px; padding: 12px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; height: 60px;">
+                                    <div style="width: 50px; height: 50px; background: #00BCD4; transform: scale(1.3); border-radius: 8px;"></div>
+                                </div>
+                                <div style="font-size: 0.85rem; color: #666;"><strong>用途：</strong>缩放子组件，常用于按钮点击效果</div>
+                            </div>
+                            
+                            <!-- Opacity 组合 -->
+                            <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0e0e0;">
+                                <h5 style="color: #00838F; margin: 0 0 1rem 0; font-size: 1.1rem;">Opacity 透明度</h5>
+                                <div style="background: white; border-radius: 6px; padding: 12px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; gap: 12px; height: 60px;">
+                                    <div style="width: 40px; height: 40px; background: #00BCD4; opacity: 1; border-radius: 8px;"></div>
+                                    <div style="width: 40px; height: 40px; background: #00BCD4; opacity: 0.5; border-radius: 8px;"></div>
+                                    <div style="width: 40px; height: 40px; background: #00BCD4; opacity: 0.2; border-radius: 8px;"></div>
+                                </div>
+                                <div style="font-size: 0.85rem; color: #666;"><strong>用途：</strong>调整透明度，实现淡入淡出效果</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 最佳实践 -->
+                    <div style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left: 4px solid #4CAF50; padding: 2rem; border-radius: 12px; margin-bottom: 3rem;">
+                        <h3 style="color: #2E7D32; margin: 0 0 1.5rem 0; font-size: 1.4rem;">💡 组合最佳实践</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                            <div style="background: white; padding: 1.25rem; border-radius: 8px; border-left: 3px solid #4CAF50;">
+                                <h5 style="color: #2E7D32; margin: 0 0 0.75rem 0; font-size: 1.05rem;">从简单到复杂</h5>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem; line-height: 1.6;">先创建小的、可复用的 Widget，再组合成复杂界面</p>
+                            </div>
+                            <div style="background: white; padding: 1.25rem; border-radius: 8px; border-left: 3px solid #4CAF50;">
+                                <h5 style="color: #2E7D32; margin: 0 0 0.75rem 0; font-size: 1.05rem;">保持职责单一</h5>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem; line-height: 1.6;">每个 Widget 只负责一件事，便于维护和复用</p>
+                            </div>
+                            <div style="background: white; padding: 1.25rem; border-radius: 8px; border-left: 3px solid #4CAF50;">
+                                <h5 style="color: #2E7D32; margin: 0 0 0.75rem 0; font-size: 1.05rem;">合理使用 const</h5>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem; line-height: 1.6;">静态 Widget 使用 const 构造函数提升性能</p>
+                            </div>
+                            <div style="background: white; padding: 1.25rem; border-radius: 8px; border-left: 3px solid #4CAF50;">
+                                <h5 style="color: #2E7D32; margin: 0 0 0.75rem 0; font-size: 1.05rem;">避免过度嵌套</h5>
+                                <p style="margin: 0; color: #666; font-size: 0.9rem; line-height: 1.6;">过深的嵌套会影响性能和可读性，适当提取组件</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 组合流程图 -->
+                    <div style="background: white; padding: 2.5rem; border-radius: 16px; margin-bottom: 3rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                        <h3 style="color: #424242; margin: 0 0 2rem 0; text-align: center; font-size: 1.4rem;">🎨 Widget 组合构建流程</h3>
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                            <div style="background: #e3f2fd; padding: 1rem 2rem; border-radius: 8px; color: #1976D2; font-weight: 600; font-size: 1rem;">基础 Widget</div>
+                            <div style="color: #999; font-size: 1.5rem;">→</div>
+                            <div style="background: #e8f5e9; padding: 1rem 2rem; border-radius: 8px; color: #2E7D32; font-weight: 600; font-size: 1rem;">包装组件</div>
+                            <div style="color: #999; font-size: 1.5rem;">→</div>
+                            <div style="background: #fff3e0; padding: 1rem 2rem; border-radius: 8px; color: #E65100; font-weight: 600; font-size: 1rem;">布局组件</div>
+                            <div style="color: #999; font-size: 1.5rem;">→</div>
+                            <div style="background: #f3e5f5; padding: 1rem 2rem; border-radius: 8px; color: #7B1FA2; font-weight: 600; font-size: 1rem;">复杂界面</div>
+                        </div>
+                        
+                        <div style="background: #f5f5f5; border-radius: 12px; padding: 1.5rem;">
+                            <h4 style="color: #666; margin: 0 0 1rem 0; font-size: 1.1rem; text-align: center;">🔄 组合实例</h4>
+                            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                                <div style="background: #2196F3; color: white; padding: 8px 12px; border-radius: 4px; font-size: 0.85rem;">Text</div>
+                                <div style="color: #999;">+</div>
+                                <div style="background: #4CAF50; color: white; padding: 8px 12px; border-radius: 4px; font-size: 0.85rem;">Icon</div>
+                                <div style="color: #999;">+</div>
+                                <div style="background: #FF9800; color: white; padding: 8px 12px; border-radius: 4px; font-size: 0.85rem;">Padding</div>
+                                <div style="color: #999;">=</div>
+                                <div style="background: #9C27B0; color: white; padding: 8px 12px; border-radius: 4px; font-size: 0.85rem;">组合 Widget</div>
                             </div>
                         </div>
                     </div>
