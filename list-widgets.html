@@ -580,6 +580,49 @@ GridView.builder(
                     <h2>3. ListTile 列表项</h2>
                     <p>ListTile 是 Material Design 风格的列表项组件，提供了丰富的布局选项。</p>
 
+                    <!-- ListTile 渲染图 -->
+                    <div style="background: #f5f5f5; border-radius: 12px; padding: 20px; margin: 20px 0;">
+                        <h4 style="margin-bottom: 15px; color: #333; text-align: center;">📐 ListTile 渲染效果</h4>
+                        <div style="max-width: 400px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px;">
+                            <div style="background: white; border: 1px solid #e0e0e0; border-radius: 4px; padding: 12px 16px; display: flex; align-items: center; gap: 12px;">
+                                <span style="font-size: 24px;">👤</span>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 16px; font-weight: 500; color: #333;">Alice</div>
+                                    <div style="font-size: 14px; color: #666;">Software Engineer</div>
+                                </div>
+                                <span style="font-size: 20px; color: #999;">→</span>
+                            </div>
+                            <div style="background: white; border: 1px solid #e0e0e0; border-radius: 4px; padding: 12px 16px; display: flex; align-items: center; gap: 12px;">
+                                <div style="width: 24px; height: 24px; border: 2px solid #2196F3; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+                                    <span style="color: #2196F3; font-size: 16px;">✓</span>
+                                </div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 16px; font-weight: 500; color: #333;">启用通知</div>
+                                    <div style="font-size: 14px; color: #666;">接收推送通知</div>
+                                </div>
+                            </div>
+                            <div style="background: white; border: 1px solid #e0e0e0; border-radius: 4px; padding: 12px 16px; display: flex; align-items: center; gap: 12px;">
+                                <div style="width: 44px; height: 24px; background: #4CAF50; border-radius: 12px; position: relative;">
+                                    <div style="width: 20px; height: 20px; background: white; border-radius: 50%; position: absolute; top: 2px; right: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);"></div>
+                                </div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 16px; font-weight: 500; color: #333;">飞行模式</div>
+                                    <div style="font-size: 14px; color: #666;">禁用无线连接</div>
+                                </div>
+                            </div>
+                            <div style="background: white; border: 1px solid #e0e0e0; border-radius: 4px; padding: 12px 16px; display: flex; align-items: center; gap: 12px;">
+                                <div style="width: 40px; height: 40px; background: #2196F3; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                    <span style="color: white; font-size: 20px;">U</span>
+                                </div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 16px; font-weight: 500; color: #333;">用户名</div>
+                                    <div style="font-size: 14px; color: #666;">用户简介</div>
+                                </div>
+                                <span style="font-size: 20px; color: #999;">⋮</span>
+                            </div>
+                        </div>
+                    </div>
+
                     <h3>使用示例</h3>
                     <div class="code-block">
                         <pre><code>// 基本 ListTile
@@ -647,6 +690,42 @@ ListTile(
                 <div class="component-card">
                     <h2>4. CustomScrollView 自定义滚动视图</h2>
                     <p>CustomScrollView 可以创建复杂的滚动效果，如固定头部、吸顶效果等。</p>
+
+                    <!-- CustomScrollView 渲染图 -->
+                    <div style="background: #f5f5f5; border-radius: 12px; padding: 20px; margin: 20px 0;">
+                        <h4 style="margin-bottom: 15px; color: #333; text-align: center;">📐 CustomScrollView 渲染效果</h4>
+                        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                            <div style="text-align: center;">
+                                <p style="font-size: 12px; color: #666; margin-bottom: 8px;">展开状态</p>
+                                <div style="width: 200px; height: 250px; background: white; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; position: relative;">
+                                    <div style="background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%); height: 120px; display: flex; flex-direction: column; justify-content: flex-end; padding: 12px;">
+                                        <div style="font-size: 20px; font-weight: bold; color: white;">标题</div>
+                                    </div>
+                                    <div style="background: #2196F3; padding: 8px 16px; display: flex; align-items: center; gap: 8px;">
+                                        <span style="color: white;">📋</span>
+                                        <span style="font-size: 14px; color: white;">标题</span>
+                                    </div>
+                                    <div style="background: white; padding: 10px 16px; border-bottom: 1px solid #eee;">项目 0</div>
+                                    <div style="background: white; padding: 10px 16px; border-bottom: 1px solid #eee;">项目 1</div>
+                                    <div style="background: white; padding: 10px 16px;">项目 2</div>
+                                </div>
+                            </div>
+                            <div style="text-align: center;">
+                                <p style="font-size: 12px; color: #666; margin-bottom: 8px;">折叠状态</p>
+                                <div style="width: 200px; height: 250px; background: white; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; position: relative;">
+                                    <div style="background: #2196F3; padding: 12px 16px; display: flex; align-items: center; gap: 8px; position: relative;">
+                                        <span style="color: white;">📋</span>
+                                        <span style="font-size: 16px; font-weight: bold; color: white;">标题</span>
+                                    </div>
+                                    <div style="background: white; padding: 10px 16px; border-bottom: 1px solid #eee;">项目 0</div>
+                                    <div style="background: white; padding: 10px 16px; border-bottom: 1px solid #eee;">项目 1</div>
+                                    <div style="background: white; padding: 10px 16px; border-bottom: 1px solid #eee;">项目 2</div>
+                                    <div style="background: white; padding: 10px 16px; border-bottom: 1px solid #eee;">项目 3</div>
+                                    <div style="background: white; padding: 10px 16px;">项目 4</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <h3>使用示例</h3>
                     <div class="code-block">
@@ -733,6 +812,42 @@ CustomScrollView(
                     <h2>5. RefreshIndicator 下拉刷新</h2>
                     <p>RefreshIndicator 为可滚动组件添加下拉刷新功能。</p>
 
+                    <!-- RefreshIndicator 渲染图 -->
+                    <div style="background: #f5f5f5; border-radius: 12px; padding: 20px; margin: 20px 0;">
+                        <h4 style="margin-bottom: 15px; color: #333; text-align: center;">📐 RefreshIndicator 渲染效果</h4>
+                        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                            <div style="text-align: center;">
+                                <p style="font-size: 12px; color: #666; margin-bottom: 8px;">正常状态</p>
+                                <div style="width: 200px; height: 200px; background: white; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; position: relative;">
+                                    <div style="padding: 10px 16px; border-bottom: 1px solid #eee;">项目 0</div>
+                                    <div style="padding: 10px 16px; border-bottom: 1px solid #eee;">项目 1</div>
+                                    <div style="padding: 10px 16px; border-bottom: 1px solid #eee;">项目 2</div>
+                                    <div style="padding: 10px 16px; border-bottom: 1px solid #eee;">项目 3</div>
+                                    <div style="padding: 10px 16px;">项目 4</div>
+                                </div>
+                            </div>
+                            <div style="text-align: center;">
+                                <p style="font-size: 12px; color: #666; margin-bottom: 8px;">下拉状态</p>
+                                <div style="width: 200px; height: 200px; background: white; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; position: relative;">
+                                    <div style="height: 40px; background: #e3f2fd; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                        <div style="width: 20px; height: 20px; border: 3px solid #2196F3; border-top: 3px solid transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                                        <span style="font-size: 14px; color: #2196F3;">刷新中...</span>
+                                    </div>
+                                    <div style="padding: 10px 16px; border-bottom: 1px solid #eee;">项目 0</div>
+                                    <div style="padding: 10px 16px; border-bottom: 1px solid #eee;">项目 1</div>
+                                    <div style="padding: 10px 16px; border-bottom: 1px solid #eee;">项目 2</div>
+                                    <div style="padding: 10px 16px;">项目 3</div>
+                                </div>
+                            </div>
+                        </div>
+                        <style>
+                            @keyframes spin {
+                                0% { transform: rotate(0deg); }
+                                100% { transform: rotate(360deg); }
+                            }
+                        </style>
+                    </div>
+
                     <h3>使用示例</h3>
                     <div class="code-block">
                         <pre><code>// 基本 RefreshIndicator
@@ -761,6 +876,34 @@ Future<void> _refreshData() async {
                 <div class="component-card">
                     <h2>6. ScrollController 滚动控制</h2>
                     <p>ScrollController 用于控制滚动行为，如滚动到指定位置、监听滚动事件等。</p>
+
+                    <!-- ScrollController 渲染图 -->
+                    <div style="background: #f5f5f5; border-radius: 12px; padding: 20px; margin: 20px 0;">
+                        <h4 style="margin-bottom: 15px; color: #333; text-align: center;">📐 ScrollController 渲染效果</h4>
+                        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                            <div style="text-align: center;">
+                                <p style="font-size: 12px; color: #666; margin-bottom: 8px;">顶部（无滚动按钮）</p>
+                                <div style="width: 200px; height: 200px; background: white; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; position: relative;">
+                                    <div style="padding: 10px 16px; border-bottom: 1px solid #eee;">项目 0</div>
+                                    <div style="padding: 10px 16px; border-bottom: 1px solid #eee;">项目 1</div>
+                                    <div style="padding: 10px 16px; border-bottom: 1px solid #eee;">项目 2</div>
+                                    <div style="padding: 10px 16px; border-bottom: 1px solid #eee;">项目 3</div>
+                                    <div style="padding: 10px 16px;">项目 4</div>
+                                </div>
+                            </div>
+                            <div style="text-align: center;">
+                                <p style="font-size: 12px; color: #666; margin-bottom: 8px;">底部（显示滚动按钮）</p>
+                                <div style="width: 200px; height: 200px; background: white; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; position: relative;">
+                                    <div style="padding: 10px 16px; border-bottom: 1px solid #eee;">项目 50</div>
+                                    <div style="padding: 10px 16px; border-bottom: 1px solid #eee;">项目 51</div>
+                                    <div style="padding: 10px 16px; border-bottom: 1px solid #eee;">项目 52</div>
+                                    <div style="padding: 10px 16px; border-bottom: 1px solid #eee;">项目 53</div>
+                                    <div style="padding: 10px 16px;">项目 54</div>
+                                    <button style="position: absolute; bottom: 12px; right: 12px; width: 48px; height: 48px; background: #6200EE; border: none; border-radius: 50%; color: white; font-size: 24px; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center;">↑</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <h3>使用示例</h3>
                     <div class="code-block">
