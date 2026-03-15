@@ -291,6 +291,19 @@ showDialog(
                     <h2>2. SimpleDialog 简单对话框</h2>
                     <p>SimpleDialog 用于提供选项列表供用户选择。</p>
 
+                    <!-- SimpleDialog 渲染图 -->
+                    <div style="background: #f5f5f5; border-radius: 12px; padding: 20px; margin: 20px 0;">
+                        <h4 style="margin-bottom: 15px; color: #333; text-align: center;">📐 SimpleDialog 渲染效果</h4>
+                        <div style="position: relative; width: 260px; height: 220px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); overflow: hidden;">
+                            <div style="padding: 15px 20px; color: #333; font-weight: bold; border-bottom: 1px solid #eee;">选择操作</div>
+                            <div style="padding: 10px 20px;">
+                                <div style="padding: 12px 0; border-bottom: 1px solid #f0f0f0; cursor: pointer; color: #333;">👁️ 查看详情</div>
+                                <div style="padding: 12px 0; border-bottom: 1px solid #f0f0f0; cursor: pointer; color: #333;">✏️ 编辑</div>
+                                <div style="padding: 12px 0; cursor: pointer; color: #333;">🗑️ 删除</div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="code-block">
                         <pre><code>showDialog(
   context: context,
@@ -449,6 +462,39 @@ ScaffoldMessenger.of(context).showSnackBar(snackBar);</code></pre>
                     <h2>5. showDialog 显示对话框</h2>
                     <p>showDialog 是显示对话框的核心方法。</p>
 
+                    <!-- showDialog 渲染图 -->
+                    <div style="background: #f5f5f5; border-radius: 12px; padding: 20px; margin: 20px 0;">
+                        <h4 style="margin-bottom: 15px; color: #333; text-align: center;">📐 showDialog 返回值流程</h4>
+                        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                            <div style="text-align: center;">
+                                <p style="font-size: 12px; color: #666; margin-bottom: 8px;">1. 显示对话框</p>
+                                <div style="position: relative; width: 200px; height: 120px; background: #eee; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                                    <span style="color: #666;">页面内容</span>
+                                    <div style="position: absolute; background: white; padding: 12px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); text-align: center;">
+                                        <div style="font-weight: bold; margin-bottom: 8px;">确认</div>
+                                        <div style="font-size: 12px; color: #666;">确定要继续吗？</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; color: #999;">→</div>
+                            <div style="text-align: center;">
+                                <p style="font-size: 12px; color: #666; margin-bottom: 8px;">2. 用户选择</p>
+                                <div style="width: 120px; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                                    <div style="background: #eee; padding: 8px 16px; border-radius: 4px; font-size: 14px; color: #666; margin-bottom: 8px;">取消</div>
+                                    <div style="background: #2196F3; padding: 8px 16px; border-radius: 4px; font-size: 14px; color: white;">确定</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; color: #999;">→</div>
+                            <div style="text-align: center;">
+                                <p style="font-size: 12px; color: #666; margin-bottom: 8px;">3. 返回结果</p>
+                                <div style="padding: 20px; background: #E8F5E9; border: 1px solid #4CAF50; border-radius: 8px;">
+                                    <div style="color: #4CAF50; font-weight: bold;">true/false</div>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="text-align: center; color: #666; font-size: 12px; margin-top: 15px;">showDialog 返回 Future，可以获取用户选择的值</p>
+                    </div>
+
                     <div class="code-block">
                         <pre><code>// 带返回值的对话框
 Future<bool?> showConfirmDialog(BuildContext context) {
@@ -483,6 +529,36 @@ if (confirmed == true) {
                     <h2>6. showDialog 全局对话框</h2>
                     <p>使用 navigatorKey 显示全局对话框。</p>
 
+                    <!-- showDialog 全局对话框渲染图 -->
+                    <div style="background: #f5f5f5; border-radius: 12px; padding: 20px; margin: 20px 0;">
+                        <h4 style="margin-bottom: 15px; color: #333; text-align: center;">📐 全局对话框工作原理</h4>
+                        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                            <div style="text-align: center;">
+                                <p style="font-size: 12px; color: #666; margin-bottom: 8px;">MaterialApp</p>
+                                <div style="width: 150px; padding: 15px; background: #2196F3; border-radius: 8px; color: white;">
+                                    <div style="font-size: 14px; margin-bottom: 8px;">App</div>
+                                    <div style="font-size: 11px;">navigatorKey</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; color: #999;">↓</div>
+                            <div style="text-align: center;">
+                                <p style="font-size: 12px; color: #666; margin-bottom: 8px;">任意位置调用</p>
+                                <div style="width: 120px; padding: 12px; background: #FF9800; border-radius: 8px; color: white; font-size: 13px;">
+                                    showDialog()
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; color: #999;">↓</div>
+                            <div style="text-align: center;">
+                                <p style="font-size: 12px; color: #666; margin-bottom: 8px;">显示对话框</p>
+                                <div style="position: relative; width: 120px; padding: 15px; background: white; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); text-align: center;">
+                                    <div style="font-weight: bold; margin-bottom: 5px;">全局对话框</div>
+                                    <div style="font-size: 11px; color: #666;">无需 context</div>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="text-align: center; color: #666; font-size: 12px; margin-top: 15px;">通过 GlobalKey 在应用任何位置显示对话框，不受页面层级限制</p>
+                    </div>
+
                     <div class="code-block">
                         <pre><code>// 在 MaterialApp 中设置 navigatorKey
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -514,6 +590,56 @@ void showGlobalDialog() {
                 <div class="component-card">
                     <h2>7. DatePickerDialog 日期选择器</h2>
                     <p>日期选择器用于选择日期。</p>
+
+                    <!-- DatePickerDialog 渲染图 -->
+                    <div style="background: #f5f5f5; border-radius: 12px; padding: 20px; margin: 20px 0;">
+                        <h4 style="margin-bottom: 15px; color: #333; text-align: center;">📐 DatePickerDialog 渲染效果</h4>
+                        <div style="position: relative; width: 320px; height: 380px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); overflow: hidden;">
+                            <div style="background: #2196F3; padding: 15px; color: white; text-align: center; font-weight: bold;">2024年3月</div>
+                            <div style="padding: 15px;">
+                                <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; text-align: center; font-size: 12px; margin-bottom: 10px;">
+                                    <div style="color: #999;">日</div>
+                                    <div style="color: #999;">一</div>
+                                    <div style="color: #999;">二</div>
+                                    <div style="color: #999;">三</div>
+                                    <div style="color: #999;">四</div>
+                                    <div style="color: #999;">五</div>
+                                    <div style="color: #999;">六</div>
+                                </div>
+                                <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; text-align: center; font-size: 13px;">
+                                    <div style="color: #ccc; padding: 8px 0;">25</div>
+                                    <div style="color: #ccc; padding: 8px 0;">26</div>
+                                    <div style="color: #ccc; padding: 8px 0;">27</div>
+                                    <div style="color: #ccc; padding: 8px 0;">28</div>
+                                    <div style="color: #ccc; padding: 8px 0;">29</div>
+                                    <div style="padding: 8px 0;">1</div>
+                                    <div style="padding: 8px 0;">2</div>
+                                    <div style="padding: 8px 0;">3</div>
+                                    <div style="padding: 8px 0;">4</div>
+                                    <div style="padding: 8px 0;">5</div>
+                                    <div style="padding: 8px 0;">6</div>
+                                    <div style="padding: 8px 0;">7</div>
+                                    <div style="padding: 8px 0;">8</div>
+                                    <div style="padding: 8px 0;">9</div>
+                                    <div style="padding: 8px 0;">10</div>
+                                    <div style="padding: 8px 0;">11</div>
+                                    <div style="padding: 8px 0;">12</div>
+                                    <div style="padding: 8px 0;">13</div>
+                                    <div style="padding: 8px 0;">14</div>
+                                    <div style="background: #2196F3; color: white; border-radius: 50%; padding: 8px 0;">15</div>
+                                    <div style="padding: 8px 0;">16</div>
+                                    <div style="padding: 8px 0;">17</div>
+                                    <div style="padding: 8px 0;">18</div>
+                                    <div style="padding: 8px 0;">19</div>
+                                </div>
+                            </div>
+                            <div style="position: absolute; bottom: 15px; right: 15px; display: flex; gap: 10px;">
+                                <div style="background: #eee; padding: 8px 16px; border-radius: 4px; font-size: 14px; color: #666;">取消</div>
+                                <div style="background: #2196F3; padding: 8px 16px; border-radius: 4px; font-size: 14px; color: white;">确定</div>
+                            </div>
+                        </div>
+                        <p style="text-align: center; color: #666; font-size: 12px; margin-top: 10px;">日历视图，支持选择年月日</p>
+                    </div>
 
                     <div class="code-block">
                         <pre><code>// 显示日期选择器
@@ -561,6 +687,30 @@ Future<void> _selectDateRange() async {
                     <h2>8. TimePickerDialog 时间选择器</h2>
                     <p>时间选择器用于选择时间。</p>
 
+                    <!-- TimePickerDialog 渲染图 -->
+                    <div style="background: #f5f5f5; border-radius: 12px; padding: 20px; margin: 20px 0;">
+                        <h4 style="margin-bottom: 15px; color: #333; text-align: center;">📐 TimePickerDialog 渲染效果</h4>
+                        <div style="position: relative; width: 300px; height: 280px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); overflow: hidden;">
+                            <div style="background: #2196F3; padding: 15px; color: white; text-align: center; font-weight: bold;">选择时间</div>
+                            <div style="padding: 20px; display: flex; align-items: center; justify-content: center; gap: 20px;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 48px; font-weight: bold; color: #2196F3;">14</div>
+                                    <div style="font-size: 12px; color: #666;">小时</div>
+                                </div>
+                                <div style="font-size: 36px; color: #999;">:</div>
+                                <div style="text-align: center;">
+                                    <div style="font-size: 48px; font-weight: bold; color: #333;">30</div>
+                                    <div style="font-size: 12px; color: #666;">分钟</div>
+                                </div>
+                            </div>
+                            <div style="position: absolute; bottom: 15px; right: 15px; display: flex; gap: 10px;">
+                                <div style="background: #eee; padding: 8px 16px; border-radius: 4px; font-size: 14px; color: #666;">取消</div>
+                                <div style="background: #2196F3; padding: 8px 16px; border-radius: 4px; font-size: 14px; color: white;">确定</div>
+                            </div>
+                        </div>
+                        <p style="text-align: center; color: #666; font-size: 12px; margin-top: 10px;">24小时制，分别选择小时和分钟</p>
+                    </div>
+
                     <div class="code-block">
                         <pre><code>// 显示时间选择器
 Future<void> _selectTime() async {
@@ -584,6 +734,24 @@ Future<void> _selectTime() async {
                 <div class="component-card">
                     <h2>9. showDialog 自定义对话框</h2>
                     <p>创建自定义样式的对话框。</p>
+
+                    <!-- showDialog 自定义对话框渲染图 -->
+                    <div style="background: #f5f5f5; border-radius: 12px; padding: 20px; margin: 20px 0;">
+                        <h4 style="margin-bottom: 15px; color: #333; text-align: center;">📐 自定义对话框效果</h4>
+                        <div style="position: relative; width: 280px; height: 280px; margin: 0 auto; background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); overflow: hidden;">
+                            <div style="padding: 30px 20px; text-align: center;">
+                                <div style="width: 60px; height: 60px; background: #4CAF50; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;">
+                                    <span style="font-size: 36px; color: white;">✓</span>
+                                </div>
+                                <div style="font-size: 20px; font-weight: bold; color: #333; margin-bottom: 10px;">操作成功</div>
+                                <div style="font-size: 14px; color: #666;">您的操作已成功完成</div>
+                            </div>
+                            <div style="position: absolute; bottom: 20px; left: 20px; right: 20px;">
+                                <div style="width: 100%; background: #4CAF50; padding: 12px; border-radius: 8px; text-align: center; color: white; font-weight: bold; cursor: pointer;">确定</div>
+                            </div>
+                        </div>
+                        <p style="text-align: center; color: #666; font-size: 12px; margin-top: 10px;">使用 Dialog 组件实现完全自定义的样式</p>
+                    </div>
 
                     <div class="code-block">
                         <pre><code>showDialog(
