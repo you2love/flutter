@@ -322,6 +322,122 @@ class _CounterWidgetState extends State<CounterWidget> {
 )</code></pre>
                 </div>
 
+                <!-- Text 核心属性表格 -->
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                    <h4 style="margin-bottom: 15px; color: #333;">📋 Text 核心属性</h4>
+                    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                        <tr style="background: #2196F3; color: white;">
+                            <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">属性</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">类型</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">说明</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">常用值</th>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 8px; border: 1px solid #ddd;">style</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">TextStyle</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">文本样式</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">TextStyle()</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ddd;">textAlign</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">TextAlign</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">文本对齐方式</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">center, left, right</td>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 8px; border: 1px solid #ddd;">maxLines</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">int</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">最大行数</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">1, 2, 3...</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ddd;">overflow</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">TextOverflow</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">溢出处理</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">ellipsis, fade, clip</td>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 8px; border: 1px solid #ddd;">textDirection</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">TextDirection</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">文本方向</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">ltr, rtl</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ddd;">softWrap</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">bool</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">是否自动换行</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">true, false</td>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 8px; border: 1px solid #ddd;">strutStyle</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">StrutStyle</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">段落样式</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">StrutStyle()</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- TextStyle 核心属性 -->
+                <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #2196F3;">
+                    <h4 style="margin-bottom: 15px; color: #1565C0;">🎨 TextStyle 核心属性</h4>
+                    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                        <tr style="background: #1565C0; color: white;">
+                            <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">属性</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">类型</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">说明</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">常用值</th>
+                        </tr>
+                        <tr style="background: #e3f2fd;">
+                            <td style="padding: 8px; border: 1px solid #ddd;">fontSize</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">double</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">字体大小</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">14, 16, 18...</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ddd;">fontWeight</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">FontWeight</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">字体粗细</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">bold, normal, w500</td>
+                        </tr>
+                        <tr style="background: #e3f2fd;">
+                            <td style="padding: 8px; border: 1px solid #ddd;">color</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Color</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">字体颜色</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Colors.blue, Color(0xFF...)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ddd;">letterSpacing</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">double</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">字母间距</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">1.0, 1.5, 2.0...</td>
+                        </tr>
+                        <tr style="background: #e3f2fd;">
+                            <td style="padding: 8px; border: 1px solid #ddd;">wordSpacing</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">double</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">单词间距</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">1.0, 2.0, 3.0...</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ddd;">height</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">double</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">行高</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">1.0, 1.2, 1.5...</td>
+                        </tr>
+                        <tr style="background: #e3f2fd;">
+                            <td style="padding: 8px; border: 1px solid #ddd;">fontFamily</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">String</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">字体族</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Roboto, Arial...</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ddd;">decoration</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">TextDecoration</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">文本装饰</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">underline, lineThrough...</td>
+                        </tr>
+                    </table>
+                </div>
+
                 <h3>Image</h3>
                 <p>Image Widget 用于显示图片。</p>
 
@@ -349,6 +465,120 @@ Image.asset('assets/images/logo.png')
 
 // 从文件加载
 Image.file(File('/path/to/image.jpg'))</code></pre>
+                </div>
+
+                <!-- Image 核心属性表格 -->
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                    <h4 style="margin-bottom: 15px; color: #333;">📋 Image 核心属性</h4>
+                    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                        <tr style="background: #9C27B0; color: white;">
+                            <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">属性</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">类型</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">说明</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">常用值</th>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 8px; border: 1px solid #ddd;">width</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">double</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">图片宽度</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">100, 200, 300...</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ddd;">height</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">double</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">图片高度</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">100, 200, 300...</td>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 8px; border: 1px solid #ddd;">fit</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">BoxFit</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">图片填充方式</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">cover, contain, fill...</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ddd;">color</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Color</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">图片颜色</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Colors.blue, Colors.red...</td>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 8px; border: 1px solid #ddd;">alignment</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">AlignmentGeometry</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">对齐方式</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">center, topLeft, bottomRight...</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ddd;">repeat</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">ImageRepeat</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">图片重复方式</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">noRepeat, repeat, repeatX...</td>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 8px; border: 1px solid #ddd;">semanticLabel</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">String</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">语义标签</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">"用户头像", "产品图片"...</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ddd;">filterQuality</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">FilterQuality</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">图片质量</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">low, medium, high, none</td>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 8px; border: 1px solid #ddd;">opacity</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">double</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">透明度</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">0.0-1.0</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- BoxFit 详解 -->
+                <div style="background: #e1bee7; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #9C27B0;">
+                    <h4 style="margin-bottom: 15px; color: #6A1B9A;">🎯 BoxFit 详解</h4>
+                    <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                        <tr style="background: #6A1B9A; color: white;">
+                            <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">值</th>
+                            <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">说明</th>
+                            <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">效果</th>
+                        </tr>
+                        <tr style="background: #e1bee7;">
+                            <td style="padding: 6px; border: 1px solid #ddd;">fill</td>
+                            <td style="padding: 6px; border: 1px solid #ddd;">完全填充，不保持宽高比</td>
+                            <td style="padding: 6px; border: 1px solid #ddd;">可能变形</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 6px; border: 1px solid #ddd;">cover</td>
+                            <td style="padding: 6px; border: 1px solid #ddd;">保持宽高比，完全覆盖</td>
+                            <td style="padding: 6px; border: 1px solid #ddd;">可能裁剪</td>
+                        </tr>
+                        <tr style="background: #e1bee7;">
+                            <td style="padding: 6px; border: 1px solid #ddd;">contain</td>
+                            <td style="padding: 6px; border: 1px solid #ddd;">保持宽高比，完整显示</td>
+                            <td style="padding: 6px; border: 1px solid #ddd;">可能留白</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 6px; border: 1px solid #ddd;">fitWidth</td>
+                            <td style="padding: 6px; border: 1px solid #ddd;">保持宽度，高度自适应</td>
+                            <td style="padding: 6px; border: 1px solid #ddd;">宽度对齐</td>
+                        </tr>
+                        <tr style="background: #e1bee7;">
+                            <td style="padding: 6px; border: 1px solid #ddd;">fitHeight</td>
+                            <td style="padding: 6px; border: 1px solid #ddd;">保持高度，宽度自适应</td>
+                            <td style="padding: 6px; border: 1px solid #ddd;">高度对齐</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 6px; border: 1px solid #ddd;">none</td>
+                            <td style="padding: 6px; border: 1px solid #ddd;">不进行缩放</td>
+                            <td style="padding: 6px; border: 1px solid #ddd;">原始大小</td>
+                        </tr>
+                        <tr style="background: #e1bee7;">
+                            <td style="padding: 6px; border: 1px solid #ddd;">scaleDown</td>
+                            <td style="padding: 6px; border: 1px solid #ddd;">缩小图片以适应容器</td>
+                            <td style="padding: 6px; border: 1px solid #ddd;">不放大</td>
+                        </tr>
+                    </table>
                 </div>
 
                 <h3>Icon</h3>
@@ -381,103 +611,118 @@ Icon(
 )</code></pre>
                 </div>
 
-                <h2>4. 布局 Widget</h2>
-
-                <h3>Row（行布局）</h3>
-                <p>Row Widget 在水平方向上排列子 Widget。</p>
-
-                <div class="code-block">
-                    <pre><code>Row(
-  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  crossAxisAlignment: CrossAxisAlignment.center,
-  children: const [
-    Icon(Icons.star, color: Colors.yellow),
-    Icon(Icons.star, color: Colors.yellow),
-    Icon(Icons.star, color: Colors.yellow),
-    Icon(Icons.star_half, color: Colors.yellow),
-    Icon(Icons.star_border, color: Colors.yellow),
-  ],
-)</code></pre>
+                <!-- Icon 核心属性表格 -->
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                    <h4 style="margin-bottom: 15px; color: #333;">📋 Icon 核心属性</h4>
+                    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                        <tr style="background: #FF9800; color: white;">
+                            <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">属性</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">类型</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">说明</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">常用值</th>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 8px; border: 1px solid #ddd;">icon</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">IconData</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">图标数据</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Icons.star, Icons.home...</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ddd;">size</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">double</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">图标大小</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">16, 24, 32, 48...</td>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 8px; border: 1px solid #ddd;">color</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Color</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">图标颜色</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">Colors.blue, Colors.red...</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ddd;">semanticLabel</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">String</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">语义标签</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">"收藏", "设置"...</td>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 8px; border: 1px solid #ddd;">textDirection</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">TextDirection</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">文本方向</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">ltr, rtl</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ddd;">shadows</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">List&lt;Shadow&gt;</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">阴影效果</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">[Shadow(blur: 10...)]</td>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 8px; border: 1px solid #ddd;">applyTextScaling</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">bool</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">是否应用文本缩放</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">true, false</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ddd;">grade</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">int</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">图标等级</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">0-255</td>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 8px; border: 1px solid #ddd;">weight</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">int</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">图标权重</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">100-900</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ddd;">opticalSize</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">int</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">光学尺寸</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">20-48</td>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 8px; border: 1px solid #ddd;">fill</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">double</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">填充程度</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">0.0-1.0</td>
+                        </tr>
+                    </table>
                 </div>
 
-                <h3>Column（列布局）</h3>
-                <p>Column Widget 在垂直方向上排列子 Widget。</p>
-
-                <div class="code-block">
-                    <pre><code>Column(
-  mainAxisAlignment: MainAxisAlignment.center,
-  crossAxisAlignment: CrossAxisAlignment.stretch,
-  children: [
-    const Text(
-      '用户信息',
-      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-    ),
-    const SizedBox(height: 10),
-    const TextField(
-      decoration: InputDecoration(
-        hintText: '用户名',
-        border: OutlineInputBorder(),
-      ),
-    ),
-    const SizedBox(height: 10),
-    const TextField(
-      decoration: InputDecoration(
-        hintText: '密码',
-        border: OutlineInputBorder(),
-      ),
-    ),
-    const SizedBox(height: 20),
-    ElevatedButton(
-      onPressed: () {},
-      child: const Text('登录'),
-    ),
-  ],
-)</code></pre>
+                <!-- 常用图标集 -->
+                <div style="background: #fff3e0; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #FF9800;">
+                    <h4 style="margin-bottom: 15px; color: #E65100;">🎨 常用图标集</h4>
+                    <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                        <tr style="background: #E65100; color: white;">
+                            <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">图标集</th>
+                            <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">说明</th>
+                            <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">示例</th>
+                        </tr>
+                        <tr style="background: #fff3e0;">
+                            <td style="padding: 6px; border: 1px solid #ddd;">Material Icons</td>
+                            <td style="padding: 6px; border: 1px solid #ddd;">Material Design 官方图标</td>
+                            <td style="padding: 6px; border: 1px solid #ddd;">Icons.star, Icons.home</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 6px; border: 1px solid #ddd;">Cupertino Icons</td>
+                            <td style="padding: 6px; border: 1px solid #ddd;">iOS 风格图标</td>
+                            <td style="padding: 6px; border: 1px solid #ddd;">CupertinoIcons.heart</td>
+                        </tr>
+                        <tr style="background: #fff3e0;">
+                            <td style="padding: 6px; border: 1px solid #ddd;">Font Awesome</td>
+                            <td style="padding: 6px; border: 1px solid #ddd;">Font Awesome 图标</td>
+                            <td style="padding: 6px; border: 1px solid #ddd;">FontAwesomeIcons.star</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 6px; border: 1px solid #ddd;">自定义图标</td>
+                            <td style="padding: 6px; border: 1px solid #ddd;">使用自定义字体文件</td>
+                            <td style="padding: 6px; border: 1px solid #ddd;">IconData(0xe800, fontFamily: 'MyFont')</td>
+                        </tr>
+                    </table>
                 </div>
 
-                <h3>Stack（堆叠布局）</h3>
-                <p>Stack Widget 允许子 Widget 重叠。</p>
-
-                <div class="code-block">
-                    <pre><code>Stack(
-  alignment: Alignment.center,
-  children: [
-    // 背景图片
-    Container(
-      width: 200,
-      height: 200,
-      decoration: const BoxDecoration(
-        color: Colors.blue,
-        shape: BoxShape.circle,
-      ),
-    ),
-    // 文字在中心
-    const Text(
-      '中心',
-      style: TextStyle(
-        color: Colors.white,
-        fontSize: 24,
-        fontWeight: FontWeight.bold,
-      ),
-    ),
-    // 右下角图标
-    Positioned(
-      bottom: 10,
-      right: 10,
-      child: Container(
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          shape: BoxShape.circle,
-        ),
-        child: const Icon(Icons.edit, size: 20),
-      ),
-    ),
-  ],
-)</code></pre>
-                </div>
-
-                <h2>5. 交互 Widget</h2>
+                <h2>4. 交互 Widget</h2>
 
                 <h3>按钮</h3>
                 <p>Flutter 提供了多种按钮类型。</p>
@@ -546,7 +791,7 @@ IconButton(
 )</code></pre>
                 </div>
 
-                <h2>6. Widget 树</h2>
+                <h2>5. Widget 树</h2>
                 <p>Flutter 应用的 UI 由 Widget 树组成。理解 Widget 树对于构建复杂 UI 至关重要。</p>
 
                 <div class="widget-diagram">
@@ -563,7 +808,7 @@ MaterialApp
      └── FloatingActionButton</pre>
                 </div>
 
-                <h2>7. 生命周期</h2>
+                <h2>6. 生命周期</h2>
                 <p>理解 StatefulWidget 的生命周期对于管理状态和资源很重要。</p>
 
                 <div class="code-block">
@@ -699,7 +944,7 @@ class _LifecycleWidgetState extends State<LifecycleWidget> {
                     </table>
                 </div>
 
-                <h2>8. 最佳实践</h2>
+                <h2>7. 最佳实践</h2>
                 <ul>
                     <li><strong>合理拆分 Widget：</strong>将大 Widget 拆分成小的、可重用的组件</li>
                     <li><strong>使用 const：</strong>对于不变的 Widget 使用 const 构造函数</li>
