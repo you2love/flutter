@@ -176,6 +176,13 @@
                     <h2>🖌️ CustomPaint</h2>
                     <p>CustomPaint 是一个自定义绘制组件，通过 CustomPainter 实现自定义绘制逻辑。</p>
 
+                    <h3>渲染预览</h3>
+                    <div class="example-preview">
+                        <div style="width: 100%; max-width: 400px;">
+                            <canvas id="customPaintCanvas" width="300" height="300" style="background: white; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></canvas>
+                        </div>
+                    </div>
+
                     <h3>基本用法</h3>
                     <div class="code-block">
                         <pre><code>class MyPainter extends CustomPainter {
@@ -244,6 +251,13 @@ CustomPaint(
                     <h2>🎨 Canvas</h2>
                     <p>Canvas 是画布对象，提供了丰富的绘制方法，用于在画布上绘制各种图形。</p>
 
+                    <h3>渲染预览</h3>
+                    <div class="example-preview">
+                        <div style="width: 100%; max-width: 500px;">
+                            <canvas id="canvasCanvas" width="400" height="300" style="background: white; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></canvas>
+                        </div>
+                    </div>
+
                     <h3>常用绘制方法</h3>
                     <div class="code-block">
                         <pre><code>@override
@@ -311,6 +325,13 @@ void paint(Canvas canvas, Size size) {
                 <div class="component-section" id="paint">
                     <h2>🖌️ Paint</h2>
                     <p>Paint 是绘制样式对象，用于控制绘制的外观，如颜色、线条宽度、填充模式等。</p>
+
+                    <h3>渲染预览</h3>
+                    <div class="example-preview">
+                        <div style="width: 100%; max-width: 500px;">
+                            <canvas id="paintCanvas" width="400" height="200" style="background: white; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></canvas>
+                        </div>
+                    </div>
 
                     <h3>基本用法</h3>
                     <div class="code-block">
@@ -388,6 +409,13 @@ final shadowPaint = Paint()
                 <div class="component-section" id="path">
                     <h2>📍 Path</h2>
                     <p>Path 是路径对象，用于定义复杂的图形路径，可以包含直线、曲线、圆弧等。</p>
+
+                    <h3>渲染预览</h3>
+                    <div class="example-preview">
+                        <div style="width: 100%; max-width: 500px;">
+                            <canvas id="pathCanvas" width="400" height="300" style="background: white; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></canvas>
+                        </div>
+                    </div>
 
                     <h3>基本用法</h3>
                     <div class="code-block">
@@ -490,5 +518,184 @@ canvas.drawPath(path, paint);</code></pre>
     <!-- Prism.js 语法高亮 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-dart.min.js"></script>
+
+    <script>
+        // CustomPaint 渲染预览
+        const customPaintCanvas = document.getElementById('customPaintCanvas');
+        if (customPaintCanvas) {
+            const ctx = customPaintCanvas.getContext('2d');
+            // 绘制背景渐变
+            const gradient = ctx.createLinearGradient(0, 0, 300, 300);
+            gradient.addColorStop(0, '#2196F3');
+            gradient.addColorStop(1, '#1976D2');
+            
+            // 绘制圆形
+            ctx.beginPath();
+            ctx.arc(150, 150, 75, 0, Math.PI * 2);
+            ctx.fillStyle = gradient;
+            ctx.fill();
+            
+            // 绘制内圈
+            ctx.beginPath();
+            ctx.arc(150, 150, 50, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+
+        // Canvas 渲染预览
+        const canvasCanvas = document.getElementById('canvasCanvas');
+        if (canvasCanvas) {
+            const ctx = canvasCanvas.getContext('2d');
+            
+            // 绘制线段
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(400, 300);
+            ctx.strokeStyle = '#2196F3';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            
+            // 绘制矩形
+            ctx.beginPath();
+            ctx.rect(50, 50, 100, 100);
+            ctx.strokeStyle = '#4CAF50';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            
+            // 绘制圆角矩形
+            ctx.beginPath();
+            ctx.roundRect(200, 50, 100, 100, 10);
+            ctx.strokeStyle = '#FF9800';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            
+            // 绘制椭圆
+            ctx.beginPath();
+            ctx.ellipse(125, 250, 75, 50, 0, 0, Math.PI * 2);
+            ctx.strokeStyle = '#E91E63';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            
+            // 绘制三角形路径
+            ctx.beginPath();
+            ctx.moveTo(250, 250);
+            ctx.lineTo(350, 250);
+            ctx.lineTo(300, 200);
+            ctx.closePath();
+            ctx.strokeStyle = '#9C27B0';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+        }
+
+        // Paint 渲染预览
+        const paintCanvas = document.getElementById('paintCanvas');
+        if (paintCanvas) {
+            const ctx = paintCanvas.getContext('2d');
+            
+            // 绘制不同样式的线条
+            // 1. 红色粗线
+            ctx.beginPath();
+            ctx.moveTo(20, 30);
+            ctx.lineTo(100, 30);
+            ctx.strokeStyle = '#F44336';
+            ctx.lineWidth = 5;
+            ctx.lineCap = 'round';
+            ctx.stroke();
+            
+            // 2. 绿色填充矩形
+            ctx.fillStyle = '#4CAF50';
+            ctx.fillRect(120, 15, 60, 30);
+            
+            // 3. 蓝色圆角
+            ctx.beginPath();
+            ctx.roundRect(200, 15, 30, 30, 15);
+            ctx.fillStyle = '#2196F3';
+            ctx.fill();
+            
+            // 4. 渐变线条
+            const gradient = ctx.createLinearGradient(250, 30, 380, 30);
+            gradient.addColorStop(0, '#F44336');
+            gradient.addColorStop(1, '#2196F3');
+            ctx.beginPath();
+            ctx.moveTo(250, 30);
+            ctx.lineTo(380, 30);
+            ctx.strokeStyle = gradient;
+            ctx.lineWidth = 8;
+            ctx.stroke();
+            
+            // 5. 阴影效果
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+            ctx.shadowBlur = 10;
+            ctx.shadowOffsetX = 5;
+            ctx.shadowOffsetY = 5;
+            ctx.beginPath();
+            ctx.arc(60, 100, 30, 0, Math.PI * 2);
+            ctx.fillStyle = '#FF9800';
+            ctx.fill();
+            ctx.shadowColor = 'transparent';
+            
+            // 6. 填充三角形
+            ctx.beginPath();
+            ctx.moveTo(150, 70);
+            ctx.lineTo(120, 130);
+            ctx.lineTo(180, 130);
+            ctx.closePath();
+            ctx.fillStyle = '#9C27B0';
+            ctx.fill();
+        }
+
+        // Path 渲染预览
+        const pathCanvas = document.getElementById('pathCanvas');
+        if (pathCanvas) {
+            const ctx = pathCanvas.getContext('2d');
+            
+            // 绘制复杂路径
+            ctx.beginPath();
+            ctx.moveTo(50, 50);
+            
+            // 贝塞尔曲线
+            ctx.quadraticCurveTo(100, 20, 150, 50);
+            ctx.bezierCurveTo(200, 80, 250, 20, 300, 50);
+            
+            // 圆弧
+            ctx.arcTo(350, 100, 350, 150, 50);
+            
+            // 闭合路径形成心形
+            ctx.bezierCurveTo(350, 200, 200, 250, 200, 250);
+            ctx.bezierCurveTo(200, 250, 50, 200, 50, 150);
+            
+            ctx.strokeStyle = '#E91E63';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            
+            // 绘制填充的星形路径
+            ctx.beginPath();
+            const cx = 280, cy = 200, spikes = 5, outerRadius = 40, innerRadius = 20;
+            let rot = Math.PI / 2 * 3;
+            let x = cx, y = cy;
+            const step = Math.PI / spikes;
+
+            ctx.moveTo(cx, cy - outerRadius);
+            for (let i = 0; i < spikes; i++) {
+                x = cx + Math.cos(rot) * outerRadius;
+                y = cy + Math.sin(rot) * outerRadius;
+                ctx.lineTo(x, y);
+                rot += step;
+
+                x = cx + Math.cos(rot) * innerRadius;
+                y = cy + Math.sin(rot) * innerRadius;
+                ctx.lineTo(x, y);
+                rot += step;
+            }
+            ctx.lineTo(cx, cy - outerRadius);
+            ctx.closePath();
+            ctx.fillStyle = '#FFC107';
+            ctx.fill();
+            ctx.strokeStyle = '#FF9800';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+    </script>
 </body>
 </html>
