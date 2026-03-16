@@ -6,6 +6,225 @@
     <title>Cupertino 组件 - Flutter 学习教程</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        .render-container {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .render-title {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .flutter-preview {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        /* Cupertino 组件预览 */
+        .cupertino-nav {
+            background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+        
+        .cupertino-nav-center {
+            font-size: 17px;
+            font-weight: 600;
+            color: #000;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .cupertino-nav-left,
+        .cupertino-nav-right {
+            display: flex;
+            align-items: center;
+            width: 80px;
+        }
+        
+        .cupertino-nav-right {
+            justify-content: flex-end;
+        }
+        
+        .cupertino-icon {
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #007AFF;
+        }
+        
+        .cupertino-scaffold {
+            min-height: 200px;
+            background: #F2F2F7;
+            padding: 20px;
+        }
+        
+        .cupertino-content {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        
+        /* CupertinoTabBar */
+        .cupertino-tabbar {
+            display: flex;
+            justify-content: space-around;
+            background: rgba(249, 249, 249, 0.95);
+            border-top: 1px solid rgba(0,0,0,0.1);
+            padding: 8px 0;
+            margin-top: 12px;
+        }
+        
+        .tab-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #8E8E93;
+            font-size: 10px;
+        }
+        
+        .tab-item.active {
+            color: #007AFF;
+        }
+        
+        .tab-icon {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 2px;
+        }
+        
+        /* CupertinoButton */
+        .cupertino-button {
+            background: #007AFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .cupertino-button-filled {
+            background: #007AFF;
+            color: white;
+        }
+        
+        .cupertino-button-text {
+            background: transparent;
+            color: #007AFF;
+            border: none;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        /* CupertinoDialog */
+        .cupertino-dialog {
+            background: rgba(0,0,0,0.4);
+            border-radius: 14px;
+            padding: 20px;
+            min-width: 270px;
+        }
+        
+        .dialog-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #000;
+        }
+        
+        .dialog-content {
+            text-align: center;
+            font-size: 13px;
+            color: #3C3C43;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .dialog-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .dialog-button {
+            padding: 10px;
+            background: transparent;
+            border: none;
+            font-size: 17px;
+            color: #007AFF;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .dialog-button.destructive {
+            color: #FF3B30;
+            font-weight: 500;
+        }
+        
+        .dialog-button-divider {
+            border-top: 1px solid rgba(60,60,67,0.29);
+        }
+        
+        /* CupertinoPicker */
+        .cupertino-picker {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .picker-item {
+            padding: 8px;
+            font-size: 16px;
+            color: #3C3C43;
+        }
+        
+        .picker-item.selected {
+            font-weight: 600;
+            color: #000;
+            background: #F2F2F7;
+            border-radius: 4px;
+        }
+        
+        .picker-item::before,
+        .picker-item::after {
+            content: '';
+            display: block;
+            height: 8px;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -51,6 +270,22 @@
 )</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="cupertino-nav">
+                            <div class="cupertino-nav-left"></div>
+                            <div class="cupertino-nav-center">标题</div>
+                            <div class="cupertino-nav-right"></div>
+                        </div>
+                        <div class="cupertino-scaffold">
+                            <div class="cupertino-content">
+                                <div style="color: #3C3C43; font-size: 16px;">内容</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="cupertinonav">CupertinoNavigationBar</h2>
                 <p>CupertinoNavigationBar 是 iOS 风格的导航栏。</p>
 
@@ -72,6 +307,21 @@
     },
   ),
 )</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="cupertino-nav">
+                            <div class="cupertino-nav-left">
+                                <div class="cupertino-icon">‹</div>
+                            </div>
+                            <div class="cupertino-nav-center">标题</div>
+                            <div class="cupertino-nav-right">
+                                <div class="cupertino-icon">⚙</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="cupertinotab">CupertinoTabBar</h2>
@@ -99,6 +349,29 @@
 )</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="cupertino-scaffold" style="padding: 20px; min-height: 100px;">
+                            <div style="text-align: center; color: #3C3C43; padding: 40px 0;">页面内容区域</div>
+                        </div>
+                        <div class="cupertino-tabbar">
+                            <div class="tab-item active">
+                                <div class="tab-icon">🏠</div>
+                                <span>首页</span>
+                            </div>
+                            <div class="tab-item">
+                                <div class="tab-icon">🔍</div>
+                                <span>搜索</span>
+                            </div>
+                            <div class="tab-item">
+                                <div class="tab-icon">👤</div>
+                                <span>我的</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="cupertinobutton">CupertinoButton</h2>
                 <p>CupertinoButton 是 iOS 风格的按钮。</p>
 
@@ -122,6 +395,17 @@ CupertinoButton(
   child: Text('文本按钮'),
   onPressed: () {},
 )</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="button-group">
+                            <button class="cupertino-button cupertino-button-filled">点击我</button>
+                            <button class="cupertino-button cupertino-button-filled">填充按钮</button>
+                            <button class="cupertino-button cupertino-button-text">文本按钮</button>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="cupertinodialog">CupertinoDialog</h2>
@@ -151,6 +435,20 @@ CupertinoButton(
 )</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">渲染效果预览</div>
+                    <div class="flutter-preview" style="background: #F2F2F7; padding: 40px;">
+                        <div class="cupertino-dialog">
+                            <div class="dialog-title">提示</div>
+                            <div class="dialog-content">这是一个 iOS 风格的对话框</div>
+                            <div class="dialog-actions">
+                                <button class="dialog-button dialog-button-divider">取消</button>
+                                <button class="dialog-button">确定</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="cupertinoalert">CupertinoAlertDialog</h2>
                 <p>CupertinoAlertDialog 是 iOS 风格的警告对话框。</p>
 
@@ -178,6 +476,20 @@ CupertinoButton(
 )</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">渲染效果预览</div>
+                    <div class="flutter-preview" style="background: #F2F2F7; padding: 40px;">
+                        <div class="cupertino-dialog">
+                            <div class="dialog-title">警告</div>
+                            <div class="dialog-content">确定要删除此项目吗？</div>
+                            <div class="dialog-actions">
+                                <button class="dialog-button dialog-button-divider">取消</button>
+                                <button class="dialog-button destructive">删除</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="cupertinopage">CupertinoPageScaffold</h2>
                 <p>CupertinoPageScaffold 提供 iOS 风格的页面结构。</p>
 
@@ -196,6 +508,20 @@ CupertinoButton(
     ),
   ),
 )</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="cupertino-nav">
+                            <div class="cupertino-nav-left"></div>
+                            <div class="cupertino-nav-center">我的页面</div>
+                            <div class="cupertino-nav-right"></div>
+                        </div>
+                        <div class="cupertino-scaffold">
+                            <div style="display: flex; align-items: center; justify-content: center; height: 100px; color: #3C3C43;">页面内容</div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="cupertinopicker">CupertinoPicker</h2>
@@ -217,6 +543,19 @@ CupertinoPicker(
     );
   }),
 )</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">渲染效果预览</div>
+                    <div class="flutter-preview" style="background: #F2F2F7; padding: 20px;">
+                        <div class="cupertino-picker">
+                            <div class="picker-item">项目 4</div>
+                            <div class="picker-item">项目 5</div>
+                            <div class="picker-item selected">项目 6</div>
+                            <div class="picker-item">项目 7</div>
+                            <div class="picker-item">项目 8</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="note-box">

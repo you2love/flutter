@@ -6,6 +6,135 @@
     <title>主题与样式组件 - Flutter 学习教程</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        .render-container {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .render-title {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .flutter-preview {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        /* 主题颜色预览 */
+        .color-palette {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .color-swatch {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        /* 主题模式切换 */
+        .theme-toggle {
+            display: flex;
+            gap: 16px;
+            padding: 12px;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+        
+        .theme-option {
+            flex: 1;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .theme-light {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .theme-dark {
+            background: #333;
+            color: white;
+        }
+        
+        .theme-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        
+        .theme-label {
+            font-weight: 600;
+        }
+        
+        /* 文本样式预览 */
+        .text-style-preview {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .text-style-item {
+            padding: 8px;
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+        
+        .text-display {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .text-body-large {
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .text-body-medium {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* 卡片样式预览 */
+        .card-style-preview {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border: 1px solid #e0e0e0;
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .card-content {
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -52,6 +181,19 @@
 )</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="color-palette">
+                            <div class="color-swatch" style="background: #1976d2;">Primary</div>
+                            <div class="color-swatch" style="background: #ffc107; color: #333;">Accent</div>
+                            <div class="color-swatch" style="background: #f5f5f5; color: #333;">Surface</div>
+                            <div class="color-swatch" style="background: #e0e0e0; color: #333;">Divider</div>
+                            <div class="color-swatch" style="background: #424242;">Error</div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="thememode">ThemeMode</h2>
                 <p>ThemeMode 用于控制主题模式（亮色/暗色）。</p>
 
@@ -64,6 +206,22 @@
   // themeMode: ThemeMode.dark,   // 始终暗色
   home: MyHomePage(),
 )</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="theme-toggle">
+                            <div class="theme-option theme-light">
+                                <div class="theme-icon">☀️</div>
+                                <div class="theme-label">Light</div>
+                            </div>
+                            <div class="theme-option theme-dark">
+                                <div class="theme-icon">🌙</div>
+                                <div class="theme-label">Dark</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="colortheme">ColorScheme</h2>
@@ -81,6 +239,19 @@
 )</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="color-palette">
+                            <div class="color-swatch" style="background: #1976d2;">Primary</div>
+                            <div class="color-swatch" style="background: #42a5f5;">Secondary</div>
+                            <div class="color-swatch" style="background: #ef5350;">Error</div>
+                            <div class="color-swatch" style="background: #66bb6a;">Success</div>
+                            <div class="color-swatch" style="background: #ffa726;">Warning</div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="texttheme">TextTheme</h2>
                 <p>TextTheme 定义了文本的样式。</p>
 
@@ -94,6 +265,17 @@
 )</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="text-style-preview">
+                            <div class="text-style-item text-display">Display Large</div>
+                            <div class="text-style-item text-body-large">Body Large - 段落文本</div>
+                            <div class="text-style-item text-body-medium">Body Medium - 辅助文本</div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="icontheme">IconThemeData</h2>
                 <p>IconThemeData 定义了图标的样式。</p>
 
@@ -104,6 +286,19 @@
     size: 24,
   ),
 )</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div style="display: flex; gap: 16px; align-items: center; padding: 16px;">
+                            <div style="font-size: 32px; color: #1976d2;">⭐</div>
+                            <div style="font-size: 24px; color: #1976d2;">❤️</div>
+                            <div style="font-size: 24px; color: #1976d2;">🔔</div>
+                            <div style="font-size: 24px; color: #1976d2;">📱</div>
+                            <div style="font-size: 20px; color: #1976d2;">📧</div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="cardtheme">CardTheme</h2>
@@ -119,6 +314,16 @@
     color: Colors.white,
   ),
 )</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="card-style-preview">
+                            <div class="card-title">卡片标题</div>
+                            <div class="card-content">这是卡片的实际内容区域。卡片具有圆角边框和阴影效果。</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="note-box">

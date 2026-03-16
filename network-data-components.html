@@ -6,6 +6,154 @@
     <title>网络与数据组件 - Flutter 学习教程</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        .render-container {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .render-title {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .flutter-preview {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        /* 网络请求预览 */
+        .network-preview {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .network-item {
+            flex: 1;
+            padding: 12px;
+            background: #e3f2fd;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .network-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .network-label {
+            font-weight: 600;
+            color: #1976d2;
+        }
+        
+        .network-desc {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+        
+        /* JSON 序列化预览 */
+        .json-preview {
+            background: #263238;
+            color: #a5d6ff;
+            padding: 12px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+        
+        /* 状态管理预览 */
+        .state-demo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+        
+        .state-display {
+            flex: 1;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            color: #1976d2;
+        }
+        
+        .state-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .state-btn {
+            padding: 8px 16px;
+            background: #1976d2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .state-btn:hover {
+            background: #1565c0;
+        }
+        
+        /* 状态管理对比 */
+        .state-compare {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        
+        .state-compare-item {
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+        }
+        
+        .state-compare-title {
+            font-weight: 600;
+            color: #1976d2;
+            margin-bottom: 8px;
+        }
+        
+        .state-compare-desc {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        /* 数据流预览 */
+        .data-flow {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px;
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+        
+        .data-flow-arrow {
+            color: #1976d2;
+            font-size: 20px;
+        }
+        
+        .data-flow-box {
+            padding: 8px 16px;
+            background: #1976d2;
+            color: white;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -57,6 +205,24 @@ final response = await dio.get('https://api.example.com/data');
 print(response.data);</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="network-preview">
+                            <div class="network-item">
+                                <div class="network-icon">🌐</div>
+                                <div class="network-label">http</div>
+                                <div class="network-desc">简单易用<br/>官方推荐</div>
+                            </div>
+                            <div class="network-item">
+                                <div class="network-icon">⚡</div>
+                                <div class="network-label">dio</div>
+                                <div class="network-desc">功能强大<br/>拦截器支持</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="json">json_serializable</h2>
                 <p>json_serializable 提供类型安全的 JSON 序列化。</p>
 
@@ -75,6 +241,18 @@ class User {
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
   Map<String, dynamic> toJson() => _$UserToJson(this);
 }</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="json-preview">
+{
+  "name": "张三",
+  "age": 25
+}
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="provider">Provider</h2>
@@ -110,6 +288,19 @@ Consumer<Counter>(
 )</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="state-demo">
+                            <div class="state-display">计数: 0</div>
+                            <div class="state-buttons">
+                                <button class="state-btn">-</button>
+                                <button class="state-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="bloc">Bloc / Cubit</h2>
                 <p>Bloc/Cubit 是一个强大的状态管理库。</p>
 
@@ -140,6 +331,21 @@ BlocBuilder<CounterCubit, int>(
 )</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="data-flow">
+                            <div class="data-flow-box">Event</div>
+                            <span class="data-flow-arrow">→</span>
+                            <div class="data-flow-box">Bloc</div>
+                            <span class="data-flow-arrow">→</span>
+                            <div class="data-flow-box">State</div>
+                            <span class="data-flow-arrow">→</span>
+                            <div class="data-flow-box">UI</div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="getx">GetX</h2>
                 <p>GetX 是一个轻量级且功能全面的状态管理和路由库。</p>
 
@@ -159,6 +365,19 @@ void main() {
 
 // 在 Widget 中使用
 Obx(() => Text('计数: ${Get.find<CounterController>().count.value}'))</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="state-demo">
+                            <div class="state-display">计数: 0</div>
+                            <div class="state-buttons">
+                                <button class="state-btn">-</button>
+                                <button class="state-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="riverpod">Riverpod</h2>
@@ -184,6 +403,19 @@ Consumer(
     return Text('计数: $count');
   },
 )</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="state-demo">
+                            <div class="state-display">计数: 0</div>
+                            <div class="state-buttons">
+                                <button class="state-btn">-</button>
+                                <button class="state-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="note-box">

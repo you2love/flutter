@@ -6,6 +6,154 @@
     <title>国际化组件 - Flutter 学习教程</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        .render-container {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .render-title {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .flutter-preview {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        /* 语言选择器 */
+        .lang-selector {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        
+        .lang-btn {
+            padding: 8px 16px;
+            border: 2px solid #E0E0E0;
+            border-radius: 6px;
+            background: white;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .lang-btn.active {
+            border-color: #2196F3;
+            background: #E3F2FD;
+            color: #1976D2;
+            font-weight: 500;
+        }
+        
+        /* 格式化结果显示 */
+        .format-result {
+            background: #F5F5F5;
+            border-radius: 8px;
+            padding: 16px;
+        }
+        
+        .format-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        
+        .format-item:last-child {
+            border-bottom: none;
+        }
+        
+        .format-label {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .format-value {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        /* 多语言对比 */
+        .lang-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        
+        .lang-card {
+            padding: 16px;
+            border-radius: 8px;
+            border: 2px solid #E0E0E0;
+            text-align: center;
+        }
+        
+        .lang-card.en {
+            border-color: #4CAF50;
+            background: #E8F5E9;
+        }
+        
+        .lang-card.zh {
+            border-color: #2196F3;
+            background: #E3F2FD;
+        }
+        
+        .lang-card.ja {
+            border-color: #FF9800;
+            background: #FFF3E0;
+        }
+        
+        .lang-flag {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .lang-name {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        
+        .lang-text {
+            font-size: 13px;
+            color: #333;
+        }
+        
+        /* ARB 文件预览 */
+        .arb-preview {
+            background: #212121;
+            color: #F8F8F2;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        
+        .arb-key {
+            color: #66D9EF;
+        }
+        
+        .arb-string {
+            color: #A6E22E;
+        }
+        
+        .arb-comment {
+            color: #75715E;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -64,6 +212,35 @@ final now = DateTime.now();
 final tomorrow = now.add(Duration(days: 1));
 final timeFormatter = DateFormat.yMd('zh_CN');
 print('明天是: ${timeFormatter.format(tomorrow)}');</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">格式化结果预览</div>
+                    <div class="flutter-preview">
+                        <div class="lang-selector">
+                            <button class="lang-btn active">中文 (zh_CN)</button>
+                            <button class="lang-btn">English (en_US)</button>
+                            <button class="lang-btn">日本語 (ja_JP)</button>
+                        </div>
+                        <div class="format-result">
+                            <div class="format-item">
+                                <div class="format-label">日期格式化</div>
+                                <div class="format-value">2026-03-16</div>
+                            </div>
+                            <div class="format-item">
+                                <div class="format-label">数字格式化</div>
+                                <div class="format-value">1,234,567.89</div>
+                            </div>
+                            <div class="format-item">
+                                <div class="format-label">货币格式化</div>
+                                <div class="format-value">¥1,234.56</div>
+                            </div>
+                            <div class="format-item">
+                                <div class="format-label">相对时间</div>
+                                <div class="format-value">3月16日</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="localizations">Localizations</h2>
@@ -135,6 +312,38 @@ class MyWidget extends StatelessWidget {
 )</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">支持的语言列表</div>
+                    <div class="flutter-preview">
+                        <div class="lang-comparison">
+                            <div class="lang-card en">
+                                <div class="lang-flag">🇺🇸</div>
+                                <div class="lang-name">English</div>
+                                <div class="lang-text">Hello</div>
+                                <div class="lang-text" style="font-size: 11px; color: #666; margin-top: 4px;">en_US</div>
+                            </div>
+                            <div class="lang-card zh">
+                                <div class="lang-flag">🇨🇳</div>
+                                <div class="lang-name">简体中文</div>
+                                <div class="lang-text">你好</div>
+                                <div class="lang-text" style="font-size: 11px; color: #666; margin-top: 4px;">zh_CN</div>
+                            </div>
+                            <div class="lang-card zh">
+                                <div class="lang-flag">🇹🇼</div>
+                                <div class="lang-name">繁體中文</div>
+                                <div class="lang-text">你好</div>
+                                <div class="lang-text" style="font-size: 11px; color: #666; margin-top: 4px;">zh_TW</div>
+                            </div>
+                            <div class="lang-card ja">
+                                <div class="lang-flag">🇯🇵</div>
+                                <div class="lang-name">日本語</div>
+                                <div class="lang-text">こんにちは</div>
+                                <div class="lang-text" style="font-size: 11px; color: #666; margin-top: 4px;">ja_JP</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="locale">Locale</h2>
                 <p>Locale 表示特定的语言和地区。</p>
 
@@ -160,6 +369,30 @@ void changeLanguage(BuildContext context, Locale newLocale) {
 final formatter = NumberFormat.currency(
   locale: locale.toString(),
 );</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">Locale 创建方式</div>
+                    <div class="flutter-preview">
+                        <div class="format-result">
+                            <div class="format-item">
+                                <div class="format-label">Locale('zh', 'CN')</div>
+                                <div class="format-value">zh_CN</div>
+                            </div>
+                            <div class="format-item">
+                                <div class="format-label">Locale('en')</div>
+                                <div class="format-value">en</div>
+                            </div>
+                            <div class="format-item">
+                                <div class="format-label">Locale.fromSubtags(...)</div>
+                                <div class="format-value">zh_Hans_CN</div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 12px; padding: 12px; background: #E3F2FD; border-radius: 6px; font-size: 13px;">
+                            <div style="color: #1976D2; font-weight: 500;">当前语言: zh_CN</div>
+                            <div style="color: #666; margin-top: 4px; font-size: 12px;">语言代码: zh | 地区代码: CN | 脚本代码: Hans</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="note-box">
@@ -199,6 +432,42 @@ final formatter = NumberFormat.currency(
     }
   }
 }</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">ARB 文件预览</div>
+                    <div class="flutter-preview">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                            <div>
+                                <div style="font-size: 12px; color: #666; margin-bottom: 8px;">en.arb</div>
+                                <div class="arb-preview">
+                                    <span class="arb-key">"hello"</span>: <span class="arb-string">"Hello"</span>,<br>
+                                    <span class="arb-key">"welcome"</span>: <span class="arb-string">"Welcome, {name}!"</span>,<br>
+                                    <span class="arb-key">"@welcome"</span>: {<br>
+                                    &nbsp;&nbsp;<span class="arb-key">"placeholders"</span>: {<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="arb-key">"name"</span>: {<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="arb-key">"type"</span>: <span class="arb-string">"String"</span><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                                    &nbsp;&nbsp;}<br>
+                                    }
+                                </div>
+                            </div>
+                            <div>
+                                <div style="font-size: 12px; color: #666; margin-bottom: 8px;">zh.arb</div>
+                                <div class="arb-preview">
+                                    <span class="arb-key">"hello"</span>: <span class="arb-string">"你好"</span>,<br>
+                                    <span class="arb-key">"welcome"</span>: <span class="arb-string">"欢迎，{name}！"</span>,<br>
+                                    <span class="arb-key">"@welcome"</span>: {<br>
+                                    &nbsp;&nbsp;<span class="arb-key">"placeholders"</span>: {<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="arb-key">"name"</span>: {<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="arb-key">"type"</span>: <span class="arb-string">"String"</span><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                                    &nbsp;&nbsp;}<br>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="topic-nav">

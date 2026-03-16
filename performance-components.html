@@ -6,6 +6,208 @@
     <title>性能优化组件 - Flutter 学习教程</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        .render-container {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .render-title {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .flutter-preview {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        /* 性能指示器 */
+        .perf-indicator {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: #e3f2fd;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+        
+        .perf-icon {
+            font-size: 24px;
+        }
+        
+        .perf-text {
+            flex: 1;
+        }
+        
+        .perf-label {
+            font-weight: 600;
+            color: #1976d2;
+        }
+        
+        .perf-value {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+        
+        /* 指针事件演示 */
+        .pointer-demo {
+            position: relative;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .demo-button {
+            padding: 12px 24px;
+            background: #1976d2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            z-index: 1;
+        }
+        
+        .demo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            z-index: 2;
+        }
+        
+        .overlay-ignore {
+            background: rgba(0, 0, 0, 0.1);
+            border: 2px dashed #666;
+        }
+        
+        .overlay-absorb {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+        
+        /* 常量优化对比 */
+        .optimization-compare {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .opt-item {
+            flex: 1;
+            padding: 12px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .opt-good {
+            background: #d4edda;
+            border: 1px solid #28a745;
+        }
+        
+        .opt-bad {
+            background: #f8d7da;
+            border: 1px solid #dc3545;
+        }
+        
+        .opt-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        
+        .opt-label {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .opt-desc {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* KeepAlive 状态指示 */
+        .keepalive-demo {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .keepalive-item {
+            flex: 1;
+            min-width: 80px;
+            padding: 12px;
+            background: #e3f2fd;
+            border-radius: 4px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .keepalive-badge {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: #4caf50;
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 10px;
+        }
+        
+        /* 列表性能对比 */
+        .list-perf-compare {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .list-perf-item {
+            flex: 1;
+        }
+        
+        .list-perf-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        
+        .list-perf-bar {
+            height: 100px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .list-perf-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transition: height 0.3s;
+        }
+        
+        .list-perf-label {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -50,6 +252,22 @@
 )</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="perf-indicator">
+                            <span class="perf-icon">🎨</span>
+                            <div class="perf-text">
+                                <div class="perf-label">RepaintBoundary 隔离重绘</div>
+                                <div class="perf-value">重绘区域被隔离，只影响当前组件</div>
+                            </div>
+                        </div>
+                        <div style="padding: 12px; background: linear-gradient(135deg, #1976d2 0%, #42a5f5 100%); color: white; border-radius: 4px; text-align: center;">
+                            动画内容
+                        </div>
+                    </div>
+                </div>
+
                 <div class="warning-box">
                     <strong>注意：</strong>RepaintBoundary 会创建一个新的图层，过度使用可能会增加内存消耗。
                 </div>
@@ -74,6 +292,19 @@
 )</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="pointer-demo">
+                            <button class="demo-button">点击按钮</button>
+                            <div class="demo-overlay overlay-ignore">
+                                <span style="background: rgba(255,255,255,0.8); padding: 4px 8px; border-radius: 4px; font-size: 12px;">事件穿透</span>
+                            </div>
+                        </div>
+                        <div style="text-align: center; font-size: 12px; color: #666; margin-top: 8px;">覆盖层不阻止点击，事件可以穿透</div>
+                    </div>
+                </div>
+
                 <h2 id="absorb">AbsorbPointer</h2>
                 <p>AbsorbPointer 吸收所有指针事件，阻止事件穿透。</p>
 
@@ -94,6 +325,19 @@
 )</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="pointer-demo">
+                            <button class="demo-button" style="opacity: 0.5;">点击按钮</button>
+                            <div class="demo-overlay overlay-absorb">
+                                <span style="padding: 4px 8px; border-radius: 4px; font-size: 12px;">事件被阻止</span>
+                            </div>
+                        </div>
+                        <div style="text-align: center; font-size: 12px; color: #666; margin-top: 8px;">覆盖层阻止点击，事件无法穿透</div>
+                    </div>
+                </div>
+
                 <h2 id="const">const Widget</h2>
                 <p>使用 const 构造函数可以创建编译时常量，提升性能。</p>
 
@@ -107,6 +351,24 @@ const SizedBox(height: 16)
 Text('标题')
 Icon(Icons.star)
 SizedBox(height: 16)</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="optimization-compare">
+                            <div class="opt-item opt-good">
+                                <div class="opt-icon">✅</div>
+                                <div class="opt-label">const 优化</div>
+                                <div class="opt-desc">编译时常量<br/>无需重建<br/>高性能</div>
+                            </div>
+                            <div class="opt-item opt-bad">
+                                <div class="opt-icon">❌</div>
+                                <div class="opt-label">无 const</div>
+                                <div class="opt-desc">每次重建<br/>额外开销<br/>低性能</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="keepalive">AutomaticKeepAlive</h2>
@@ -131,6 +393,34 @@ class _MyListItemState extends State<MyListItem>
 }</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="keepalive-demo">
+                            <div class="keepalive-item">
+                                <span class="keepalive-badge">✓</span>
+                                <div>项目 1</div>
+                                <div style="font-size: 10px; color: #666; margin-top: 4px;">状态保持</div>
+                            </div>
+                            <div class="keepalive-item">
+                                <span class="keepalive-badge">✓</span>
+                                <div>项目 2</div>
+                                <div style="font-size: 10px; color: #666; margin-top: 4px;">状态保持</div>
+                            </div>
+                            <div class="keepalive-item">
+                                <span class="keepalive-badge">✓</span>
+                                <div>项目 3</div>
+                                <div style="font-size: 10px; color: #666; margin-top: 4px;">状态保持</div>
+                            </div>
+                            <div class="keepalive-item">
+                                <span class="keepalive-badge">✓</span>
+                                <div>项目 4</div>
+                                <div style="font-size: 10px; color: #666; margin-top: 4px;">状态保持</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="optimized">ListView.builder</h2>
                 <p>ListView.builder 使用懒加载，只渲染可见的项目。</p>
 
@@ -149,6 +439,29 @@ ListView(
     return ListTile(title: Text('项目 $index'));
   }),
 )</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="list-perf-compare">
+                            <div class="list-perf-item">
+                                <div class="list-perf-title">ListView.builder</div>
+                                <div class="list-perf-bar">
+                                    <div class="list-perf-fill" style="height: 20%; background: #4caf50;"></div>
+                                </div>
+                                <div class="list-perf-label">内存占用: 20%</div>
+                            </div>
+                            <div class="list-perf-item">
+                                <div class="list-perf-title">普通 ListView</div>
+                                <div class="list-perf-bar">
+                                    <div class="list-perf-fill" style="height: 100%; background: #f44336;"></div>
+                                </div>
+                                <div class="list-perf-label">内存占用: 100%</div>
+                            </div>
+                        </div>
+                        <div style="text-align: center; font-size: 12px; color: #666; margin-top: 12px;">ListView.builder 只渲染可见项，内存占用更低</div>
+                    </div>
                 </div>
 
                 <div class="note-box">

@@ -6,6 +6,114 @@
     <title>状态管理框架 - Flutter 学习教程</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        .render-container {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .render-title {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .flutter-preview {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        /* Counter Preview */
+        .counter-preview {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .counter-display {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1976d2;
+            margin: 16px 0;
+        }
+        
+        .counter-button {
+            background: #1976d2;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        /* State Manager Preview */
+        .state-manager-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+        
+        .state-card {
+            background: #f5f5f5;
+            padding: 16px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            text-align: center;
+            min-width: 120px;
+        }
+        
+        .state-card.recommended {
+            border-color: #4caf50;
+            background: #e8f5e9;
+        }
+        
+        .state-card-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .state-card-tag {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Data Flow Preview */
+        .data-flow-preview {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+        }
+        
+        .data-flow-item {
+            background: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: #333;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .data-flow-arrow {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -70,6 +178,16 @@ Consumer<Counter>(
 )</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="counter-preview">
+                            <div class="counter-display">计数: 0</div>
+                            <button class="counter-button">+1</button>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="riverpod">Riverpod</h2>
                 <p>Riverpod 是 Provider 的改进版本，提供更好的类型安全。</p>
 
@@ -96,6 +214,16 @@ Consumer(
 
 // 修改状态
 ref.read(counterProvider.notifier).state++;</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="counter-preview">
+                            <div class="counter-display">计数: 0</div>
+                            <button class="counter-button">+1</button>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="bloc">Bloc / Cubit</h2>
@@ -128,6 +256,19 @@ BlocBuilder<CounterCubit, int>(
 )</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="counter-preview">
+                            <div class="counter-display">计数: 0</div>
+                            <div style="display: flex; gap: 8px;">
+                                <button class="counter-button" style="background: #4caf50;">+1</button>
+                                <button class="counter-button" style="background: #f44336;">-1</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="getx">GetX</h2>
                 <p>GetX 是一个轻量级且功能全面的状态管理库。</p>
 
@@ -147,6 +288,16 @@ void main() {
 
 // 在 Widget 中使用
 Obx(() => Text('计数: ${Get.find<CounterController>().count.value}'))</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="counter-preview">
+                            <div class="counter-display">计数: 0</div>
+                            <button class="counter-button">增加</button>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="redux">Redux</h2>
@@ -184,6 +335,21 @@ StoreConnector<int, String>(
 )</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="data-flow-preview">
+                            <div class="data-flow-item">Action</div>
+                            <div class="data-flow-arrow">→</div>
+                            <div class="data-flow-item">Reducer</div>
+                            <div class="data-flow-arrow">→</div>
+                            <div class="data-flow-item">Store</div>
+                            <div class="data-flow-arrow">→</div>
+                            <div class="data-flow-item">View</div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="mobx">MobX</h2>
                 <p>MobX 是一个响应式的状态管理库。</p>
 
@@ -205,6 +371,16 @@ final counter = Counter();
 Observer(
   builder: (_) => Text('计数: ${counter.count}'),
 )</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="counter-preview">
+                            <div class="counter-display">计数: 0</div>
+                            <button class="counter-button">+1</button>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="setstate">setState</h2>
@@ -238,6 +414,16 @@ class _CounterWidgetState extends State<CounterWidget> {
     );
   }
 }</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="counter-preview">
+                            <div class="counter-display">计数: 0</div>
+                            <button class="counter-button">增加</button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="note-box">

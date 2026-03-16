@@ -6,6 +6,138 @@
     <title>系统功能组件 - Flutter 学习教程</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        .render-container {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .render-title {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .flutter-preview {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        /* 通知预览 */
+        .notification-preview {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            padding: 12px;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+        
+        .notif-icon {
+            font-size: 32px;
+        }
+        
+        .notif-content {
+            flex: 1;
+        }
+        
+        .notif-title {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .notif-body {
+            color: #666;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+        
+        /* 分享预览 */
+        .share-preview {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 16px;
+        }
+        
+        .share-app {
+            width: 60px;
+            text-align: center;
+        }
+        
+        .share-app-icon {
+            font-size: 32px;
+            margin-bottom: 4px;
+        }
+        
+        .share-app-name {
+            font-size: 11px;
+            color: #666;
+        }
+        
+        /* URL启动器预览 */
+        .url-launcher-preview {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .url-btn {
+            padding: 8px 16px;
+            background: #1976d2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        
+        /* 文件系统预览 */
+        .file-system-preview {
+            background: #263238;
+            color: #a5d6ff;
+            padding: 12px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+        
+        /* 首选项预览 */
+        .prefs-preview {
+            background: #f5f5f5;
+            padding: 12px;
+            border-radius: 4px;
+        }
+        
+        .pref-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .pref-item:last-child {
+            border-bottom: none;
+        }
+        
+        .pref-key {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .pref-value {
+            color: #666;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -76,6 +208,19 @@ await notifications.show(
 );</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="notification-preview">
+                            <div class="notif-icon">🔔</div>
+                            <div class="notif-content">
+                                <div class="notif-title">新消息</div>
+                                <div class="notif-body">您有一条新消息</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="share">Share</h2>
                 <p>Share 用于分享内容到其他应用。</p>
 
@@ -93,6 +238,34 @@ Share.shareFiles(
 
 // 分享链接
 Share.shareUri(Uri.parse('https://example.com'));</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="share-preview">
+                            <div class="share-app">
+                                <div class="share-app-icon">💬</div>
+                                <div class="share-app-name">微信</div>
+                            </div>
+                            <div class="share-app">
+                                <div class="share-app-icon">📧</div>
+                                <div class="share-app-name">邮件</div>
+                            </div>
+                            <div class="share-app">
+                                <div class="share-app-icon">📱</div>
+                                <div class="share-app-name">短信</div>
+                            </div>
+                            <div class="share-app">
+                                <div class="share-app-icon">🔗</div>
+                                <div class="share-app-name">复制</div>
+                            </div>
+                            <div class="share-app">
+                                <div class="share-app-icon">📋</div>
+                                <div class="share-app-name">更多</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="launch">Url Launcher</h2>
@@ -119,6 +292,19 @@ await launchUrl(Uri.parse(
 ));</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="url-launcher-preview">
+                            <button class="url-btn">🌐 打开网页</button>
+                            <button class="url-btn">📧 发送邮件</button>
+                            <button class="url-btn">📞 拨打电话</button>
+                            <button class="url-btn">💬 发送短信</button>
+                            <button class="url-btn">🏪 应用商店</button>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="file">File System</h2>
                 <p>File System 用于读写文件。</p>
 
@@ -143,6 +329,22 @@ final directory = Directory('path/to/directory');
 final files = directory.listSync();</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="file-system-preview">
+📁 /data/app/
+  📄 config.json
+  📄 data.txt
+  📁 cache/
+    📄 image.jpg
+📁 /storage/
+  📁 downloads/
+    📄 file.pdf
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="path">Path Provider</h2>
                 <p>Path Provider 用于获取设备上的常用目录路径。</p>
 
@@ -163,6 +365,18 @@ final externalDir = await getExternalStorageDirectory();
 
 // 获取下载目录
 final downloadsDir = await getDownloadsDirectory();</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="file-system-preview">
+📱 系统目录
+  📁 /data/user/0/com.app/cache/ (临时)
+  📁 /data/user/0/com.app/files/ (文档)
+  📁 /storage/emulated/0/Android/data/ (外部)
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="preferences">Shared Preferences</h2>
@@ -189,6 +403,26 @@ await prefs.remove('username');
 
 // 清空所有数据
 await prefs.clear();</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="prefs-preview">
+                            <div class="pref-item">
+                                <span class="pref-key">username</span>
+                                <span class="pref-value">john</span>
+                            </div>
+                            <div class="pref-item">
+                                <span class="pref-key">age</span>
+                                <span class="pref-value">25</span>
+                            </div>
+                            <div class="pref-item">
+                                <span class="pref-key">isLoggedIn</span>
+                                <span class="pref-value">true</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="note-box">

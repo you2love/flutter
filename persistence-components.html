@@ -6,6 +6,155 @@
     <title>持久化组件 - Flutter 学习教程</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        .render-container {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .render-title {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .flutter-preview {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        /* 键值对存储 */
+        .kv-storage {
+            background: #F5F5F5;
+            border-radius: 8px;
+            padding: 16px;
+        }
+        
+        .kv-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 12px;
+            background: white;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border-left: 3px solid #2196F3;
+        }
+        
+        .kv-key {
+            font-weight: 600;
+            color: #333;
+            font-size: 13px;
+        }
+        
+        .kv-value {
+            color: #666;
+            font-size: 13px;
+            font-family: monospace;
+            background: #E3F2FD;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        
+        /* 数据库表格 */
+        .db-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        
+        .db-table th {
+            background: #2196F3;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .db-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #E0E0E0;
+            font-family: monospace;
+        }
+        
+        .db-table tr:hover {
+            background: #F5F5F5;
+        }
+        
+        /* 数据库类型比较 */
+        .db-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+        }
+        
+        .db-type {
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid;
+        }
+        
+        .db-type.hive {
+            border-color: #FF9800;
+            background: #FFF3E0;
+        }
+        
+        .db-type.sqlite {
+            border-color: #4CAF50;
+            background: #E8F5E9;
+        }
+        
+        .db-type.isar {
+            border-color: #9C27B0;
+            background: #F3E5F5;
+        }
+        
+        .db-type.objectbox {
+            border-color: #2196F3;
+            background: #E3F2FD;
+        }
+        
+        .db-type-name {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        
+        .db-type-desc {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* 数据操作日志 */
+        .data-log {
+            background: #212121;
+            color: #00FF00;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+        
+        .log-op {
+            margin-bottom: 8px;
+        }
+        
+        .log-op::before {
+            content: '▸';
+            margin-right: 8px;
+            color: #9E9E9E;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -66,6 +215,34 @@ await prefs.clear();
 
 // 检查键是否存在
 final hasKey = prefs.containsKey('username');</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">SharedPreferences 数据存储</div>
+                    <div class="flutter-preview">
+                        <div class="kv-storage">
+                            <div class="kv-item">
+                                <div class="kv-key">username</div>
+                                <div class="kv-value">"john"</div>
+                            </div>
+                            <div class="kv-item">
+                                <div class="kv-key">age</div>
+                                <div class="kv-value">25</div>
+                            </div>
+                            <div class="kv-item">
+                                <div class="kv-key">isLoggedIn</div>
+                                <div class="kv-value">true</div>
+                            </div>
+                            <div class="kv-item">
+                                <div class="kv-key">price</div>
+                                <div class="kv-value">99.99</div>
+                            </div>
+                            <div class="kv-item">
+                                <div class="kv-key">tags</div>
+                                <div class="kv-value">["flutter", "dart"]</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="hive">Hive</h2>
@@ -150,6 +327,38 @@ await db.delete(
 await db.rawQuery('SELECT * FROM users WHERE age > ?', [20]);</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">SQLite 数据库表</div>
+                    <div class="flutter-preview">
+                        <table class="db-table">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>name</th>
+                                    <th>age</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>John</td>
+                                    <td>25</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Alice</td>
+                                    <td>30</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Bob</td>
+                                    <td>28</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
                 <h2 id="isar">Isar</h2>
                 <p>Isar 是一个高性能的 NoSQL 数据库。</p>
 
@@ -188,6 +397,36 @@ final youngUsers = await isar.users
 await isar.writeTxn(() async {
   await isar.users.clear();
 });</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">Isar 查询结果</div>
+                    <div class="flutter-preview">
+                        <div style="padding: 12px; background: #E8F5E9; border-radius: 6px; margin-bottom: 12px; font-size: 13px;">
+                            <div style="color: #2E7D32; font-weight: 500;">查询: users.where().ageLessThan(30)</div>
+                        </div>
+                        <table class="db-table">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>name</th>
+                                    <th>age</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>John</td>
+                                    <td>25</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Emma</td>
+                                    <td>22</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                 <h2 id="objectbox">ObjectBox</h2>
@@ -237,6 +476,30 @@ final youngUsers = box.query(User_.age.lessThan(30)).build().find();</code></pre
                         <li>Isar: 高性能、大量数据</li>
                         <li>ObjectBox: 对象导向、高性能</li>
                     </ul>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">数据库类型对比</div>
+                    <div class="flutter-preview">
+                        <div class="db-comparison">
+                            <div class="db-type hive">
+                                <div class="db-type-name">Hive</div>
+                                <div class="db-type-desc">NoSQL<br>轻量快速<br>无关系</div>
+                            </div>
+                            <div class="db-type sqlite">
+                                <div class="db-type-name">SQLite</div>
+                                <div class="db-type-desc">SQL<br>关系型<br>复杂查询</div>
+                            </div>
+                            <div class="db-type isar">
+                                <div class="db-type-name">Isar</div>
+                                <div class="db-type-desc">NoSQL<br>高性能<br>类型安全</div>
+                            </div>
+                            <div class="db-type objectbox">
+                                <div class="db-type-name">ObjectBox</div>
+                                <div class="db-type-desc">对象DB<br>高性能<br>易于使用</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="topic-nav">

@@ -6,6 +6,164 @@
     <title>应用生命周期组件 - Flutter 学习教程</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        .render-container {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .render-title {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .flutter-preview {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        /* 生命周期状态可视化 */
+        .lifecycle-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .lifecycle-state {
+            flex: 1;
+            min-width: 120px;
+            padding: 16px 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 13px;
+            color: white;
+            position: relative;
+        }
+        
+        .lifecycle-state.resumed {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+        }
+        
+        .lifecycle-state.inactive {
+            background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+        }
+        
+        .lifecycle-state.paused {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+        }
+        
+        .lifecycle-state.detached {
+            background: linear-gradient(135deg, #9E9E9E 0%, #757575 100%);
+        }
+        
+        .lifecycle-state.hidden {
+            background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);
+        }
+        
+        .lifecycle-state-label {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        
+        .lifecycle-state-desc {
+            font-size: 11px;
+            opacity: 0.9;
+        }
+        
+        /* 状态切换动画 */
+        .lifecycle-transition {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px;
+            background: #F5F5F5;
+            border-radius: 8px;
+            margin-top: 12px;
+        }
+        
+        .transition-arrow {
+            font-size: 20px;
+            color: #666;
+        }
+        
+        .transition-from,
+        .transition-to {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .transition-from {
+            background: #E3F2FD;
+            color: #1976D2;
+        }
+        
+        .transition-to {
+            background: #E8F5E9;
+            color: #4CAF50;
+        }
+        
+        /* 应用状态指示器 */
+        .app-status {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: #F5F5F5;
+            border-radius: 8px;
+        }
+        
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        .status-indicator.active {
+            background: #4CAF50;
+        }
+        
+        .status-indicator.paused {
+            background: #FFC107;
+        }
+        
+        .status-indicator.detached {
+            background: #9E9E9E;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        
+        .status-text {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .status-value {
+            font-weight: 600;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -48,6 +206,34 @@
   detached,     // 应用即将被销毁
   hidden,       // 应用处于后台
 }</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">生命周期状态示意图</div>
+                    <div class="flutter-preview">
+                        <div class="lifecycle-diagram">
+                            <div class="lifecycle-state resumed">
+                                <div class="lifecycle-state-label">resumed</div>
+                                <div class="lifecycle-state-desc">应用活跃中</div>
+                            </div>
+                            <div class="lifecycle-state inactive">
+                                <div class="lifecycle-state-label">inactive</div>
+                                <div class="lifecycle-state-desc">非活动状态</div>
+                            </div>
+                            <div class="lifecycle-state paused">
+                                <div class="lifecycle-state-label">paused</div>
+                                <div class="lifecycle-state-desc">应用暂停</div>
+                            </div>
+                            <div class="lifecycle-state hidden">
+                                <div class="lifecycle-state-label">hidden</div>
+                                <div class="lifecycle-state-desc">后台运行</div>
+                            </div>
+                            <div class="lifecycle-state detached">
+                                <div class="lifecycle-state-label">detached</div>
+                                <div class="lifecycle-state-desc">即将销毁</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="binding">WidgetsBindingObserver</h2>
@@ -117,6 +303,30 @@ void didChangeAppLifecycleState(AppLifecycleState state) {
 }</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">生命周期切换示例</div>
+                    <div class="flutter-preview">
+                        <div class="lifecycle-transition">
+                            <div class="transition-from">paused</div>
+                            <div class="transition-arrow">→</div>
+                            <div class="transition-to">resumed</div>
+                            <div style="flex: 1; font-size: 12px; color: #666;">应用恢复到前台</div>
+                        </div>
+                        <div class="lifecycle-transition">
+                            <div class="transition-from">resumed</div>
+                            <div class="transition-arrow">→</div>
+                            <div class="transition-to" style="background: #FFF3E0; color: #FF9800;">inactive</div>
+                            <div style="flex: 1; font-size: 12px; color: #666;">来电或通知</div>
+                        </div>
+                        <div class="lifecycle-transition">
+                            <div class="transition-from">inactive</div>
+                            <div class="transition-arrow">→</div>
+                            <div class="transition-to" style="background: #E3F2FD; color: #2196F3;">paused</div>
+                            <div style="flex: 1; font-size: 12px; color: #666;">按Home键</div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="resumed">resumed</h2>
                 <p>应用可见且响应用户输入时的状态。</p>
 
@@ -132,6 +342,27 @@ void didChangeAppLifecycleState(AppLifecycleState state) {
     refreshData();
   }
 }</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">resumed 状态应用行为</div>
+                    <div class="flutter-preview">
+                        <div class="app-status">
+                            <div class="status-indicator active"></div>
+                            <div>
+                                <div class="status-text">当前状态: <span class="status-value">resumed</span></div>
+                                <div style="font-size: 12px; color: #999; margin-top: 4px;">应用可见且响应输入</div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 16px; padding: 12px; background: #E8F5E9; border-radius: 6px; font-size: 13px;">
+                            <div style="font-weight: 600; margin-bottom: 8px; color: #2E7D32;">执行的操作：</div>
+                            <div style="color: #555; line-height: 1.8;">
+                                ✓ 恢复视频播放<br>
+                                ✓ 重新连接 WebSocket<br>
+                                ✓ 刷新数据
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="paused">paused</h2>
@@ -151,6 +382,27 @@ void didChangeAppLifecycleState(AppLifecycleState state) {
 }</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">paused 状态应用行为</div>
+                    <div class="flutter-preview">
+                        <div class="app-status">
+                            <div class="status-indicator paused"></div>
+                            <div>
+                                <div class="status-text">当前状态: <span class="status-value">paused</span></div>
+                                <div style="font-size: 12px; color: #999; margin-top: 4px;">应用不可见，不响应输入</div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 16px; padding: 12px; background: #FFF3E0; border-radius: 6px; font-size: 13px;">
+                            <div style="font-weight: 600; margin-bottom: 8px; color: #E65100;">执行的操作：</div>
+                            <div style="color: #555; line-height: 1.8;">
+                                ⏸ 暂停视频播放<br>
+                                📡 断开网络连接<br>
+                                💾 保存当前状态
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="detached">detached</h2>
                 <p>应用即将被销毁时的状态。</p>
 
@@ -167,6 +419,28 @@ void didChangeAppLifecycleState(AppLifecycleState state) {
     saveFinalState();
   }
 }</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">detached 状态应用行为</div>
+                    <div class="flutter-preview">
+                        <div class="app-status">
+                            <div class="status-indicator detached"></div>
+                            <div>
+                                <div class="status-text">当前状态: <span class="status-value">detached</span></div>
+                                <div style="font-size: 12px; color: #999; margin-top: 4px;">应用即将被销毁</div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 16px; padding: 12px; background: #EEEEEE; border-radius: 6px; font-size: 13px;">
+                            <div style="font-weight: 600; margin-bottom: 8px; color: #616161;">执行的操作：</div>
+                            <div style="color: #555; line-height: 1.8;">
+                                🗑 释放视频控制器<br>
+                                🗑 释放音频控制器<br>
+                                ⏰ 取消所有定时器<br>
+                                💾 保存最终状态
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="note-box">

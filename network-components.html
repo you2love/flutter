@@ -6,6 +6,159 @@
     <title>网络请求组件 - Flutter 学习教程</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        .render-container {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .render-title {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .flutter-preview {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        /* HTTP Preview */
+        .http-preview {
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+        
+        .http-request {
+            background: #e3f2fd;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            border-left: 4px solid #1976d2;
+        }
+        
+        .http-response {
+            background: #e8f5e9;
+            padding: 12px;
+            border-radius: 4px;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .http-method {
+            color: #1976d2;
+            font-weight: bold;
+        }
+        
+        .http-url {
+            color: #333;
+        }
+        
+        .http-status {
+            color: #4caf50;
+            font-weight: bold;
+        }
+        
+        /* WebSocket Preview */
+        .websocket-preview {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .websocket-message {
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .websocket-message.sent {
+            background: #e3f2fd;
+            text-align: right;
+            border-left: 3px solid #1976d2;
+        }
+        
+        .websocket-message.received {
+            background: #e8f5e9;
+            text-align: left;
+            border-left: 3px solid #4caf50;
+        }
+        
+        /* Connectivity Preview */
+        .connectivity-preview {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .connectivity-status {
+            text-align: center;
+            padding: 16px;
+            border-radius: 8px;
+            min-width: 100px;
+        }
+        
+        .connectivity-status.online {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+        }
+        
+        .connectivity-status.offline {
+            background: #ffebee;
+            border: 2px solid #f44336;
+        }
+        
+        .connectivity-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        
+        .connectivity-text {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        /* API Flow Preview */
+        .api-flow-preview {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .api-flow-item {
+            background: #f5f5f5;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: #333;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .api-flow-item.client {
+            border-color: #1976d2;
+            background: #e3f2fd;
+        }
+        
+        .api-flow-item.server {
+            border-color: #4caf50;
+            background: #e8f5e9;
+        }
+        
+        .api-flow-arrow {
+            color: #666;
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -68,6 +221,21 @@ final response = await http.delete(
 );</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="http-preview">
+                            <div class="http-request">
+                                <span class="http-method">GET</span> <span class="http-url">https://api.example.com/data</span>
+                            </div>
+                            <div class="http-response">
+                                <span class="http-status">200 OK</span>
+                                <pre style="margin: 8px 0 0 0;">{"name": "John", "age": 25}</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="dio">Dio</h2>
                 <p>Dio 是一个功能强大的 HTTP 客户端，支持拦截器、取消请求等。</p>
 
@@ -106,6 +274,23 @@ final formData = FormData.fromMap({
   'file': await MultipartFile.fromFile(filePath, filename: 'upload.jpg'),
 });
 final response = await dio.post('https://api.example.com/upload', data: formData);</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="api-flow-preview">
+                            <div class="api-flow-item client">请求</div>
+                            <div class="api-flow-arrow">→</div>
+                            <div class="api-flow-item">拦截器</div>
+                            <div class="api-flow-arrow">→</div>
+                            <div class="api-flow-item server">服务器</div>
+                            <div class="api-flow-arrow">→</div>
+                            <div class="api-flow-item">拦截器</div>
+                            <div class="api-flow-arrow">→</div>
+                            <div class="api-flow-item client">响应</div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="graphql">GraphQL</h2>
@@ -186,6 +371,18 @@ channel.stream.listen(
 channel.sink.close();</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="websocket-preview">
+                            <div class="websocket-message sent">发送: Hello, WebSocket!</div>
+                            <div class="websocket-message received">收到: Hello, WebSocket!</div>
+                            <div class="websocket-message sent">发送: How are you?</div>
+                            <div class="websocket-message received">收到: How are you?</div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="connectivity">Connectivity</h2>
                 <p>Connectivity 用于检测网络连接状态。</p>
 
@@ -206,6 +403,26 @@ if (connectivityResult == ConnectivityResult.mobile) {
 Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
   print('网络状态变化: $result');
 });</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="connectivity-preview">
+                            <div class="connectivity-status online">
+                                <div class="connectivity-icon">📶</div>
+                                <div class="connectivity-text">WiFi</div>
+                            </div>
+                            <div class="connectivity-status online">
+                                <div class="connectivity-icon">📱</div>
+                                <div class="connectivity-text">移动数据</div>
+                            </div>
+                            <div class="connectivity-status offline">
+                                <div class="connectivity-icon">❌</div>
+                                <div class="connectivity-text">离线</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="note-box">

@@ -6,6 +6,124 @@
     <title>数据展示组件 - Flutter 学习教程</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        .render-container {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .render-title {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .flutter-preview {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        /* DataTable 预览 */
+        .datatable-preview {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .datatable-preview th {
+            background: #1976d2;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .datatable-preview td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .datatable-preview tr:hover {
+            background: #f5f5f5;
+        }
+        
+        /* ListView 预览 */
+        .listview-preview {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .listitem-preview {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .listitem-preview:hover {
+            background: #f5f5f5;
+        }
+        
+        .listitem-title {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .listitem-subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+        
+        /* GridView 预览 */
+        .gridview-preview {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+        
+        .griditem-preview {
+            background: #f5f5f5;
+            padding: 16px;
+            border-radius: 4px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .griditem-preview:hover {
+            background: #e0e0e0;
+        }
+        
+        /* ReorderableListView 预览 */
+        .reorderable-item {
+            padding: 12px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            cursor: move;
+        }
+        
+        .reorderable-handle {
+            margin-right: 12px;
+            color: #999;
+            font-size: 18px;
+        }
+        
+        .reorderable-item:hover {
+            border-color: #1976d2;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -62,6 +180,33 @@
 )</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <table class="datatable-preview">
+                            <thead>
+                                <tr>
+                                    <th>姓名</th>
+                                    <th>年龄</th>
+                                    <th>城市</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>张三</td>
+                                    <td>25</td>
+                                    <td>北京</td>
+                                </tr>
+                                <tr>
+                                    <td>李四</td>
+                                    <td>30</td>
+                                    <td>上海</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
                 <h2 id="table">Table</h2>
                 <p>Table 是一个更底层的表格组件，提供更灵活的布局控制。</p>
 
@@ -87,6 +232,33 @@
 )</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <table class="datatable-preview" style="border: 1px solid #333;">
+                            <thead>
+                                <tr>
+                                    <th>姓名</th>
+                                    <th>年龄</th>
+                                    <th>城市</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>张三</td>
+                                    <td>25</td>
+                                    <td>北京</td>
+                                </tr>
+                                <tr>
+                                    <td>李四</td>
+                                    <td>30</td>
+                                    <td>上海</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
                 <h2 id="listview">ListView.builder</h2>
                 <p>ListView.builder 用于构建高效的列表，特别适合大量数据。</p>
 
@@ -100,6 +272,34 @@
     );
   },
 )</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="listview-preview">
+                            <div class="listitem-preview">
+                                <div class="listitem-title">项目 0</div>
+                                <div class="listitem-subtitle">这是第 0 个项目</div>
+                            </div>
+                            <div class="listitem-preview">
+                                <div class="listitem-title">项目 1</div>
+                                <div class="listitem-subtitle">这是第 1 个项目</div>
+                            </div>
+                            <div class="listitem-preview">
+                                <div class="listitem-title">项目 2</div>
+                                <div class="listitem-subtitle">这是第 2 个项目</div>
+                            </div>
+                            <div class="listitem-preview">
+                                <div class="listitem-title">项目 3</div>
+                                <div class="listitem-subtitle">这是第 3 个项目</div>
+                            </div>
+                            <div class="listitem-preview">
+                                <div class="listitem-title">项目 4</div>
+                                <div class="listitem-subtitle">这是第 4 个项目</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="gridview">GridView.builder</h2>
@@ -120,6 +320,20 @@
 )</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="gridview-preview">
+                            <div class="griditem-preview">项目 0</div>
+                            <div class="griditem-preview">项目 1</div>
+                            <div class="griditem-preview">项目 2</div>
+                            <div class="griditem-preview">项目 3</div>
+                            <div class="griditem-preview">项目 4</div>
+                            <div class="griditem-preview">项目 5</div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="reorderable">ReorderableListView</h2>
                 <p>ReorderableListView 允许用户通过拖拽重新排列列表项。</p>
 
@@ -135,6 +349,28 @@
     // 处理重新排序逻辑
   },
 )</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="reorderable-item">
+                            <span class="reorderable-handle">⋮⋮</span>
+                            <span>项目 0</span>
+                        </div>
+                        <div class="reorderable-item">
+                            <span class="reorderable-handle">⋮⋮</span>
+                            <span>项目 1</span>
+                        </div>
+                        <div class="reorderable-item">
+                            <span class="reorderable-handle">⋮⋮</span>
+                            <span>项目 2</span>
+                        </div>
+                        <div class="reorderable-item">
+                            <span class="reorderable-handle">⋮⋮</span>
+                            <span>项目 3</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="topic-nav">

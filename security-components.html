@@ -6,6 +6,131 @@
     <title>安全与权限组件 - Flutter 学习教程</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        .render-container {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .render-title {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .flutter-preview {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        /* 权限状态预览 */
+        .permission-status {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .perm-item {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .perm-granted {
+            background: #d4edda;
+            border: 1px solid #28a745;
+        }
+        
+        .perm-denied {
+            background: #f8d7da;
+            border: 1px solid #dc3545;
+        }
+        
+        .perm-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .perm-label {
+            font-weight: 600;
+            font-size: 13px;
+        }
+        
+        /* 安全存储预览 */
+        .secure-storage-preview {
+            background: #263238;
+            color: #a5d6ff;
+            padding: 12px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+        
+        /* 生物识别预览 */
+        .biometric-preview {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: #e3f2fd;
+            border-radius: 8px;
+        }
+        
+        .biometric-icon {
+            font-size: 48px;
+        }
+        
+        .biometric-status {
+            flex: 1;
+        }
+        
+        .biometric-title {
+            font-weight: 600;
+            color: #1976d2;
+        }
+        
+        .biometric-desc {
+            font-size: 13px;
+            color: #666;
+            margin-top: 4px;
+        }
+        
+        /* 加密演示 */
+        .encryption-demo {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            padding: 12px;
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+        
+        .encrypt-box {
+            flex: 1;
+            padding: 8px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+        
+        .encrypt-arrow {
+            color: #1976d2;
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -58,6 +183,30 @@ if (status.isGranted) {
 final locationStatus = await Permission.location.status;</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="permission-status">
+                            <div class="perm-item perm-granted">
+                                <div class="perm-icon">📷</div>
+                                <div class="perm-label">相机<br/>已授权</div>
+                            </div>
+                            <div class="perm-item perm-granted">
+                                <div class="perm-icon">📍</div>
+                                <div class="perm-label">位置<br/>已授权</div>
+                            </div>
+                            <div class="perm-item perm-denied">
+                                <div class="perm-icon">🎤</div>
+                                <div class="perm-label">麦克风<br/>已拒绝</div>
+                            </div>
+                            <div class="perm-item perm-denied">
+                                <div class="perm-icon">📁</div>
+                                <div class="perm-label">存储<br/>已拒绝</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="secure">Secure Storage</h2>
                 <p>Secure Storage 用于安全地存储敏感数据。</p>
 
@@ -80,6 +229,19 @@ await storage.deleteAll();
 
 // 检查键是否存在
 final hasToken = await storage.containsKey(key: 'token');</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="secure-storage-preview">
+{
+  "token": "user_token_value",
+  "password": "encrypted_password",
+  "api_key": "secure_api_key"
+}
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="biometric">Biometric Auth</h2>
@@ -110,6 +272,19 @@ if (isAuthenticated) {
 }</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="biometric-preview">
+                            <div class="biometric-icon">👆</div>
+                            <div class="biometric-status">
+                                <div class="biometric-title">生物识别认证</div>
+                                <div class="biometric-desc">支持指纹、面容识别</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="encryption">Encryption</h2>
                 <p>使用加密算法保护数据安全。</p>
 
@@ -132,6 +307,19 @@ final encryptedBase64 = encrypted.base64;
 final decryptedBase64 = encrypter.decrypt64(encryptedBase64, iv: iv);</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="encryption-demo">
+                            <div class="encrypt-box">Hello, World!</div>
+                            <span class="encrypt-arrow">🔐</span>
+                            <div class="encrypt-box" style="color: #666;">U2FsdGVkX1...</div>
+                            <span class="encrypt-arrow">🔓</span>
+                            <div class="encrypt-box">Hello, World!</div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="keychain">Keychain</h2>
                 <p>Keychain 用于在 iOS 设备上安全存储数据。</p>
 
@@ -146,6 +334,16 @@ final password = await FlutterKeychain.get(key: 'password');
 
 // 从 Keychain 删除
 await FlutterKeychain.remove(key: 'password');</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div style="padding: 12px; background: #e3f2fd; border-radius: 4px; border: 1px solid #1976d2;">
+                            <div style="font-weight: 600; color: #1976d2; margin-bottom: 8px;">🔑 iOS Keychain</div>
+                            <div style="font-size: 13px; color: #666;">安全存储敏感数据<br/>仅限 iOS 平台</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="warning-box">

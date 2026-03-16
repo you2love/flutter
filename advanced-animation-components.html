@@ -6,6 +6,176 @@
     <title>高级动画组件 - Flutter 学习教程</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        .render-container {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .render-title {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .flutter-preview {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        /* Spinning Animation */
+        .spinning-animation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+        }
+        
+        .spinning-logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            animation: spin 2s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Curve Preview */
+        .curve-preview {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            height: 80px;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+        
+        .curve-dot {
+            width: 8px;
+            height: 8px;
+            background: #1976d2;
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .curve-dot::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 60px;
+            background: #1976d2;
+            bottom: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.3;
+        }
+        
+        /* Lottie Preview */
+        .lottie-preview {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+        }
+        
+        .lottie-character {
+            font-size: 48px;
+            animation: bounce 1s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Animation Timeline */
+        .animation-timeline {
+            position: relative;
+            height: 60px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .timeline-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #1976d2 0%, #4caf50 100%);
+            width: 0%;
+            animation: progress 3s ease-in-out infinite;
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 80%;
+            background: white;
+            box-shadow: 0 0 4px rgba(0,0,0,0.3);
+            animation: slide 3s ease-in-out infinite;
+        }
+        
+        @keyframes progress {
+            0% { width: 0%; }
+            33% { width: 33%; }
+            66% { width: 66%; }
+            100% { width: 100%; }
+        }
+        
+        @keyframes slide {
+            0% { left: 0%; }
+            33% { left: 33%; }
+            66% { left: 66%; }
+            100% { left: 100%; }
+        }
+        
+        /* Ticker Visualization */
+        .ticker-visualization {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .ticker-pulse {
+            width: 12px;
+            height: 12px;
+            background: #1976d2;
+            border-radius: 50%;
+            animation: pulse 1s ease-in-out infinite;
+        }
+        
+        .ticker-pulse:nth-child(2) { animation-delay: 0.2s; }
+        .ticker-pulse:nth-child(3) { animation-delay: 0.4s; }
+        .ticker-pulse:nth-child(4) { animation-delay: 0.6s; }
+        .ticker-pulse:nth-child(5) { animation-delay: 0.8s; }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -83,6 +253,15 @@ class _SpinningWidgetState extends State<SpinningWidget>
 }</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="spinning-animation">
+                            <div class="spinning-logo">🔄</div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="ticker">TickerProvider</h2>
                 <p>TickerProvider 为动画控制器提供心跳信号。</p>
 
@@ -140,6 +319,19 @@ class _MyWidgetState extends State<MyWidget>
 }</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="ticker-visualization">
+                            <div class="ticker-pulse"></div>
+                            <div class="ticker-pulse"></div>
+                            <div class="ticker-pulse"></div>
+                            <div class="ticker-pulse"></div>
+                            <div class="ticker-pulse"></div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="curved">CurvedAnimation</h2>
                 <p>CurvedAnimation 为动画添加缓动效果。</p>
 
@@ -168,6 +360,19 @@ final curvedAnimation = CurvedAnimation(
 );</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="curve-preview">
+                            <div class="curve-dot" style="bottom: 20%;"></div>
+                            <div class="curve-dot" style="bottom: 40%;"></div>
+                            <div class="curve-dot" style="bottom: 70%;"></div>
+                            <div class="curve-dot" style="bottom: 90%;"></div>
+                            <div class="curve-dot" style="bottom: 80%;"></div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="tweensequence">TweenSequence</h2>
                     <p>TweenSequence 用于组合多个 Tween 动画。</p>
                 
@@ -193,6 +398,16 @@ final tweenSequence = TweenSequence<double>([
 ]);
 
 final animation = tweenSequence.animate(controller);</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="animation-timeline">
+                            <div class="timeline-bar"></div>
+                            <div class="timeline-marker"></div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="lottie">Lottie</h2>
@@ -223,6 +438,15 @@ Lottie.asset(
   repeat: true,
   animate: true,
 )</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="lottie-preview">
+                            <div class="lottie-character">🎬</div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="flare">Flare</h2>

@@ -6,6 +6,187 @@
     <title>应用配置组件 - Flutter 学习教程</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        .render-container {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .render-title {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .flutter-preview {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        /* 调试横幅 */
+        .debug-banner {
+            background: #2196F3;
+            color: white;
+            padding: 8px 16px;
+            font-size: 12px;
+            text-align: center;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+        
+        /* 性能覆盖层 */
+        .performance-overlay {
+            background: #212121;
+            color: #00FF00;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        
+        .perf-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .perf-label {
+            color: #9E9E9E;
+        }
+        
+        .perf-value {
+            font-weight: bold;
+        }
+        
+        .perf-bar {
+            height: 8px;
+            background: #424242;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 4px;
+        }
+        
+        .perf-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00FF00 0%, #7CFC00 100%);
+            transition: width 0.3s;
+        }
+        
+        /* 调试绘制可视化 */
+        .debug-paint {
+            position: relative;
+            border: 2px solid #FF5722;
+            background: #FFF3E0;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 4px;
+        }
+        
+        .debug-paint::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 2px solid #FF5722;
+            border-radius: 4px;
+            pointer-events: none;
+        }
+        
+        .debug-size {
+            position: absolute;
+            top: -24px;
+            left: 0;
+            background: #FF5722;
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 2px;
+            font-family: monospace;
+        }
+        
+        /* Widget 边界 */
+        .widget-boundary {
+            border: 1px dashed #9C27B0;
+            background: #F3E5F5;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 4px;
+            position: relative;
+        }
+        
+        .widget-label {
+            position: absolute;
+            top: -18px;
+            left: 4px;
+            background: #9C27B0;
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 2px;
+        }
+        
+        /* 重绘彩虹 */
+        .repaint-rainbow {
+            border: 3px solid;
+            border-image: linear-gradient(90deg, #FF5722, #FFEB3B, #4CAF50, #2196F3, #9C27B0) 1;
+            padding: 12px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 4px;
+        }
+        
+        /* 调试选项列表 */
+        .debug-options {
+            background: #F5F5F5;
+            border-radius: 8px;
+            padding: 16px;
+        }
+        
+        .debug-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        
+        .debug-option:last-child {
+            border-bottom: none;
+        }
+        
+        .debug-option-name {
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .debug-option-status {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .debug-option-status.enabled {
+            background: #E8F5E9;
+            color: #4CAF50;
+        }
+        
+        .debug-option-status.disabled {
+            background: #FFEBEE;
+            color: #F44336;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -81,6 +262,21 @@ void main() {
 }</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">调试横幅效果对比</div>
+                    <div class="flutter-preview">
+                        <div style="margin-bottom: 12px;">
+                            <div style="font-size: 12px; color: #666; margin-bottom: 4px;">默认 (debugShowCheckedModeBanner: true)</div>
+                            <div class="debug-banner">Debug</div>
+                            <div style="background: #F5F5F5; padding: 20px; text-align: center; border-radius: 4px;">应用内容</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 12px; color: #666; margin-bottom: 4px;">隐藏 (debugShowCheckedModeBanner: false)</div>
+                            <div style="background: #F5F5F5; padding: 20px; text-align: center; border-radius: 4px;">应用内容</div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="debug">debugPaintSizeEnabled</h2>
                 <p>debugPaintSizeEnabled 用于可视化 Widget 的边界和大小。</p>
 
@@ -99,6 +295,24 @@ void main() {
 }</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">Widget 边界可视化</div>
+                    <div class="flutter-preview">
+                        <div class="widget-boundary">
+                            <div class="widget-label">Container</div>
+                            <div class="debug-paint">
+                                <div class="debug-size">200x100</div>
+                                <div style="padding: 8px;">内容区域</div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 12px; font-size: 12px; color: #666;">
+                            <div style="margin-bottom: 4px;">🟦 橙色边框：Widget 的实际渲染边界</div>
+                            <div style="margin-bottom: 4px;">🟨 紫色虚线：Widget 的布局边界</div>
+                            <div>🟩 绿色文字：Widget 的尺寸信息</div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="warning-box">
                     <strong>注意：</strong>debugPaintSizeEnabled 只能在 debug 模式下使用，release 模式下会被忽略。
                 </div>
@@ -112,6 +326,35 @@ void main() {
   showPerformanceOverlay: true, // 显示性能覆盖层
   home: MyHomePage(),
 )</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">性能覆盖层显示</div>
+                    <div class="flutter-preview">
+                        <div class="performance-overlay">
+                            <div style="color: #9E9E9E; margin-bottom: 8px;">Performance Overlay</div>
+                            <div style="margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #424242;">
+                                <div class="perf-row">
+                                    <span class="perf-label">UI</span>
+                                    <span class="perf-value">3.2 ms</span>
+                                </div>
+                                <div class="perf-bar">
+                                    <div class="perf-bar-fill" style="width: 32%;"></div>
+                                </div>
+                                <div style="font-size: 10px; color: #9E9E9E;">16.6 ms/frame target</div>
+                            </div>
+                            <div>
+                                <div class="perf-row">
+                                    <span class="perf-label">GPU</span>
+                                    <span class="perf-value">1.8 ms</span>
+                                </div>
+                                <div class="perf-bar">
+                                    <div class="perf-bar-fill" style="width: 18%;"></div>
+                                </div>
+                                <div style="font-size: 10px; color: #9E9E9E;">16.6 ms/frame target</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="note-box">
@@ -141,6 +384,25 @@ void main() {
     ),
   );
 }</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">层边界和重绘可视化</div>
+                    <div class="flutter-preview">
+                        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                            <div style="flex: 1; min-width: 200px;">
+                                <div style="font-size: 12px; color: #666; margin-bottom: 8px;">debugPaintLayerBordersEnabled</div>
+                                <div style="border: 2px solid #FF5722; padding: 12px; background: white; border-radius: 4px;">
+                                    <div style="border: 1px solid #9C27B0; padding: 8px; background: #F3E5F5; border-radius: 4px; font-size: 12px;">Layer 1</div>
+                                    <div style="margin-top: 8px; border: 1px solid #9C27B0; padding: 8px; background: #F3E5F5; border-radius: 4px; font-size: 12px;">Layer 2</div>
+                                </div>
+                            </div>
+                            <div style="flex: 1; min-width: 200px;">
+                                <div style="font-size: 12px; color: #666; margin-bottom: 8px;">debugRepaintRainbowEnabled</div>
+                                <div class="repaint-rainbow" style="font-size: 12px;">重绘区域</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="note-box">
@@ -173,6 +435,34 @@ debugPaintLayerBordersEnabled = true;
 
 // 5. 检查重绘
 debugRepaintRainbowEnabled = true;</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">调试选项配置面板</div>
+                    <div class="flutter-preview">
+                        <div class="debug-options">
+                            <div class="debug-option">
+                                <div class="debug-option-name">debugPrintRebuildDirtyWidgets</div>
+                                <div class="debug-option-status enabled">已启用</div>
+                            </div>
+                            <div class="debug-option">
+                                <div class="debug-option-name">showPerformanceOverlay</div>
+                                <div class="debug-option-status enabled">已启用</div>
+                            </div>
+                            <div class="debug-option">
+                                <div class="debug-option-name">debugPaintSizeEnabled</div>
+                                <div class="debug-option-status enabled">已启用</div>
+                            </div>
+                            <div class="debug-option">
+                                <div class="debug-option-name">debugPaintLayerBordersEnabled</div>
+                                <div class="debug-option-status enabled">已启用</div>
+                            </div>
+                            <div class="debug-option">
+                                <div class="debug-option-name">debugRepaintRainbowEnabled</div>
+                                <div class="debug-option-status enabled">已启用</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="warning-box">

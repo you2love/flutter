@@ -6,6 +6,191 @@
     <title>路由管理组件 - Flutter 学习教程</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        .render-container {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .render-title {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .flutter-preview {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        /* 路由栈可视化 */
+        .route-stack {
+            background: #F5F5F5;
+            border-radius: 8px;
+            padding: 16px;
+        }
+        
+        .route-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 16px;
+            background: white;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border-left: 4px solid #2196F3;
+            position: relative;
+        }
+        
+        .route-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .route-item::after {
+            content: '▼';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #9E9E9E;
+            font-size: 12px;
+        }
+        
+        .route-item:last-child::after {
+            display: none;
+        }
+        
+        .route-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .route-arrow {
+            color: #2196F3;
+            margin: 0 8px;
+        }
+        
+        /* 导航流程图 */
+        .nav-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            padding: 16px;
+            background: #F5F5F5;
+            border-radius: 8px;
+        }
+        
+        .nav-page {
+            padding: 12px 20px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid #2196F3;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .nav-page.active {
+            background: #2196F3;
+            color: white;
+        }
+        
+        .nav-arrow {
+            font-size: 20px;
+            color: #666;
+        }
+        
+        /* 路由树 */
+        .route-tree {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 16px;
+            background: #F5F5F5;
+            border-radius: 8px;
+        }
+        
+        .route-node {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid #4CAF50;
+        }
+        
+        .route-node-children {
+            margin-left: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .route-node-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .route-node-path {
+            font-size: 12px;
+            color: #666;
+            font-family: monospace;
+        }
+        
+        /* 导航操作按钮 */
+        .nav-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            padding: 16px;
+            background: #F5F5F5;
+            border-radius: 8px;
+        }
+        
+        .nav-action-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .nav-action-btn.push {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .nav-action-btn.pop {
+            background: #FF9800;
+            color: white;
+        }
+        
+        .nav-action-btn.replace {
+            background: #2196F3;
+            color: white;
+        }
+        
+        .nav-action-btn.clear {
+            background: #F44336;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -62,6 +247,34 @@
 )</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">路由结构图</div>
+                    <div class="flutter-preview">
+                        <div class="route-tree">
+                            <div class="route-node">
+                                <div>
+                                    <div class="route-node-title">HomePage</div>
+                                    <div class="route-node-path">/</div>
+                                </div>
+                            </div>
+                            <div class="route-node-children">
+                                <div class="route-node">
+                                    <div>
+                                        <div class="route-node-title">DetailsPage</div>
+                                        <div class="route-node-path">/details</div>
+                                    </div>
+                                </div>
+                                <div class="route-node">
+                                    <div>
+                                        <div class="route-node-title">NotFoundPage</div>
+                                        <div class="route-node-path">/*</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="unknownroute">onUnknownRoute</h2>
                 <p>onUnknownRoute 处理未知的路由。</p>
 
@@ -88,6 +301,21 @@
 )</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">初始路由配置</div>
+                    <div class="flutter-preview">
+                        <div class="nav-flow">
+                            <div class="nav-page active">LoginPage</div>
+                            <div class="nav-arrow">→</div>
+                            <div class="nav-page">HomePage</div>
+                        </div>
+                        <div style="margin-top: 12px; padding: 12px; background: #E3F2FD; border-radius: 6px; font-size: 13px;">
+                            <div style="color: #1976D2; font-weight: 500;">初始路由: /login</div>
+                            <div style="color: #666; margin-top: 4px; font-size: 12px;">应用启动时直接显示登录页面</div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="observers">NavigatorObserver</h2>
                 <p>NavigatorObserver 用于观察导航事件。</p>
 
@@ -112,6 +340,21 @@ MaterialApp(
 )</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">导航事件日志</div>
+                    <div class="flutter-preview">
+                        <div style="background: #212121; color: #00FF00; padding: 16px; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.8;">
+                            <div>📱 App started</div>
+                            <div style="margin-top: 8px;">✅ didPush: /home</div>
+                            <div style="margin-top: 4px;">   [route stack: /home]</div>
+                            <div style="margin-top: 8px;">✅ didPush: /details</div>
+                            <div style="margin-top: 4px;">   [route stack: /home → /details]</div>
+                            <div style="margin-top: 8px;">❌ didPop: /details</div>
+                            <div style="margin-top: 4px;">   [route stack: /home]</div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="navpop">popUntil</h2>
                 <p>popUntil 弹出路由直到满足条件。</p>
 
@@ -129,6 +372,37 @@ Navigator.popUntil(context, (route) {
 Navigator.popUntil(context, (route) {
   return route.settings.name == '/home';
 });</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">popUntil 路由栈变化</div>
+                    <div class="flutter-preview">
+                        <div style="margin-bottom: 16px;">
+                            <div style="font-size: 12px; color: #666; margin-bottom: 8px;">操作前:</div>
+                            <div class="route-stack">
+                                <div class="route-item">
+                                    <div class="route-name">/home</div>
+                                </div>
+                                <div class="route-item">
+                                    <div class="route-name">/details</div>
+                                </div>
+                                <div class="route-item">
+                                    <div class="route-name">/settings</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <div style="font-size: 12px; color: #666; margin-bottom: 8px;">Navigator.popUntil(context, ModalRoute.withName('/')):</div>
+                            <div class="route-stack">
+                                <div class="route-item">
+                                    <div class="route-name">/home</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding: 12px; background: #FFF3E0; border-radius: 6px; font-size: 13px;">
+                            <div style="color: #E65100; font-weight: 500;">弹出所有页面直到首页</div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="navpush">pushAndRemoveUntil</h2>
@@ -150,6 +424,37 @@ Navigator.pushAndRemoveUntil(
 );</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">pushAndRemoveUntil 路由栈变化</div>
+                    <div class="flutter-preview">
+                        <div style="margin-bottom: 16px;">
+                            <div style="font-size: 12px; color: #666; margin-bottom: 8px;">操作前:</div>
+                            <div class="route-stack">
+                                <div class="route-item">
+                                    <div class="route-name">/login</div>
+                                </div>
+                                <div class="route-item">
+                                    <div class="route-name">/otp</div>
+                                </div>
+                                <div class="route-item">
+                                    <div class="route-name">/register</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="font-size: 12px; color: #666; margin-bottom: 8px;">Navigator.pushAndRemoveUntil(..., (route) => false):</div>
+                            <div class="route-stack">
+                                <div class="route-item">
+                                    <div class="route-name">/home</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 12px; padding: 12px; background: #E8F5E9; border-radius: 6px; font-size: 13px;">
+                            <div style="color: #2E7D32; font-weight: 500;">清空所有旧路由，只保留新页面</div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="navreplace">pushReplacement</h2>
                 <p>pushReplacement 替换当前路由。</p>
 
@@ -165,6 +470,37 @@ Navigator.pushReplacementNamed(
   context,
   '/home',
 );</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">pushReplacement 路由栈变化</div>
+                    <div class="flutter-preview">
+                        <div style="margin-bottom: 16px;">
+                            <div style="font-size: 12px; color: #666; margin-bottom: 8px;">操作前:</div>
+                            <div class="route-stack">
+                                <div class="route-item">
+                                    <div class="route-name">/login</div>
+                                </div>
+                                <div class="route-item">
+                                    <div class="route-name">/home</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="font-size: 12px; color: #666; margin-bottom: 8px;">Navigator.pushReplacement(..., /profile):</div>
+                            <div class="route-stack">
+                                <div class="route-item">
+                                    <div class="route-name">/login</div>
+                                </div>
+                                <div class="route-item">
+                                    <div class="route-name">/profile</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 12px; padding: 12px; background: #E3F2FD; border-radius: 6px; font-size: 13px;">
+                            <div style="color: #1976D2; font-weight: 500;">替换当前路由，用户无法返回到被替换的页面</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="note-box">

@@ -6,6 +6,145 @@
     <title>自定义 Widget - Flutter 学习教程</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        .render-container {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .render-title {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .flutter-preview {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        /* RenderObject Preview */
+        .renderobject-preview {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80px;
+        }
+        
+        .custom-rect {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* Custom Card Preview */
+        .custom-card-preview {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        
+        .custom-card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+        }
+        
+        .custom-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .custom-card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .custom-card-subtitle {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* Widget Layer Preview */
+        .widget-layer-preview {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .widget-layer {
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: white;
+            text-align: center;
+        }
+        
+        .widget-layer.build {
+            background: #1976d2;
+        }
+        
+        .widget-layer.element {
+            background: #4caf50;
+        }
+        
+        .widget-layer.render {
+            background: #ff9800;
+        }
+        
+        .widget-layer.layer {
+            background: #9c27b0;
+        }
+        
+        /* Custom Circle Preview */
+        .custom-circle-preview {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80px;
+        }
+        
+        .custom-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* MultiChild Layout Preview */
+        .multichild-preview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            padding: 16px;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+        
+        .multichild-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -60,6 +199,15 @@
 }</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="renderobject-preview">
+                            <div class="custom-rect"></div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="customwidget">Custom Widget</h2>
                     <p>通过组合现有 Widget 创建自定义组件。</p>
                 
@@ -106,6 +254,18 @@
     );
   }
 }</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="custom-card-preview">
+                            <div class="custom-card">
+                                <div class="custom-card-title">自定义卡片</div>
+                                <div class="custom-card-subtitle">这是一个组合现有Widget的自定义组件</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="sliver">Custom Sliver</h2>
@@ -198,6 +358,15 @@ class _MyCustomRenderObject extends RenderBox {
 }</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="custom-circle-preview">
+                            <div class="custom-circle"></div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="multirender">MultiChildRenderObject</h2>
                     <p>MultiChildRenderObject 用于创建具有多个子组件的自定义 Widget。</p>
 
@@ -237,6 +406,20 @@ class _MyCustomLayoutRenderObject extends RenderBox
 }
 
 class _MyCustomLayoutParentData extends ContainerBoxParentData<RenderBox> {}</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="multichild-preview">
+                            <div class="multichild-item">1</div>
+                            <div class="multichild-item">2</div>
+                            <div class="multichild-item">3</div>
+                            <div class="multichild-item">4</div>
+                            <div class="multichild-item">5</div>
+                            <div class="multichild-item">6</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="note-box">

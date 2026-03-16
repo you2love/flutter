@@ -6,6 +6,196 @@
     <title>测试与调试组件 - Flutter 学习教程</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        .render-container {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .render-title {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .flutter-preview {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        /* 测试结果 */
+        .test-results {
+            background: #F5F5F5;
+            border-radius: 8px;
+            padding: 16px;
+        }
+        
+        .test-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 12px;
+            background: white;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border-left: 3px solid;
+        }
+        
+        .test-item.passed {
+            border-left-color: #4CAF50;
+        }
+        
+        .test-item.failed {
+            border-left-color: #F44336;
+        }
+        
+        .test-icon {
+            margin-right: 12px;
+            font-size: 18px;
+        }
+        
+        .test-name {
+            flex: 1;
+            font-size: 13px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .test-duration {
+            font-size: 12px;
+            color: #999;
+            font-family: monospace;
+        }
+        
+        /* 测试套件 */
+        .test-suite {
+            background: #212121;
+            color: #00FF00;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+        
+        .suite-title {
+            color: #FFFFFF;
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+        
+        .suite-result {
+            margin-bottom: 8px;
+        }
+        
+        .suite-result.passed::before {
+            content: '✓';
+            color: #4CAF50;
+            margin-right: 8px;
+        }
+        
+        .suite-result.failed::before {
+            content: '✗';
+            color: #F44336;
+            margin-right: 8px;
+        }
+        
+        /* Golden 测试 */
+        .golden-test {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        
+        .golden-image {
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .golden-image-placeholder {
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1976D2;
+            font-size: 13px;
+            font-weight: 500;
+            border: 2px dashed #1976D2;
+        }
+        
+        .golden-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        
+        .golden-status {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 12px;
+            background: #E8F5E9;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+        
+        .golden-status.match {
+            color: #4CAF50;
+        }
+        
+        /* 测试统计 */
+        .test-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .stat-card {
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid;
+        }
+        
+        .stat-card.total {
+            border-color: #2196F3;
+            background: #E3F2FD;
+        }
+        
+        .stat-card.passed {
+            border-color: #4CAF50;
+            background: #E8F5E9;
+        }
+        
+        .stat-card.failed {
+            border-color: #F44336;
+            background: #FFEBEE;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -66,6 +256,38 @@ void main() {
 }</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">Widget 测试结果</div>
+                    <div class="flutter-preview">
+                        <div class="test-stats">
+                            <div class="stat-card total">
+                                <div class="stat-value">2</div>
+                                <div class="stat-label">总测试数</div>
+                            </div>
+                            <div class="stat-card passed">
+                                <div class="stat-value">2</div>
+                                <div class="stat-label">通过</div>
+                            </div>
+                            <div class="stat-card failed">
+                                <div class="stat-value">0</div>
+                                <div class="stat-label">失败</div>
+                            </div>
+                        </div>
+                        <div class="test-results">
+                            <div class="test-item passed">
+                                <div class="test-icon">✓</div>
+                                <div class="test-name">MyWidget 显示正确的文本</div>
+                                <div class="test-duration">12ms</div>
+                            </div>
+                            <div class="test-item passed">
+                                <div class="test-icon">✓</div>
+                                <div class="test-name">点击按钮后文本改变</div>
+                                <div class="test-duration">8ms</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="unittest">Unit Tests</h2>
                 <p>Unit Tests 用于测试单个函数或类的逻辑。</p>
 
@@ -91,6 +313,22 @@ void main() {
     });
   });
 }</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">Unit 测试结果</div>
+                    <div class="flutter-preview">
+                        <div class="test-suite">
+                            <div class="suite-title">✓ Calculator (4 tests)</div>
+                            <div class="suite-result passed">加法 - 2 + 3 = 5</div>
+                            <div class="suite-result passed">减法 - 5 - 3 = 2</div>
+                            <div class="suite-result passed">乘法 - 3 × 4 = 12</div>
+                            <div class="suite-result passed">除法 - 10 ÷ 2 = 5</div>
+                            <div style="margin-top: 12px; color: #4CAF50; font-size: 13px;">
+                                All tests passed in 24ms
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="integration">Integration Tests</h2>
@@ -153,6 +391,27 @@ void main() {
 }</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">Golden 测试对比</div>
+                    <div class="flutter-preview">
+                        <div class="golden-test">
+                            <div class="golden-image">
+                                <div class="golden-label">Golden 文件</div>
+                                <div class="golden-image-placeholder">goldens/my_widget.png</div>
+                            </div>
+                            <div class="golden-image">
+                                <div class="golden-label">实际渲染</div>
+                                <div class="golden-image-placeholder">Widget 渲染结果</div>
+                            </div>
+                            <div class="golden-status match">
+                                <div style="font-weight: 600;">✓ 匹配成功</div>
+                                <div style="font-size: 12px; color: #666;">像素差异: 0%</div>
+                                <div style="font-size: 12px; color: #666;">尺寸: 200x100</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="mockito">Mockito</h2>
                 <p>Mockito 用于创建模拟对象进行测试。</p>
 
@@ -197,6 +456,31 @@ void main() {
                         <li>使用模拟对象隔离依赖</li>
                         <li>保持测试代码简洁和可维护</li>
                     </ul>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">测试金字塔</div>
+                    <div class="flutter-preview">
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                            <div style="width: 200px; padding: 16px; background: #4CAF50; color: white; text-align: center; border-radius: 4px; font-size: 13px; font-weight: 500;">
+                                E2E 测试<br>
+                                <span style="font-size: 11px; opacity: 0.9;">少量</span>
+                            </div>
+                            <div style="width: 240px; padding: 16px; background: #2196F3; color: white; text-align: center; border-radius: 4px; font-size: 13px; font-weight: 500;">
+                                Widget 测试<br>
+                                <span style="font-size: 11px; opacity: 0.9;">适量</span>
+                            </div>
+                            <div style="width: 280px; padding: 16px; background: #FF9800; color: white; text-align: center; border-radius: 4px; font-size: 13px; font-weight: 500;">
+                                Unit 测试<br>
+                                <span style="font-size: 11px; opacity: 0.9;">大量</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 16px; padding: 12px; background: #F5F5F5; border-radius: 6px; font-size: 12px; color: #666;">
+                            <div style="margin-bottom: 4px;">🟢 Unit 测试: 70% - 快速、独立、覆盖逻辑</div>
+                            <div style="margin-bottom: 4px;">🔵 Widget 测试: 20% - 测试 UI 组件</div>
+                            <div>🟠 E2E 测试: 10% - 测试完整流程</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="warning-box">
