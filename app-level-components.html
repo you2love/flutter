@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App 级别组件 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="lib/css/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        /* 页面整体淡入动画 */
+        @keyframes fadeInPage {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        body {
+            animation: fadeInPage 0.6s ease-out;
+        }
+
+        /* 页面头部渐变和卡片效果 */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo h1 {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        /* 导航栏玻璃拟态效果 */
+        .nav a {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 组件卡片渐变边框和悬停效果 */
+        .content > h1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            text-shadow: none;
+            position: relative;
+            display: inline-block;
+        }
+
+        .content > h1::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        .content h2 {
+            background: linear-gradient(135deg, #02569B 0%, #0175C2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            position: relative;
+            padding-left: 16px;
+        }
+
+        .content h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 70%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        /* 渲染容器玻璃拟态效果 */
+        .render-container {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 24px 0;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            animation: fadeInPage 0.5s ease-out;
+        }
+
+        .render-container:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .render-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 16px;
+            margin-bottom: 16px;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .flutter-preview {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 
+                        inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .flutter-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .flutter-preview:hover::before {
+            left: 100%;
+        }
+
+        .flutter-preview:hover {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 
+                        inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+        }
+
+        /* 代码块现代化样式 */
+        .code-block {
+            background: linear-gradient(135deg, #1e1e2e 0%, #2d2d3a 100%);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 24px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .code-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+            background-size: 200% 100%;
+            animation: gradientMove 3s ease infinite;
+        }
+
+        .code-block:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .code-block pre {
+            margin: 0;
+            padding: 0;
+            background: transparent;
+        }
+
+        /* 提示框美化 */
+        .note-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            backdrop-filter: blur(10px);
+            border-left: 4px solid #667eea;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 24px 0;
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .note-box:hover {
+            transform: translateX(4px);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.2);
+        }
+
+        .note-box strong {
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        .note-box ul {
+            margin: 12px 0 0 20px;
+        }
+
+        .note-box li {
+            margin: 8px 0;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* App 结构预览 */
+        .app-structure {
+            background: #f5f5f5;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+            border: 2px solid #e0e0e0;
+        }
+
+        .app-structure-item {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 12px 0;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-structure-item h4 {
+            color: #667eea;
+            margin: 0 0 8px 0;
+        }
+
+        .app-structure-item p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* MaterialApp 预览 */
+        .materialapp-preview {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            border-radius: 16px;
+            padding: 24px;
+            color: white;
+            text-align: center;
+        }
+
+        .materialapp-preview h4 {
+            margin: 0 0 16px 0;
+            font-size: 1.2rem;
+        }
+
+        .materialapp-preview .app-bar {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            text-align: left;
+        }
+
+        .materialapp-preview .app-content {
+            background: white;
+            color: #333;
+            padding: 24px;
+            border-radius: 8px;
+            min-height: 100px;
+        }
+
+        /* CupertinoApp 预览 */
+        .cupertinoapp-preview {
+            background: linear-gradient(135deg, #007AFF 0%, #0056B3 100%);
+            border-radius: 16px;
+            padding: 24px;
+            color: white;
+            text-align: center;
+        }
+
+        .cupertinoapp-preview .ios-nav {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+
+        .cupertinoapp-preview .ios-content {
+            background: white;
+            color: #333;
+            padding: 24px;
+            border-radius: 8px;
+            min-height: 100px;
+        }
+
+        /* Navigator 预览 */
+        .navigator-preview {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .navigator-route {
+            background: #f5f5f5;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navigator-route.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-left-color: white;
+        }
+
+        .navigator-route .route-name {
+            font-weight: 600;
+        }
+
+        .navigator-route .route-action {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        /* Scaffold 预览 */
+        .scaffold-preview {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .scaffold-appbar {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            color: white;
+            padding: 16px;
+            font-weight: 600;
+        }
+
+        .scaffold-body {
+            padding: 24px;
+            min-height: 120px;
+        }
+
+        .scaffold-fab {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #FF4081 0%, #F50057 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#components">组件系统</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="content">
+                <h1>App 级别组件</h1>
+                <p>App 级别组件是 Flutter 应用的基础框架组件，用于构建应用的整体结构、导航系统和主题配置。</p>
+
+                <div class="note-box">
+                    <strong>核心概念：</strong>App 级别组件定义了应用的整体架构，包括入口点、路由管理、主题设置等，是每个 Flutter 应用的基础。
+                </div>
+
+                <h2 id="materialapp">MaterialApp</h2>
+                <p>MaterialApp 是 Material Design 应用的根组件，提供了完整的 Material Design 风格支持。</p>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="materialapp-preview">
+                            <h4>MaterialApp</h4>
+                            <div class="app-bar">
+                                <span>My App</span>
+                            </div>
+                            <div class="app-content">
+                                <p>首页内容</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre><code>MaterialApp(
+  title: 'My App',
+  theme: ThemeData(
+    primarySwatch: Colors.blue,
+  ),
+  home: HomePage(),
+  routes: {
+    '/': (context) => HomePage(),
+    '/detail': (context) => DetailPage(),
+  },
+)</code></pre>
+                </div>
+
+                <div class="note-box">
+                    <strong>主要属性：</strong>
+                    <ul>
+                        <li><strong>title</strong>：应用标题</li>
+                        <li><strong>theme</strong>：主题配置</li>
+                        <li><strong>home</strong>：首页组件</li>
+                        <li><strong>routes</strong>：路由表</li>
+                        <li><strong>initialRoute</strong>：初始路由</li>
+                        <li><strong>debugShowCheckedModeBanner</strong>：是否显示调试标签</li>
+                    </ul>
+                </div>
+
+                <h2 id="cupertinoapp">CupertinoApp</h2>
+                <p>CupertinoApp 是 iOS 风格应用的根组件，提供了 iOS 原生外观和感觉。</p>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="cupertinoapp-preview">
+                            <div class="ios-nav">← Navigation Bar</div>
+                            <div class="ios-content">
+                                <p>首页内容</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre><code>CupertinoApp(
+  title: 'My App',
+  theme: CupertinoThemeData(
+    primaryColor: CupertinoColors.systemBlue,
+  ),
+  home: HomePage(),
+  routes: {
+    '/': (context) => HomePage(),
+    '/detail': (context) => DetailPage(),
+  },
+)</code></pre>
+                </div>
+
+                <h2 id="scaffold">Scaffold</h2>
+                <p>Scaffold 是 Material Design 的页面布局组件，提供了应用页面的基本结构。</p>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="scaffold-preview">
+                            <div class="scaffold-appbar">AppBar</div>
+                            <div class="scaffold-body">
+                                <p>页面内容</p>
+                            </div>
+                            <div class="scaffold-fab">+</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre><code>Scaffold(
+  appBar: AppBar(
+    title: Text('My Page'),
+  ),
+  body: Center(
+    child: Text('Page Content'),
+  ),
+  floatingActionButton: FloatingActionButton(
+    onPressed: () {},
+    child: Icon(Icons.add),
+  ),
+  drawer: Drawer(
+    child: ListView(
+      children: [
+        DrawerHeader(
+          child: Text('Menu'),
+        ),
+        ListTile(
+          title: Text('Item 1'),
+          onTap: () {},
+        ),
+      ],
+    ),
+  ),
+)</code></pre>
+                </div>
+
+                <h2 id="navigator">Navigator</h2>
+                <p>Navigator 管理应用的路由栈，用于页面之间的导航。</p>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="navigator-preview">
+                            <div class="navigator-route">
+                                <span class="route-name">HomePage</span>
+                                <span class="route-action">当前</span>
+                            </div>
+                            <div class="navigator-route">
+                                <span class="route-name">DetailPage</span>
+                                <span class="route-action">push</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre><code>// 导航到新页面
+Navigator.push(
+  context,
+  MaterialPageRoute(
+    builder: (context) => DetailPage(),
+  ),
+);
+
+// 返回上一页
+Navigator.pop(context);
+
+// 替换当前页面
+Navigator.pushReplacement(
+  context,
+  MaterialPageRoute(
+    builder: (context) => NewPage(),
+  ),
+);</code></pre>
+                </div>
+
+                <h2 id="routes">Routes</h2>
+                <p>Routes 定义了应用的路由表，用于管理页面路径和对应的页面组件。</p>
+
+                <div class="code-block">
+                    <pre><code>// 定义路由表
+final routes = {
+  '/': (context) => HomePage(),
+  '/detail': (context) => DetailPage(),
+  '/settings': (context) => SettingsPage(),
+};
+
+// 使用命名路由导航
+Navigator.pushNamed(context, '/detail');
+
+// 带参数路由
+Navigator.pushNamed(
+  context,
+  '/detail',
+  arguments: {'id': 123},
+);</code></pre>
+                </div>
+
+                <h2 id="theme">Theme</h2>
+                <p>Theme 定义了应用的主题样式，包括颜色、字体、形状等。</p>
+
+                <div class="code-block">
+                    <pre><code>ThemeData(
+  primarySwatch: Colors.blue,
+  scaffoldBackgroundColor: Colors.white,
+  cardColor: Colors.white,
+  dividerColor: Colors.grey[300],
+  textTheme: TextTheme(
+    headline1: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+    bodyText1: TextStyle(fontSize: 16),
+  ),
+  buttonTheme: ButtonThemeData(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8),
+    ),
+  ),
+)</code></pre>
+                </div>
+
+                <h2 id="localizations">Localizations</h2>
+                <p>Localizations 用于应用国际化，支持多语言。</p>
+
+                <div class="code-block">
+                    <pre><code>MaterialApp(
+  localizationsDelegates: [
+    GlobalMaterialLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+  ],
+  supportedLocales: [
+    const Locale('zh', 'CN'),
+    const Locale('en', 'US'),
+  ],
+  locale: const Locale('zh', 'CN'),
+)</code></pre>
+                </div>
+
+                <div class="note-box">
+                    <strong>最佳实践：</strong>
+                    <ul>
+                        <li>使用 MaterialApp 或 CupertinoApp 作为应用根组件</li>
+                        <li>配置统一的主题样式，保持应用一致性</li>
+                        <li>使用命名路由管理页面导航</li>
+                        <li>实现国际化支持多语言</li>
+                        <li>合理使用 Scaffold 构建页面结构</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="lib/js/prism.min.js"></script>
+    <script src="lib/js/prism-dart.min.js"></script>
+</body>
+</html>
