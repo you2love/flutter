@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主题与样式组件 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#components">组件系统</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="content">
+                <h1>主题与样式组件</h1>
+                <p>主题与样式组件用于定义应用的整体外观和感觉。</p>
+
+                <div class="note-box">
+                    <strong>提示：</strong>使用主题可以轻松实现应用的全局样式管理。
+                </div>
+
+                <h2 id="theme">ThemeData</h2>
+                <p>ThemeData 定义了应用的主题配置。</p>
+                
+                <div class="code-block">
+                    <pre><code>MaterialApp(
+  theme: ThemeData(
+    primarySwatch: Colors.blue,
+    accentColor: Colors.amber,
+    brightness: Brightness.light,
+    fontFamily: 'Roboto',
+  ),
+  home: MyHomePage(),
+)</code></pre>
+                </div>
+
+                <h2 id="thememode">ThemeMode</h2>
+                <p>ThemeMode 用于控制主题模式（亮色/暗色）。</p>
+
+                <div class="code-block">
+                    <pre><code>MaterialApp(
+  theme: ThemeData.light(),
+  darkTheme: ThemeData.dark(),
+  themeMode: ThemeMode.system, // 跟随系统
+  // themeMode: ThemeMode.light,  // 始终亮色
+  // themeMode: ThemeMode.dark,   // 始终暗色
+  home: MyHomePage(),
+)</code></pre>
+                </div>
+
+                <h2 id="colortheme">ColorScheme</h2>
+                <p>ColorScheme 提供了一组协调的颜色。</p>
+
+                <div class="code-block">
+                    <pre><code>MaterialApp(
+  theme: ThemeData(
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: Colors.blue,
+      brightness: Brightness.light,
+    ),
+  ),
+  home: MyHomePage(),
+)</code></pre>
+                </div>
+
+                <h2 id="texttheme">TextTheme</h2>
+                <p>TextTheme 定义了文本的样式。</p>
+
+                <div class="code-block">
+                    <pre><code>ThemeData(
+  textTheme: TextTheme(
+    displayLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+    bodyLarge: TextStyle(fontSize: 16, color: Colors.black),
+    bodyMedium: TextStyle(fontSize: 14, color: Colors.grey),
+  ),
+)</code></pre>
+                </div>
+
+                <h2 id="icontheme">IconThemeData</h2>
+                <p>IconThemeData 定义了图标的样式。</p>
+
+                <div class="code-block">
+                    <pre><code>ThemeData(
+  iconTheme: IconThemeData(
+    color: Colors.blue,
+    size: 24,
+  ),
+)</code></pre>
+                </div>
+
+                <h2 id="cardtheme">CardTheme</h2>
+                <p>CardTheme 定义了卡片的样式。</p>
+
+                <div class="code-block">
+                    <pre><code>ThemeData(
+  cardTheme: CardTheme(
+    elevation: 4,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(12),
+    ),
+    color: Colors.white,
+  ),
+)</code></pre>
+                </div>
+
+                <div class="note-box">
+                    <strong>完整主题示例：</strong>
+                    <pre><code>MaterialApp(
+  theme: ThemeData(
+    useMaterial3: true,
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: Colors.blue,
+      brightness: Brightness.light,
+    ),
+    textTheme: TextTheme(
+      bodyLarge: TextStyle(fontSize: 16),
+      bodyMedium: TextStyle(fontSize: 14),
+    ),
+    cardTheme: CardTheme(
+      elevation: 2,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+    ),
+  ),
+  home: MyHomePage(),
+)</code></pre>
+                </div>
+
+                <div class="topic-nav">
+                    <a href="network-data-components.html">← 网络与数据组件</a>
+                    <a href="security-components.html">安全与权限组件 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Flutter 教程. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-dart.min.js"></script>
+</body>
+</html>

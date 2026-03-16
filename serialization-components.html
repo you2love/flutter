@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据序列化组件 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#components">组件系统</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="content">
+                <h1>数据序列化组件</h1>
+                <p>数据序列化组件用于在对象和数据格式（如 JSON）之间进行转换。</p>
+
+                <div class="note-box">
+                    <strong>提示：</strong>选择合适的序列化方案可以提高代码的类型安全性和可维护性。
+                </div>
+
+                <h2 id="json">json_serializable</h2>
+                <p>json_serializable 提供类型安全的 JSON 序列化。</p>
+                
+                <div class="code-block">
+                    <pre><code>import 'package:json_annotation/json_annotation.dart';
+
+part 'user.g.dart';
+
+@JsonSerializable()
+class User {
+  final String name;
+  final int age;
+  final String email;
+
+  User({required this.name, required this.age, required this.email});
+
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  Map<String, dynamic> toJson() => _$UserToJson(this);
+}
+
+// 使用
+final userJson = '{"name":"John","age":25,"email":"john@example.com"}';
+final user = User.fromJson(jsonDecode(userJson));
+
+final json = jsonEncode(user.toJson());</code></pre>
+                </div>
+
+                <h2 id="dartjson">dart:convert</h2>
+                <p>dart:convert 是 Dart 内置的编码/解码库。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'dart:convert';
+
+// 编码为 JSON
+final data = {
+  'name': 'John',
+  'age': 25,
+  'email': 'john@example.com',
+};
+final jsonString = jsonEncode(data);
+
+// 解码 JSON
+final decoded = jsonDecode(jsonString);
+print(decoded['name']); // John
+
+// 处理列表
+final users = [
+  {'name': 'John', 'age': 25},
+  {'name': 'Jane', 'age': 30},
+];
+final jsonString = jsonEncode(users);
+
+final decoded = jsonDecode(jsonString) as List;
+for (var user in decoded) {
+  print('${user['name']}: ${user['age']}');
+}</code></pre>
+                </div>
+
+                <h2 id="freezed">Freezed</h2>
+                    <p>Freezed 是一个用于生成不可变类的代码生成库。</p>
+                
+                <div class="code-block">
+                    <pre><code>import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'user.freezed.dart';
+part 'user.g.dart';
+
+@freezed
+class User with _$User {
+  const factory User({
+    required String name,
+    required int age,
+    String? email,
+  }) = _User;
+
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+}
+
+// 使用
+final user = User(name: 'John', age: 25);
+final json = user.toJson();
+final userFromJson = User.fromJson(json);</code></pre>
+                </div>
+
+                <h2 id="builtvalue">built_value</h2>
+                <p>built_value 提供不可变数据类和序列化支持。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'user.g.dart';
+
+abstract class User implements Built<User, UserBuilder> {
+  String get name;
+  int get age;
+  String? get email;
+
+  User._();
+  factory User([updates(UserBuilder b)]) = _$User;
+
+  static Serializer<User> get serializer => _$userSerializer;
+}
+
+// 注册序列化器
+final serializers = (Serializers().toBuilder()
+  ..add(User.serializer));
+
+// 序列化
+final user = User((b) => b
+  ..name = 'John'
+  ..age = 25);
+
+final json = serializers.serialize(user);
+final userFromJson = serializers.deserialize(json) as User;</code></pre>
+                </div>
+
+                <div class="note-box">
+                    <strong>序列化方案选择：</strong>
+                    <ul>
+                        <li>json_serializable: Flutter 官方推荐，类型安全</li>
+                        <li>dart:convert: 简单快速，适合小型项目</li>
+                        <li>Freezed: 提供不可变类和模式匹配</li>
+                        <li>built_value: 高性能，适合大型项目</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <strong>注意事项：</strong>
+                    <ul>
+                        <li>运行代码生成命令（flutter pub run build_runner build）</li>
+                        <li>将生成的文件添加到 .gitignore</li>
+                        <li>确保在 pubspec.yaml 中添加必要的依赖</li>
+                    </ul>
+                </div>
+
+                <div class="topic-nav">
+                    <a href="network-components.html">← 网络请求组件</a>
+                    <a href="advanced-animation-components.html">高级动画组件 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Flutter 教程. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-dart.min.js"></script>
+</body>
+</html>

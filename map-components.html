@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地图组件 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#components">组件系统</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="content">
+                <h1>地图组件</h1>
+                <p>地图组件用于集成地图功能，包括显示地图、添加标记、定位等。</p>
+
+                <div class="note-box">
+                    <strong>提示：</strong>使用地图组件需要申请相应的 API 密钥和配置平台权限。
+                </div>
+
+                <h2 id="googlemaps">Google Maps</h2>
+                <p>Google Maps 提供完整的地图功能和丰富的 API。</p>
+                
+                <div class="code-block">
+                    <pre><code>import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+class MyMap extends StatefulWidget {
+  @override
+  _MyMapState createState() => _MyMapState();
+}
+
+class _MyMapState extends State<MyMap> {
+  late GoogleMapController mapController;
+
+  final LatLng _center = const LatLng(45.521563, -122.677433);
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GoogleMap(
+      onMapCreated: _onMapCreated,
+      initialCameraPosition: CameraPosition(
+        target: _center,
+        zoom: 11.0,
+      ),
+      markers: {
+        Marker(
+          markerId: MarkerId('marker_1'),
+          position: _center,
+          infoWindow: InfoWindow(
+            title: 'Portland',
+            snippet: 'Oregon, USA',
+          ),
+        ),
+      },
+    );
+  }
+}</code></pre>
+                </div>
+
+                <h2 id="fluttermap">flutter_map</h2>
+                    <p>flutter_map 是一个开源的地图库，基于 Leaflet。</p>
+                
+                <div class="code-block">
+                    <pre><code>import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
+
+FlutterMap(
+  options: MapOptions(
+    center: LatLng(51.5, -0.09),
+    zoom: 13.0,
+  ),
+  children: [
+    TileLayer(
+      urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      subdomains: ['a', 'b', 'c'],
+    ),
+    MarkerLayer(
+      markers: [
+        Marker(
+          width: 80.0,
+          height: 80.0,
+          point: LatLng(51.5, -0.09),
+          builder: (ctx) => Container(
+            child: FlutterLogo(),
+          ),
+        ),
+      ],
+    ),
+  ],
+)</code></pre>
+                </div>
+
+                <h2 id="mapbox">Mapbox</h2>
+                    <p>Mapbox 提供高度可定制的地图解决方案。</p>
+                
+                <div class="code-block">
+                    <pre><code>import 'package:mapbox_gl/mapbox_gl.dart';
+
+MapboxMap(
+  accessToken: 'YOUR_ACCESS_TOKEN',
+  initialCameraPosition: CameraPosition(
+    target: LatLng(45.521563, -122.677433),
+    zoom: 11.0,
+  ),
+  styleString: MapboxStyles.MAPBOX_STREETS,
+  onMapCreated: _onMapCreated,
+  onStyleLoadedCallback: _onStyleLoaded,
+)</code></pre>
+                </div>
+
+                <h2 id="geolocator">Geolocator</h2>
+                    <p>Geolocator 用于获取设备位置信息。</p>
+                
+                <div class="code-block">
+                    <pre><code>import 'package:geolocator/geolocator.dart';
+
+// 检查位置权限
+LocationPermission permission = await Geolocator.checkPermission();
+if (permission == LocationPermission.denied) {
+  permission = await Geolocator.requestPermission();
+}
+
+// 获取当前位置
+Position position = await Geolocator.getCurrentPosition(
+  desiredAccuracy: LocationAccuracy.high,
+);
+
+// 监听位置变化
+StreamSubscription<Position> positionStream = 
+    Geolocator.getPositionStream().listen((Position position) {
+  print(position.latitude);
+  print(position.longitude);
+});
+
+// 计算距离
+double distanceInMeters = Geolocator.distanceBetween(
+  startLatitude, startLongitude,
+  endLatitude, endLongitude,
+);</code></pre>
+                </div>
+
+                <h2 id="geocoding">Geocoding</h2>
+                    <p>Geocoding 用于地址和坐标之间的转换。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'package:geocoding/geocoding.dart';
+
+// 地址转坐标
+List<Location> locations = await locationFromAddress('Gronausestraat 710, Enschede');
+
+// 坐标转地址
+List<Placemark> placemarks = await placemarkFromCoordinates(52.2165157, 6.9437893);
+
+// 获取详细信息
+Placemark place = placemarks[0];
+print('${place.street}, ${place.locality}, ${place.postalCode}');</code></pre>
+                </div>
+
+                <div class="note-box">
+                    <strong>地图组件选择：</strong>
+                    <ul>
+                        <li>Google Maps: 功能全面、API 丰富</li>
+                        <li>flutter_map: 开源免费、基于 Leaflet</li>
+                        <li>Mapbox: 高度可定制、样式灵活</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <strong>注意事项：</strong>
+                    <ul>
+                        <li>需要申请 API 密钥</li>
+                        <li>配置平台权限（Android/iOS）</li>
+                        <li>注意 API 使用配额和费用</li>
+                        <li>测试时使用调试密钥</li>
+                    </ul>
+                </div>
+
+                <div class="topic-nav">
+                    <a href="chart-components.html">← 图表组件</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Flutter 教程. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-dart.min.js"></script>
+</body>
+</html>

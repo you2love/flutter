@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据展示组件 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#components">组件系统</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="content">
+                <h1>数据展示组件</h1>
+                <p>数据展示组件用于以结构化的方式展示数据，包括表格、列表和网格等。</p>
+
+                <div class="note-box">
+                    <strong>提示：</strong>选择合适的数据展示组件可以提升用户体验和数据可读性。
+                </div>
+
+                <h2 id="datatable">DataTable</h2>
+                <p>DataTable 用于展示表格数据，支持排序、选择和分页等功能。</p>
+                
+                <div class="code-block">
+                    <pre><code>DataTable(
+  columns: [
+    DataColumn(label: Text('姓名')),
+    DataColumn(label: Text('年龄')),
+    DataColumn(label: Text('城市')),
+  ],
+  rows: [
+    DataRow(cells: [
+      DataCell(Text('张三')),
+      DataCell(Text('25')),
+      DataCell(Text('北京')),
+    ]),
+    DataRow(cells: [
+      DataCell(Text('李四')),
+      DataCell(Text('30')),
+      DataCell(Text('上海')),
+    ]),
+  ],
+)</code></pre>
+                </div>
+
+                <h2 id="table">Table</h2>
+                <p>Table 是一个更底层的表格组件，提供更灵活的布局控制。</p>
+
+                <div class="code-block">
+                    <pre><code>Table(
+  border: TableBorder.all(),
+  children: [
+    TableRow(
+      children: [
+        TableCell(child: Text('姓名')),
+        TableCell(child: Text('年龄')),
+        TableCell(child: Text('城市')),
+      ],
+    ),
+    TableRow(
+      children: [
+        TableCell(child: Text('张三')),
+        TableCell(child: Text('25')),
+        TableCell(child: Text('北京')),
+      ],
+    ),
+  ],
+)</code></pre>
+                </div>
+
+                <h2 id="listview">ListView.builder</h2>
+                <p>ListView.builder 用于构建高效的列表，特别适合大量数据。</p>
+
+                <div class="code-block">
+                    <pre><code>ListView.builder(
+  itemCount: 100,
+  itemBuilder: (context, index) {
+    return ListTile(
+      title: Text('项目 $index'),
+      subtitle: Text('这是第 $index 个项目'),
+    );
+  },
+)</code></pre>
+                </div>
+
+                <h2 id="gridview">GridView.builder</h2>
+                <p>GridView.builder 用于构建高效的网格布局。</p>
+
+                <div class="code-block">
+                    <pre><code>GridView.builder(
+  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 2,
+    childAspectRatio: 1.0,
+  ),
+  itemCount: 20,
+  itemBuilder: (context, index) {
+    return Card(
+      child: Center(child: Text('项目 $index')),
+    );
+  },
+)</code></pre>
+                </div>
+
+                <h2 id="reorderable">ReorderableListView</h2>
+                <p>ReorderableListView 允许用户通过拖拽重新排列列表项。</p>
+
+                <div class="code-block">
+                    <pre><code>ReorderableListView(
+  children: List.generate(10, (index) {
+    return ListTile(
+      key: ValueKey('item_$index'),
+      title: Text('项目 $index'),
+    );
+  }),
+  onReorder: (oldIndex, newIndex) {
+    // 处理重新排序逻辑
+  },
+)</code></pre>
+                </div>
+
+                <div class="topic-nav">
+                    <a href="layout-widgets.html">← 布局组件</a>
+                    <a href="scroll-components.html">滚动组件 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Flutter 教程. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-dart.min.js"></script>
+</body>
+</html>

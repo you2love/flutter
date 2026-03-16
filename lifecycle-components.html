@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>应用生命周期组件 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#components">组件系统</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="content">
+                <h1>应用生命周期组件</h1>
+                <p>应用生命周期组件用于监听和处理应用的各种状态变化。</p>
+
+                <div class="note-box">
+                    <strong>提示：</strong>理解应用生命周期对于创建响应式的应用非常重要。
+                </div>
+
+                <h2 id="lifecycle">AppLifecycleState</h2>
+                <p>AppLifecycleState 定义了应用的不同生命周期状态。</p>
+                
+                <div class="code-block">
+                    <pre><code>enum AppLifecycleState {
+  resumed,      // 应用可见且响应用户输入
+  inactive,     // 应用处于非活动状态（如来电、通知）
+  paused,       // 应用不可见且不响应用户输入
+  detached,     // 应用即将被销毁
+  hidden,       // 应用处于后台
+}</code></pre>
+                </div>
+
+                <h2 id="binding">WidgetsBindingObserver</h2>
+                <p>WidgetsBindingObserver 是一个观察者接口，用于监听系统事件。</p>
+
+                <div class="code-block">
+                    <pre><code>class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp>
+    with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    print('应用状态变化: $state');
+    // 根据状态执行相应操作
+  }
+}</code></pre>
+                </div>
+
+                <h2 id="didchange">didChangeAppLifecycleState</h2>
+                <p>didChangeAppLifecycleState 在应用生命周期状态改变时被调用。</p>
+
+                <div class="code-block">
+                    <pre><code>@override
+void didChangeAppLifecycleState(AppLifecycleState state) {
+  switch (state) {
+    case AppLifecycleState.resumed:
+      // 应用恢复到前台
+      print('应用恢复');
+      // 恢复网络请求、动画等
+      break;
+    case AppLifecycleState.inactive:
+      // 应用变为非活动状态
+      print('应用非活动');
+      // 暂停不需要的操作
+      break;
+    case AppLifecycleState.paused:
+      // 应用进入后台
+      print('应用暂停');
+      // 保存数据、暂停动画等
+      break;
+    case AppLifecycleState.detached:
+      // 应用即将被销毁
+      print('应用分离');
+      // 清理资源
+      break;
+    case AppLifecycleState.hidden:
+      // 应用处于后台
+      print('应用隐藏');
+      break;
+  }
+}</code></pre>
+                </div>
+
+                <h2 id="resumed">resumed</h2>
+                <p>应用可见且响应用户输入时的状态。</p>
+
+                <div class="code-block">
+                    <pre><code>@override
+void didChangeAppLifecycleState(AppLifecycleState state) {
+  if (state == AppLifecycleState.resumed) {
+    // 恢复视频播放
+    videoController.play();
+    // 重新连接 WebSocket
+    reconnectWebSocket();
+    // 刷新数据
+    refreshData();
+  }
+}</code></pre>
+                </div>
+
+                <h2 id="paused">paused</h2>
+                <p>应用不可见且不响应用户输入时的状态。</p>
+
+                <div class="code-block">
+                    <pre><code>@override
+void didChangeAppLifecycleState(AppLifecycleState state) {
+  if (state == AppLifecycleState.paused) {
+    // 暂停视频播放
+    videoController.pause();
+    // 断开网络连接
+    disconnectWebSocket();
+    // 保存当前状态
+    saveAppState();
+  }
+}</code></pre>
+                </div>
+
+                <h2 id="detached">detached</h2>
+                <p>应用即将被销毁时的状态。</p>
+
+                <div class="code-block">
+                    <pre><code>@override
+void didChangeAppLifecycleState(AppLifecycleState state) {
+  if (state == AppLifecycleState.detached) {
+    // 释放所有资源
+    videoController.dispose();
+    audioController.dispose();
+    // 取消所有定时器
+    cancelAllTimers();
+    // 保存最终状态
+    saveFinalState();
+  }
+}</code></pre>
+                </div>
+
+                <div class="note-box">
+                    <strong>生命周期最佳实践：</strong>
+                    <ul>
+                        <li>在 initState 中注册观察者</li>
+                        <li>在 dispose 中移除观察者</li>
+                        <li>在 paused 时保存数据</li>
+                        <li>在 resumed 时恢复操作</li>
+                        <li>在 detached 时清理资源</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <strong>注意事项：</strong>
+                    <ul>
+                        <li>Web 平台的生命周期可能有所不同</li>
+                        <li>测试时需要模拟不同的生命周期状态</li>
+                        <li>某些操作在不同平台上的行为可能不同</li>
+                    </ul>
+                </div>
+
+                <div class="topic-nav">
+                    <a href="cupertino-components.html">← Cupertino 组件</a>
+                    <a href="app-config-components.html">应用配置组件 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Flutter 教程. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-dart.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>状态管理框架 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#components">组件系统</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="content">
+                <h1>状态管理框架</h1>
+                <p>状态管理框架用于管理应用的状态，确保数据在组件间高效传递。</p>
+
+                <div class="note-box">
+                    <strong>提示：</strong>选择合适的状态管理框架取决于项目复杂度和团队偏好。
+                </div>
+
+                <h2 id="provider">Provider</h2>
+                <p>Provider 是 Flutter 官方推荐的状态管理方案。</p>
+                
+                <div class="code-block">
+                    <pre><code>// 创建 Provider
+class Counter extends ChangeNotifier {
+  int _count = 0;
+  int get count => _count;
+
+  void increment() {
+    _count++;
+    notifyListeners();
+  }
+}
+
+// 使用 Provider
+void main() {
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => Counter(),
+      child: MyApp(),
+    ),
+  );
+}
+
+// 在 Widget 中使用
+Consumer<Counter>(
+  builder: (context, counter, child) {
+    return Text('计数: ${counter.count}');
+  },
+)</code></pre>
+                </div>
+
+                <h2 id="riverpod">Riverpod</h2>
+                <p>Riverpod 是 Provider 的改进版本，提供更好的类型安全。</p>
+
+                <div class="code-block">
+                    <pre><code>// 创建 Provider
+final counterProvider = StateProvider<int>((ref) => 0);
+
+// 使用 Riverpod
+void main() {
+  runApp(
+    ProviderScope(
+      child: MyApp(),
+    ),
+  );
+}
+
+// 在 Widget 中使用
+Consumer(
+  builder: (context, ref, _) {
+    final count = ref.watch(counterProvider);
+    return Text('计数: $count');
+  },
+)
+
+// 修改状态
+ref.read(counterProvider.notifier).state++;</code></pre>
+                </div>
+
+                <h2 id="bloc">Bloc / Cubit</h2>
+                <p>Bloc/Cubit 是一个强大的状态管理库，适合复杂应用。</p>
+
+                <div class="code-block">
+                    <pre><code>// 创建 Cubit
+class CounterCubit extends Cubit<int> {
+  CounterCubit() : super(0);
+
+  void increment() => emit(state + 1);
+  void decrement() => emit(state - 1);
+}
+
+// 使用 Cubit
+void main() {
+  runApp(
+    BlocProvider(
+      create: (_) => CounterCubit(),
+      child: MyApp(),
+    ),
+  );
+}
+
+// 在 Widget 中使用
+BlocBuilder<CounterCubit, int>(
+  builder: (context, count) {
+    return Text('计数: $count');
+  },
+)</code></pre>
+                </div>
+
+                <h2 id="getx">GetX</h2>
+                <p>GetX 是一个轻量级且功能全面的状态管理库。</p>
+
+                <div class="code-block">
+                    <pre><code>// 创建 Controller
+class CounterController extends GetxController {
+  var count = 0.obs;
+
+  void increment() => count++;
+}
+
+// 使用 GetX
+void main() {
+  Get.put(CounterController());
+  runApp(MyApp());
+}
+
+// 在 Widget 中使用
+Obx(() => Text('计数: ${Get.find<CounterController>().count.value}'))</code></pre>
+                </div>
+
+                <h2 id="redux">Redux</h2>
+                <p>Redux 是一个可预测的状态容器，适合大型应用。</p>
+
+                <div class="code-block">
+                    <pre><code>// 定义 Action
+enum CounterAction { increment, decrement }
+
+// 定义 Reducer
+int counterReducer(int state, dynamic action) {
+  if (action == CounterAction.increment) {
+    return state + 1;
+  } else if (action == CounterAction.decrement) {
+    return state - 1;
+  }
+  return state;
+}
+
+// 创建 Store
+final store = Store<int>(counterReducer, initialState: 0);
+
+// 使用 Redux
+StoreProvider(
+  store: store,
+  child: MyApp(),
+)
+
+// 在 Widget 中使用
+StoreConnector<int, String>(
+  converter: (store) => '计数: ${store.state}',
+  builder: (context, count) {
+    return Text(count);
+  },
+)</code></pre>
+                </div>
+
+                <h2 id="mobx">MobX</h2>
+                <p>MobX 是一个响应式的状态管理库。</p>
+
+                <div class="code-block">
+                    <pre><code>// 创建 Observable
+class Counter = _Counter with _$Counter;
+
+abstract class _Counter with Store {
+  @observable
+  int count = 0;
+
+  @action
+  void increment() => count++;
+}
+
+// 使用 MobX
+final counter = Counter();
+
+Observer(
+  builder: (_) => Text('计数: ${counter.count}'),
+)</code></pre>
+                </div>
+
+                <h2 id="setstate">setState</h2>
+                <p>setState 是 Flutter 内置的简单状态管理方式。</p>
+
+                <div class="code-block">
+                    <pre><code>class CounterWidget extends StatefulWidget {
+  @override
+  _CounterWidgetState createState() => _CounterWidgetState();
+}
+
+class _CounterWidgetState extends State<CounterWidget> {
+  int _count = 0;
+
+  void _increment() {
+    setState(() {
+      _count++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text('计数: $_count'),
+        ElevatedButton(
+          onPressed: _increment,
+          child: Text('增加'),
+        ),
+      ],
+    );
+  }
+}</code></pre>
+                </div>
+
+                <div class="note-box">
+                    <strong>状态管理框架选择指南：</strong>
+                    <ul>
+                        <li>新手推荐：Provider 或 setState</li>
+                        <li>中小型项目：Provider 或 GetX</li>
+                        <li>大型项目：Bloc/Cubit 或 Redux</li>
+                        <li>追求类型安全：Riverpod</li>
+                        <li>喜欢响应式：MobX</li>
+                    </ul>
+                </div>
+
+                <div class="topic-nav">
+                    <a href="test-components.html">← 测试与调试组件</a>
+                    <a href="network-components.html">网络请求组件 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Flutter 教程. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-dart.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>路由管理组件 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#components">组件系统</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="content">
+                <h1>路由管理组件</h1>
+                <p>路由管理组件用于处理应用内的页面导航和路由控制。</p>
+
+                <div class="note-box">
+                    <strong>提示：</strong>良好的路由管理可以提升用户体验和应用的可维护性。
+                </div>
+
+                <h2 id="generateroute">onGenerateRoute</h2>
+                <p>onGenerateRoute 用于动态生成路由。</p>
+                
+                <div class="code-block">
+                    <pre><code>MaterialApp(
+  onGenerateRoute: (settings) {
+    switch (settings.name) {
+      case '/':
+        return MaterialPageRoute(
+          builder: (_) => HomePage(),
+        );
+      case '/details':
+        final args = settings.arguments as Map;
+        return MaterialPageRoute(
+          builder: (_) => DetailsPage(args: args),
+        );
+      default:
+        return MaterialPageRoute(
+          builder: (_) => NotFoundPage(),
+        );
+    }
+  },
+)</code></pre>
+                </div>
+
+                <h2 id="unknownroute">onUnknownRoute</h2>
+                <p>onUnknownRoute 处理未知的路由。</p>
+
+                <div class="code-block">
+                    <pre><code>MaterialApp(
+  onUnknownRoute: (settings) {
+    return MaterialPageRoute(
+      builder: (_) => NotFoundPage(),
+    );
+  },
+)</code></pre>
+                </div>
+
+                <h2 id="initialroute">initialRoute</h2>
+                <p>initialRoute 指定应用的初始路由。</p>
+
+                <div class="code-block">
+                    <pre><code>MaterialApp(
+  initialRoute: '/login',
+  routes: {
+    '/login': (context) => LoginPage(),
+    '/home': (context) => HomePage(),
+  },
+)</code></pre>
+                </div>
+
+                <h2 id="observers">NavigatorObserver</h2>
+                <p>NavigatorObserver 用于观察导航事件。</p>
+
+                <div class="code-block">
+                    <pre><code>class MyNavigatorObserver extends NavigatorObserver {
+  @override
+  void didPush(Route route, Route? previousRoute) {
+    super.didPush(route, previousRoute);
+    print('推送路由: ${route.settings.name}');
+  }
+
+  @override
+  void didPop(Route route, Route? previousRoute) {
+    super.didPop(route, previousRoute);
+    print('弹出路由: ${route.settings.name}');
+  }
+}
+
+MaterialApp(
+  navigatorObservers: [MyNavigatorObserver()],
+  home: HomePage(),
+)</code></pre>
+                </div>
+
+                <h2 id="navpop">popUntil</h2>
+                <p>popUntil 弹出路由直到满足条件。</p>
+
+                <div class="code-block">
+                    <pre><code>// 返回到首页
+Navigator.popUntil(context, ModalRoute.withName('/'));
+
+// 返回两页
+Navigator.popUntil(context, (route) {
+  return Navigator.of(context).canPop() && 
+         Navigator.of(context).userGestureInProgress;
+});
+
+// 使用命名路由
+Navigator.popUntil(context, (route) {
+  return route.settings.name == '/home';
+});</code></pre>
+                </div>
+
+                <h2 id="navpush">pushAndRemoveUntil</h2>
+                <p>pushAndRemoveUntil 推送新路由并移除所有旧路由。</p>
+
+                <div class="code-block">
+                    <pre><code>// 清空路由栈并推送新页面
+Navigator.pushAndRemoveUntil(
+  context,
+  MaterialPageRoute(builder: (_) => HomePage()),
+  (route) => false,
+);
+
+// 保留底部导航
+Navigator.pushAndRemoveUntil(
+  context,
+  MaterialPageRoute(builder: (_) => LoginPage()),
+  ModalRoute.withName('/'),
+);</code></pre>
+                </div>
+
+                <h2 id="navreplace">pushReplacement</h2>
+                <p>pushReplacement 替换当前路由。</p>
+
+                <div class="code-block">
+                    <pre><code>// 替换当前页面
+Navigator.pushReplacement(
+  context,
+  MaterialPageRoute(builder: (_) => HomePage()),
+);
+
+// 使用命名路由
+Navigator.pushReplacementNamed(
+  context,
+  '/home',
+);</code></pre>
+                </div>
+
+                <div class="note-box">
+                    <strong>路由管理最佳实践：</strong>
+                    <ul>
+                        <li>使用命名路由提高代码可读性</li>
+                        <li>使用 onGenerateRoute 处理复杂路由</li>
+                        <li>使用 NavigatorObserver 监控导航</li>
+                        <li>合理使用 popUntil 避免用户困惑</li>
+                        <li>使用 Hero 动画提升用户体验</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <strong>注意事项：</strong>
+                    <ul>
+                        <li>Web 平台的路由行为可能与移动平台不同</li>
+                        <li>深层嵌套的路由可能导致内存问题</li>
+                        <li>使用 pushAndRemoveUntil 时要小心</li>
+                    </ul>
+                </div>
+
+                <div class="topic-nav">
+                    <a href="app-config-components.html">← 应用配置组件</a>
+                    <a href="persistence-components.html">持久化组件 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Flutter 教程. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-dart.min.js"></script>
+</body>
+</html>

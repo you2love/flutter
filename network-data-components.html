@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网络与数据组件 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#components">组件系统</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="content">
+                <h1>网络与数据组件</h1>
+                <p>网络与数据组件用于处理网络请求、数据序列化和状态管理。</p>
+
+                <div class="note-box">
+                    <strong>提示：</strong>这些组件通常需要引入第三方包，请确保在 pubspec.yaml 中添加依赖。
+                </div>
+
+                <h2 id="http">http / dio</h2>
+                <p>http 和 dio 是常用的网络请求库。</p>
+                
+                <div class="code-block">
+                    <pre><code>// 使用 http 包
+import 'package:http/http.dart' as http;
+
+final response = await http.get(Uri.parse('https://api.example.com/data'));
+if (response.statusCode == 200) {
+  print(response.body);
+}
+
+// 使用 dio 包
+import 'package:dio/dio.dart';
+
+final dio = Dio();
+final response = await dio.get('https://api.example.com/data');
+print(response.data);</code></pre>
+                </div>
+
+                <h2 id="json">json_serializable</h2>
+                <p>json_serializable 提供类型安全的 JSON 序列化。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'package:json_annotation/json_annotation.dart';
+
+part 'user.g.dart';
+
+@JsonSerializable()
+class User {
+  final String name;
+  final int age;
+
+  User({required this.name, required this.age});
+
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  Map<String, dynamic> toJson() => _$UserToJson(this);
+}</code></pre>
+                </div>
+
+                <h2 id="provider">Provider</h2>
+                <p>Provider 是 Flutter 官方推荐的状态管理方案。</p>
+
+                <div class="code-block">
+                    <pre><code>// 创建 Provider
+class Counter extends ChangeNotifier {
+  int _count = 0;
+  int get count => _count;
+
+  void increment() {
+    _count++;
+    notifyListeners();
+  }
+}
+
+// 使用 Provider
+void main() {
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => Counter(),
+      child: MyApp(),
+    ),
+  );
+}
+
+// 在 Widget 中使用
+Consumer<Counter>(
+  builder: (context, counter, child) {
+    return Text('计数: ${counter.count}');
+  },
+)</code></pre>
+                </div>
+
+                <h2 id="bloc">Bloc / Cubit</h2>
+                <p>Bloc/Cubit 是一个强大的状态管理库。</p>
+
+                <div class="code-block">
+                    <pre><code>// 创建 Cubit
+class CounterCubit extends Cubit<int> {
+  CounterCubit() : super(0);
+
+  void increment() => emit(state + 1);
+  void decrement() => emit(state - 1);
+}
+
+// 使用 Cubit
+void main() {
+  runApp(
+    BlocProvider(
+      create: (_) => CounterCubit(),
+      child: MyApp(),
+    ),
+  );
+}
+
+// 在 Widget 中使用
+BlocBuilder<CounterCubit, int>(
+  builder: (context, count) {
+    return Text('计数: $count');
+  },
+)</code></pre>
+                </div>
+
+                <h2 id="getx">GetX</h2>
+                <p>GetX 是一个轻量级且功能全面的状态管理和路由库。</p>
+
+                <div class="code-block">
+                    <pre><code>// 创建 Controller
+class CounterController extends GetxController {
+  var count = 0.obs;
+
+  void increment() => count++;
+}
+
+// 使用 GetX
+void main() {
+  Get.put(CounterController());
+  runApp(MyApp());
+}
+
+// 在 Widget 中使用
+Obx(() => Text('计数: ${Get.find<CounterController>().count.value}'))</code></pre>
+                </div>
+
+                <h2 id="riverpod">Riverpod</h2>
+                <p>Riverpod 是 Provider 的改进版本，提供更好的类型安全。</p>
+
+                <div class="code-block">
+                    <pre><code>// 创建 Provider
+final counterProvider = StateProvider<int>((ref) => 0);
+
+// 使用 Riverpod
+void main() {
+  runApp(
+    ProviderScope(
+      child: MyApp(),
+    ),
+  );
+}
+
+// 在 Widget 中使用
+Consumer(
+  builder: (context, ref, _) {
+    final count = ref.watch(counterProvider);
+    return Text('计数: $count');
+  },
+)</code></pre>
+                </div>
+
+                <div class="note-box">
+                    <strong>选择建议：</strong>
+                    <ul>
+                        <li>新手推荐：Provider 或 GetX</li>
+                        <li>大型项目推荐：Bloc/Cubit</li>
+                        <li>追求类型安全：Riverpod</li>
+                        <li>网络请求：dio（功能更强大）</li>
+                    </ul>
+                </div>
+
+                <div class="topic-nav">
+                    <a href="performance-components.html">← 性能优化组件</a>
+                    <a href="theme-components.html">主题与样式组件 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Flutter 教程. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-dart.min.js"></script>
+</body>
+</html>

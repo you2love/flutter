@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图表组件 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#components">组件系统</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="content">
+                <h1>图表组件</h1>
+                <p>图表组件用于可视化数据，提供丰富的图表类型和交互功能。</p>
+
+                <div class="note-box">
+                    <strong>提示：</strong>选择合适的图表库可以简化开发并提供更好的用户体验。
+                </div>
+
+                <h2 id="flchart">FL Chart</h2>
+                <p>FL Chart 是一个轻量级且功能强大的图表库。</p>
+                
+                <div class="code-block">
+                    <pre><code>import 'package:fl_chart/fl_chart.dart';
+
+// 饼图
+PieChart(
+  PieChartData(
+    sections: [
+      PieChartSectionData(
+        value: 40,
+        color: Colors.blue,
+        title: '40%',
+      ),
+      PieChartSectionData(
+        value: 30,
+        color: Colors.red,
+        title: '30%',
+      ),
+      PieChartSectionData(
+        value: 20,
+        color: Colors.green,
+        title: '20%',
+      ),
+      PieChartSectionData(
+        value: 10,
+        color: Colors.yellow,
+        title: '10%',
+      ),
+    ],
+  ),
+)</code></pre>
+                </div>
+
+                <h2 id="chartsflutter">charts_flutter</h2>
+                <p>charts_flutter 是 Google 提供的图表库。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'package:charts_flutter/flutter.dart' as charts;
+
+// 创建数据
+final data = [
+      OrdinalSales('2014', 5),
+      OrdinalSales('2015', 25),
+      OrdinalSales('2016', 100),
+      OrdinalSales('2017', 75),
+    ];
+
+// 条形图
+charts.BarChart(
+  [
+    charts.Series<OrdinalSales, String>(
+      id: 'Sales',
+      colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+      domainFn: (OrdinalSales sales, _) => sales.year,
+      measureFn: (OrdinalSales sales, _) => sales.sales,
+      data: data,
+    ),
+  ],
+)</code></pre>
+                </div>
+
+                <h2 id="syncfusion">Syncfusion</h2>
+                    <p>Syncfusion 是一个功能全面的图表和 UI 组件库。</p>
+                
+                <div class="code-block">
+                    <pre><code>import 'package:syncfusion_flutter_charts/charts.dart';
+
+// 折线图
+SfCartesianChart(
+  primaryXAxis: CategoryAxis(),
+  series: <ChartSeries>[
+    LineSeries<SalesData, String>(
+      dataSource: <SalesData>[
+        SalesData('Jan', 35),
+        SalesData('Feb', 28),
+        SalesData('Mar', 34),
+        SalesData('Apr', 32),
+        SalesData('May', 40),
+      ],
+      xValueMapper: (SalesData sales, _) => sales.month,
+      yValueMapper: (SalesData sales, _) => sales.sales,
+    ),
+  ],
+)</code></pre>
+                </div>
+
+                <h2 id="piechart">Pie Chart</h2>
+                    <p>饼图用于显示数据的比例关系。</p>
+                
+                <div class="code-block">
+                    <pre><code>// 使用 FL Chart
+PieChart(
+  PieChartData(
+    sectionsSpace: 2,
+    centerSpaceRadius: 40,
+    sections: [
+      PieChartSectionData(
+        value: 30,
+        color: const Color(0xff0293ee),
+        title: '30%',
+        radius: 50,
+      ),
+      PieChartSectionData(
+        value: 50,
+        color: const Color(0xfff8b250),
+        title: '50%',
+        radius: 50,
+      ),
+      PieChartSectionData(
+        value: 20,
+        color: const Color(0xff845bef),
+        title: '20%',
+        radius: 50,
+      ),
+    ],
+  ),
+)</code></pre>
+                </div>
+
+                <h2 id="linechart">Line Chart</h2>
+                    <p>折线图用于显示数据的趋势变化。</p>
+                
+                <div class="code-block">
+                    <pre><code>// 使用 Syncfusion
+SfCartesianChart(
+  primaryXAxis: CategoryAxis(),
+  series: <LineSeries<SalesData, String>>[
+    LineSeries<SalesData, String>(
+      dataSource: [
+        SalesData('Jan', 35),
+        SalesData('Feb', 28),
+        SalesData('Mar', 34),
+        SalesData('Apr', 32),
+        SalesData('May', 40),
+      ],
+      xValueMapper: (SalesData data, _) => data.month,
+      yValueMapper: (SalesData data, _) => data.sales,
+      color: Colors.blue,
+      width: 3,
+    ),
+  ],
+)</code></pre>
+                </div>
+
+                <h2 id="barchart">Bar Chart</h2>
+                    <p>条形图用于比较不同类别的数据。</p>
+                
+                <div class="code-block">
+                    <pre><code>// 使用 Syncfusion
+SfCartesianChart(
+  primaryXAxis: CategoryAxis(),
+  series: <ChartSeries>[
+    ColumnSeries<SalesData, String>(
+      dataSource: [
+        SalesData('Product A', 35),
+        SalesData('Product B', 28),
+        SalesData('Product C', 34),
+        SalesData('Product D', 32),
+        SalesData('Product E', 40),
+      ],
+      xValueMapper: (SalesData data, _) => data.product,
+      yValueMapper: (SalesData data, _) => data.sales,
+      color: Colors.blue,
+    ),
+  ],
+)</code></pre>
+                </div>
+
+                <div class="note-box">
+                    <strong>图表库选择指南：</strong>
+                    <ul>
+                        <li>FL Chart: 轻量级、美观、活跃维护</li>
+                        <li>charts_flutter: Google 官方、功能全面</li>
+                        <li>Syncfusion: 企业级、功能强大</li>
+                    </ul>
+                </div>
+
+                <div class="topic-nav">
+                    <a href="custom-widget-components.html">← 自定义 Widget</a>
+                    <a href="map-components.html">地图组件 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Flutter 教程. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-dart.min.js"></script>
+</body>
+</html>

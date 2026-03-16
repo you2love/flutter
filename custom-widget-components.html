@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义 Widget - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#components">组件系统</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="content">
+                <h1>自定义 Widget</h1>
+                <p>自定义 Widget 用于创建满足特定需求的组件，包括简单的组合到复杂的渲染。</p>
+
+                <div class="note-box">
+                    <strong>提示：</strong>根据需求选择合适的自定义 Widget 方式。
+                </div>
+
+                <h2 id="renderobject">RenderObject</h2>
+                <p>RenderObject 是 Flutter 渲染的核心，处理布局和绘制。</p>
+                
+                <div class="code-block">
+                    <pre><code>class MyRenderObject extends RenderBox {
+  @override
+  void performLayout() {
+    size = constraints.biggest;
+  }
+
+  @override
+  void paint(PaintingContext context, Offset offset) {
+    final paint = Paint()
+      ..color = Colors.blue
+      ..style = PaintingStyle.fill;
+    context.canvas.drawRect(
+      Rect.fromLTWH(offset.dx, offset.dy, size.width, size.height),
+      paint,
+    );
+  }
+}</code></pre>
+                </div>
+
+                <h2 id="customwidget">Custom Widget</h2>
+                    <p>通过组合现有 Widget 创建自定义组件。</p>
+                
+                <div class="code-block">
+                    <pre><code>class CustomCard extends StatelessWidget {
+  final String title;
+  final String subtitle;
+  final VoidCallback? onTap;
+
+  const CustomCard({
+    required this.title,
+    required this.subtitle,
+    this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 4,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              SizedBox(height: 8),
+              Text(
+                subtitle,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}</code></pre>
+                </div>
+
+                <h2 id="sliver">Custom Sliver</h2>
+                    <p>创建自定义 Sliver 组件用于滚动效果。</p>
+                
+                <div class="code-block">
+                    <pre><code>class CustomSliverHeader extends SingleChildRenderObjectWidget {
+  final double height;
+  final Color color;
+
+  const CustomSliverHeader({
+    required this.height,
+    required this.color,
+    Widget? child,
+  }) : super(child: child);
+
+  @override
+  RenderObject createRenderObject(BuildContext context) {
+    return _RenderCustomSliverHeader(height, color);
+  }
+
+  @override
+  void updateRenderObject(
+    BuildContext context,
+    _RenderCustomSliverHeader renderObject,
+  ) {
+    renderObject.height = height;
+    renderObject.color = color;
+  }
+}
+
+class _RenderCustomSliverHeader extends RenderSliverSingleBoxAdapter {
+  double height;
+  Color color;
+
+  _RenderCustomSliverHeader(this.height, this.color);
+
+  @override
+  double get maxChildExtent => height;
+
+  @override
+  double get minChildExtent => height;
+}</code></pre>
+                </div>
+
+                <h2 id="proxy">RenderObjectWidget</h2>
+                    <p>RenderObjectWidget 是创建自定义渲染 Widget 的基类。</p>
+                
+                <div class="code-block">
+                    <pre><code>class MyCustomWidget extends LeafRenderObjectWidget {
+  final Color color;
+  final double size;
+
+  const MyCustomWidget({
+    required this.color,
+    required this.size,
+  });
+
+  @override
+  RenderObject createRenderObject(BuildContext context) {
+    return _MyCustomRenderObject(color, size);
+  }
+
+  @override
+  void updateRenderObject(
+    BuildContext context,
+    _MyCustomRenderObject renderObject,
+  ) {
+    renderObject.color = color;
+    renderObject.size = size;
+  }
+}
+
+class _MyCustomRenderObject extends RenderBox {
+  Color color;
+  double size;
+
+  _MyCustomRenderObject(this.color, this.size);
+
+  @override
+  void performLayout() {
+    size = Size.square(this.size);
+  }
+
+  @override
+  void paint(PaintingContext context, Offset offset) {
+    final paint = Paint()..color = color;
+    context.canvas.drawCircle(offset, size.width / 2, paint);
+  }
+}</code></pre>
+                </div>
+
+                <h2 id="multirender">MultiChildRenderObject</h2>
+                    <p>MultiChildRenderObject 用于创建具有多个子组件的自定义 Widget。</p>
+
+                <div class="code-block">
+                    <pre><code>class MyCustomLayout extends MultiChildRenderObjectWidget {
+  MyCustomLayout({
+    List<Widget> children = const [],
+  }) : super(children: children);
+
+  @override
+  RenderObject createRenderObject(BuildContext context) {
+    return _MyCustomLayoutRenderObject();
+  }
+}
+
+class _MyCustomLayoutRenderObject extends RenderBox
+    with ContainerRenderObjectMixin<RenderBox, _MyCustomLayoutParentData>,
+         RenderBoxContainerDefaultsMixin<RenderBox, _MyCustomLayoutParentData> {
+  @override
+  void setupParentData(RenderBox child) {
+    if (child.parentData is! _MyCustomLayoutParentData) {
+      child.parentData = _MyCustomLayoutParentData();
+    }
+  }
+
+  @override
+  void performLayout() {
+    size = constraints.biggest;
+    // 自定义布局逻辑
+  }
+
+  @override
+  void paint(PaintingContext context, Offset offset) {
+    // 自定义绘制逻辑
+    defaultPaint(context, offset);
+  }
+}
+
+class _MyCustomLayoutParentData extends ContainerBoxParentData<RenderBox> {}</code></pre>
+                </div>
+
+                <div class="note-box">
+                    <strong>自定义 Widget 最佳实践：</strong>
+                    <ul>
+                        <li>优先组合现有 Widget</li>
+                        <li>只在必要时创建 RenderObject</li>
+                        <li>正确处理约束和尺寸</li>
+                        <li>实现 hitTest 支持交互</li>
+                        <li>优化重绘和布局</li>
+                    </ul>
+                </div>
+
+                <div class="topic-nav">
+                    <a href="advanced-animation-components.html">← 高级动画组件</a>
+                    <a href="chart-components.html">图表组件 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Flutter 教程. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-dart.min.js"></script>
+</body>
+</html>

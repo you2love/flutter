@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>滚动组件 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#components">组件系统</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="content">
+                <h1>滚动组件</h1>
+                <p>滚动组件提供了对可滚动内容的精细控制，包括滚动位置、滚动行为和嵌套滚动等。</p>
+
+                <div class="note-box">
+                    <strong>提示：</strong>合理使用滚动组件可以创建流畅的用户体验和复杂的滚动效果。
+                </div>
+
+                <h2 id="scrollcontroller">ScrollController</h2>
+                <p>ScrollController 用于控制可滚动组件的滚动位置。</p>
+                
+                <div class="code-block">
+                    <pre><code>final _controller = ScrollController();
+
+@override
+void initState() {
+  super.initState();
+  _controller.addListener(() {
+    print(_controller.offset);
+  });
+}
+
+@override
+void dispose() {
+  _controller.dispose();
+  super.dispose();
+}
+
+ListView(
+  controller: _controller,
+  children: [...],
+)</code></pre>
+                </div>
+
+                <h2 id="scrollbar">Scrollbar</h2>
+                <p>Scrollbar 为可滚动组件添加滚动条指示器。</p>
+
+                <div class="code-block">
+                    <pre><code>Scrollbar(
+  child: ListView.builder(
+    itemCount: 100,
+    itemBuilder: (context, index) {
+      return ListTile(title: Text('项目 $index'));
+    },
+  ),
+)</code></pre>
+                </div>
+
+                <h2 id="scrollphysics">ScrollPhysics</h2>
+                <p>ScrollPhysics 控制滚动的物理行为，如弹性、阻尼等。</p>
+
+                <div class="code-block">
+                    <pre><code>ListView(
+  physics: BouncingScrollPhysics(), // iOS 风格弹性滚动
+  children: [...],
+)
+
+ListView(
+  physics: ClampingScrollPhysics(), // Android 风格无弹性滚动
+  children: [...],
+)</code></pre>
+                </div>
+
+                <h2 id="notification">ScrollNotification</h2>
+                <p>ScrollNotification 用于监听滚动事件。</p>
+
+                <div class="code-block">
+                    <pre><code>NotificationListener<ScrollNotification>(
+  onNotification: (notification) {
+    if (notification is ScrollStartNotification) {
+      print('开始滚动');
+    } else if (notification is ScrollEndNotification) {
+      print('结束滚动');
+    }
+    return false;
+  },
+  child: ListView(
+    children: [...],
+  ),
+)</code></pre>
+                </div>
+
+                <h2 id="sliverappbar">SliverAppBar</h2>
+                <p>SliverAppBar 是一个可以与滚动内容交互的应用栏。</p>
+
+                <div class="code-block">
+                    <pre><code>CustomScrollView(
+  slivers: [
+    SliverAppBar(
+      expandedHeight: 200,
+      floating: false,
+      pinned: true,
+      flexibleSpace: FlexibleSpaceBar(
+        title: Text('标题'),
+        background: Image.network('url', fit: BoxFit.cover),
+      ),
+    ),
+    SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (context, index) => ListTile(title: Text('项目 $index')),
+        childCount: 50,
+      ),
+    ),
+  ],
+)</code></pre>
+                </div>
+
+                <h2 id="sliverlist">SliverList</h2>
+                <p>SliverList 是一个可以用于 CustomScrollView 的列表组件。</p>
+
+                <div class="code-block">
+                    <pre><code>CustomScrollView(
+  slivers: [
+    SliverList(
+      delegate: SliverChildListDelegate([
+        ListTile(title: Text('项目 1')),
+        ListTile(title: Text('项目 2')),
+        ListTile(title: Text('项目 3')),
+      ]),
+    ),
+  ],
+)</code></pre>
+                </div>
+
+                <h2 id="nestedscroll">NestedScrollView</h2>
+                <p>NestedScrollView 用于创建嵌套的滚动视图。</p>
+
+                <div class="code-block">
+                    <pre><code>NestedScrollView(
+  headerSliverBuilder: (context, innerBoxIsScrolled) {
+    return [
+      SliverAppBar(
+        title: Text('标题'),
+        pinned: true,
+      ),
+    ];
+  },
+  body: ListView.builder(
+    itemCount: 100,
+    itemBuilder: (context, index) {
+      return ListTile(title: Text('项目 $index'));
+    },
+  ),
+)</code></pre>
+                </div>
+
+                <div class="topic-nav">
+                    <a href="data-display-components.html">← 数据展示组件</a>
+                    <a href="performance-components.html">性能优化组件 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Flutter 教程. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-dart.min.js"></script>
+</body>
+</html>

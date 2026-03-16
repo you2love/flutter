@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试与调试组件 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#components">组件系统</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="content">
+                <h1>测试与调试组件</h1>
+                <p>测试与调试组件用于确保应用质量和性能。</p>
+
+                <div class="note-box">
+                    <strong>提示：</strong>良好的测试实践可以提高代码质量和维护性。
+                </div>
+
+                <h2 id="widgettest">Widget Tests</h2>
+                <p>Widget Tests 用于测试 UI 组件的行为和外观。</p>
+                
+                <div class="code-block">
+                    <pre><code>import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+void main() {
+  testWidgets('MyWidget 显示正确的文本', (WidgetTester tester) async {
+    // 构建 Widget
+    await tester.pumpWidget(MyWidget());
+
+    // 验证文本
+    expect(find.text('Hello'), findsOneWidget);
+  });
+
+  testWidgets('点击按钮后文本改变', (WidgetTester tester) async {
+    await tester.pumpWidget(MyWidget());
+
+    // 查找按钮并点击
+    await tester.tap(find.byType(ElevatedButton));
+    await tester.pump();
+
+    // 验证文本已改变
+    expect(find.text('Clicked'), findsOneWidget);
+  });
+}</code></pre>
+                </div>
+
+                <h2 id="unittest">Unit Tests</h2>
+                <p>Unit Tests 用于测试单个函数或类的逻辑。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'package:flutter_test/flutter_test.dart';
+
+void main() {
+  group('Calculator', () {
+    test('加法', () {
+      expect(add(2, 3), equals(5));
+    });
+
+    test('减法', () {
+      expect(subtract(5, 3), equals(2));
+    });
+
+    test('乘法', () {
+      expect(multiply(3, 4), equals(12));
+    });
+
+    test('除法', () {
+      expect(divide(10, 2), equals(5));
+    });
+  });
+}</code></pre>
+                </div>
+
+                <h2 id="integration">Integration Tests</h2>
+                <p>Integration Tests 用于测试完整的应用流程。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'package:flutter_driver/flutter_driver.dart';
+import 'package:test/test.dart';
+
+void main() {
+  group('Counter App', () {
+    late FlutterDriver driver;
+
+    setUpAll(() async {
+      driver = await FlutterDriver.connect();
+    });
+
+    tearDownAll(() async {
+      await driver.close();
+    });
+
+    test('计数器递增', () async {
+      // 查找按钮
+      final counterTextFinder = find.byValueKey('counter');
+      final buttonFinder = find.byValueKey('increment');
+
+      // 验证初始值
+      expect(await driver.getText(counterTextFinder), "0");
+
+      // 点击按钮
+      await driver.tap(buttonFinder);
+
+      // 验证新值
+      expect(await driver.getText(counterTextFinder), "1");
+    });
+  });
+}</code></pre>
+                </div>
+
+                <h2 id="golden">Golden Tests</h2>
+                <p>Golden Tests 用于验证 Widget 的视觉效果。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+void main() {
+  testWidgets('MyWidget 视觉测试', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: MyWidget(),
+      ),
+    );
+
+    await expectLater(
+      find.byType(MyWidget),
+      matchesGoldenFile('goldens/my_widget.png'),
+    );
+  });
+}</code></pre>
+                </div>
+
+                <h2 id="mockito">Mockito</h2>
+                <p>Mockito 用于创建模拟对象进行测试。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'package:mockito/mockito.dart';
+import 'package:test/test.dart';
+
+class MockService extends Mock implements Service {}
+
+void main() {
+  group('UserService', () {
+    late MockService mockService;
+    late UserService userService;
+
+    setUp(() {
+      mockService = MockService();
+      userService = UserService(mockService);
+    });
+
+    test('获取用户数据', () async {
+      // 设置模拟返回值
+      when(mockService.fetchUser('123'))
+          .thenAnswer((_) async => User(id: '123', name: 'John'));
+
+      // 执行测试
+      final user = await userService.getUser('123');
+
+      // 验证结果
+      expect(user.name, equals('John'));
+      verify(mockService.fetchUser('123')).called(1);
+    });
+  });
+}</code></pre>
+                </div>
+
+                <div class="note-box">
+                    <strong>测试最佳实践：</strong>
+                    <ul>
+                        <li>为每个功能编写单元测试</li>
+                        <li>为关键 UI 编写 Widget 测试</li>
+                        <li>为主要流程编写集成测试</li>
+                        <li>使用模拟对象隔离依赖</li>
+                        <li>保持测试代码简洁和可维护</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <strong>运行测试命令：</strong>
+                    <ul>
+                        <li>flutter test: 运行所有测试</li>
+                        <li>flutter test test/widget_test.dart: 运行特定测试</li>
+                        <li>flutter drive --target=test_driver/app.dart: 运行集成测试</li>
+                        <li>flutter test --update-goldens: 更新 golden 文件</li>
+                    </ul>
+                </div>
+
+                <div class="topic-nav">
+                    <a href="intl-components.html">← 国际化组件</a>
+                    <a href="state-frameworks.html">状态管理框架 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Flutter 教程. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-dart.min.js"></script>
+</body>
+</html>

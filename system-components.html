@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系统功能组件 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#components">组件系统</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="content">
+                <h1>系统功能组件</h1>
+                <p>系统功能组件用于访问设备的系统功能，如通知、分享、文件系统等。</p>
+
+                <div class="note-box">
+                    <strong>提示：</strong>这些组件通常需要引入第三方包，并在平台配置中添加必要的权限。
+                </div>
+
+                <h2 id="notification">Notifications</h2>
+                <p>Notifications 用于显示本地通知。</p>
+                
+                <div class="code-block">
+                    <pre><code>import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
+final notifications = FlutterLocalNotificationsPlugin();
+
+// 初始化通知
+const AndroidInitializationSettings initializationSettingsAndroid =
+    AndroidInitializationSettings('@mipmap/ic_launcher');
+
+final InitializationSettings initializationSettings = InitializationSettings(
+  android: initializationSettingsAndroid,
+);
+
+await notifications.initialize(initializationSettings);
+
+// 显示通知
+const AndroidNotificationDetails androidPlatformChannelSpecifics =
+    AndroidNotificationDetails(
+  'your channel id',
+  'your channel name',
+  channelDescription: 'your channel description',
+  importance: Importance.max,
+  priority: Priority.high,
+);
+
+const NotificationDetails platformChannelSpecifics =
+    NotificationDetails(android: androidPlatformChannelSpecifics);
+
+await notifications.show(
+  0,
+  '新消息',
+  '您有一条新消息',
+  platformChannelSpecifics,
+);</code></pre>
+                </div>
+
+                <h2 id="share">Share</h2>
+                <p>Share 用于分享内容到其他应用。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'package:share_plus/share_plus.dart';
+
+// 分享文本
+Share.share('这是一段要分享的文本');
+
+// 分享文件
+Share.shareFiles(
+  ['path/to/file.jpg'],
+  text: '查看这张图片',
+);
+
+// 分享链接
+Share.shareUri(Uri.parse('https://example.com'));</code></pre>
+                </div>
+
+                <h2 id="launch">Url Launcher</h2>
+                <p>Url Launcher 用于打开 URL、发送邮件、拨打电话等。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'package:url_launcher/url_launcher.dart';
+
+// 打开网页
+await launchUrl(Uri.parse('https://example.com'));
+
+// 发送邮件
+await launchUrl(Uri.parse('mailto:example@example.com'));
+
+// 拨打电话
+await launchUrl(Uri.parse('tel:+1234567890'));
+
+// 发送短信
+await launchUrl(Uri.parse('sms:+1234567890'));
+
+// 打开应用商店
+await launchUrl(Uri.parse(
+  'https://apps.apple.com/app/id1234567890'
+));</code></pre>
+                </div>
+
+                <h2 id="file">File System</h2>
+                <p>File System 用于读写文件。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'dart:io';
+
+// 读取文件
+final file = File('path/to/file.txt');
+final contents = await file.readAsString();
+
+// 写入文件
+await file.writeAsString('Hello, World!');
+
+// 检查文件是否存在
+final exists = await file.exists();
+
+// 删除文件
+await file.delete();
+
+// 列出目录内容
+final directory = Directory('path/to/directory');
+final files = directory.listSync();</code></pre>
+                </div>
+
+                <h2 id="path">Path Provider</h2>
+                <p>Path Provider 用于获取设备上的常用目录路径。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'package:path_provider/path_provider.dart';
+
+// 获取临时目录
+final tempDir = await getTemporaryDirectory();
+
+// 获取应用文档目录
+final appDocDir = await getApplicationDocumentsDirectory();
+
+// 获取应用支持目录
+final appSupportDir = await getApplicationSupportDirectory();
+
+// 获取外部存储目录（仅 Android）
+final externalDir = await getExternalStorageDirectory();
+
+// 获取下载目录
+final downloadsDir = await getDownloadsDirectory();</code></pre>
+                </div>
+
+                <h2 id="preferences">Shared Preferences</h2>
+                <p>Shared Preferences 用于存储简单的键值对数据。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'package:shared_preferences/shared_preferences.dart';
+
+// 获取实例
+final prefs = await SharedPreferences.getInstance();
+
+// 存储数据
+await prefs.setString('username', 'john');
+await prefs.setInt('age', 25);
+await prefs.setBool('isLoggedIn', true);
+
+// 读取数据
+final username = prefs.getString('username');
+final age = prefs.getInt('age');
+final isLoggedIn = prefs.getBool('isLoggedIn');
+
+// 删除数据
+await prefs.remove('username');
+
+// 清空所有数据
+await prefs.clear();</code></pre>
+                </div>
+
+                <div class="note-box">
+                    <strong>使用建议：</strong>
+                    <ul>
+                        <li>Shared Preferences: 存储简单的配置信息</li>
+                        <li>File System: 存储大量数据或二进制文件</li>
+                        <li>Secure Storage: 存储敏感信息（密码、令牌等）</li>
+                        <li>Path Provider: 获取系统目录路径</li>
+                    </ul>
+                </div>
+
+                <div class="topic-nav">
+                    <a href="security-components.html">← 安全与权限组件</a>
+                    <a href="cupertino-components.html">Cupertino 组件 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Flutter 教程. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-dart.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>持久化组件 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#components">组件系统</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="content">
+                <h1>持久化组件</h1>
+                <p>持久化组件用于在设备上持久化存储数据，包括键值对存储、数据库等。</p>
+
+                <div class="note-box">
+                    <strong>提示：</strong>根据数据类型和需求选择合适的持久化方案。
+                </div>
+
+                <h2 id="sharedpref">SharedPreferences</h2>
+                <p>SharedPreferences 用于存储简单的键值对数据。</p>
+                
+                <div class="code-block">
+                    <pre><code>import 'package:shared_preferences/shared_preferences.dart';
+
+// 获取实例
+final prefs = await SharedPreferences.getInstance();
+
+// 存储数据
+await prefs.setString('username', 'john');
+await prefs.setInt('age', 25);
+await prefs.setBool('isLoggedIn', true);
+await prefs.setDouble('price', 99.99);
+await prefs.setStringList('tags', ['flutter', 'dart']);
+
+// 读取数据
+final username = prefs.getString('username');
+final age = prefs.getInt('age');
+final isLoggedIn = prefs.getBool('isLoggedIn');
+
+// 删除数据
+await prefs.remove('username');
+
+// 清空所有数据
+await prefs.clear();
+
+// 检查键是否存在
+final hasKey = prefs.containsKey('username');</code></pre>
+                </div>
+
+                <h2 id="hive">Hive</h2>
+                <p>Hive 是一个轻量级、快速的 NoSQL 数据库。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'package:hive/hive.dart';
+
+// 打开数据库
+final box = await Hive.openBox('myBox');
+
+// 存储数据
+await box.put('name', 'Flutter');
+await box.put('version', '3.0');
+
+// 读取数据
+final name = box.get('name');
+final version = box.get('version');
+
+// 使用类型适配器
+@HiveType(typeId: 0)
+class User extends HiveObject {
+  @HiveField(0)
+  String name;
+
+  @HiveField(1)
+  int age;
+
+  User({required this.name, required this.age});
+}
+
+// 注册适配器
+Hive.registerAdapter(UserAdapter());
+
+// 存储
+await box.put('user', User(name: 'John', age: 25));</code></pre>
+                </div>
+
+                <h2 id="sqflite">SQLite</h2>
+                <p>SQLite 是一个轻量级的 SQL 数据库。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'package:sqflite/sqflite.dart';
+
+// 打开数据库
+final db = await openDatabase(
+  'my_database.db',
+  version: 1,
+  onCreate: (db, version) {
+    return db.execute(
+      'CREATE TABLE users(id INTEGER PRIMARY KEY, name TEXT, age INTEGER)',
+    );
+  },
+);
+
+// 插入数据
+await db.insert(
+  'users',
+  {'name': 'John', 'age': 25},
+  conflictAlgorithm: ConflictAlgorithm.replace,
+);
+
+// 查询数据
+final users = await db.query('users');
+
+// 更新数据
+await db.update(
+  'users',
+  {'age': 26},
+  where: 'name = ?',
+  whereArgs: ['John'],
+);
+
+// 删除数据
+await db.delete(
+  'users',
+  where: 'name = ?',
+  whereArgs: ['John'],
+);
+
+// 执行原始 SQL
+await db.rawQuery('SELECT * FROM users WHERE age > ?', [20]);</code></pre>
+                </div>
+
+                <h2 id="isar">Isar</h2>
+                <p>Isar 是一个高性能的 NoSQL 数据库。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'package:isar/isar.dart';
+
+@collection
+class User {
+  Id id = Isar.autoIncrement;
+
+  String name;
+  int age;
+
+  User({required this.name, required this.age});
+}
+
+// 打开数据库
+final isar = await Isar.open([UserSchema]);
+
+// 写入事务
+await isar.writeTxn(() async {
+  final user = User(name: 'John', age: 25);
+  await isar.users.put(user);
+});
+
+// 查询数据
+final users = await isar.users.where().findAll();
+
+// 条件查询
+final youngUsers = await isar.users
+    .where()
+    .ageLessThan(30)
+    .findAll();
+
+// 删除数据
+await isar.writeTxn(() async {
+  await isar.users.clear();
+});</code></pre>
+                </div>
+
+                <h2 id="objectbox">ObjectBox</h2>
+                <p>ObjectBox 是一个高性能的对象数据库。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'package:objectbox/objectbox.dart';
+
+@Entity()
+class User {
+  int id = 0;
+  String name;
+  int age;
+
+  User({required this.name, required this.age});
+}
+
+// 打开数据库
+final store = await openStore();
+final box = store.box<User>();
+
+// 存储数据
+final user = User(name: 'John', age: 25);
+final id = box.put(user);
+
+// 读取数据
+final savedUser = box.get(id);
+final allUsers = box.getAll();
+
+// 更新数据
+user.age = 26;
+box.put(user);
+
+// 删除数据
+box.remove(id);
+
+// 查询数据
+final youngUsers = box.query(User_.age.lessThan(30)).build().find();</code></pre>
+                </div>
+
+                <div class="note-box">
+                    <strong>持久化方案选择：</strong>
+                    <ul>
+                        <li>SharedPreferences: 简单配置、用户设置</li>
+                        <li>Hive: 轻量级数据、快速访问</li>
+                        <li>SQLite: 复杂查询、关系数据</li>
+                        <li>Isar: 高性能、大量数据</li>
+                        <li>ObjectBox: 对象导向、高性能</li>
+                    </ul>
+                </div>
+
+                <div class="topic-nav">
+                    <a href="routing-components.html">← 路由管理组件</a>
+                    <a href="intl-components.html">国际化组件 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Flutter 教程. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-dart.min.js"></script>
+</body>
+</html>

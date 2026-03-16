@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安全与权限组件 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#components">组件系统</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="content">
+                <h1>安全与权限组件</h1>
+                <p>安全与权限组件用于处理应用的安全需求，包括权限管理、数据加密和生物识别认证。</p>
+
+                <div class="note-box">
+                    <strong>提示：</strong>这些组件通常需要引入第三方包，并配置相应的平台权限。
+                </div>
+
+                <h2 id="permission">Permission Handler</h2>
+                <p>Permission Handler 用于请求和管理应用权限。</p>
+                
+                <div class="code-block">
+                    <pre><code>import 'package:permission_handler/permission_handler.dart';
+
+// 请求相机权限
+final status = await Permission.camera.request();
+if (status.isGranted) {
+  // 权限已授予
+} else if (status.isDenied) {
+  // 权限被拒绝
+} else if (status.isPermanentlyDenied) {
+  // 权限被永久拒绝，需要引导用户到设置页面
+  openAppSettings();
+}
+
+// 检查权限状态
+final locationStatus = await Permission.location.status;</code></pre>
+                </div>
+
+                <h2 id="secure">Secure Storage</h2>
+                <p>Secure Storage 用于安全地存储敏感数据。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+final storage = FlutterSecureStorage();
+
+// 存储数据
+await storage.write(key: 'token', value: 'user_token_value');
+
+// 读取数据
+final token = await storage.read(key: 'token');
+
+// 删除数据
+await storage.delete(key: 'token');
+
+// 删除所有数据
+await storage.deleteAll();
+
+// 检查键是否存在
+final hasToken = await storage.containsKey(key: 'token');</code></pre>
+                </div>
+
+                <h2 id="biometric">Biometric Auth</h2>
+                <p>Biometric Auth 用于生物识别认证（指纹、面容等）。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'package:local_auth/local_auth.dart';
+
+final localAuth = LocalAuthentication();
+
+// 检查是否支持生物识别
+bool canCheckBiometrics = await localAuth.canCheckBiometrics;
+List<BiometricType> availableBiometrics = await localAuth.getAvailableBiometrics();
+
+// 进行生物识别认证
+bool isAuthenticated = await localAuth.authenticate(
+  localizedReason: '请验证您的身份',
+  options: AuthenticationOptions(
+    stickyAuth: true,
+    biometricOnly: true,
+  ),
+);
+
+if (isAuthenticated) {
+  // 认证成功
+} else {
+  // 认证失败
+}</code></pre>
+                </div>
+
+                <h2 id="encryption">Encryption</h2>
+                <p>使用加密算法保护数据安全。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'package:encrypt/encrypt.dart';
+
+// AES 加密
+final key = Key.fromUtf8('32-character-long-key-here!!');
+final iv = IV.fromLength(16);
+final encrypter = Encrypter(AES(key));
+
+// 加密
+final encrypted = encrypter.encrypt('Hello, World!', iv: iv);
+
+// 解密
+final decrypted = encrypter.decrypt(encrypted, iv: iv);
+
+// 使用 base64
+final encryptedBase64 = encrypted.base64;
+final decryptedBase64 = encrypter.decrypt64(encryptedBase64, iv: iv);</code></pre>
+                </div>
+
+                <h2 id="keychain">Keychain</h2>
+                <p>Keychain 用于在 iOS 设备上安全存储数据。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'package:flutter_keychain/flutter_keychain.dart';
+
+// 保存到 Keychain
+await FlutterKeychain.put(key: 'password', value: 'secret123');
+
+// 从 Keychain 读取
+final password = await FlutterKeychain.get(key: 'password');
+
+// 从 Keychain 删除
+await FlutterKeychain.remove(key: 'password');</code></pre>
+                </div>
+
+                <div class="warning-box">
+                    <strong>安全最佳实践：</strong>
+                    <ul>
+                        <li>永远不要在代码中硬编码敏感信息</li>
+                        <li>使用 HTTPS 进行网络通信</li>
+                        <li>对敏感数据进行加密存储</li>
+                        <li>及时请求必要的权限</li>
+                        <li>使用生物识别认证增强用户体验</li>
+                        <li>定期更新安全库和依赖</li>
+                    </ul>
+                </div>
+
+                <div class="note-box">
+                    <strong>平台配置：</strong>
+                    <ul>
+                        <li>Android: 在 AndroidManifest.xml 中配置权限</li>
+                        <li>iOS: 在 Info.plist 中配置权限描述</li>
+                    </ul>
+                </div>
+
+                <div class="topic-nav">
+                    <a href="theme-components.html">← 主题与样式组件</a>
+                    <a href="system-components.html">系统功能组件 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Flutter 教程. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-dart.min.js"></script>
+</body>
+</html>

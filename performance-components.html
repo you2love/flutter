@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>性能优化组件 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#components">组件系统</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="content">
+                <h1>性能优化组件</h1>
+                <p>性能优化组件帮助提升 Flutter 应用的渲染性能和响应速度。</p>
+
+                <div class="note-box">
+                    <strong>提示：</strong>合理使用性能优化组件可以显著提升应用的用户体验。
+                </div>
+
+                <h2 id="repaint">RepaintBoundary</h2>
+                <p>RepaintBoundary 隔离重绘区域，减少不必要的重绘。</p>
+                
+                <div class="code-block">
+                    <pre><code>RepaintBoundary(
+  child: AnimatedContainer(
+    duration: Duration(seconds: 1),
+    color: Colors.blue,
+    child: Text('动画内容'),
+  ),
+)</code></pre>
+                </div>
+
+                <div class="warning-box">
+                    <strong>注意：</strong>RepaintBoundary 会创建一个新的图层，过度使用可能会增加内存消耗。
+                </div>
+
+                <h2 id="ignore">IgnorePointer</h2>
+                <p>IgnorePointer 忽略所有指针事件，让事件穿透到下层。</p>
+
+                <div class="code-block">
+                    <pre><code>Stack(
+  children: [
+    ElevatedButton(
+      onPressed: () => print('点击'),
+      child: Text('按钮'),
+    ),
+    IgnorePointer(
+      child: Container(
+        color: Colors.transparent,
+        child: Text('覆盖层'),
+      ),
+    ),
+  ],
+)</code></pre>
+                </div>
+
+                <h2 id="absorb">AbsorbPointer</h2>
+                <p>AbsorbPointer 吸收所有指针事件，阻止事件穿透。</p>
+
+                <div class="code-block">
+                    <pre><code>Stack(
+  children: [
+    ElevatedButton(
+      onPressed: () => print('点击'),
+      child: Text('按钮'),
+    ),
+    AbsorbPointer(
+      child: Container(
+        color: Colors.grey.withOpacity(0.5),
+        child: Text('禁用层'),
+      ),
+    ),
+  ],
+)</code></pre>
+                </div>
+
+                <h2 id="const">const Widget</h2>
+                <p>使用 const 构造函数可以创建编译时常量，提升性能。</p>
+
+                <div class="code-block">
+                    <pre><code>// ✅ 推荐：使用 const
+const Text('标题')
+const Icon(Icons.star)
+const SizedBox(height: 16)
+
+// ❌ 避免：不使用 const
+Text('标题')
+Icon(Icons.star)
+SizedBox(height: 16)</code></pre>
+                </div>
+
+                <h2 id="keepalive">AutomaticKeepAlive</h2>
+                <p>AutomaticKeepAlive 保持 Widget 状态，避免重复构建。</p>
+
+                <div class="code-block">
+                    <pre><code>class MyListItem extends StatefulWidget {
+  @override
+  _MyListItemState createState() => _MyListItemState();
+}
+
+class _MyListItemState extends State<MyListItem>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return ListTile(title: Text('保持状态'));
+  }
+}</code></pre>
+                </div>
+
+                <h2 id="optimized">ListView.builder</h2>
+                <p>ListView.builder 使用懒加载，只渲染可见的项目。</p>
+
+                <div class="code-block">
+                    <pre><code>// ✅ 推荐：使用 builder
+ListView.builder(
+  itemCount: 10000,
+  itemBuilder: (context, index) {
+    return ListTile(title: Text('项目 $index'));
+  },
+)
+
+// ❌ 避免：使用普通 ListView
+ListView(
+  children: List.generate(10000, (index) {
+    return ListTile(title: Text('项目 $index'));
+  }),
+)</code></pre>
+                </div>
+
+                <div class="note-box">
+                    <strong>性能优化最佳实践：</strong>
+                    <ul>
+                        <li>使用 const 构造函数</li>
+                        <li>避免过度嵌套</li>
+                        <li>使用 RepaintBoundary 隔离频繁重绘的部分</li>
+                        <li>使用 ListView.builder 处理长列表</li>
+                        <li>避免在 build 方法中进行复杂计算</li>
+                    </ul>
+                </div>
+
+                <div class="topic-nav">
+                    <a href="scroll-components.html">← 滚动组件</a>
+                    <a href="network-data-components.html">网络与数据组件 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Flutter 教程. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-dart.min.js"></script>
+</body>
+</html>

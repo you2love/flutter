@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>应用配置组件 - Flutter 学习教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Flutter 教程</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#components">组件系统</a></li>
+                    <li><a href="index.html#tutorials">教程</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="tutorial-nav">
+                <a href="index.html">← 返回首页</a>
+            </div>
+
+            <div class="content">
+                <h1>应用配置组件</h1>
+                <p>应用配置组件用于配置和调试 Flutter 应用的各种参数。</p>
+
+                <div class="note-box">
+                    <strong>提示：</strong>这些配置主要用于开发调试阶段，生产环境中应谨慎使用。
+                </div>
+
+                <h2 id="widgetsapp">WidgetsApp</h2>
+                <p>WidgetsApp 是 MaterialApp 和 CupertinoApp 的基类，提供基础的应用配置。</p>
+                
+                <div class="code-block">
+                    <pre><code>WidgetsApp(
+  title: '我的应用',
+  color: Colors.blue,
+  builder: (context, child) {
+    return MediaQuery(
+      data: MediaQuery.of(context).copyWith(
+        textScaleFactor: 1.0,
+      ),
+      child: child!,
+    );
+  },
+  home: MyHomePage(),
+)</code></pre>
+                </div>
+
+                <h2 id="runapp">runApp</h2>
+                <p>runApp 是 Flutter 应用的入口函数。</p>
+
+                <div class="code-block">
+                    <pre><code>void main() {
+  runApp(
+    MaterialApp(
+      title: 'Flutter 应用',
+      home: MyHomePage(),
+    ),
+  );
+}
+
+// 带调试横幅
+void main() {
+  runApp(
+    MaterialApp(
+      title: 'Flutter 应用',
+      debugShowCheckedModeBanner: false, // 隐藏调试横幅
+      home: MyHomePage(),
+    ),
+  );
+}</code></pre>
+                </div>
+
+                <h2 id="debug">debugPaintSizeEnabled</h2>
+                <p>debugPaintSizeEnabled 用于可视化 Widget 的边界和大小。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'package:flutter/rendering.dart';
+
+void main() {
+  // 启用调试绘制
+  debugPaintSizeEnabled = true;
+  
+  runApp(
+    MaterialApp(
+      home: MyHomePage(),
+    ),
+  );
+}</code></pre>
+                </div>
+
+                <div class="warning-box">
+                    <strong>注意：</strong>debugPaintSizeEnabled 只能在 debug 模式下使用，release 模式下会被忽略。
+                </div>
+
+                <h2 id="performance">PerformanceOverlay</h2>
+                <p>PerformanceOverlay 显示应用的性能指标。</p>
+
+                <div class="code-block">
+                    <pre><code>MaterialApp(
+  debugShowCheckedModeBanner: false,
+  showPerformanceOverlay: true, // 显示性能覆盖层
+  home: MyHomePage(),
+)</code></pre>
+                </div>
+
+                <div class="note-box">
+                    <strong>性能指标说明：</strong>
+                    <ul>
+                        <li>GPU: 图形渲染时间</li>
+                        <li>UI: CPU 构建时间</li>
+                        <li>绿色表示性能良好</li>
+                        <li>红色表示性能较差</li>
+                    </ul>
+                </div>
+
+                <h2 id="checkerboard">checkerboardRasterCacheImages</h2>
+                <p>checkerboardRasterCacheImages 用于可视化图像缓存。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'package:flutter/rendering.dart';
+
+void main() {
+  // 启用棋盘格缓存可视化
+  debugPaintLayerBordersEnabled = true;
+  debugRepaintRainbowEnabled = true;
+  
+  runApp(
+    MaterialApp(
+      home: MyHomePage(),
+    ),
+  );
+}</code></pre>
+                </div>
+
+                <div class="note-box">
+                    <strong>其他调试选项：</strong>
+                    <pre><code>// 启用所有调试绘制
+debugPaintSizeEnabled = true;
+debugPaintBaselinesEnabled = true;
+debugPaintPointersEnabled = true;
+debugPaintLayerBordersEnabled = true;
+debugRepaintRainbowEnabled = true;
+debugPrintRebuildDirtyWidgets = true;</code></pre>
+                </div>
+
+                <h2>常见调试技巧</h2>
+                <div class="code-block">
+                    <pre><code>// 1. 检查 Widget 重建
+debugPrintRebuildDirtyWidgets = true;
+
+// 2. 显示帧率
+MaterialApp(
+  showPerformanceOverlay: true,
+  home: MyHomePage(),
+)
+
+// 3. 检查布局边界
+debugPaintSizeEnabled = true;
+
+// 4. 显示 Paint 层
+debugPaintLayerBordersEnabled = true;
+
+// 5. 检查重绘
+debugRepaintRainbowEnabled = true;</code></pre>
+                </div>
+
+                <div class="warning-box">
+                    <strong>生产环境注意事项：</strong>
+                    <ul>
+                        <li>确保所有调试标志在 release 模式下关闭</li>
+                        <li>使用 assert 语句进行调试检查</li>
+                        <li>避免在生产代码中使用 debugPrint</li>
+                        <li>使用常量构造函数优化性能</li>
+                    </ul>
+                </div>
+
+                <div class="topic-nav">
+                    <a href="lifecycle-components.html">← 应用生命周期组件</a>
+                    <a href="routing-components.html">路由管理组件 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Flutter 教程. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-dart.min.js"></script>
+</body>
+</html>
