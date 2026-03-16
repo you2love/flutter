@@ -190,6 +190,21 @@
                     <strong>提示：</strong>选择合适的网络库可以简化开发并提高性能。
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="http-preview">
+                            <div class="http-request">
+                                <span class="http-method">GET</span> <span class="http-url">https://api.example.com/data</span>
+                            </div>
+                            <div class="http-response">
+                                <span class="http-status">200 OK</span>
+                                <pre style="margin: 8px 0 0 0;">{"name": "John", "age": 25}</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="http">http</h2>
                 <p>http 是 Flutter 官方提供的简单 HTTP 客户端。</p>
                 
@@ -224,14 +239,16 @@ final response = await http.delete(
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="http-preview">
-                            <div class="http-request">
-                                <span class="http-method">GET</span> <span class="http-url">https://api.example.com/data</span>
-                            </div>
-                            <div class="http-response">
-                                <span class="http-status">200 OK</span>
-                                <pre style="margin: 8px 0 0 0;">{"name": "John", "age": 25}</pre>
-                            </div>
+                        <div class="api-flow-preview">
+                            <div class="api-flow-item client">请求</div>
+                            <div class="api-flow-arrow">→</div>
+                            <div class="api-flow-item">拦截器</div>
+                            <div class="api-flow-arrow">→</div>
+                            <div class="api-flow-item server">服务器</div>
+                            <div class="api-flow-arrow">→</div>
+                            <div class="api-flow-item">拦截器</div>
+                            <div class="api-flow-arrow">→</div>
+                            <div class="api-flow-item client">响应</div>
                         </div>
                     </div>
                 </div>
@@ -274,23 +291,6 @@ final formData = FormData.fromMap({
   'file': await MultipartFile.fromFile(filePath, filename: 'upload.jpg'),
 });
 final response = await dio.post('https://api.example.com/upload', data: formData);</code></pre>
-                </div>
-
-                <div class="render-container">
-                    <div class="render-title">📱 渲染效果预览</div>
-                    <div class="flutter-preview">
-                        <div class="api-flow-preview">
-                            <div class="api-flow-item client">请求</div>
-                            <div class="api-flow-arrow">→</div>
-                            <div class="api-flow-item">拦截器</div>
-                            <div class="api-flow-arrow">→</div>
-                            <div class="api-flow-item server">服务器</div>
-                            <div class="api-flow-arrow">→</div>
-                            <div class="api-flow-item">拦截器</div>
-                            <div class="api-flow-arrow">→</div>
-                            <div class="api-flow-item client">响应</div>
-                        </div>
-                    </div>
                 </div>
 
                 <h2 id="graphql">GraphQL</h2>
@@ -340,6 +340,18 @@ final MutationOptions options = MutationOptions(
 final QueryResult result = await client.value.mutate(options);</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="websocket-preview">
+                            <div class="websocket-message sent">发送: Hello, WebSocket!</div>
+                            <div class="websocket-message received">收到: Hello, WebSocket!</div>
+                            <div class="websocket-message sent">发送: How are you?</div>
+                            <div class="websocket-message received">收到: How are you?</div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="websocket">WebSocket</h2>
                 <p>WebSocket 用于建立实时双向通信连接。</p>
 
@@ -374,11 +386,19 @@ channel.sink.close();</code></pre>
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="websocket-preview">
-                            <div class="websocket-message sent">发送: Hello, WebSocket!</div>
-                            <div class="websocket-message received">收到: Hello, WebSocket!</div>
-                            <div class="websocket-message sent">发送: How are you?</div>
-                            <div class="websocket-message received">收到: How are you?</div>
+                        <div class="connectivity-preview">
+                            <div class="connectivity-status online">
+                                <div class="connectivity-icon">📶</div>
+                                <div class="connectivity-text">WiFi</div>
+                            </div>
+                            <div class="connectivity-status online">
+                                <div class="connectivity-icon">📱</div>
+                                <div class="connectivity-text">移动数据</div>
+                            </div>
+                            <div class="connectivity-status offline">
+                                <div class="connectivity-icon">❌</div>
+                                <div class="connectivity-text">离线</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -403,26 +423,6 @@ if (connectivityResult == ConnectivityResult.mobile) {
 Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
   print('网络状态变化: $result');
 });</code></pre>
-                </div>
-
-                <div class="render-container">
-                    <div class="render-title">📱 渲染效果预览</div>
-                    <div class="flutter-preview">
-                        <div class="connectivity-preview">
-                            <div class="connectivity-status online">
-                                <div class="connectivity-icon">📶</div>
-                                <div class="connectivity-text">WiFi</div>
-                            </div>
-                            <div class="connectivity-status online">
-                                <div class="connectivity-icon">📱</div>
-                                <div class="connectivity-text">移动数据</div>
-                            </div>
-                            <div class="connectivity-status offline">
-                                <div class="connectivity-icon">❌</div>
-                                <div class="connectivity-text">离线</div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="note-box">

@@ -183,6 +183,19 @@
                     <strong>提示：</strong>选择合适的序列化方案可以提高代码的类型安全性和可维护性。
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="json-preview">
+                            <div class="json-block">{
+  <span class="json-key">"name"</span>: <span class="json-string">"John"</span>,
+  <span class="json-key">"age"</span>: <span class="json-number">25</span>,
+  <span class="json-key">"email"</span>: <span class="json-string">"john@example.com"</span>
+}</div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="json">json_serializable</h2>
                 <p>json_serializable 提供类型安全的 JSON 序列化。</p>
                 
@@ -213,12 +226,16 @@ final json = jsonEncode(user.toJson());</code></pre>
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="json-preview">
-                            <div class="json-block">{
-  <span class="json-key">"name"</span>: <span class="json-string">"John"</span>,
-  <span class="json-key">"age"</span>: <span class="json-number">25</span>,
-  <span class="json-key">"email"</span>: <span class="json-string">"john@example.com"</span>
-}</div>
+                        <div class="data-transform-preview">
+                            <div class="data-box object">
+                                <div class="data-box-title">Dart Object</div>
+                                <div class="data-box-content">User(name: "John", age: 25)</div>
+                            </div>
+                            <div class="transform-arrow">⇄</div>
+                            <div class="data-box json">
+                                <div class="data-box-title">JSON</div>
+                                <div class="data-box-content">{"name":"John","age":25}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -257,15 +274,25 @@ for (var user in decoded) {
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="data-transform-preview">
-                            <div class="data-box object">
-                                <div class="data-box-title">Dart Object</div>
-                                <div class="data-box-content">User(name: "John", age: 25)</div>
+                        <div class="comparison-preview">
+                            <div class="comparison-item better">
+                                <span class="comparison-badge recommended">✓ 推荐</span>
+                                <div class="comparison-title">Freezed</div>
+                                <ul>
+                                    <li>✓ 不可变类</li>
+                                    <li>✓ 模式匹配</li>
+                                    <li>✓ 序列化支持</li>
+                                    <li>✓ 复制with方法</li>
+                                </ul>
                             </div>
-                            <div class="transform-arrow">⇄</div>
-                            <div class="data-box json">
-                                <div class="data-box-title">JSON</div>
-                                <div class="data-box-content">{"name":"John","age":25}</div>
+                            <div class="comparison-item">
+                                <div class="comparison-title">传统类</div>
+                                <ul>
+                                    <li>✗ 可变</li>
+                                    <li>✗ 无模式匹配</li>
+                                    <li>✗ 手动序列化</li>
+                                    <li>✗ 需手动实现</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -300,25 +327,15 @@ final userFromJson = User.fromJson(json);</code></pre>
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="comparison-preview">
-                            <div class="comparison-item better">
-                                <span class="comparison-badge recommended">✓ 推荐</span>
-                                <div class="comparison-title">Freezed</div>
-                                <ul>
-                                    <li>✓ 不可变类</li>
-                                    <li>✓ 模式匹配</li>
-                                    <li>✓ 序列化支持</li>
-                                    <li>✓ 复制with方法</li>
-                                </ul>
+                        <div class="data-transform-preview">
+                            <div class="data-box object">
+                                <div class="data-box-title">User</div>
+                                <div class="data-box-content">Immutable Object</div>
                             </div>
-                            <div class="comparison-item">
-                                <div class="comparison-title">传统类</div>
-                                <ul>
-                                    <li>✗ 可变</li>
-                                    <li>✗ 无模式匹配</li>
-                                    <li>✗ 手动序列化</li>
-                                    <li>✗ 需手动实现</li>
-                                </ul>
+                            <div class="transform-arrow">⇄</div>
+                            <div class="data-box json">
+                                <div class="data-box-title">Serialized</div>
+                                <div class="data-box-content">Binary / JSON</div>
                             </div>
                         </div>
                     </div>
@@ -355,23 +372,6 @@ final user = User((b) => b
 
 final json = serializers.serialize(user);
 final userFromJson = serializers.deserialize(json) as User;</code></pre>
-                </div>
-
-                <div class="render-container">
-                    <div class="render-title">📱 渲染效果预览</div>
-                    <div class="flutter-preview">
-                        <div class="data-transform-preview">
-                            <div class="data-box object">
-                                <div class="data-box-title">User</div>
-                                <div class="data-box-content">Immutable Object</div>
-                            </div>
-                            <div class="transform-arrow">⇄</div>
-                            <div class="data-box json">
-                                <div class="data-box-title">Serialized</div>
-                                <div class="data-box-content">Binary / JSON</div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="note-box">

@@ -195,19 +195,6 @@
                     <strong>提示：</strong>理解应用生命周期对于创建响应式的应用非常重要。
                 </div>
 
-                <h2 id="lifecycle">AppLifecycleState</h2>
-                <p>AppLifecycleState 定义了应用的不同生命周期状态。</p>
-                
-                <div class="code-block">
-                    <pre><code>enum AppLifecycleState {
-  resumed,      // 应用可见且响应用户输入
-  inactive,     // 应用处于非活动状态（如来电、通知）
-  paused,       // 应用不可见且不响应用户输入
-  detached,     // 应用即将被销毁
-  hidden,       // 应用处于后台
-}</code></pre>
-                </div>
-
                 <div class="render-container">
                     <div class="render-title">生命周期状态示意图</div>
                     <div class="flutter-preview">
@@ -234,6 +221,19 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <h2 id="lifecycle">AppLifecycleState</h2>
+                <p>AppLifecycleState 定义了应用的不同生命周期状态。</p>
+                
+                <div class="code-block">
+                    <pre><code>enum AppLifecycleState {
+  resumed,      // 应用可见且响应用户输入
+  inactive,     // 应用处于非活动状态（如来电、通知）
+  paused,       // 应用不可见且不响应用户输入
+  detached,     // 应用即将被销毁
+  hidden,       // 应用处于后台
+}</code></pre>
                 </div>
 
                 <h2 id="binding">WidgetsBindingObserver</h2>
@@ -266,6 +266,30 @@ class _MyAppState extends State<MyApp>
     // 根据状态执行相应操作
   }
 }</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">生命周期切换示例</div>
+                    <div class="flutter-preview">
+                        <div class="lifecycle-transition">
+                            <div class="transition-from">paused</div>
+                            <div class="transition-arrow">→</div>
+                            <div class="transition-to">resumed</div>
+                            <div style="flex: 1; font-size: 12px; color: #666;">应用恢复到前台</div>
+                        </div>
+                        <div class="lifecycle-transition">
+                            <div class="transition-from">resumed</div>
+                            <div class="transition-arrow">→</div>
+                            <div class="transition-to" style="background: #FFF3E0; color: #FF9800;">inactive</div>
+                            <div style="flex: 1; font-size: 12px; color: #666;">来电或通知</div>
+                        </div>
+                        <div class="lifecycle-transition">
+                            <div class="transition-from">inactive</div>
+                            <div class="transition-arrow">→</div>
+                            <div class="transition-to" style="background: #E3F2FD; color: #2196F3;">paused</div>
+                            <div style="flex: 1; font-size: 12px; color: #666;">按Home键</div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="didchange">didChangeAppLifecycleState</h2>
@@ -301,30 +325,6 @@ void didChangeAppLifecycleState(AppLifecycleState state) {
       break;
   }
 }</code></pre>
-                </div>
-
-                <div class="render-container">
-                    <div class="render-title">生命周期切换示例</div>
-                    <div class="flutter-preview">
-                        <div class="lifecycle-transition">
-                            <div class="transition-from">paused</div>
-                            <div class="transition-arrow">→</div>
-                            <div class="transition-to">resumed</div>
-                            <div style="flex: 1; font-size: 12px; color: #666;">应用恢复到前台</div>
-                        </div>
-                        <div class="lifecycle-transition">
-                            <div class="transition-from">resumed</div>
-                            <div class="transition-arrow">→</div>
-                            <div class="transition-to" style="background: #FFF3E0; color: #FF9800;">inactive</div>
-                            <div style="flex: 1; font-size: 12px; color: #666;">来电或通知</div>
-                        </div>
-                        <div class="lifecycle-transition">
-                            <div class="transition-from">inactive</div>
-                            <div class="transition-arrow">→</div>
-                            <div class="transition-to" style="background: #E3F2FD; color: #2196F3;">paused</div>
-                            <div style="flex: 1; font-size: 12px; color: #666;">按Home键</div>
-                        </div>
-                    </div>
                 </div>
 
                 <h2 id="resumed">resumed</h2>
@@ -365,23 +365,6 @@ void didChangeAppLifecycleState(AppLifecycleState state) {
                     </div>
                 </div>
 
-                <h2 id="paused">paused</h2>
-                <p>应用不可见且不响应用户输入时的状态。</p>
-
-                <div class="code-block">
-                    <pre><code>@override
-void didChangeAppLifecycleState(AppLifecycleState state) {
-  if (state == AppLifecycleState.paused) {
-    // 暂停视频播放
-    videoController.pause();
-    // 断开网络连接
-    disconnectWebSocket();
-    // 保存当前状态
-    saveAppState();
-  }
-}</code></pre>
-                </div>
-
                 <div class="render-container">
                     <div class="render-title">paused 状态应用行为</div>
                     <div class="flutter-preview">
@@ -403,20 +386,19 @@ void didChangeAppLifecycleState(AppLifecycleState state) {
                     </div>
                 </div>
 
-                <h2 id="detached">detached</h2>
-                <p>应用即将被销毁时的状态。</p>
+                <h2 id="paused">paused</h2>
+                <p>应用不可见且不响应用户输入时的状态。</p>
 
                 <div class="code-block">
                     <pre><code>@override
 void didChangeAppLifecycleState(AppLifecycleState state) {
-  if (state == AppLifecycleState.detached) {
-    // 释放所有资源
-    videoController.dispose();
-    audioController.dispose();
-    // 取消所有定时器
-    cancelAllTimers();
-    // 保存最终状态
-    saveFinalState();
+  if (state == AppLifecycleState.paused) {
+    // 暂停视频播放
+    videoController.pause();
+    // 断开网络连接
+    disconnectWebSocket();
+    // 保存当前状态
+    saveAppState();
   }
 }</code></pre>
                 </div>
@@ -441,6 +423,24 @@ void didChangeAppLifecycleState(AppLifecycleState state) {
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <h2 id="detached">detached</h2>
+                <p>应用即将被销毁时的状态。</p>
+
+                <div class="code-block">
+                    <pre><code>@override
+void didChangeAppLifecycleState(AppLifecycleState state) {
+  if (state == AppLifecycleState.detached) {
+    // 释放所有资源
+    videoController.dispose();
+    audioController.dispose();
+    // 取消所有定时器
+    cancelAllTimers();
+    // 保存最终状态
+    saveFinalState();
+  }
+}</code></pre>
                 </div>
 
                 <div class="note-box">

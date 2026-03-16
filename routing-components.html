@@ -222,31 +222,6 @@
                     <strong>提示：</strong>良好的路由管理可以提升用户体验和应用的可维护性。
                 </div>
 
-                <h2 id="generateroute">onGenerateRoute</h2>
-                <p>onGenerateRoute 用于动态生成路由。</p>
-                
-                <div class="code-block">
-                    <pre><code>MaterialApp(
-  onGenerateRoute: (settings) {
-    switch (settings.name) {
-      case '/':
-        return MaterialPageRoute(
-          builder: (_) => HomePage(),
-        );
-      case '/details':
-        final args = settings.arguments as Map;
-        return MaterialPageRoute(
-          builder: (_) => DetailsPage(args: args),
-        );
-      default:
-        return MaterialPageRoute(
-          builder: (_) => NotFoundPage(),
-        );
-    }
-  },
-)</code></pre>
-                </div>
-
                 <div class="render-container">
                     <div class="render-title">路由结构图</div>
                     <div class="flutter-preview">
@@ -273,6 +248,31 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <h2 id="generateroute">onGenerateRoute</h2>
+                <p>onGenerateRoute 用于动态生成路由。</p>
+                
+                <div class="code-block">
+                    <pre><code>MaterialApp(
+  onGenerateRoute: (settings) {
+    switch (settings.name) {
+      case '/':
+        return MaterialPageRoute(
+          builder: (_) => HomePage(),
+        );
+      case '/details':
+        final args = settings.arguments as Map;
+        return MaterialPageRoute(
+          builder: (_) => DetailsPage(args: args),
+        );
+      default:
+        return MaterialPageRoute(
+          builder: (_) => NotFoundPage(),
+        );
+    }
+  },
+)</code></pre>
                 </div>
 
                 <h2 id="unknownroute">onUnknownRoute</h2>
@@ -498,7 +498,7 @@ Navigator.pushReplacementNamed(
                             </div>
                         </div>
                         <div style="margin-top: 12px; padding: 12px; background: #E3F2FD; border-radius: 6px; font-size: 13px;">
-                            <div style="color: #1976D2; font-weight: 500;">替换当前路由，用户无法返回到被替换的页面</div>
+                            <div style="color: #1976D2; font-weight: 500;">替换当前页面，用户无法返回</div>
                         </div>
                     </div>
                 </div>

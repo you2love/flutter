@@ -162,9 +162,46 @@
                     <strong>提示：</strong>这些组件通常需要引入第三方包，并配置相应的平台权限。
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="permission-status">
+                            <div class="perm-item perm-granted">
+                                <div class="perm-icon">📷</div>
+                                <div class="perm-label">相机<br/>已授权</div>
+                            </div>
+                            <div class="perm-item perm-granted">
+                                <div class="perm-icon">📍</div>
+                                <div class="perm-label">位置<br/>已授权</div>
+                            </div>
+                            <div class="perm-item perm-denied">
+                                <div class="perm-icon">🎤</div>
+                                <div class="perm-label">麦克风<br/>已拒绝</div>
+                            </div>
+                            <div class="perm-item perm-denied">
+                                <div class="perm-icon">📁</div>
+                                <div class="perm-label">存储<br/>已拒绝</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="secure-storage-preview">
+{
+  "token": "user_token_value",
+  "password": "encrypted_password",
+  "api_key": "secure_api_key"
+}
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="permission">Permission Handler</h2>
                 <p>Permission Handler 用于请求和管理应用权限。</p>
-                
+
                 <div class="code-block">
                     <pre><code>import 'package:permission_handler/permission_handler.dart';
 
@@ -186,22 +223,11 @@ final locationStatus = await Permission.location.status;</code></pre>
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="permission-status">
-                            <div class="perm-item perm-granted">
-                                <div class="perm-icon">📷</div>
-                                <div class="perm-label">相机<br/>已授权</div>
-                            </div>
-                            <div class="perm-item perm-granted">
-                                <div class="perm-icon">📍</div>
-                                <div class="perm-label">位置<br/>已授权</div>
-                            </div>
-                            <div class="perm-item perm-denied">
-                                <div class="perm-icon">🎤</div>
-                                <div class="perm-label">麦克风<br/>已拒绝</div>
-                            </div>
-                            <div class="perm-item perm-denied">
-                                <div class="perm-icon">📁</div>
-                                <div class="perm-label">存储<br/>已拒绝</div>
+                        <div class="biometric-preview">
+                            <div class="biometric-icon">👆</div>
+                            <div class="biometric-status">
+                                <div class="biometric-title">生物识别认证</div>
+                                <div class="biometric-desc">支持指纹、面容识别</div>
                             </div>
                         </div>
                     </div>
@@ -234,12 +260,12 @@ final hasToken = await storage.containsKey(key: 'token');</code></pre>
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="secure-storage-preview">
-{
-  "token": "user_token_value",
-  "password": "encrypted_password",
-  "api_key": "secure_api_key"
-}
+                        <div class="encryption-demo">
+                            <div class="encrypt-box">Hello, World!</div>
+                            <span class="encrypt-arrow">🔐</span>
+                            <div class="encrypt-box" style="color: #666;">U2FsdGVkX1...</div>
+                            <span class="encrypt-arrow">🔓</span>
+                            <div class="encrypt-box">Hello, World!</div>
                         </div>
                     </div>
                 </div>
@@ -275,12 +301,9 @@ if (isAuthenticated) {
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="biometric-preview">
-                            <div class="biometric-icon">👆</div>
-                            <div class="biometric-status">
-                                <div class="biometric-title">生物识别认证</div>
-                                <div class="biometric-desc">支持指纹、面容识别</div>
-                            </div>
+                        <div style="padding: 12px; background: #e3f2fd; border-radius: 4px; border: 1px solid #1976d2;">
+                            <div style="font-weight: 600; color: #1976d2; margin-bottom: 8px;">🔑 iOS Keychain</div>
+                            <div style="font-size: 13px; color: #666;">安全存储敏感数据<br/>仅限 iOS 平台</div>
                         </div>
                     </div>
                 </div>
@@ -310,12 +333,9 @@ final decryptedBase64 = encrypter.decrypt64(encryptedBase64, iv: iv);</code></pr
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="encryption-demo">
-                            <div class="encrypt-box">Hello, World!</div>
-                            <span class="encrypt-arrow">🔐</span>
-                            <div class="encrypt-box" style="color: #666;">U2FsdGVkX1...</div>
-                            <span class="encrypt-arrow">🔓</span>
-                            <div class="encrypt-box">Hello, World!</div>
+                        <div style="padding: 12px; background: #e3f2fd; border-radius: 4px; border: 1px solid #1976d2;">
+                            <div style="font-weight: 600; color: #1976d2; margin-bottom: 8px;">🔑 iOS Keychain</div>
+                            <div style="font-size: 13px; color: #666;">安全存储敏感数据<br/>仅限 iOS 平台</div>
                         </div>
                     </div>
                 </div>
@@ -334,16 +354,6 @@ final password = await FlutterKeychain.get(key: 'password');
 
 // 从 Keychain 删除
 await FlutterKeychain.remove(key: 'password');</code></pre>
-                </div>
-
-                <div class="render-container">
-                    <div class="render-title">📱 渲染效果预览</div>
-                    <div class="flutter-preview">
-                        <div style="padding: 12px; background: #e3f2fd; border-radius: 4px; border: 1px solid #1976d2;">
-                            <div style="font-weight: 600; color: #1976d2; margin-bottom: 8px;">🔑 iOS Keychain</div>
-                            <div style="font-size: 13px; color: #666;">安全存储敏感数据<br/>仅限 iOS 平台</div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="warning-box">

@@ -176,6 +176,15 @@
                     <strong>提示：</strong>根据需求选择合适的自定义 Widget 方式。
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="renderobject-preview">
+                            <div class="custom-rect"></div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="renderobject">RenderObject</h2>
                 <p>RenderObject 是 Flutter 渲染的核心，处理布局和绘制。</p>
                 
@@ -202,8 +211,11 @@
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="renderobject-preview">
-                            <div class="custom-rect"></div>
+                        <div class="custom-card-preview">
+                            <div class="custom-card">
+                                <div class="custom-card-title">自定义卡片</div>
+                                <div class="custom-card-subtitle">这是一个组合现有Widget的自定义组件</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -256,18 +268,6 @@
 }</code></pre>
                 </div>
 
-                <div class="render-container">
-                    <div class="render-title">📱 渲染效果预览</div>
-                    <div class="flutter-preview">
-                        <div class="custom-card-preview">
-                            <div class="custom-card">
-                                <div class="custom-card-title">自定义卡片</div>
-                                <div class="custom-card-subtitle">这是一个组合现有Widget的自定义组件</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <h2 id="sliver">Custom Sliver</h2>
                     <p>创建自定义 Sliver 组件用于滚动效果。</p>
                 
@@ -309,6 +309,15 @@ class _RenderCustomSliverHeader extends RenderSliverSingleBoxAdapter {
   @override
   double get minChildExtent => height;
 }</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="custom-circle-preview">
+                            <div class="custom-circle"></div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="proxy">RenderObjectWidget</h2>
@@ -361,8 +370,13 @@ class _MyCustomRenderObject extends RenderBox {
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="custom-circle-preview">
-                            <div class="custom-circle"></div>
+                        <div class="multichild-preview">
+                            <div class="multichild-item">1</div>
+                            <div class="multichild-item">2</div>
+                            <div class="multichild-item">3</div>
+                            <div class="multichild-item">4</div>
+                            <div class="multichild-item">5</div>
+                            <div class="multichild-item">6</div>
                         </div>
                     </div>
                 </div>
@@ -406,20 +420,6 @@ class _MyCustomLayoutRenderObject extends RenderBox
 }
 
 class _MyCustomLayoutParentData extends ContainerBoxParentData<RenderBox> {}</code></pre>
-                </div>
-
-                <div class="render-container">
-                    <div class="render-title">📱 渲染效果预览</div>
-                    <div class="flutter-preview">
-                        <div class="multichild-preview">
-                            <div class="multichild-item">1</div>
-                            <div class="multichild-item">2</div>
-                            <div class="multichild-item">3</div>
-                            <div class="multichild-item">4</div>
-                            <div class="multichild-item">5</div>
-                            <div class="multichild-item">6</div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="note-box">

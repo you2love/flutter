@@ -228,6 +228,16 @@
                     <strong>提示：</strong>使用地图组件需要申请相应的 API 密钥和配置平台权限。
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="map-preview">
+                            <div class="map-grid"></div>
+                            <div class="map-marker" style="top: 50%; left: 50%; transform: translate(-50%, -100%);" data-label="Portland">📍</div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="googlemaps">Google Maps</h2>
                 <p>Google Maps 提供完整的地图功能和丰富的 API。</p>
                 
@@ -276,7 +286,8 @@ class _MyMapState extends State<MyMap> {
                     <div class="flutter-preview">
                         <div class="map-preview">
                             <div class="map-grid"></div>
-                            <div class="map-marker" style="top: 50%; left: 50%; transform: translate(-50%, -100%);" data-label="Portland">📍</div>
+                            <div class="map-marker" style="top: 40%; left: 30%;" data-label="标记 1">📍</div>
+                            <div class="map-marker" style="top: 60%; left: 70%;" data-label="标记 2">📍</div>
                         </div>
                     </div>
                 </div>
@@ -314,17 +325,6 @@ FlutterMap(
 )</code></pre>
                 </div>
 
-                <div class="render-container">
-                    <div class="render-title">📱 渲染效果预览</div>
-                    <div class="flutter-preview">
-                        <div class="map-preview">
-                            <div class="map-grid"></div>
-                            <div class="map-marker" style="top: 40%; left: 30%;" data-label="标记 1">📍</div>
-                            <div class="map-marker" style="top: 60%; left: 70%;" data-label="标记 2">📍</div>
-                        </div>
-                    </div>
-                </div>
-
                 <h2 id="mapbox">Mapbox</h2>
                     <p>Mapbox 提供高度可定制的地图解决方案。</p>
                 
@@ -341,6 +341,29 @@ MapboxMap(
   onMapCreated: _onMapCreated,
   onStyleLoadedCallback: _onStyleLoaded,
 )</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="geolocator-preview">
+                            <div class="location-card">
+                                <div class="location-icon">📍</div>
+                                <div class="location-value">39.9042° N</div>
+                                <div class="location-label">纬度</div>
+                            </div>
+                            <div class="location-card">
+                                <div class="location-icon">📍</div>
+                                <div class="location-value">116.4074° E</div>
+                                <div class="location-label">经度</div>
+                            </div>
+                            <div class="location-card">
+                                <div class="location-icon">📏</div>
+                                <div class="location-value">1.2 km</div>
+                                <div class="location-label">距离</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="geolocator">Geolocator</h2>
@@ -377,21 +400,16 @@ double distanceInMeters = Geolocator.distanceBetween(
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="geolocator-preview">
-                            <div class="location-card">
-                                <div class="location-icon">📍</div>
-                                <div class="location-value">39.9042° N</div>
-                                <div class="location-label">纬度</div>
+                        <div class="geocoding-preview">
+                            <div class="geocoding-item">
+                                <div class="geocoding-box from">Gronausestraat 710, Enschede</div>
+                                <div class="geocoding-arrow">→</div>
+                                <div class="geocoding-box to">52.2165157, 6.9437893</div>
                             </div>
-                            <div class="location-card">
-                                <div class="location-icon">📍</div>
-                                <div class="location-value">116.4074° E</div>
-                                <div class="location-label">经度</div>
-                            </div>
-                            <div class="location-card">
-                                <div class="location-icon">📏</div>
-                                <div class="location-value">1.2 km</div>
-                                <div class="location-label">距离</div>
+                            <div class="geocoding-item">
+                                <div class="geocoding-box from">52.2165157, 6.9437893</div>
+                                <div class="geocoding-arrow">→</div>
+                                <div class="geocoding-box to">Gronausestraat 710, Enschede</div>
                             </div>
                         </div>
                     </div>
@@ -412,24 +430,6 @@ List<Placemark> placemarks = await placemarkFromCoordinates(52.2165157, 6.943789
 // 获取详细信息
 Placemark place = placemarks[0];
 print('${place.street}, ${place.locality}, ${place.postalCode}');</code></pre>
-                </div>
-
-                <div class="render-container">
-                    <div class="render-title">📱 渲染效果预览</div>
-                    <div class="flutter-preview">
-                        <div class="geocoding-preview">
-                            <div class="geocoding-item">
-                                <div class="geocoding-box from">Gronausestraat 710, Enschede</div>
-                                <div class="geocoding-arrow">→</div>
-                                <div class="geocoding-box to">52.2165157, 6.9437893</div>
-                            </div>
-                            <div class="geocoding-item">
-                                <div class="geocoding-box from">52.2165157, 6.9437893</div>
-                                <div class="geocoding-arrow">→</div>
-                                <div class="geocoding-box to">Gronausestraat 710, Enschede</div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="note-box">

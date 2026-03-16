@@ -169,9 +169,50 @@
                     <strong>提示：</strong>这些组件通常需要引入第三方包，并在平台配置中添加必要的权限。
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="notification-preview">
+                            <div class="notif-icon">🔔</div>
+                            <div class="notif-content">
+                                <div class="notif-title">新消息</div>
+                                <div class="notif-body">您有一条新消息</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="share-preview">
+                            <div class="share-app">
+                                <div class="share-app-icon">💬</div>
+                                <div class="share-app-name">微信</div>
+                            </div>
+                            <div class="share-app">
+                                <div class="share-app-icon">📧</div>
+                                <div class="share-app-name">邮件</div>
+                            </div>
+                            <div class="share-app">
+                                <div class="share-app-icon">📱</div>
+                                <div class="share-app-name">短信</div>
+                            </div>
+                            <div class="share-app">
+                                <div class="share-app-icon">🔗</div>
+                                <div class="share-app-name">复制</div>
+                            </div>
+                            <div class="share-app">
+                                <div class="share-app-icon">📋</div>
+                                <div class="share-app-name">更多</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="notification">Notifications</h2>
                 <p>Notifications 用于显示本地通知。</p>
-                
+
                 <div class="code-block">
                     <pre><code>import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
@@ -211,12 +252,12 @@ await notifications.show(
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="notification-preview">
-                            <div class="notif-icon">🔔</div>
-                            <div class="notif-content">
-                                <div class="notif-title">新消息</div>
-                                <div class="notif-body">您有一条新消息</div>
-                            </div>
+                        <div class="url-launcher-preview">
+                            <button class="url-btn">🌐 打开网页</button>
+                            <button class="url-btn">📧 发送邮件</button>
+                            <button class="url-btn">📞 拨打电话</button>
+                            <button class="url-btn">💬 发送短信</button>
+                            <button class="url-btn">🏪 应用商店</button>
                         </div>
                     </div>
                 </div>
@@ -243,27 +284,15 @@ Share.shareUri(Uri.parse('https://example.com'));</code></pre>
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="share-preview">
-                            <div class="share-app">
-                                <div class="share-app-icon">💬</div>
-                                <div class="share-app-name">微信</div>
-                            </div>
-                            <div class="share-app">
-                                <div class="share-app-icon">📧</div>
-                                <div class="share-app-name">邮件</div>
-                            </div>
-                            <div class="share-app">
-                                <div class="share-app-icon">📱</div>
-                                <div class="share-app-name">短信</div>
-                            </div>
-                            <div class="share-app">
-                                <div class="share-app-icon">🔗</div>
-                                <div class="share-app-name">复制</div>
-                            </div>
-                            <div class="share-app">
-                                <div class="share-app-icon">📋</div>
-                                <div class="share-app-name">更多</div>
-                            </div>
+                        <div class="file-system-preview">
+📁 /data/app/
+  📄 config.json
+  📄 data.txt
+  📁 cache/
+    📄 image.jpg
+📁 /storage/
+  📁 downloads/
+    📄 file.pdf
                         </div>
                     </div>
                 </div>
@@ -295,12 +324,11 @@ await launchUrl(Uri.parse(
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="url-launcher-preview">
-                            <button class="url-btn">🌐 打开网页</button>
-                            <button class="url-btn">📧 发送邮件</button>
-                            <button class="url-btn">📞 拨打电话</button>
-                            <button class="url-btn">💬 发送短信</button>
-                            <button class="url-btn">🏪 应用商店</button>
+                        <div class="file-system-preview">
+📱 系统目录
+  📁 /data/user/0/com.app/cache/ (临时)
+  📁 /data/user/0/com.app/files/ (文档)
+  📁 /storage/emulated/0/Android/data/ (外部)
                         </div>
                     </div>
                 </div>
@@ -332,15 +360,19 @@ final files = directory.listSync();</code></pre>
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="file-system-preview">
-📁 /data/app/
-  📄 config.json
-  📄 data.txt
-  📁 cache/
-    📄 image.jpg
-📁 /storage/
-  📁 downloads/
-    📄 file.pdf
+                        <div class="prefs-preview">
+                            <div class="pref-item">
+                                <span class="pref-key">username</span>
+                                <span class="pref-value">john</span>
+                            </div>
+                            <div class="pref-item">
+                                <span class="pref-key">age</span>
+                                <span class="pref-value">25</span>
+                            </div>
+                            <div class="pref-item">
+                                <span class="pref-key">isLoggedIn</span>
+                                <span class="pref-value">true</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -370,11 +402,19 @@ final downloadsDir = await getDownloadsDirectory();</code></pre>
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="file-system-preview">
-📱 系统目录
-  📁 /data/user/0/com.app/cache/ (临时)
-  📁 /data/user/0/com.app/files/ (文档)
-  📁 /storage/emulated/0/Android/data/ (外部)
+                        <div class="prefs-preview">
+                            <div class="pref-item">
+                                <span class="pref-key">username</span>
+                                <span class="pref-value">john</span>
+                            </div>
+                            <div class="pref-item">
+                                <span class="pref-key">age</span>
+                                <span class="pref-value">25</span>
+                            </div>
+                            <div class="pref-item">
+                                <span class="pref-key">isLoggedIn</span>
+                                <span class="pref-value">true</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -403,26 +443,6 @@ await prefs.remove('username');
 
 // 清空所有数据
 await prefs.clear();</code></pre>
-                </div>
-
-                <div class="render-container">
-                    <div class="render-title">📱 渲染效果预览</div>
-                    <div class="flutter-preview">
-                        <div class="prefs-preview">
-                            <div class="pref-item">
-                                <span class="pref-key">username</span>
-                                <span class="pref-value">john</span>
-                            </div>
-                            <div class="pref-item">
-                                <span class="pref-key">age</span>
-                                <span class="pref-value">25</span>
-                            </div>
-                            <div class="pref-item">
-                                <span class="pref-key">isLoggedIn</span>
-                                <span class="pref-value">true</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="note-box">

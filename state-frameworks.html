@@ -145,6 +145,16 @@
                     <strong>提示：</strong>选择合适的状态管理框架取决于项目复杂度和团队偏好。
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="counter-preview">
+                            <div class="counter-display">计数: 0</div>
+                            <button class="counter-button">+1</button>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="provider">Provider</h2>
                 <p>Provider 是 Flutter 官方推荐的状态管理方案。</p>
                 
@@ -221,7 +231,10 @@ ref.read(counterProvider.notifier).state++;</code></pre>
                     <div class="flutter-preview">
                         <div class="counter-preview">
                             <div class="counter-display">计数: 0</div>
-                            <button class="counter-button">+1</button>
+                            <div style="display: flex; gap: 8px;">
+                                <button class="counter-button" style="background: #4caf50;">+1</button>
+                                <button class="counter-button" style="background: #f44336;">-1</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -261,10 +274,7 @@ BlocBuilder<CounterCubit, int>(
                     <div class="flutter-preview">
                         <div class="counter-preview">
                             <div class="counter-display">计数: 0</div>
-                            <div style="display: flex; gap: 8px;">
-                                <button class="counter-button" style="background: #4caf50;">+1</button>
-                                <button class="counter-button" style="background: #f44336;">-1</button>
-                            </div>
+                            <button class="counter-button">增加</button>
                         </div>
                     </div>
                 </div>
@@ -293,9 +303,14 @@ Obx(() => Text('计数: ${Get.find<CounterController>().count.value}'))</code></
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="counter-preview">
-                            <div class="counter-display">计数: 0</div>
-                            <button class="counter-button">增加</button>
+                        <div class="data-flow-preview">
+                            <div class="data-flow-item">Action</div>
+                            <div class="data-flow-arrow">→</div>
+                            <div class="data-flow-item">Reducer</div>
+                            <div class="data-flow-arrow">→</div>
+                            <div class="data-flow-item">Store</div>
+                            <div class="data-flow-arrow">→</div>
+                            <div class="data-flow-item">View</div>
                         </div>
                     </div>
                 </div>
@@ -338,14 +353,9 @@ StoreConnector<int, String>(
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="data-flow-preview">
-                            <div class="data-flow-item">Action</div>
-                            <div class="data-flow-arrow">→</div>
-                            <div class="data-flow-item">Reducer</div>
-                            <div class="data-flow-arrow">→</div>
-                            <div class="data-flow-item">Store</div>
-                            <div class="data-flow-arrow">→</div>
-                            <div class="data-flow-item">View</div>
+                        <div class="counter-preview">
+                            <div class="counter-display">计数: 0</div>
+                            <button class="counter-button">+1</button>
                         </div>
                     </div>
                 </div>
@@ -378,7 +388,7 @@ Observer(
                     <div class="flutter-preview">
                         <div class="counter-preview">
                             <div class="counter-display">计数: 0</div>
-                            <button class="counter-button">+1</button>
+                            <button class="counter-button">增加</button>
                         </div>
                     </div>
                 </div>
@@ -414,16 +424,6 @@ class _CounterWidgetState extends State<CounterWidget> {
     );
   }
 }</code></pre>
-                </div>
-
-                <div class="render-container">
-                    <div class="render-title">📱 渲染效果预览</div>
-                    <div class="flutter-preview">
-                        <div class="counter-preview">
-                            <div class="counter-display">计数: 0</div>
-                            <button class="counter-button">增加</button>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="note-box">

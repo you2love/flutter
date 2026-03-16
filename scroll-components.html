@@ -173,9 +173,42 @@
                     <strong>提示：</strong>合理使用滚动组件可以创建流畅的用户体验和复杂的滚动效果。
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="scroll-list-preview">
+                            <div class="listitem-preview">项目 0 - 当前位置: 0.0</div>
+                            <div class="listitem-preview">项目 1 - 当前位置: 56.0</div>
+                            <div class="listitem-preview">项目 2 - 当前位置: 112.0</div>
+                            <div class="listitem-preview">项目 3 - 当前位置: 168.0</div>
+                            <div class="listitem-preview">项目 4 - 当前位置: 224.0</div>
+                            <div class="listitem-preview">项目 5 - 当前位置: 280.0</div>
+                            <div class="listitem-preview">项目 6 - 当前位置: 336.0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="scroll-list-preview">
+                            <div class="listitem-preview">项目 0</div>
+                            <div class="listitem-preview">项目 1</div>
+                            <div class="listitem-preview">项目 2</div>
+                            <div class="listitem-preview">项目 3</div>
+                            <div class="listitem-preview">项目 4</div>
+                            <div class="listitem-preview">项目 5</div>
+                            <div class="listitem-preview">项目 6</div>
+                            <div class="listitem-preview">项目 7</div>
+                            <div class="listitem-preview">项目 8</div>
+                            <div class="listitem-preview">项目 9</div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="scrollcontroller">ScrollController</h2>
                 <p>ScrollController 用于控制可滚动组件的滚动位置。</p>
-                
+
                 <div class="code-block">
                     <pre><code>final _controller = ScrollController();
 
@@ -202,14 +235,19 @@ ListView(
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="scroll-list-preview">
-                            <div class="listitem-preview">项目 0 - 当前位置: 0.0</div>
-                            <div class="listitem-preview">项目 1 - 当前位置: 56.0</div>
-                            <div class="listitem-preview">项目 2 - 当前位置: 112.0</div>
-                            <div class="listitem-preview">项目 3 - 当前位置: 168.0</div>
-                            <div class="listitem-preview">项目 4 - 当前位置: 224.0</div>
-                            <div class="listitem-preview">项目 5 - 当前位置: 280.0</div>
-                            <div class="listitem-preview">项目 6 - 当前位置: 336.0</div>
+                        <div class="physics-preview">
+                            <div class="physics-box">
+                                <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+                                    <div class="physics-bounce">↓</div>
+                                </div>
+                                <div class="physics-label">BouncingScrollPhysics<br/>(iOS 弹性)</div>
+                            </div>
+                            <div class="physics-box">
+                                <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+                                    <div>↓</div>
+                                </div>
+                                <div class="physics-label">ClampingScrollPhysics<br/>(Android 无弹性)</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -231,17 +269,17 @@ ListView(
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="scroll-list-preview">
-                            <div class="listitem-preview">项目 0</div>
-                            <div class="listitem-preview">项目 1</div>
-                            <div class="listitem-preview">项目 2</div>
-                            <div class="listitem-preview">项目 3</div>
-                            <div class="listitem-preview">项目 4</div>
-                            <div class="listitem-preview">项目 5</div>
-                            <div class="listitem-preview">项目 6</div>
-                            <div class="listitem-preview">项目 7</div>
-                            <div class="listitem-preview">项目 8</div>
-                            <div class="listitem-preview">项目 9</div>
+                        <div class="notification-preview">
+                            <span class="notification-icon">📢</span>
+                            <span>开始滚动</span>
+                        </div>
+                        <div class="notification-preview" style="background: #d1e7dd; border-color: #198754;">
+                            <span class="notification-icon">✓</span>
+                            <span>滚动中...</span>
+                        </div>
+                        <div class="notification-preview" style="background: #f8d7da; border-color: #dc3545;">
+                            <span class="notification-icon">🛑</span>
+                            <span>结束滚动</span>
                         </div>
                     </div>
                 </div>
@@ -264,19 +302,14 @@ ListView(
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="physics-preview">
-                            <div class="physics-box">
-                                <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
-                                    <div class="physics-bounce">↓</div>
-                                </div>
-                                <div class="physics-label">BouncingScrollPhysics<br/>(iOS 弹性)</div>
-                            </div>
-                            <div class="physics-box">
-                                <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
-                                    <div>↓</div>
-                                </div>
-                                <div class="physics-label">ClampingScrollPhysics<br/>(Android 无弹性)</div>
-                            </div>
+                        <div class="sliver-appbar-preview">
+                            <div class="sliver-appbar-title">📱 Flutter 教程</div>
+                            <div class="sliver-appbar-subtitle">滚动查看更多内容</div>
+                        </div>
+                        <div class="sliver-content">
+                            <div class="listitem-preview">项目 0</div>
+                            <div class="listitem-preview">项目 1</div>
+                            <div class="listitem-preview">项目 2</div>
                         </div>
                     </div>
                 </div>
@@ -303,17 +336,12 @@ ListView(
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="notification-preview">
-                            <span class="notification-icon">📢</span>
-                            <span>开始滚动</span>
-                        </div>
-                        <div class="notification-preview" style="background: #d1e7dd; border-color: #198754;">
-                            <span class="notification-icon">✓</span>
-                            <span>滚动中...</span>
-                        </div>
-                        <div class="notification-preview" style="background: #f8d7da; border-color: #dc3545;">
-                            <span class="notification-icon">🛑</span>
-                            <span>结束滚动</span>
+                        <div class="scroll-list-preview">
+                            <div class="listitem-preview">项目 1</div>
+                            <div class="listitem-preview">项目 2</div>
+                            <div class="listitem-preview">项目 3</div>
+                            <div class="listitem-preview">项目 4</div>
+                            <div class="listitem-preview">项目 5</div>
                         </div>
                     </div>
                 </div>
@@ -346,14 +374,15 @@ ListView(
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="sliver-appbar-preview">
-                            <div class="sliver-appbar-title">📱 Flutter 教程</div>
-                            <div class="sliver-appbar-subtitle">滚动查看更多内容</div>
+                        <div class="sliver-appbar-preview" style="padding: 12px;">
+                            <div class="sliver-appbar-title" style="font-size: 16px;">标题</div>
                         </div>
-                        <div class="sliver-content">
+                        <div class="scroll-list-preview" style="border-top: none; border-radius: 0 0 8px 8px;">
                             <div class="listitem-preview">项目 0</div>
                             <div class="listitem-preview">项目 1</div>
                             <div class="listitem-preview">项目 2</div>
+                            <div class="listitem-preview">项目 3</div>
+                            <div class="listitem-preview">项目 4</div>
                         </div>
                     </div>
                 </div>
@@ -378,12 +407,15 @@ ListView(
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="scroll-list-preview">
+                        <div class="sliver-appbar-preview" style="padding: 12px;">
+                            <div class="sliver-appbar-title" style="font-size: 16px;">标题</div>
+                        </div>
+                        <div class="scroll-list-preview" style="border-top: none; border-radius: 0 0 8px 8px;">
+                            <div class="listitem-preview">项目 0</div>
                             <div class="listitem-preview">项目 1</div>
                             <div class="listitem-preview">项目 2</div>
                             <div class="listitem-preview">项目 3</div>
                             <div class="listitem-preview">项目 4</div>
-                            <div class="listitem-preview">项目 5</div>
                         </div>
                     </div>
                 </div>
@@ -408,22 +440,6 @@ ListView(
     },
   ),
 )</code></pre>
-                </div>
-
-                <div class="render-container">
-                    <div class="render-title">📱 渲染效果预览</div>
-                    <div class="flutter-preview">
-                        <div class="sliver-appbar-preview" style="padding: 12px;">
-                            <div class="sliver-appbar-title" style="font-size: 16px;">标题</div>
-                        </div>
-                        <div class="scroll-list-preview" style="border-top: none; border-radius: 0 0 8px 8px;">
-                            <div class="listitem-preview">项目 0</div>
-                            <div class="listitem-preview">项目 1</div>
-                            <div class="listitem-preview">项目 2</div>
-                            <div class="listitem-preview">项目 3</div>
-                            <div class="listitem-preview">项目 4</div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="topic-nav">

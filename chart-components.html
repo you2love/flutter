@@ -203,6 +203,27 @@
                     <strong>提示：</strong>选择合适的图表库可以简化开发并提供更好的用户体验。
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="pie-chart-preview"></div>
+                        <div class="pie-chart-legend">
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #0293ee;"></div>
+                                <span>40%</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #f8b250;"></div>
+                                <span>50%</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #845bef;"></div>
+                                <span>10%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="flchart">FL Chart</h2>
                 <p>FL Chart 是一个轻量级且功能强大的图表库。</p>
                 
@@ -241,19 +262,22 @@ PieChart(
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="pie-chart-preview"></div>
-                        <div class="pie-chart-legend">
-                            <div class="legend-item">
-                                <div class="legend-color" style="background: #0293ee;"></div>
-                                <span>40%</span>
+                        <div class="bar-chart-preview">
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="bar" style="height: 30px;">5</div>
+                                <div class="bar-label">2014</div>
                             </div>
-                            <div class="legend-item">
-                                <div class="legend-color" style="background: #f8b250;"></div>
-                                <span>50%</span>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="bar" style="height: 50px;">25</div>
+                                <div class="bar-label">2015</div>
                             </div>
-                            <div class="legend-item">
-                                <div class="legend-color" style="background: #845bef;"></div>
-                                <span>10%</span>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="bar" style="height: 80px;">100</div>
+                                <div class="bar-label">2016</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="bar" style="height: 60px;">75</div>
+                                <div class="bar-label">2017</div>
                             </div>
                         </div>
                     </div>
@@ -290,23 +314,15 @@ charts.BarChart(
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="bar-chart-preview">
-                            <div style="display: flex; flex-direction: column; align-items: center;">
-                                <div class="bar" style="height: 30px;">5</div>
-                                <div class="bar-label">2014</div>
-                            </div>
-                            <div style="display: flex; flex-direction: column; align-items: center;">
-                                <div class="bar" style="height: 50px;">25</div>
-                                <div class="bar-label">2015</div>
-                            </div>
-                            <div style="display: flex; flex-direction: column; align-items: center;">
-                                <div class="bar" style="height: 80px;">100</div>
-                                <div class="bar-label">2016</div>
-                            </div>
-                            <div style="display: flex; flex-direction: column; align-items: center;">
-                                <div class="bar" style="height: 60px;">75</div>
-                                <div class="bar-label">2017</div>
-                            </div>
+                        <div class="line-chart-preview">
+                            <svg class="line-chart-svg" viewBox="0 0 300 100">
+                                <polyline class="chart-line" points="20,70 85,80 150,74 215,76 280,65"/>
+                                <circle class="chart-point" cx="20" cy="70" r="4"/>
+                                <circle class="chart-point" cx="85" cy="80" r="4"/>
+                                <circle class="chart-point" cx="150" cy="74" r="4"/>
+                                <circle class="chart-point" cx="215" cy="76" r="4"/>
+                                <circle class="chart-point" cx="280" cy="65" r="4"/>
+                            </svg>
                         </div>
                     </div>
                 </div>
@@ -339,15 +355,20 @@ SfCartesianChart(
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="line-chart-preview">
-                            <svg class="line-chart-svg" viewBox="0 0 300 100">
-                                <polyline class="chart-line" points="20,70 85,80 150,74 215,76 280,65"/>
-                                <circle class="chart-point" cx="20" cy="70" r="4"/>
-                                <circle class="chart-point" cx="85" cy="80" r="4"/>
-                                <circle class="chart-point" cx="150" cy="74" r="4"/>
-                                <circle class="chart-point" cx="215" cy="76" r="4"/>
-                                <circle class="chart-point" cx="280" cy="65" r="4"/>
-                            </svg>
+                        <div class="pie-chart-preview"></div>
+                        <div class="pie-chart-legend">
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #0293ee;"></div>
+                                <span>30%</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #f8b250;"></div>
+                                <span>50%</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #845bef;"></div>
+                                <span>20%</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -385,27 +406,6 @@ PieChart(
 )</code></pre>
                 </div>
 
-                <div class="render-container">
-                    <div class="render-title">📱 渲染效果预览</div>
-                    <div class="flutter-preview">
-                        <div class="pie-chart-preview"></div>
-                        <div class="pie-chart-legend">
-                            <div class="legend-item">
-                                <div class="legend-color" style="background: #0293ee;"></div>
-                                <span>30%</span>
-                            </div>
-                            <div class="legend-item">
-                                <div class="legend-color" style="background: #f8b250;"></div>
-                                <span>50%</span>
-                            </div>
-                            <div class="legend-item">
-                                <div class="legend-color" style="background: #845bef;"></div>
-                                <span>20%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <h2 id="linechart">Line Chart</h2>
                     <p>折线图用于显示数据的趋势变化。</p>
                 
@@ -426,30 +426,6 @@ SfCartesianChart(
       yValueMapper: (SalesData data, _) => data.sales,
       color: Colors.blue,
       width: 3,
-    ),
-  ],
-)</code></pre>
-                </div>
-
-                <h2 id="barchart">Bar Chart</h2>
-                    <p>条形图用于比较不同类别的数据。</p>
-                
-                <div class="code-block">
-                    <pre><code>// 使用 Syncfusion
-SfCartesianChart(
-  primaryXAxis: CategoryAxis(),
-  series: <ChartSeries>[
-    ColumnSeries<SalesData, String>(
-      dataSource: [
-        SalesData('Product A', 35),
-        SalesData('Product B', 28),
-        SalesData('Product C', 34),
-        SalesData('Product D', 32),
-        SalesData('Product E', 40),
-      ],
-      xValueMapper: (SalesData data, _) => data.product,
-      yValueMapper: (SalesData data, _) => data.sales,
-      color: Colors.blue,
     ),
   ],
 )</code></pre>
@@ -481,6 +457,30 @@ SfCartesianChart(
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <h2 id="barchart">Bar Chart</h2>
+                    <p>条形图用于比较不同类别的数据。</p>
+                
+                <div class="code-block">
+                    <pre><code>// 使用 Syncfusion
+SfCartesianChart(
+  primaryXAxis: CategoryAxis(),
+  series: <ChartSeries>[
+    ColumnSeries<SalesData, String>(
+      dataSource: [
+        SalesData('Product A', 35),
+        SalesData('Product B', 28),
+        SalesData('Product C', 34),
+        SalesData('Product D', 32),
+        SalesData('Product E', 40),
+      ],
+      xValueMapper: (SalesData data, _) => data.product,
+      yValueMapper: (SalesData data, _) => data.sales,
+      color: Colors.blue,
+    ),
+  ],
+)</code></pre>
                 </div>
 
                 <div class="note-box">

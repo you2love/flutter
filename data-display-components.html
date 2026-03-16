@@ -155,6 +155,33 @@
                     <strong>提示：</strong>选择合适的数据展示组件可以提升用户体验和数据可读性。
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <table class="datatable-preview">
+                            <thead>
+                                <tr>
+                                    <th>姓名</th>
+                                    <th>年龄</th>
+                                    <th>城市</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>张三</td>
+                                    <td>25</td>
+                                    <td>北京</td>
+                                </tr>
+                                <tr>
+                                    <td>李四</td>
+                                    <td>30</td>
+                                    <td>上海</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
                 <h2 id="datatable">DataTable</h2>
                 <p>DataTable 用于展示表格数据，支持排序、选择和分页等功能。</p>
                 
@@ -183,7 +210,62 @@
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <table class="datatable-preview">
+                        <table class="datatable-preview" style="border: 1px solid #333;">
+                            <thead>
+                                <tr>
+                                    <th>姓名</th>
+                                    <th>年龄</th>
+                                    <th>城市</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>张三</td>
+                                    <td>25</td>
+                                    <td>北京</td>
+                                </tr>
+                                <tr>
+                                    <td>李四</td>
+                                    <td>30</td>
+                                    <td>上海</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <table class="datatable-preview" style="border: 1px solid #333;">
+                            <thead>
+                                <tr>
+                                    <th>姓名</th>
+                                    <th>年龄</th>
+                                    <th>城市</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>张三</td>
+                                    <td>25</td>
+                                    <td>北京</td>
+                                </tr>
+                                <tr>
+                                    <td>李四</td>
+                                    <td>30</td>
+                                    <td>上海</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <table class="datatable-preview" style="border: 1px solid #333;">
                             <thead>
                                 <tr>
                                     <th>姓名</th>
@@ -235,48 +317,6 @@
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <table class="datatable-preview" style="border: 1px solid #333;">
-                            <thead>
-                                <tr>
-                                    <th>姓名</th>
-                                    <th>年龄</th>
-                                    <th>城市</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>张三</td>
-                                    <td>25</td>
-                                    <td>北京</td>
-                                </tr>
-                                <tr>
-                                    <td>李四</td>
-                                    <td>30</td>
-                                    <td>上海</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <h2 id="listview">ListView.builder</h2>
-                <p>ListView.builder 用于构建高效的列表，特别适合大量数据。</p>
-
-                <div class="code-block">
-                    <pre><code>ListView.builder(
-  itemCount: 100,
-  itemBuilder: (context, index) {
-    return ListTile(
-      title: Text('项目 $index'),
-      subtitle: Text('这是第 $index 个项目'),
-    );
-  },
-)</code></pre>
-                </div>
-
-                <div class="render-container">
-                    <div class="render-title">📱 渲染效果预览</div>
-                    <div class="flutter-preview">
                         <div class="listview-preview">
                             <div class="listitem-preview">
                                 <div class="listitem-title">项目 0</div>
@@ -302,19 +342,16 @@
                     </div>
                 </div>
 
-                <h2 id="gridview">GridView.builder</h2>
-                <p>GridView.builder 用于构建高效的网格布局。</p>
+                <h2 id="listview">ListView.builder</h2>
+                <p>ListView.builder 用于构建高效的列表，特别适合大量数据。</p>
 
                 <div class="code-block">
-                    <pre><code>GridView.builder(
-  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-    crossAxisCount: 2,
-    childAspectRatio: 1.0,
-  ),
-  itemCount: 20,
+                    <pre><code>ListView.builder(
+  itemCount: 100,
   itemBuilder: (context, index) {
-    return Card(
-      child: Center(child: Text('项目 $index')),
+    return ListTile(
+      title: Text('项目 $index'),
+      subtitle: Text('这是第 $index 个项目'),
     );
   },
 )</code></pre>
@@ -334,19 +371,20 @@
                     </div>
                 </div>
 
-                <h2 id="reorderable">ReorderableListView</h2>
-                <p>ReorderableListView 允许用户通过拖拽重新排列列表项。</p>
+                <h2 id="gridview">GridView.builder</h2>
+                <p>GridView.builder 用于构建高效的网格布局。</p>
 
                 <div class="code-block">
-                    <pre><code>ReorderableListView(
-  children: List.generate(10, (index) {
-    return ListTile(
-      key: ValueKey('item_$index'),
-      title: Text('项目 $index'),
+                    <pre><code>GridView.builder(
+  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 2,
+    childAspectRatio: 1.0,
+  ),
+  itemCount: 20,
+  itemBuilder: (context, index) {
+    return Card(
+      child: Center(child: Text('项目 $index')),
     );
-  }),
-  onReorder: (oldIndex, newIndex) {
-    // 处理重新排序逻辑
   },
 )</code></pre>
                 </div>
@@ -371,6 +409,23 @@
                             <span>项目 3</span>
                         </div>
                     </div>
+                </div>
+
+                <h2 id="reorderable">ReorderableListView</h2>
+                <p>ReorderableListView 允许用户通过拖拽重新排列列表项。</p>
+
+                <div class="code-block">
+                    <pre><code>ReorderableListView(
+  children: List.generate(10, (index) {
+    return ListTile(
+      key: ValueKey('item_$index'),
+      title: Text('项目 $index'),
+    );
+  }),
+  onReorder: (oldIndex, newIndex) {
+    // 处理重新排序逻辑
+  },
+)</code></pre>
                 </div>
 
                 <div class="topic-nav">

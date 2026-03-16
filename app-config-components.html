@@ -237,6 +237,21 @@
 )</code></pre>
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">调试横幅效果对比</div>
+                    <div class="flutter-preview">
+                        <div style="margin-bottom: 12px;">
+                            <div style="font-size: 12px; color: #666; margin-bottom: 4px;">默认 (debugShowCheckedModeBanner: true)</div>
+                            <div class="debug-banner">Debug</div>
+                            <div style="background: #F5F5F5; padding: 20px; text-align: center; border-radius: 4px;">应用内容</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 12px; color: #666; margin-bottom: 4px;">隐藏 (debugShowCheckedModeBanner: false)</div>
+                            <div style="background: #F5F5F5; padding: 20px; text-align: center; border-radius: 4px;">应用内容</div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="runapp">runApp</h2>
                 <p>runApp 是 Flutter 应用的入口函数。</p>
 
@@ -263,16 +278,19 @@ void main() {
                 </div>
 
                 <div class="render-container">
-                    <div class="render-title">调试横幅效果对比</div>
+                    <div class="render-title">Widget 边界可视化</div>
                     <div class="flutter-preview">
-                        <div style="margin-bottom: 12px;">
-                            <div style="font-size: 12px; color: #666; margin-bottom: 4px;">默认 (debugShowCheckedModeBanner: true)</div>
-                            <div class="debug-banner">Debug</div>
-                            <div style="background: #F5F5F5; padding: 20px; text-align: center; border-radius: 4px;">应用内容</div>
+                        <div class="widget-boundary">
+                            <div class="widget-label">Container</div>
+                            <div class="debug-paint">
+                                <div class="debug-size">200x100</div>
+                                <div style="padding: 8px;">内容区域</div>
+                            </div>
                         </div>
-                        <div>
-                            <div style="font-size: 12px; color: #666; margin-bottom: 4px;">隐藏 (debugShowCheckedModeBanner: false)</div>
-                            <div style="background: #F5F5F5; padding: 20px; text-align: center; border-radius: 4px;">应用内容</div>
+                        <div style="margin-top: 12px; font-size: 12px; color: #666;">
+                            <div style="margin-bottom: 4px;">🟦 橙色边框：Widget 的实际渲染边界</div>
+                            <div style="margin-bottom: 4px;">🟨 紫色虚线：Widget 的布局边界</div>
+                            <div>🟩 绿色文字：Widget 的尺寸信息</div>
                         </div>
                     </div>
                 </div>
@@ -293,24 +311,6 @@ void main() {
     ),
   );
 }</code></pre>
-                </div>
-
-                <div class="render-container">
-                    <div class="render-title">Widget 边界可视化</div>
-                    <div class="flutter-preview">
-                        <div class="widget-boundary">
-                            <div class="widget-label">Container</div>
-                            <div class="debug-paint">
-                                <div class="debug-size">200x100</div>
-                                <div style="padding: 8px;">内容区域</div>
-                            </div>
-                        </div>
-                        <div style="margin-top: 12px; font-size: 12px; color: #666;">
-                            <div style="margin-bottom: 4px;">🟦 橙色边框：Widget 的实际渲染边界</div>
-                            <div style="margin-bottom: 4px;">🟨 紫色虚线：Widget 的布局边界</div>
-                            <div>🟩 绿色文字：Widget 的尺寸信息</div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="warning-box">
@@ -367,25 +367,6 @@ void main() {
                     </ul>
                 </div>
 
-                <h2 id="checkerboard">checkerboardRasterCacheImages</h2>
-                <p>checkerboardRasterCacheImages 用于可视化图像缓存。</p>
-
-                <div class="code-block">
-                    <pre><code>import 'package:flutter/rendering.dart';
-
-void main() {
-  // 启用棋盘格缓存可视化
-  debugPaintLayerBordersEnabled = true;
-  debugRepaintRainbowEnabled = true;
-  
-  runApp(
-    MaterialApp(
-      home: MyHomePage(),
-    ),
-  );
-}</code></pre>
-                </div>
-
                 <div class="render-container">
                     <div class="render-title">层边界和重绘可视化</div>
                     <div class="flutter-preview">
@@ -403,6 +384,25 @@ void main() {
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <h2 id="checkerboard">checkerboardRasterCacheImages</h2>
+                <p>checkerboardRasterCacheImages 用于可视化图像缓存。</p>
+
+                <div class="code-block">
+                    <pre><code>import 'package:flutter/rendering.dart';
+
+void main() {
+  // 启用棋盘格缓存可视化
+  debugPaintLayerBordersEnabled = true;
+  debugRepaintRainbowEnabled = true;
+  
+  runApp(
+    MaterialApp(
+      home: MyHomePage(),
+    ),
+  );
+}</code></pre>
                 </div>
 
                 <div class="note-box">

@@ -185,35 +185,6 @@
                     <strong>提示：</strong>国际化需要引入 intl 包，并配置 ARB 文件。
                 </div>
 
-                <h2 id="intl">Intl</h2>
-                <p>Intl 是 Flutter 的国际化包，提供日期、数字格式化等功能。</p>
-                
-                <div class="code-block">
-                    <pre><code>import 'package:intl/intl.dart';
-
-// 日期格式化
-final now = DateTime.now();
-final dateFormatter = DateFormat('yyyy-MM-dd');
-final formattedDate = dateFormatter.format(now);
-
-// 数字格式化
-final numberFormatter = NumberFormat.decimalPattern('zh_CN');
-final formattedNumber = numberFormatter.format(1234567.89);
-
-// 货币格式化
-final currencyFormatter = NumberFormat.currency(
-  locale: 'zh_CN',
-  symbol: '¥',
-);
-final formattedCurrency = currencyFormatter.format(1234.56);
-
-// 相对时间
-final now = DateTime.now();
-final tomorrow = now.add(Duration(days: 1));
-final timeFormatter = DateFormat.yMd('zh_CN');
-print('明天是: ${timeFormatter.format(tomorrow)}');</code></pre>
-                </div>
-
                 <div class="render-container">
                     <div class="render-title">格式化结果预览</div>
                     <div class="flutter-preview">
@@ -241,6 +212,35 @@ print('明天是: ${timeFormatter.format(tomorrow)}');</code></pre>
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <h2 id="intl">Intl</h2>
+                <p>Intl 是 Flutter 的国际化包，提供日期、数字格式化等功能。</p>
+                
+                <div class="code-block">
+                    <pre><code>import 'package:intl/intl.dart';
+
+// 日期格式化
+final now = DateTime.now();
+final dateFormatter = DateFormat('yyyy-MM-dd');
+final formattedDate = dateFormatter.format(now);
+
+// 数字格式化
+final numberFormatter = NumberFormat.decimalPattern('zh_CN');
+final formattedNumber = numberFormatter.format(1234567.89);
+
+// 货币格式化
+final currencyFormatter = NumberFormat.currency(
+  locale: 'zh_CN',
+  symbol: '¥',
+);
+final formattedCurrency = currencyFormatter.format(1234.56);
+
+// 相对时间
+final now = DateTime.now();
+final tomorrow = now.add(Duration(days: 1));
+final timeFormatter = DateFormat.yMd('zh_CN');
+print('明天是: ${timeFormatter.format(tomorrow)}');</code></pre>
                 </div>
 
                 <h2 id="localizations">Localizations</h2>
@@ -290,28 +290,6 @@ class MyWidget extends StatelessWidget {
 }</code></pre>
                 </div>
 
-                <h2 id="supportedlocales">supportedLocales</h2>
-                <p>supportedLocales 指定应用支持的语言列表。</p>
-
-                <div class="code-block">
-                    <pre><code>MaterialApp(
-  localizationsDelegates: [
-    MyLocalizationsDelegate(),
-    GlobalMaterialLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-  ],
-  supportedLocales: [
-    const Locale('en', 'US'), // 英语
-    const Locale('zh', 'CN'), // 简体中文
-    const Locale('zh', 'TW'), // 繁体中文
-    const Locale('ja', 'JP'), // 日语
-  ],
-  locale: Locale('zh', 'CN'),
-  home: MyHomePage(),
-)</code></pre>
-                </div>
-
                 <div class="render-container">
                     <div class="render-title">支持的语言列表</div>
                     <div class="flutter-preview">
@@ -344,6 +322,52 @@ class MyWidget extends StatelessWidget {
                     </div>
                 </div>
 
+                <h2 id="supportedlocales">supportedLocales</h2>
+                <p>supportedLocales 指定应用支持的语言列表。</p>
+
+                <div class="code-block">
+                    <pre><code>MaterialApp(
+  localizationsDelegates: [
+    MyLocalizationsDelegate(),
+    GlobalMaterialLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+  ],
+  supportedLocales: [
+    const Locale('en', 'US'), // 英语
+    const Locale('zh', 'CN'), // 简体中文
+    const Locale('zh', 'TW'), // 繁体中文
+    const Locale('ja', 'JP'), // 日语
+  ],
+  locale: Locale('zh', 'CN'),
+  home: MyHomePage(),
+)</code></pre>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">Locale 创建方式</div>
+                    <div class="flutter-preview">
+                        <div class="format-result">
+                            <div class="format-item">
+                                <div class="format-label">Locale('zh', 'CN')</div>
+                                <div class="format-value">zh_CN</div>
+                            </div>
+                            <div class="format-item">
+                                <div class="format-label">Locale('en')</div>
+                                <div class="format-value">en</div>
+                            </div>
+                            <div class="format-item">
+                                <div class="format-label">Locale.fromSubtags(...)</div>
+                                <div class="format-value">zh_Hans_CN</div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 12px; padding: 12px; background: #E3F2FD; border-radius: 6px; font-size: 13px;">
+                            <div style="color: #1976D2; font-weight: 500;">当前语言: zh_CN</div>
+                            <div style="color: #666; margin-top: 4px; font-size: 12px;">语言代码: zh | 地区代码: CN | 脚本代码: Hans</div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="locale">Locale</h2>
                 <p>Locale 表示特定的语言和地区。</p>
 
@@ -369,30 +393,6 @@ void changeLanguage(BuildContext context, Locale newLocale) {
 final formatter = NumberFormat.currency(
   locale: locale.toString(),
 );</code></pre>
-                </div>
-
-                <div class="render-container">
-                    <div class="render-title">Locale 创建方式</div>
-                    <div class="flutter-preview">
-                        <div class="format-result">
-                            <div class="format-item">
-                                <div class="format-label">Locale('zh', 'CN')</div>
-                                <div class="format-value">zh_CN</div>
-                            </div>
-                            <div class="format-item">
-                                <div class="format-label">Locale('en')</div>
-                                <div class="format-value">en</div>
-                            </div>
-                            <div class="format-item">
-                                <div class="format-label">Locale.fromSubtags(...)</div>
-                                <div class="format-value">zh_Hans_CN</div>
-                            </div>
-                        </div>
-                        <div style="margin-top: 12px; padding: 12px; background: #E3F2FD; border-radius: 6px; font-size: 13px;">
-                            <div style="color: #1976D2; font-weight: 500;">当前语言: zh_CN</div>
-                            <div style="color: #666; margin-top: 4px; font-size: 12px;">语言代码: zh | 地区代码: CN | 脚本代码: Hans</div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="note-box">

@@ -256,6 +256,22 @@
                     <strong>提示：</strong>使用 Cupertino 组件需要导入 `package:flutter/cupertino.dart`。
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="cupertino-nav">
+                            <div class="cupertino-nav-left"></div>
+                            <div class="cupertino-nav-center">标题</div>
+                            <div class="cupertino-nav-right"></div>
+                        </div>
+                        <div class="cupertino-scaffold">
+                            <div class="cupertino-content">
+                                <div style="color: #3C3C43; font-size: 16px;">内容</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="cupertinoscaffold">CupertinoPageScaffold</h2>
                 <p>CupertinoPageScaffold 是 iOS 风格的页面布局组件。</p>
                 
@@ -274,13 +290,12 @@
                     <div class="render-title">渲染效果预览</div>
                     <div class="flutter-preview">
                         <div class="cupertino-nav">
-                            <div class="cupertino-nav-left"></div>
+                            <div class="cupertino-nav-left">
+                                <div class="cupertino-icon">‹</div>
+                            </div>
                             <div class="cupertino-nav-center">标题</div>
-                            <div class="cupertino-nav-right"></div>
-                        </div>
-                        <div class="cupertino-scaffold">
-                            <div class="cupertino-content">
-                                <div style="color: #3C3C43; font-size: 16px;">内容</div>
+                            <div class="cupertino-nav-right">
+                                <div class="cupertino-icon">⚙</div>
                             </div>
                         </div>
                     </div>
@@ -306,46 +321,6 @@
       // 打开设置
     },
   ),
-)</code></pre>
-                </div>
-
-                <div class="render-container">
-                    <div class="render-title">渲染效果预览</div>
-                    <div class="flutter-preview">
-                        <div class="cupertino-nav">
-                            <div class="cupertino-nav-left">
-                                <div class="cupertino-icon">‹</div>
-                            </div>
-                            <div class="cupertino-nav-center">标题</div>
-                            <div class="cupertino-nav-right">
-                                <div class="cupertino-icon">⚙</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <h2 id="cupertinotab">CupertinoTabBar</h2>
-                <p>CupertinoTabBar 是 iOS 风格的底部标签栏。</p>
-
-                <div class="code-block">
-                    <pre><code>CupertinoTabBar(
-  items: [
-    BottomNavigationBarItem(
-      icon: Icon(CupertinoIcons.home),
-      label: '首页',
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(CupertinoIcons.search),
-      label: '搜索',
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(CupertinoIcons.person),
-      label: '我的',
-    ),
-  ],
-  onTap: (index) {
-    // 切换标签
-  },
 )</code></pre>
                 </div>
 

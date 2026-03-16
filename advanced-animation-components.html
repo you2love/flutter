@@ -207,6 +207,15 @@
                     <strong>提示：</strong>合理使用动画可以显著提升用户体验，但要注意性能影响。
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="spinning-animation">
+                            <div class="spinning-logo">🔄</div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="animator">AnimatedBuilder</h2>
                 <p>AnimatedBuilder 用于构建复杂的自定义动画。</p>
                 
@@ -256,8 +265,12 @@ class _SpinningWidgetState extends State<SpinningWidget>
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="spinning-animation">
-                            <div class="spinning-logo">🔄</div>
+                        <div class="ticker-visualization">
+                            <div class="ticker-pulse"></div>
+                            <div class="ticker-pulse"></div>
+                            <div class="ticker-pulse"></div>
+                            <div class="ticker-pulse"></div>
+                            <div class="ticker-pulse"></div>
                         </div>
                     </div>
                 </div>
@@ -322,12 +335,12 @@ class _MyWidgetState extends State<MyWidget>
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="ticker-visualization">
-                            <div class="ticker-pulse"></div>
-                            <div class="ticker-pulse"></div>
-                            <div class="ticker-pulse"></div>
-                            <div class="ticker-pulse"></div>
-                            <div class="ticker-pulse"></div>
+                        <div class="curve-preview">
+                            <div class="curve-dot" style="bottom: 20%;"></div>
+                            <div class="curve-dot" style="bottom: 40%;"></div>
+                            <div class="curve-dot" style="bottom: 70%;"></div>
+                            <div class="curve-dot" style="bottom: 90%;"></div>
+                            <div class="curve-dot" style="bottom: 80%;"></div>
                         </div>
                     </div>
                 </div>
@@ -363,12 +376,9 @@ final curvedAnimation = CurvedAnimation(
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="curve-preview">
-                            <div class="curve-dot" style="bottom: 20%;"></div>
-                            <div class="curve-dot" style="bottom: 40%;"></div>
-                            <div class="curve-dot" style="bottom: 70%;"></div>
-                            <div class="curve-dot" style="bottom: 90%;"></div>
-                            <div class="curve-dot" style="bottom: 80%;"></div>
+                        <div class="animation-timeline">
+                            <div class="timeline-bar"></div>
+                            <div class="timeline-marker"></div>
                         </div>
                     </div>
                 </div>
@@ -403,9 +413,8 @@ final animation = tweenSequence.animate(controller);</code></pre>
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="animation-timeline">
-                            <div class="timeline-bar"></div>
-                            <div class="timeline-marker"></div>
+                        <div class="lottie-preview">
+                            <div class="lottie-character">🎬</div>
                         </div>
                     </div>
                 </div>
@@ -438,15 +447,6 @@ Lottie.asset(
   repeat: true,
   animate: true,
 )</code></pre>
-                </div>
-
-                <div class="render-container">
-                    <div class="render-title">📱 渲染效果预览</div>
-                    <div class="flutter-preview">
-                        <div class="lottie-preview">
-                            <div class="lottie-character">🎬</div>
-                        </div>
-                    </div>
                 </div>
 
                 <h2 id="flare">Flare</h2>

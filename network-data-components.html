@@ -185,9 +185,39 @@
                     <strong>提示：</strong>这些组件通常需要引入第三方包，请确保在 pubspec.yaml 中添加依赖。
                 </div>
 
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="network-preview">
+                            <div class="network-item">
+                                <div class="network-icon">🌐</div>
+                                <div class="network-label">http</div>
+                                <div class="network-desc">简单易用<br/>官方推荐</div>
+                            </div>
+                            <div class="network-item">
+                                <div class="network-icon">⚡</div>
+                                <div class="network-label">dio</div>
+                                <div class="network-desc">功能强大<br/>拦截器支持</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="render-container">
+                    <div class="render-title">📱 渲染效果预览</div>
+                    <div class="flutter-preview">
+                        <div class="json-preview">
+{
+  "name": "张三",
+  "age": 25
+}
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="http">http / dio</h2>
                 <p>http 和 dio 是常用的网络请求库。</p>
-                
+
                 <div class="code-block">
                     <pre><code>// 使用 http 包
 import 'package:http/http.dart' as http;
@@ -208,16 +238,11 @@ print(response.data);</code></pre>
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="network-preview">
-                            <div class="network-item">
-                                <div class="network-icon">🌐</div>
-                                <div class="network-label">http</div>
-                                <div class="network-desc">简单易用<br/>官方推荐</div>
-                            </div>
-                            <div class="network-item">
-                                <div class="network-icon">⚡</div>
-                                <div class="network-label">dio</div>
-                                <div class="network-desc">功能强大<br/>拦截器支持</div>
+                        <div class="state-demo">
+                            <div class="state-display">计数: 0</div>
+                            <div class="state-buttons">
+                                <button class="state-btn">-</button>
+                                <button class="state-btn">+</button>
                             </div>
                         </div>
                     </div>
@@ -246,11 +271,14 @@ class User {
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="json-preview">
-{
-  "name": "张三",
-  "age": 25
-}
+                        <div class="data-flow">
+                            <div class="data-flow-box">Event</div>
+                            <span class="data-flow-arrow">→</span>
+                            <div class="data-flow-box">Bloc</div>
+                            <span class="data-flow-arrow">→</span>
+                            <div class="data-flow-box">State</div>
+                            <span class="data-flow-arrow">→</span>
+                            <div class="data-flow-box">UI</div>
                         </div>
                     </div>
                 </div>
@@ -334,14 +362,12 @@ BlocBuilder<CounterCubit, int>(
                 <div class="render-container">
                     <div class="render-title">📱 渲染效果预览</div>
                     <div class="flutter-preview">
-                        <div class="data-flow">
-                            <div class="data-flow-box">Event</div>
-                            <span class="data-flow-arrow">→</span>
-                            <div class="data-flow-box">Bloc</div>
-                            <span class="data-flow-arrow">→</span>
-                            <div class="data-flow-box">State</div>
-                            <span class="data-flow-arrow">→</span>
-                            <div class="data-flow-box">UI</div>
+                        <div class="state-demo">
+                            <div class="state-display">计数: 0</div>
+                            <div class="state-buttons">
+                                <button class="state-btn">-</button>
+                                <button class="state-btn">+</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -403,19 +429,6 @@ Consumer(
     return Text('计数: $count');
   },
 )</code></pre>
-                </div>
-
-                <div class="render-container">
-                    <div class="render-title">📱 渲染效果预览</div>
-                    <div class="flutter-preview">
-                        <div class="state-demo">
-                            <div class="state-display">计数: 0</div>
-                            <div class="state-buttons">
-                                <button class="state-btn">-</button>
-                                <button class="state-btn">+</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="note-box">
